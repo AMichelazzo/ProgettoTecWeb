@@ -1,0 +1,10 @@
+* {
+	padding: 0em;
+	margin: 0em;
+}
+
+:root{
+  --visitedcolor: #FFFFFF
+  --unvisitedcolor: #000000
+  --bglinkcolor: #DB334F
+}
