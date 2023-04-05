@@ -4,7 +4,52 @@
 }
 
 :root{
-  --visitedcolor: #FFFFFF
-  --unvisitedcolor: #000000
-  --bglinkcolor: #DB334F
+  --visitedcolor: #FFFFFF;
+  --unvisitedcolor: #000000;
+  --bglinkcolor: #DB334F;
+}
+
+html, body{
+	font-size: 100%;
+	font-family: "Verdana", sans-serif;
+	line-height: 1.5em;
+	background-color: white;
+	color: black;
+	margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+body {
+    max-width: 1024px;
+}
+
+#menubar {
+    text-align: right;
+}
+
+a {
+    background-color: var(--bglinkcolor);
+}
+
+a:link {
+    color: var(--unvisitedcolor);
+}
+
+a:visited {
+    color: var(--visitedcolor);
+}
+
+#menu{
+    background-color: #DB334F;
+}
+
+#menu li {
+    display: inline;
+}
+
+#breadcrumb {
+    border: 1px solid var(--bglinkcolor);
 }
