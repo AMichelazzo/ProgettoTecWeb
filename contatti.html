@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8" />
+        <title>Vetrina articoli di Vetro</title>
+        <meta name="description" content="Vetrina di articoli di vetro come vasi, lampadari, specchi, bicchieri, e piccoli oggetti " /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
+        <meta name="keywords" content="vetro, vasi, lampadari, specchi, bicchieri" /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
+        <meta name="author" content="Web Triplet (?) (Alberto Michelazzo)" />
+
+        <link rel="stylesheet" href="style.css" media="handheld, screen" /> 
+
+        
+        <link rel="shortcut icon" type="image/png" href="chandelier.ico" />
+    </head>
+    <body>
+        <header class="navtop">
+            <ul class="area_personale">
+                <li>
+                    <a href="login.html">Area Personale</a>
+                </li>
+            </ul>
+
+        </header>
+        <header>
+            <img src="logo_vetrina.svg" alt="Logo Vetrina" />
+            <h1>Vetrina Articoli di Vetro</h1>
+        </header>
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <span lang="en">Contatti</span></p>
+        </nav>
+
+        <nav id="menu">
+            <ul>
+                <li><a href="index.html"<span lang="en">Homepage</span></li>
+                <li><a href="prodotti.html">Prodotti</a></li>
+                <li><a href="chi_siamo.html">Chi siamo</a></li>
+                <li id="currentLink">Contattaci</a></li>
+            </ul>
+        </nav>
+
+        <main>
+
+        <fieldset>
+            <form>
+                <label for="nome">Nome:</label><br>
+                <input type="text" id="nome" name="nome"><br>
+                <label for="cognome">Cognome:</label><br>
+                <input type="text" id="cognome" name="cognome">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="messaggio">Messaggio:</label><br>
+                <textarea name="messaggio" placeholder="Buongiorno, vorrei informazioni riguardo..." rows="10" cols="40" maxlength="1000"></textarea><br><br>
+                <input type="submit" value="Invia">
+            </form>
+        </fieldset>
+
+        </main>
+        <footer id="footer">
+           <p>Web Triplet & Alberto Michelazzo - <span lang="en">All Rights Reserved</span></p>
+        </footer>   
+    </body>
+</html>
