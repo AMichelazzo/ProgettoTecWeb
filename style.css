@@ -4,8 +4,8 @@
 }
 
 :root{
-  --visitedcolor: #FFFFFF;
-  --unvisitedcolor: #000000;
+  --visitedcolor: #000000;
+  --unvisitedcolor: #FFFFFF;
   --bglinkcolor: #DB334F;
 }
 
