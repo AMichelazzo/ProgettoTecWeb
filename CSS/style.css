@@ -105,6 +105,32 @@ a:visited {
     text-align: justify;
 }
 
+#utenti {
+    
+    width: 85%;
+    /*
+    -webkit-border-radius:2em;
+    -moz-border-radius:2em;
+    */
+    border-radius: 12px; /*ATTENZIONE VALORE ASSOLUTO*/
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 0em 0em 0.3em 0em #d2d2d2;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+.flexutente {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inline {
+    display: inline; /*o inline-block*/
+}
+
 #iniziopagina {
     text-align: center;
 }
