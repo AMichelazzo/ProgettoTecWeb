@@ -4,7 +4,7 @@
     <!-- manca un sistema per passare direttamente al contenuto per lo screen reader -->
 <head>
     <meta charset="utf-8" />
-    <title>Login - Nome negozio</title> <!-- DA SOSTITUIRE -->
+    <title>Nome negozio</title> <!-- DA SOSTITUIRE -->
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
@@ -16,11 +16,11 @@
 </head>
 <body>
     <header>
-        <!-- <nav id="menubar"><p id="currentLink">Area Riservata</p></nav> --> <!-- usare una lista anche se è singolo? -->
+        <!-- <nav id="menubar"><a href="areariservata.html">Area Riservata</a></nav> -->
         <nav id="menubar">
             <ul>
                 <li><a href="../HTML/profilo.html">Profilo</a></li>
-                <li id="currentLink">Utenti</li>
+                <li><a href="../HTML/utenti.html">Utenti</a></li>
                 <li><a href="../HTML/profilo.html">Catalogo</a></li>
                 <li><a href="../HTML/messaggi.html">Messaggi</a></li>
                 <li><a href="../HTML/prototipo.html">Esci</a></li>
@@ -29,7 +29,7 @@
         <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
         <nav id="menu">
             <ul>
-                <li><a href="../HTML/prototipo.html" lang="en">Home</a></li>
+                <li id="currentLink" lang="en">Home</li>
                 <li><a href="../HTML/prodotti.html">Prodotti</a></li>
                 <li><a href="../HTML/contatti.html">Contatti</a></li>
             </ul>
@@ -39,24 +39,28 @@
         </nav>
     </header>
     <!-- FINE PROTOTIPO -->
-    <main>
-        <div id="contenuto">
-            <div id="login">
-                <div id="operazione">LOGIN</div>
-                <form method="post" action="">
-                    <!-- <fieldset>
-                        <legend>LOGIN</legend> -->
-                        <label for="username" lang="en">Username: </label><br />
-                        <span><input type="text" id="username" name="username"/></span><br />
-
-                        <label for="password" lang="en">Password: </label><br />
-                        <span><input type="password" id="password" name="password"/></span><br />
-
-                        <input type="submit" id="submit" name="submit" class="invio" value="Login" />
-                    <!-- </fieldset> -->
-                </form>
-                <p><a href="../HTML/registrazione.html">Registrati</a></p>
-            </div>
+    <main> <!-- scala male -->
+        <div id="utenti">
+            <p class="inline">
+                Username: mariorossi
+            </p>
+            <p class="inline">
+                Email: mariorossi@gmail.com
+            </p>
+            <form method="post" action="" class="inline"> <!-- inserire classe inline? -->
+                    <input type="submit" id="submit" name="submit" class="invio" value="Elimina" />
+            </form>
+        </div>
+        <div id="utenti">
+            <p class="inline">
+                Username: biancarossi
+            </p>
+            <p class="inline">
+                Email: biancarossi@gmail.com
+            </p>
+            <form method="post" action="" class="inline"> <!-- inserire classe inline? -->
+                    <input type="submit" id="submit" name="submit" class="invio" value="Elimina" />
+            </form>
         </div>
         <div id="iniziopagina">
             <a href="#">Inizio pagina</a>

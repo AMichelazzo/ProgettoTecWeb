@@ -17,6 +17,8 @@ class DBAccess {
   
   }
 
+  
+
   public function closeConnection() {
     mysqli_close($this->connection)
   }
