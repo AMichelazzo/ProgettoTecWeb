@@ -1,4 +1,7 @@
+/*
 var backToTopElement = document.getElementById('#backToTop')
 var backToTop = new bootstrap.BackToTop(backToTopElement, {
   scrollLimit: 100,
 })
+Per pulsante torna a inizio pagina
+*/
