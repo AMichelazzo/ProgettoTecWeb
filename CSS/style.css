@@ -152,3 +152,11 @@ a:visited {
     padding: 0.2em 0.5em 0.5em 0.5em;
     border-radius: 12px 12px 12px 12px; /*ATTENZIONE VALORE ASSOLUTO*/
 }
+
+.noview { /*da rivedere*/
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
