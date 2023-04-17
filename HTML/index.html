@@ -7,25 +7,28 @@
         <meta name="keywords" content="vetro, vasi, lampadari, specchi, bicchieri" /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
         <meta name="author" content="Web Triplet (?) (Alberto Michelazzo)" />
 
-        <link rel="stylesheet" href="../CSS/style.css" media="handheld, screen" /> 
-
-        
-        <link rel="shortcut icon" type="image/png" href="chandelier.ico" />
+        <link rel="stylesheet" href="../CSS/style.css" media="handheld, screen"/>
+        <link rel="stylesheet" href="../CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
+        <link rel="stylesheet" href="../CSS/print.css" media="print"/>
+        <link rel="shortcut icon" type="image/png" href="../img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
     </head>
     <body>
-        <header class="navtop">
-            <ul class="area_personale">
-                <li>
-                    <a href="login.html">Area Personale</a>
-                </li>
+         <header>
+        <a class="noview" href="#iniziocontenuto">Passa al contenuto</a>
+        <!-- <nav id="menubar"><a href="areariservata.html">Area Riservata</a></nav> -->
+        <nav id="menubar" aria-labelledby="Menu funzionalità"> <!-- DA VERIFICARE -->
+            <ul>
+                <li><a href="../HTML/profilo.html">Profilo</a></li>
+                <li><a href="../HTML/utenti.html">Utenti</a></li>
+                <li><a href="../HTML/categorie.html">Catalogo</a></li>
+                <li><a href="../HTML/messaggi.html">Messaggi</a></li>
+                <li><a href="../HTML/prototipo.html">Esci</a></li>
             </ul>
-
-        </header>
-        <header>
+        </nav>
             <img src="logo_vetrina.svg" alt="Logo Vetrina" />
             <h1>Vetrina Articoli di Vetro</h1>
         </header>
-        <nav id="breadcrumb">
+        <nav id="breadcrumb"aria-labelledby="Percorso pagina"> <!-- DA VERIFICARE -->
             <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
 
