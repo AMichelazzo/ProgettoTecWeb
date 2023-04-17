@@ -47,6 +47,17 @@ $OKCateg=pulisciInput($id_categ);
   return $result;
 }
 
+public function getProduct($id_prodotto) {
+  $OKProd=pulisciInput($id_prodotto);
+    $query = "SELECT * FROM `prodotti` JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
+    $queryResult = mysqli_query($this->connection, $query);
+    $result = array();
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $result[] = $row;
+    }
+    return $result;
+  }
+  
   public function closeConnection() {
     mysqli_close($this->connection)
   }
