@@ -12,9 +12,18 @@ if (isset($_GET["prod"])) {
     $result=$connessione->getProduct($_GET["prod"]);
     $connessione->closeConnection();
     if(count($result)>0){
-        $Prodotto="<div>".$result[0]['Nome']."</div>
-                <div><img src=\"".$result[0]['path']."\" alt=\"".$result[0]['alt_img']."\" width='300' height='200'/></div>
-                <div>".$result[0]['Descrizione']."</div>
+        $nome=$result[0]['Nome'];
+        $desc=$result[0]['Descrizione'];
+        $Prodotto="<div>".$nome."</div><div class=\"slideshow-container\">";
+        for ($i = 0; $i < count($result); $i++) {
+                $Prodotto=$Prodotto."<div class=\"mySlides fade\">
+                <img src=\"".$result[$i]['path']."\" alt=\"".$result[$i]['alt_img']."\">
+              </div>";
+            }
+        $Prodotto=$Prodotto."<a class=\"Back\" onclick=\"plusSlides(-1)\">&#10094;</a>
+        <a class=\"forward\" onclick=\"plusSlides(1)\">&#10095;</a>
+      </div>
+      <div>".$desc."</div>
                 <div>
                 <form id=\"contattaci-form\" action=\"../HTML/contatti.html\" method=\"post\">
                 <fieldset>
@@ -27,9 +36,11 @@ if (isset($_GET["prod"])) {
                 </fieldset>
                 </form>
             </div>";
-        $replace = array("<title>- Vetrina articoli di Vetro</title>" =>"<title>".$result[0]['Nome']." - Vetrina articoli di Vetro</title>",
+
+
+        $replace = array("<title>- Vetrina articoli di Vetro</title>" =>"<title>".$nome." - Vetrina articoli di Vetro</title>",
                         "<showProdotto />" =>$Prodotto                   
-                        );
+                        );////////////WISH LIST
     }
     else{
         header("Location: ../PHP/categorie.php");
