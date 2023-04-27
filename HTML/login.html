@@ -13,11 +13,12 @@
     <link rel="stylesheet" href="../CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
     <link rel="stylesheet" href="../CSS/print.css" media="print"/>
     <link rel="shortcut icon" type="image/png" href="../img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
+    <script src="../JS/script.js"></script>
 </head>
 <body>
     <header>
         <!-- <nav id="menubar"><p id="currentLink">Area Riservata</p></nav> --> <!-- usare una lista anche se è singolo? -->
-        <nav id="menubar">
+        <nav id="menubar" aria-label="Menu utente">
             <ul>
                 <li><a href="../HTML/profilo.html">Profilo</a></li>
                 <li id="currentLink">Utenti</li>
@@ -27,14 +28,17 @@
             </ul>
         </nav>
         <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
-        <nav id="menu">
+        <div id="hambmenu">
+            <button id="hambutton" class="hambhere" isHamb="false" type="button" onclick="notHamb()">Menu</button> <!-- DA SISTEMARE -->
+        </div>
+        <nav id="menu" aria-label="Menu principale" class="hambhere" isHamb="false">
             <ul>
                 <li><a href="../HTML/prototipo.html" lang="en">Home</a></li>
                 <li><a href="../PHP/categorie.php">Prodotti</a></li>
                 <li><a href="../HTML/contatti.html">Contatti</a></li>
             </ul>
         </nav>
-        <nav id="breadcrumb">
+        <nav id="breadcrumb" aria-label="Breadcrumb">
             <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
     </header>

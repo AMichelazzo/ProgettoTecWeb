@@ -1,0 +1,28 @@
+#menubar {
+    display: none;
+}
+
+#menu{
+    height: auto;
+}
+
+#menu[isHamb="false"]{ /*noview*/
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+#menu ul{
+    padding: 0em;
+}
+
+#menu li {
+    display: block;
+    text-align: center;
+}
+
+#hambutton {
+    display: block;
+}
