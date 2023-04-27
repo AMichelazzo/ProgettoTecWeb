@@ -38,7 +38,7 @@ body {
 }
 
 #menubar #currentLink {
-    color: var(--linkcolor); /*corretto?/*
+    color: var(--linkcolor); /*corretto?*/
     background-color: #DB334F;
     background-image: url("../img/logo_vetrina.svg"); /*bianco?*/
     background-size: 1.3em;
