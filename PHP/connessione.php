@@ -2,7 +2,7 @@
 
 namespace DB;
 
-function pulisciInput($value){
+function pulisciInput($value) {
   // elimina gli spazi
   $value = trim($value);
   // rimuove tag html (non sempre è una buona idea!)
@@ -17,14 +17,10 @@ class DBAccess {
   
   private $connection;
   public function openDBConnection() {
-
-    mysqli_report(MYSQLI_REPORT_ERROR)
-
+    mysqli_report(MYSQLI_REPORT_ERROR);
     $this->connection = mysqli_connect(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
-
-    if(mysqli_connect_errno()) {return false;}
-    else {return true;}
-  
+    if (mysqli_connect_errno()) {return false;}
+    return true;
   }
   
   public function getCategories() {
@@ -35,9 +31,9 @@ class DBAccess {
         $result[] = $row;
     }
     return $result;
-}
-public function getProductListANDCheckCategory($id_categ) {
-$OKCateg=pulisciInput($id_categ);
+  }
+  public function getProductListANDCheckCategory($id_categ) {
+  $OKCateg=pulisciInput($id_categ);
   $query = "SELECT * FROM `prodotti` WHERE id_categoria ='$OKCateg'";
   $queryResult = mysqli_query($this->connection, $query);
   $result = array();
@@ -47,7 +43,7 @@ $OKCateg=pulisciInput($id_categ);
   return $result;
 }
 
-public function getProduct($id_prodotto) {
+  public function getProduct($id_prodotto) {
   $OKProd=pulisciInput($id_prodotto);
     $query = "SELECT * FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
     $queryResult = mysqli_query($this->connection, $query);
@@ -59,7 +55,7 @@ public function getProduct($id_prodotto) {
   }
   
   public function closeConnection() {
-    mysqli_close($this->connection)
+    mysqli_close($this->connection);
   }
 }
 
