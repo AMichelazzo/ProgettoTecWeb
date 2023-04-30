@@ -1,17 +1,24 @@
+#menubar li {
+    display: block;
+    text-align: center;
+}
+
 #menubar {
-    display: none;
+    background-color: var(--bgfuncolor);
+    padding: 0.3em 0em 0.1em 1.0em;
+    border-radius: 12px 12px 0px 0px; /*ATTENZIONE VALORE ASSOLUTO*/
 }
 
-#menu{
-    height: auto;
-}
-
-#menu[isHamb="false"]{ /*noview*/
+#menubar[isHamb="false"]{ /*noview*/
     position: absolute;
     height: 1px;
     width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
+}
+
+#menu {
+    border-radius: 0px 0px 0px 0px; /*ATTENZIONE VALORE ASSOLUTO*/
 }
 
 #menu ul{
@@ -21,6 +28,11 @@
 #menu li {
     display: block;
     text-align: center;
+}
+
+#menu[isHamb="false"] {
+    padding: 0.3em 0em 0.1em 1.0em;
+    border-radius: 12px 12px 0px 0px; /*ATTENZIONE VALORE ASSOLUTO*/
 }
 
 #hambutton {
