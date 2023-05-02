@@ -5,7 +5,7 @@ use DB\DBAccess;
 
 $connessione = new DBAccess();
 
-if (isset($_GET["mess"])) { 
+if (1) { //isset($_GET["mess"])
     $result = $id = $username = $msg = $replace ="";
     $connessioneRiuscita = $connessione->openDBConnection();
     $result=$connessione->getMessage($_GET["mess"]);
