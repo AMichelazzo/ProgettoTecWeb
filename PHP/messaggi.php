@@ -25,7 +25,7 @@ if (isset($_GET["mess"])) {
         header("Location: ../PHP/categorie.php");
     }
 
-    $paginaHTML = file_get_contents("../HTML/messaggio.html");
+    $paginaHTML = file_get_contents("../HTML/messaggi.html");
         foreach($replace as $key => $value)
                 $paginaHTML = str_replace($key, $value, $paginaHTML);
         echo $paginaHTML;
