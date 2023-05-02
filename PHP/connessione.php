@@ -54,6 +54,19 @@ class DBAccess {
     return $result;
   }
   
+
+  public function getMessage($id_messaggio) {
+    $OKMess=pulisciInput($id_messaggio);
+    $query = "SELECT id_messaggio, username, msg  FROM 'messaggi'";  // da implementare con il resto dei parametri di messaggi
+    $queryResult = mysqli_query($this->connection, $query);
+    %result = array();
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $result[] = $row;
+    }
+    return $result;
+  }
+
+
   public function closeConnection() {
     mysqli_close($this->connection);
   }
