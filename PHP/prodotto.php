@@ -23,7 +23,8 @@ if (isset($_GET["prod"])) {
         $replace = array("Titolo" =>$nome,
                             "Nome Prodotto" =>$nome,
                             "Descrizione Prodotto" =>$desc,
-                            "<div>img</div>" => $slideshow);////////////WISH LIST
+                            "<div>img</div>" => $slideshow,
+                        "product-ID" => $result[0]['id_prodotto']);////////////WISH LIST
     }
     else{
         header("Location: ../PHP/categorie.php");

@@ -192,8 +192,18 @@ a:visited {
   /* Hide the images by default */
   .mySlides {
     display: none;
+    height: 300px;
+    width: 300px;
+    margin: auto;
   }
   
+  .position-container {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+  }
+
   /* Next & previous buttons */
   .prev, .next {
     cursor: pointer;

@@ -40,18 +40,20 @@
         <div id="content">
             <h1 id="product-name">Nome Prodotto</h1>
             <div class="slideshow-container">
-                <div>img</div>
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-              </div>
+                <div class="position-container">
+                    <div>img</div>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+            </div>
             <div id="description">
             <h2>Descrizione Prodotto</h2>
-            <form id="contact-form" method="post">
+            <form action="contatti.php" id="contact-form" method="post">
                 <fieldset>
                 <legend>
                     <h3>Per Informazioni</h3>
                 </legend>
-                <input type="hidden" name="product-id" id="product-id"/>
+                <input type="hidden" name="product-id" id="product-ID"/>
                 <div class="submit">
                     <input type="submit" id="informazioni" name="informazioni" value="Richiedi Informazioni" />
                 </div>
