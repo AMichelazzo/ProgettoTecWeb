@@ -2,7 +2,7 @@
 	padding: 0em;
 	margin: 0em;
     /*per vedere i bordi di tutti gli elementi e capire dove si posizionano basta togliere commento da riga sotto*/
-    /*outline: red dashed 1px;*/
+    outline: red dashed 1px;
 }
 
 :root{
@@ -185,7 +185,6 @@ a:visited {
     /* Slideshow container */
   .slideshow-container {
     max-width: 1000px;
-    position: relative;
     margin: auto;
   }
   
@@ -245,4 +244,34 @@ a:visited {
     from {opacity: .4}
     to {opacity: 1}
   }  
+
+  #content {
+    position: relative;
+  }
+  .button {
+    position: absolute;
+    right:0;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bgfuncolor);
+    background-color: var(--bgfuncolor);
+}
+
+.button__text {
+    color: white;
+    text-align: center;
+    display: inline-block;
+}
+  
+  .button:hover {
+    background: var(--bgfuncolor);
+  }
+  
+  .button:active {
+    border: 1px solid var(--bgfuncolor);
+  }
 /*END CAROUSEL*/

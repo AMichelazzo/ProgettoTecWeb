@@ -43,9 +43,9 @@ class DBAccess {
   return $result;
 }
 
-  public function getProduct($id_prodotto) {
+public function getProduct($id_prodotto) {
   $OKProd=pulisciInput($id_prodotto);
-    $query = "SELECT * FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
+    $query = "SELECT `prodotti`.`id_prodotto`,`prodotti`.`id_categoria`,`prodotti`.`Nome`,`prodotti`.`Descrizione`,`immagini`.`path`,`immagini`.`alt_img` FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
     $queryResult = mysqli_query($this->connection, $query);
     $result = array();
     while ($row = mysqli_fetch_assoc($queryResult)) {
@@ -53,17 +53,15 @@ class DBAccess {
     }
     return $result;
   }
-  
 
-  public function getMessage($id_messaggio) {
-    $OKMess=pulisciInput($id_messaggio);
-    $query = "SELECT id_messaggio, username, msg  FROM 'messaggi'";  // da implementare con il resto dei parametri di messaggi
-    $queryResult = mysqli_query($this->connection, $query);
-    $result = array();
-    while ($row = mysqli_fetch_assoc($queryResult)) {
-        $result[] = $row;
-    }
-    return $result;
+  public function addtoWishList($id_prodotto,$id_categoria,$username) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKcat=pulisciInput($id_categoria);
+    $OKuser=pulisciInput($username);
+    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
+    $result = mysqli_query($this->connection, $query);
+    //POI CONTROLLA SE ITEM è GIA INSERITO IN WISH LIST
+    return ($result == true);
   }
 
 
