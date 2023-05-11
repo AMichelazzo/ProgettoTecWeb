@@ -54,6 +54,23 @@ public function getProduct($id_prodotto) {
     return $result;
   }
   
+   public function getMessages() {
+    $query = "SELECT id_messaggio, username, 'data', id_prodotto, msg, letto FROM messaggi";  // da implementare con il resto dei parametri di messaggi
+    $queryResult = mysqli_query($this->connection, $query);
+    $result ="";
+
+    while($row = mysqli_fetch_assoc($queryResult))
+    {
+        $result .= "<tr>";
+
+        foreach($row as $value)
+          $result .= "<td>" . $value . "</td>";
+        
+        $result .= "</tr>";
+    }
+
+    return $result;
+  }
 
 
 
