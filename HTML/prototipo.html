@@ -17,15 +17,17 @@
 <body>
     <header>
         <a class="noview" href="#iniziocontenuto">Passa al contenuto</a>
+
         <!-- <nav id="menubar"><ul><li><a href="login.html">Login</a></li><li><a href="registrazione.html">Registrazione</a></li></ul></nav> -->
 
-        <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
-
-        <div id="hambmenu">
-            <button id="hambutton" type="button" class="hambuttonoff" onclick="notHamb()">Menu</button> <!-- DA SISTEMARE, verificare che button porti i vantaggi voluti, altrimenti optare per input; varia in base all'utente -->
+        <div id="nomemenu">
+            <div id="hambmenu">
+                <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
+                <button id="hambutton" type="button" class="hambuttonoff" onclick="notHamb()">Menu</button> <!-- DA SISTEMARE, verificare che button porti i vantaggi voluti, altrimenti optare per input; varia in base all'utente -->
+            </div>
         </div>
 
-        <nav id="menubar" aria-labelledby="menubar" class="menubaroff"> <!-- DA VERIFICARE -->
+        <nav id="menubar" aria-label="Opzioni utente" class="menubaroff"> <!-- DA VERIFICARE -->
             <ul>
                 <li><a href="HTML/profilo.html">Profilo</a></li>
                 <li><a href="HTML/utenti.html">Utenti</a></li>
@@ -34,9 +36,9 @@
                 <li><a href="HTML/prototipo.html">Esci</a></li>
             </ul>
         </nav>
-        <h1></h1>
+        <!-- <h1></h1> -->
  
-        <nav id="menu" aria-labelledby="menu"> <!-- DA VERIFICARE -->
+        <nav id="menu" aria-label="Menu"> <!-- DA VERIFICARE, inoltre tenere conto della lingua -->
             <ul>
                 <li id="currentLink" lang="en">Home</li>
                 <li><a href="PHP/categorie.php">Prodotti</a></li>
