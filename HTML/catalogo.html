@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+    <!-- pagina per capire/creare/provare le parti comuni del sito -->
+<head>
+    <meta charset="utf-8" />
+    <title>Nome negozio</title> <!-- DA SOSTITUIRE -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" href="../CSS/style.css" media="handheld, screen"/>
+    <link rel="stylesheet" href="../CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
+    <link rel="stylesheet" href="../CSS/print.css" media="print"/>
+    <link rel="shortcut icon" type="image/png" href="img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
+    <script src="JS/script.js"></script>
+</head>
+<body>
+    <header>
+        <a class="noview" href="#iniziocontenuto">Passa al contenuto</a>
+
+        <!-- <nav id="menubar"><ul><li><a href="login.html">Login</a></li><li><a href="registrazione.html">Registrazione</a></li></ul></nav> -->
+
+        <div id="nomemenu">
+            <div id="hambmenu">
+                <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
+                <button id="hambutton" type="button" class="hambuttonoff" onclick="notHamb()">Menu</button> <!-- DA SISTEMARE, verificare che button porti i vantaggi voluti, altrimenti optare per input; varia in base all'utente -->
+            </div>
+        </div>
+
+        <nav id="menubar" aria-label="Opzioni utente" class="menubaroff"> <!-- DA VERIFICARE -->
+            <ul>
+                <li><a href="HTML/profilo.html">Profilo</a></li>
+                <li><a href="HTML/utenti.html">Utenti</a></li>
+                <li><a href="PHP/categorie.php">Catalogo</a></li>
+                <li><a href="HTML/messaggi.html">Messaggi</a></li>
+                <li><a href="HTML/prototipo.html">Esci</a></li>
+            </ul>
+        </nav>
+        <!-- <h1></h1> -->
+ 
+        <nav id="menu" aria-label="Menu"> <!-- DA VERIFICARE, inoltre tenere conto della lingua -->
+            <ul>
+                <li id="currentLink" lang="en">Home</li>
+                <li><a href="PHP/categorie.php">Prodotti</a></li>
+                <li><a href="HTML/contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+        <nav id="breadcrumb" aria-labelledby="breadcrumb"> <!-- DA VERIFICARE -->
+            <p>Ti trovi in: <span lang="en">Home</span></p>
+        </nav>
+
+        <!-- <a href="#" aria-hidden="true" tabindex="-1" data-bs-toggle="backtotop" class="back-to-top" id="example">
+            <svg class="icon icon-light"><use href="/img/gotop3.svg"></use></svg>
+            </a>
+                    (pulsante per tornare a inizio pagina da implementare)-->
+
+    </header>
+    <!-- FINE PROTOTIPO -->
+    <main id="iniziocontenuto">
+        <div id="utenti">
+            <div class="flexutente">
+                <a class="" href="HTML/prodotti_categoria.html">Nome_categoria</a>
+                <input type="button" id="" name="" class="invio" value="Modifica" />
+                <input type="button" id="" name="" class="invio" value="Elimina" />
+                <!-- pagina di conferma -->
+            </div>
+        </div>
+        <div id="iniziopagina">
+            <a href="#">Inizio pagina</a>
+        </div>
+    </main>
+    <footer>
+        <div id = footer>
+                <p>
+             Web Triplet - <span lang="en">All Rights Reserved</span>
+          </p>
+        </div>
+    </footer>
+</body>
+
+</html>
