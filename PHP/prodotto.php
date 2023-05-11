@@ -18,16 +18,20 @@ if (isset($_GET["prod"])) {
         $slideshow = "";
         for ($i = 0; $i < count($result); $i++) {
             $slideshow .= "<div class=\"mySlides fade\">
-            <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]." width=\"300\" height=\"300\"\">
+            <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"\">
             </div>";
         }
-        
+        $connessioneRiuscita = $connessione->openDBConnection();
+        $result=$connessione->isInWishList($idprod,$idcat,/*$_SESSION["username"]*/"user");
+        $connessione->closeConnection();
+        ($result) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList";; 
         $replace = array("Titolo" =>$nome,
                             "Nome Prodotto" =>$nome,
                             "Descrizione Prodotto" =>$desc,
                             "<div>img</div>" => $slideshow,
                             "product-ID" => $idprod,
-                            "categ_id" => $idcat);
+                            "categ_id" => $idcat,
+                            "Aggiungi a WishList" => $testoButton);
     }
     else{
         header("Location: ../PHP/categorie.php");
