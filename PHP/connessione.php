@@ -60,8 +60,7 @@ public function getProduct($id_prodotto) {
     $OKuser=pulisciInput($username);
     $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
     $result = mysqli_query($this->connection, $query);
-    //POI CONTROLLA SE ITEM è GIA INSERITO IN WISH LIST
-    return ($result == true);
+    return $result;
   }
   
    public function getMessages() {
@@ -83,6 +82,22 @@ public function getProduct($id_prodotto) {
   }
 
  
+  public function removeFromWishList($id_prodotto,$id_categoria,$username) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKcat=pulisciInput($id_categoria);
+    $OKuser=pulisciInput($username);
+    $query = "DELETE FROM wishlist WHERE `wishlist`.`username` = '$OKuser' AND `wishlist`.`id_prodotto` = '$OKProd' AND `wishlist`.`id_categoria`='$OKcat'";
+    $result = mysqli_query($this->connection, $query);
+    return $result;
+  }
+  
+  public function isInWishList($idprod,$idcat,$user){
+    $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$idprod' AND `id_categoria`='$idcat'"; 
+    $queryResult = mysqli_query($this->connection, $query);
+    $result = array();
+    $row = mysqli_fetch_assoc($queryResult);
+    return isset($row);
+  }
 
 
 
