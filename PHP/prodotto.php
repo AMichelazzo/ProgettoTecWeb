@@ -13,6 +13,8 @@ if (isset($_GET["prod"])) {
     if(count($result)>0){
         $nome=$result[0]['Nome'];
         $desc=$result[0]['Descrizione'];
+        $idprod=$result[0]['id_prodotto'];
+        $idcat=$result[0]['id_categoria'];
         $slideshow = "";
         for ($i = 0; $i < count($result); $i++) {
             $slideshow .= "<div class=\"mySlides fade\">
@@ -23,7 +25,9 @@ if (isset($_GET["prod"])) {
         $replace = array("Titolo" =>$nome,
                             "Nome Prodotto" =>$nome,
                             "Descrizione Prodotto" =>$desc,
-                            "<div>img</div>" => $slideshow);////////////WISH LIST
+                            "<div>img</div>" => $slideshow,
+                            "product-ID" => $idprod,
+                            "categ_id" => $idcat);
     }
     else{
         header("Location: ../PHP/categorie.php");
