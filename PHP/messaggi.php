@@ -5,9 +5,7 @@ use DB\DBAccess;
 
 $connessione = new DBAccess();
 $connessioneRiuscita = $connessione->openDBConnection();
-$target="Elementi_Messaggi";
 $paginaHTML = file_get_contents("../HTML/messaggi.html");
-
 
 if(isset($_POST['form_msg']))
 {
@@ -20,13 +18,30 @@ if(isset($_POST['form_msg']))
             $connessione->Message_Read($msg_checked[$i]);
         }
     }
-}  
-   
-$result=$connessione->getMessages();
-$connessione->closeConnection();
+}
+
+    $target="Elementi_Messaggi";
+
+    $result=$connessione->getMessages();
+    $ElencoMsg="";
+    $connessione->closeConnection();
     
+    for($i=0; $i<count($result); $i++) 
+    {
+        $ElencoMsg.= "<tr><td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $result[$i]["id_messaggio"] .
+        "\"/></td>";
 
-$paginaHTML = str_replace("Elementi_Messaggi", $result, $paginaHTML);
+        $ElencoMsg .= "<td>" . $result[$i]["id_messaggio"] ."</td><td>" . $result[$i]["username"] . "</td><td>" .
+        $result[$i]["data"] . "</td><td>" . "<a href=\"../PHP/prodotto.php?prod=".$result[$i]['id_prodotto']."\">".$result[$i]['Nome']."</a>".
+        "</td><td>" . $result[$i]["msg"];
 
-echo $paginaHTML;
+        if($result[$i]["letto"] == 1)
+            $ElencoMsg .= "<td>Si</td></tr>";
+        else   
+            $ElencoMsg .= "<td>No</td></tr>";
+    }
+
+    $paginaHTML = str_replace("Elementi_Messaggi", $ElencoMsg, $paginaHTML);
+
+    echo $paginaHTML;
 ?>
