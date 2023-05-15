@@ -63,6 +63,9 @@ class DBAccess {
     while($row = mysqli_fetch_assoc($queryResult))
     {
         $result .= "<tr>";
+      
+        $result .= "<td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $row["id_messaggio"] .
+        "\"/></td>";
 
         foreach($row as $value)
           $result .= "<td>" . $value . "</td>";
