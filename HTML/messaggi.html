@@ -41,10 +41,14 @@
     <!-- FINE PROTOTIPO -->
     <main> <!-- scala male --> <!-- problemi lingua -->
         <table border="1">
-            <tr><td>Id Messaggio</td><td>Username</td><td>Data Invio</td><td>Id prodotto</td>
+            <form action="../PHP/messaggi.php" method="POST">
+            <tr><td>Seleziona</td><td>Id Messaggio</td><td>Username</td><td>Data Invio</td><td>Id prodotto</td>
             <td>Messaggio</td><td>Letto</td></tr>
             Elementi_Messaggi
-          </table>
+          </table><br>
+          <input type="submit" name="formSubmit_letti" value="Segna messaggi come letti" />
+          </form>
+          
         <div id="iniziopagina">
             <a href="#">Inizio pagina</a>
         </div>

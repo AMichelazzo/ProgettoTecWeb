@@ -13,12 +13,13 @@ function pulisciInput($value) {
 }
 
 class DBAccess {
-  require_once('credenziali.php');
+  //require_once "credenziali.php";
   
   private $connection;
   public function openDBConnection() {
     mysqli_report(MYSQLI_REPORT_ERROR);
-    $this->connection = mysqli_connect(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
+    $this->connection = mysqli_connect("127.0.0.1", "root", "", "tecweb");
+    //$this->connection = mysqli_connect(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
     if (mysqli_connect_errno()) {return false;}
     return true;
   }
@@ -43,9 +44,9 @@ class DBAccess {
   return $result;
 }
 
-public function getProduct($id_prodotto) {
+  public function getProduct($id_prodotto) {
   $OKProd=pulisciInput($id_prodotto);
-    $query = "SELECT `prodotti`.`id_prodotto`,`prodotti`.`id_categoria`,`prodotti`.`Nome`,`prodotti`.`Descrizione`,`immagini`.`path`,`immagini`.`alt_img` FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
+    $query = "SELECT * FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
     $queryResult = mysqli_query($this->connection, $query);
     $result = array();
     while ($row = mysqli_fetch_assoc($queryResult)) {
@@ -55,41 +56,31 @@ public function getProduct($id_prodotto) {
   }
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  public function getMessage($id_messaggio) {
-    $OKMess=pulisciInput($id_messaggio);
-    $query = "SELECT id_messaggio, username, msg  FROM 'messaggi'";  // da implementare con il resto dei parametri di messaggi
+ public function getMessages() {
+    $query = "SELECT id_messaggio, username, 'data', id_prodotto, msg, letto FROM messaggi ORDER BY letto";  // da implementare con il resto dei parametri di messaggi
     $queryResult = mysqli_query($this->connection, $query);
-    %result = array();
-    while ($row = mysqli_fetch_assoc($queryResult)) {
-        $result[] = $row;
+    $result ="<br>";
+
+    while($row = mysqli_fetch_assoc($queryResult))
+    {
+        $result .= "<tr>";
+
+        $result .= "<td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $row["id_messaggio"] .
+        "\"/></td>";
+
+        foreach($row as $value)
+          $result .= "<td>" . $value . "</td>";
+
+        $result .= "</tr>";
     }
+
     return $result;
+  }
+
+  public function Message_Read($id_messaggio) {
+    $OKId = pulisciInput($id_messaggio);
+    $query = "UPDATE messaggi SET letto = '1' WHERE id_messaggio = '$OKId' AND  letto = '0'";
+    mysqli_query($this->connection, $query);
   }
 
 
