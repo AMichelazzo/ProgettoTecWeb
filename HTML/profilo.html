@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+    <!-- pagina per capire/creare/provare le parti comuni del sito -->
+    <!-- manca un sistema per passare direttamente al contenuto per lo screen reader -->
+<head>
+    <meta charset="utf-8" />
+    <title>Login - Nome negozio</title> <!-- DA SOSTITUIRE -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" href="../CSS/style.css" media="handheld, screen"/>
+    <link rel="stylesheet" href="../CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
+    <link rel="stylesheet" href="../CSS/print.css" media="print"/>
+    <link rel="shortcut icon" type="image/png" href="../img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
+    <script src="../JS/script.js"></script>
+</head>
+<body>
+    <header>
+        <!-- <nav id="menubar"><p id="currentLink">Area Riservata</p></nav> --> <!-- usare una lista anche se è singolo? -->
+        <nav id="menubar" aria-label="Menu utente">
+            <ul>
+                <li id="currentLink">Profilo</li>
+                <li><a href="../HTML/utenti.html">Utenti</a></li>
+                <li><a href="../HTML/catalogo.html">Catalogo</a></li>
+                <li><a href="../PHP/messaggi.php">Messaggi</a></li>
+                <li><a href="../HTML/prototipo.html">Esci</a></li>
+            </ul>
+        </nav>
+        <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
+        <div id="hambmenu">
+            <button id="hambutton" type="button" class="hambhere" isHamb="false" onclick="notHamb()">Menu</button> <!-- DA SISTEMARE, verificare che button porti i vantaggi voluti, altrimenti optare per input -->
+        </div>
+        <nav id="menu" aria-label="Menu principale" class="hambhere" isHamb="false">
+            <ul>
+                <li><a href="../HTML/prototipo.html" lang="en">Home</a></li>
+                <li><a href="../PHP/categorie.php">Prodotti</a></li>
+                <li><a href="../HTML/contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+        <nav id="breadcrumb" aria-label="Breadcrumb">
+            <p>Ti trovi in: <span lang="en">Home -> Profilo</span></p>
+        </nav>
+    </header>
+    <!-- FINE PROTOTIPO -->
+    <main>
+        <div id="contenuto">
+            <div id="cambio_pass">
+                <h3>Cambio Password</h3><br/>
+                <form method="post" action="../PHP/profilo.php">
+                    <!-- <fieldset>
+                        <legend>LOGIN</legend> -->
+                        <label for="old_password" lang="en">Vecchia password: </label><br />
+                        <span><input type="text" id="old_password" name="old_password"/></span><br />
+
+                        <label for="new_password" lang="en">Nuova password: </label><br />
+                        <span><input type="password" id="new_password" name="new_password"/></span><br />
+
+                        <label for="new_password_repeat">Ripeti nuova password:</label><br />
+                        <input type="password" id="new_password_repeat" name="new_password_repeat"><br />
+
+                        <br/><input type="submit" id="submit" name="cambia_password" class="invio" value="Cambia password" />
+                    <!-- </fieldset> -->
+                </form>
+            </div>
+        </div>
+        <div id="iniziopagina">
+            <a href="#">Inizio pagina</a>
+        </div>
+    </main>
+    <footer>
+        <div id = footer>
+          <p>
+             Web Triplet - <span lang="en">All Rights Reserved</span>
+          </p>
+        </div>
+    </footer>
+</body>
+
+</html>
