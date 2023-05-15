@@ -55,20 +55,7 @@ class DBAccess {
     return $result;
   }
 
-  public function addtoWishList($id_prodotto,$id_categoria,$username) {
-    $OKProd=pulisciInput($id_prodotto);
-    $OKcat=pulisciInput($id_categoria);
-    $OKuser=pulisciInput($username);
-    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
-    $result = mysqli_query($this->connection, $query);
-    return $result;
-  }
-  
-
-
-
-  
-   public function getMessages() {
+  public function getMessages() {
     $query = "SELECT id_messaggio, username, 'data', id_prodotto, msg, letto FROM messaggi";  // da implementare con il resto dei parametri di messaggi
     $queryResult = mysqli_query($this->connection, $query);
     $result ="";
@@ -90,6 +77,15 @@ class DBAccess {
     $OKId = pulisciInput($id_messaggio);
     $query = "UPDATE messaggi SET letto = '1' WHERE id_messaggio = '$OKId' AND  letto = '0'";
     mysqli_query($this->connection, $query);
+  }
+
+  public function addtoWishList($id_prodotto,$id_categoria,$username) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKcat=pulisciInput($id_categoria);
+    $OKuser=pulisciInput($username);
+    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
+    $result = mysqli_query($this->connection, $query);
+    return $result;
   }
 
  
