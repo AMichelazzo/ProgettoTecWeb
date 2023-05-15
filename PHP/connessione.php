@@ -54,23 +54,32 @@ class DBAccess {
     }
     return $result;
   }
+
+  public function addtoWishList($id_prodotto,$id_categoria,$username) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKcat=pulisciInput($id_categoria);
+    $OKuser=pulisciInput($username);
+    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
+    $result = mysqli_query($this->connection, $query);
+    return $result;
+  }
   
 
- public function getMessages() {
-    $query = "SELECT id_messaggio, username, 'data', id_prodotto, msg, letto FROM messaggi ORDER BY letto";  // da implementare con il resto dei parametri di messaggi
+
+
+  
+   public function getMessages() {
+    $query = "SELECT id_messaggio, username, 'data', id_prodotto, msg, letto FROM messaggi";  // da implementare con il resto dei parametri di messaggi
     $queryResult = mysqli_query($this->connection, $query);
-    $result ="<br>";
+    $result ="";
 
     while($row = mysqli_fetch_assoc($queryResult))
     {
         $result .= "<tr>";
 
-        $result .= "<td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $row["id_messaggio"] .
-        "\"/></td>";
-
         foreach($row as $value)
           $result .= "<td>" . $value . "</td>";
-
+        
         $result .= "</tr>";
     }
 
@@ -82,6 +91,25 @@ class DBAccess {
     $query = "UPDATE messaggi SET letto = '1' WHERE id_messaggio = '$OKId' AND  letto = '0'";
     mysqli_query($this->connection, $query);
   }
+
+ 
+  public function removeFromWishList($id_prodotto,$id_categoria,$username) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKcat=pulisciInput($id_categoria);
+    $OKuser=pulisciInput($username);
+    $query = "DELETE FROM wishlist WHERE `wishlist`.`username` = '$OKuser' AND `wishlist`.`id_prodotto` = '$OKProd' AND `wishlist`.`id_categoria`='$OKcat'";
+    $result = mysqli_query($this->connection, $query);
+    return $result;
+  }
+  
+  public function isInWishList($idprod,$idcat,$user){
+    $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$idprod' AND `id_categoria`='$idcat'"; 
+    $queryResult = mysqli_query($this->connection, $query);
+    $result = array();
+    $row = mysqli_fetch_assoc($queryResult);
+    return isset($row);
+  }
+
 
 
   public function closeConnection() {
