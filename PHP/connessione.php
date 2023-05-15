@@ -65,6 +65,14 @@ class DBAccess {
     }
     return $result;
   }
+  
+    public function new_Message($username, $product_id, $messag)  { // aggiunta messaggio a DB
+    $currentDate = date("Y-m-d");
+    $query = "INSERT INTO messaggi(msg, data, username) VALUES ('$messag', '$currentDate', '$username')"; // da implementare con id prodotto e categoria
+    $success = mysqli_query($this->connection, $query);
+
+    return $success;
+  }
 
   public function Message_Read($id_messaggio) {
     $OKId = pulisciInput($id_messaggio);
