@@ -55,24 +55,14 @@ class DBAccess {
     return $result;
   }
 
-  public function getMessages() {
-    $query = "SELECT id_messaggio, username, 'data', id_prodotto, msg, letto FROM messaggi";  // da implementare con il resto dei parametri di messaggi
+  public function getMessages() {  //funzione per prendere messaggi da DB
+    $query = "SELECT id_messaggio, username, data, msg, letto, messaggi.id_prodotto, Nome FROM messaggi , prodotti
+     WHERE `messaggi`.`id_prodotto` = `prodotti`.`id_prodotto` ORDER BY letto";  
     $queryResult = mysqli_query($this->connection, $query);
-    $result ="";
-
-    while($row = mysqli_fetch_assoc($queryResult))
-    {
-        $result .= "<tr>";
-      
-        $result .= "<td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $row["id_messaggio"] .
-        "\"/></td>";
-
-        foreach($row as $value)
-          $result .= "<td>" . $value . "</td>";
-        
-        $result .= "</tr>";
+    $result = array();
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $result[] = $row;
     }
-
     return $result;
   }
 
