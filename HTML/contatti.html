@@ -43,16 +43,12 @@
         <main>
 
         <fieldset>
-            <form>
-                <label>Compila questo form per ricevere informazioni</label><br><br>
-                <label for="nome">Nome:</label><br>
-                <input type="text" id="nome" name="nome"><br>
-                <label for="cognome">Cognome:</label><br>
-                <input type="text" id="cognome" name="cognome"><br>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email"><br>
+            <form action="../PHP/contatti.php" method="POST">
+                <label>Compila questo form per ricevere informazioni.</label><br><br>
+                <label for="nome">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
                 <label for="messaggio">Messaggio:</label><br>
-                <textarea name="messaggio" placeholder="Buongiorno, vorrei avere informazioni riguardo a..." rows="10" cols="40" maxlength="1000"></textarea><br><br>
+                <textarea name="messaggio" id="messaggio" placeholder="Buongiorno, vorrei avere informazioni riguardo a..." rows="10" cols="40" maxlength="1000"></textarea><br><br>
                 <input type="submit" name="submit" id="submit" class="invio" value="Informazioni">
             </form>
         </fieldset>
