@@ -99,12 +99,35 @@ class DBAccess {
     return $result;
   }
   
-  public function isInWishList($idprod,$idcat,$user){  // non funzionante e non sicura (SQL injection)
+  public function isInWishList($idprod,$idcat,$user){
     $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$idprod' AND `id_categoria`='$idcat'"; 
     $queryResult = mysqli_query($this->connection, $query);
-    $result = array();
     $row = mysqli_fetch_assoc($queryResult);
     return isset($row);
+  }
+  public function checkLogin($user,$pass){
+    $OKuser=pulisciInput($user);
+    $OKpass=pulisciInput($pass);
+    $query = "SELECT * FROM `utente` WHERE `username`='$OKuser' AND `password`='$OKpass'"; 
+    $queryResult = mysqli_query($this->connection, $query);
+    $row = mysqli_fetch_assoc($queryResult);
+    if(isset($row))
+    {
+      if($row["ruolo"]==true)
+      {
+          return array("username"=>$row["username"],
+                      "ruolo"=> $row["ruolo"]);
+      }
+      else
+      {
+          return array("username"=>$row["username"],
+                      "ruolo"=> null);
+      }
+    }
+    else
+    {
+      return null;
+    }
   }
     public function checkAndChangePassword($user, $old, $new) {
     $OKUser = pulisciInput($user);
