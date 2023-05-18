@@ -5,6 +5,7 @@ use DB\DBAccess;
 
 $connessione = new DBAccess();
 
+session_start();
 if (isset($_GET["prod"])) { 
     $result = $nome = $descrizione = $replace ="";
     $connessioneRiuscita = $connessione->openDBConnection();
@@ -22,7 +23,7 @@ if (isset($_GET["prod"])) {
             </div>";
         }
         $connessioneRiuscita = $connessione->openDBConnection();
-        $result=$connessione->isInWishList($idprod,$idcat,/*$_SESSION["username"]*/"user");
+        $result=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
         $connessione->closeConnection();
         ($result) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList";; 
         $replace = array("Titolo" =>$nome,

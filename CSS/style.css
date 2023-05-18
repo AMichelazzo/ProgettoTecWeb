@@ -266,12 +266,27 @@ a:visited {
     text-align: center;
     display: inline-block;
 }
-  
-  .button:hover {
-    background: var(--bgfuncolor);
-  }
-  
-  .button:active {
-    border: 1px solid var(--bgfuncolor);
-  }
+
 /*END CAROUSEL*/
+
+#Login-Error {
+  font-weight: bold;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#email_disponibile, #username_disponibile, #password_rispetta, #password_rispetta2 {
+  display: none;
+  height:15px;
+  width:15px;
+  margin:0 auto;
+}
+#usernameNOT_disponibile, #emailNOT_disponibile, #passNOT_disponibile {
+  height:15px;
+  width:15px;
+  margin:0 auto;
+}
