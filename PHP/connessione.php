@@ -42,7 +42,7 @@ class DBAccess {
       $result[] = $row;
   }
   return $result;
-}
+  }
 
   public function getProduct($id_prodotto) {
   $OKProd=pulisciInput($id_prodotto);
@@ -151,8 +151,20 @@ class DBAccess {
       }
   }
 
-
-
+  public function getUtenti() {
+    $query = "SELECT * FROM utente";
+    $queryResult = mysqli_query($this->connection, $query) or die("Errore database:" . mysqli_error($this->connection));
+    if (mysqli_num_rows($queryResult) == 0) {
+      return null;
+    } else {
+      $result = array();
+      while ($row = mysqli_fetch_assoc($queryResult)) {
+        array_push($result, $row);
+      }
+      $queryResult->free();
+      return $result;
+    }
+  }
 
   public function closeConnection() {
     mysqli_close($this->connection);
