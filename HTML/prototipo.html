@@ -21,13 +21,11 @@
         <!-- <nav id="menubar"><ul><li><a href="login.html">Login</a></li><li><a href="registrazione.html">Registrazione</a></li></ul></nav> -->
 
         <div id="nomemenu">
-            <div id="hambmenu">
-                <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
-                <button id="hambutton" type="button" class="hambuttonoff" onclick="notHamb()"><span lang="en">Menu</span></button> <!-- DA SISTEMARE, verificare che button porti i vantaggi voluti, altrimenti optare per input; varia in base all'utente -->
-            </div>
+            <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
+            <input type="button" id="hambutton" class="hambuttonoff" onclick="notHamb()" aria-label="Menù amministratore" value="&#9776;">
         </div>
 
-        <nav id="menubar" aria-label="Opzioni utente" class="menubaroff"> <!-- DA VERIFICARE -->
+        <nav id="menubar" aria-label="Opzioni amministratore" class="menubaroff"> <!-- DA VERIFICARE -->
             <ul>
                 <li><a href="HTML/profilo.html">Profilo</a></li>
                 <li><a href="HTML/utenti.html">Utenti</a></li>
@@ -36,16 +34,16 @@
                 <li><a href="HTML/prototipo.html">Esci</a></li>
             </ul>
         </nav>
-        <!-- <h1></h1> -->
  
-        <nav id="menu" aria-label="Menu"> <!-- DA VERIFICARE, inoltre tenere conto della lingua -->
+        <nav id="menu" aria-label="Menù"> <!-- DA VERIFICARE, inoltre tenere conto della lingua -->
             <ul>
                 <li id="currentLink" lang="en">Home</li>
                 <li><a href="PHP/categorie.php">Prodotti</a></li>
                 <li><a href="HTML/contatti.html">Contatti</a></li>
             </ul>
         </nav>
-        <nav id="breadcrumb" aria-labelledby="breadcrumb"> <!-- DA VERIFICARE -->
+
+        <nav id="breadcrumb" aria-label="Percorso pagina"> <!-- DA VERIFICARE -->
             <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
 
