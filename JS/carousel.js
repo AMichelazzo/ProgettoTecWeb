@@ -43,6 +43,6 @@ button.addEventListener("click", function() {
           }
       }
   };
-  xhr.open("GET", (document.getElementById("buttonid").innerHTML == "Aggiungi a WishList")?"addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id:"addWish.php?remove=1&product-ID="+prod[0].id+"&categoria="+categ[0].id, true);
+  xhr.open("GET", (button.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id:"PHP/addWish.php?remove=1&product-ID="+prod[0].id+"&categoria="+categ[0].id, true);
   xhr.send();
 });

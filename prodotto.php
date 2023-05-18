@@ -1,11 +1,13 @@
 <?php
+session_start();
 
-require_once "connessione.php";
+$template = file_get_contents("HTML/prodotto.html");
+
+require_once "PHP/connessione.php";
 use DB\DBAccess;
 
 $connessione = new DBAccess();
 
-session_start();
 if (isset($_GET["prod"])) { 
     $result = $nome = $descrizione = $replace ="";
     $connessioneRiuscita = $connessione->openDBConnection();
@@ -16,31 +18,36 @@ if (isset($_GET["prod"])) {
         $desc=$result[0]['Descrizione'];
         $idprod=$result[0]['id_prodotto'];
         $idcat=$result[0]['id_categoria'];
+        $isLogged="";
         $slideshow = "";
         for ($i = 0; $i < count($result); $i++) {
             $slideshow .= "<div class=\"mySlides fade\">
             <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"\">
             </div>";
         }
-        $connessioneRiuscita = $connessione->openDBConnection();
-        $result=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
-        $connessione->closeConnection();
-        ($result) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList";; 
+        if(isset($_SESSION["username"])){
+            $connessioneRiuscita = $connessione->openDBConnection();
+            $result=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
+            $connessione->closeConnection();
+            ($result) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList"; 
+            $isLogged="<button type=\"button\" id=\"button\" class=\"button\">
+                                                <span class=\"button__text\" id=\"buttonid\">".$testoButton."</span>
+                                                </button>";
+        }
+        
         $replace = array("Titolo" =>$nome,
                             "Nome Prodotto" =>$nome,
                             "Descrizione Prodotto" =>$desc,
                             "<div>img</div>" => $slideshow,
                             "product-ID" => $idprod,
                             "categ_id" => $idcat,
-                            "Aggiungi a WishList" => $testoButton);
+                            "<!--Wish-->" => $isLogged);
     }
     else{
-        header("Location: ../PHP/categorie.php");
+        header("Location: categorie.php");
     }
-
-    $paginaHTML = file_get_contents("../HTML/prodotto.html");
-        foreach($replace as $key => $value)
-                $paginaHTML = str_replace($key, $value, $paginaHTML);
-        echo $paginaHTML;
 }
+foreach($replace as $key => $value) 
+        $template = str_replace($key, $value, $template);
+echo $template;
 ?>
