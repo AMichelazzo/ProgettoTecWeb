@@ -39,7 +39,7 @@ if ($connessioneRiuscita) {
     $stringaUtenti =
         '<div id="utenti">
             <div class="flexutente">
-                Il sistema non è al momento raggiungibe, ci scusiamo per il disagio.
+                Il sistema non è al momento raggiungibile, ci scusiamo per il disagio.
             </div>
         </div>';
 }

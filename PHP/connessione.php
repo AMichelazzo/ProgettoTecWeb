@@ -108,6 +108,14 @@ class DBAccess {
   public function checkLogin($user,$pass){
     $OKuser=pulisciInput($user);
     $OKpass=pulisciInput($pass);
+    /*
+    $user = mysqli_real_escape_string(stripslashes($user));
+    $pass = mysqli_real_escape_string(stripslashes($pass));
+    $query = $dbConnection->prepare("SELECT * FROM utente WHERE username = ? AND password = ?");
+    $query->bind_param('ss', $user, $pass);
+    $query->execute();
+    $queryResult = $query->get_result();
+    */
     $query = "SELECT * FROM `utente` WHERE `username`='$OKuser' AND `password`='$OKpass'"; 
     $queryResult = mysqli_query($this->connection, $query);
     $row = mysqli_fetch_assoc($queryResult);
