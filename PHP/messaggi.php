@@ -7,28 +7,23 @@ $connessione = new DBAccess();
 $connessioneRiuscita = $connessione->openDBConnection();
 $paginaHTML = file_get_contents("../HTML/messaggi.html");
 
-if(isset($_POST['form_msg']))
-{
+if (isset($_POST['form_msg'])) {
     $msg_checked = $_POST['form_msg'];
-    if(!empty($msg_checked))
-    {
-        $N = count($msg_checked);
-        for($i=0; $i < $N; $i++)
-        {
+    if (!empty($msg_checked)) {
+        for ($i = 0; $i < count($msg_checked); $i++) {
             $connessione->Message_Read($msg_checked[$i]);
         }
     }
 }
 
-    $target="Elementi_Messaggi";
+$target = "Elementi_Messaggi";
 
-    $result=$connessione->getMessages();
-    $ElencoMsg="";
-    $connessione->closeConnection();
+$result = $connessione->getMessages();
+$ElencoMsg = "";
+$connessione->closeConnection();
     
-    for($i=0; $i<count($result); $i++) 
-    {
-        $ElencoMsg.= "<tr><td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $result[$i]["id_messaggio"] .
+for ($i=0; $i<count($result); $i++) {
+    $ElencoMsg.= "<tr><td><input type=\"checkbox\" name=\"form_msg[]\" value=" . $result[$i]["id_messaggio"] .
         "\"/></td>";
 
         $ElencoMsg .= "<td>" . $result[$i]["id_messaggio"] ."</td><td>" . $result[$i]["username"] . "</td><td>" .
