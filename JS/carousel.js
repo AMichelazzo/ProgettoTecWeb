@@ -39,7 +39,7 @@ button.addEventListener("click", function() {
                 button.innerHTML == "Aggiungi a WishList" ? button.innerHTML = "Togli dalla WishList" : button.innerHTML = "Aggiungi a WishList";
               alert(response.message);
           } else {
-              alert(response.message);
+              alert(response.message); /*Forse si può tenere fuori dal costrutto*/
           }
       }
   };

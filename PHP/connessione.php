@@ -160,7 +160,7 @@ class DBAccess {
   }
 
   public function getUtenti() {
-    $query = "SELECT * FROM utente";
+    $query = "SELECT * FROM utente WHERE ruolo = 'user'";
     $queryResult = mysqli_query($this->connection, $query) or die("Errore database:" . mysqli_error($this->connection));
     if (mysqli_num_rows($queryResult) == 0) {
       return null;
