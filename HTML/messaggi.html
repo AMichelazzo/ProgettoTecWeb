@@ -21,7 +21,7 @@
             <ul>
                 <li><a href="../HTML/profilo.html">Profilo</a></li>
                 <li><a href="../HTML/utenti.html">Utenti</a></li>
-                <li><a href="../categorie.php">Catalogo</a></li>
+                <li><a href="../PHP/categorie.php">Catalogo</a></li>
                 <li id="currentLink">Messaggi</li>
                 <li><a href="../HTML/prototipo.html">Esci</a></li>
             </ul>
@@ -30,7 +30,7 @@
         <nav id="menu">
             <ul>
                 <li><a href="../HTML/index.html" lang="en">Home</a></li>
-                <li><a href="../categorie.php">Prodotti</a></li>
+                <li><a href="../PHP/categorie.php">Prodotti</a></li>
                 <li><a href="../HTML/contatti.html">Contatti</a></li>
             </ul>
         </nav>
@@ -40,14 +40,11 @@
     </header>
     <!-- FINE PROTOTIPO -->
     <main> <!-- scala male --> <!-- problemi lingua -->
-        <table border="1">
-            <form action="../PHP/messaggi.php" method="POST">
-            <tr><td>Seleziona</td><td>Id Messaggio</td><td>Username</td><td>Data Invio</td><td>Id prodotto</td>
-            <td>Messaggio</td><td>Letto</td></tr>
-            Elementi_Messaggi
-          </table><br>
-          <input type="submit" name="formSubmit_letti" value="Segna messaggi come letti" />
-          </form>
+        <form action="../PHP/messaggi.php" method="POST">
+        Elementi_Messaggi <br/>
+          <input type="submit" name="submit_letti" value="Segna messaggi selezionati come letti" />
+          <input type="submit" name="submit_elimina" value="Elimina messaggi selezionati" />   
+        </form>
           
         <div id="iniziopagina">
             <a href="#">Inizio pagina</a>
