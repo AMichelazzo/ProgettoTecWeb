@@ -174,6 +174,32 @@ class DBAccess {
     }
   }
 
+  public function checkUsern($user){
+    $OKuser=pulisciInput($user);
+    $query = "SELECT `username` FROM `utente` WHERE `username`='$OKuser'"; 
+    $queryResult = mysqli_query($this->connection, $query);
+    $row = mysqli_fetch_assoc($queryResult);
+    return isset($row["username"])?$row["username"]:null;
+  }
+
+  public function checkEmail($email){
+    $OKEmail=pulisciInput($email);
+    $query = "SELECT `email` FROM `utente` WHERE `email`='$OKEmail'"; 
+    $queryResult = mysqli_query($this->connection, $query);
+    $row = mysqli_fetch_assoc($queryResult);
+    return isset($row["email"])?$row["email"]:null;
+  }
+
+  public function registraNuovoUtente($pass_reg,$username_reg,$email_reg){
+    $OKEmail=pulisciInput($email_reg);
+    $OKPw=pulisciInput($pass_reg);
+    $OKuser=pulisciInput($username_reg);
+    $query = "INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES ('$OKuser', '$OKPw', '$OKEmail', 'user', current_timestamp())";
+    $result = mysqli_query($this->connection, $query);
+    return $result;
+  }
+
+
   public function closeConnection() {
     mysqli_close($this->connection);
   }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["username"])) { // non so se lasciarlo (come su login), non so se va bene non lasciare l'accesso alla pagina se l'utente è loggato
+if (isset($_SESSION["username"])) { 
     if (isset($_SESSION["ruolo"])&&$_SESSION["ruolo"]=="admin")
         header("Location: prototipo.php");
     else
