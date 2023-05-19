@@ -55,11 +55,12 @@ class DBAccess {
     return $result;
   }
 
-  public function getMessages() {  //funzione per prendere messaggi da DB
-    $query = "SELECT id_messaggio, username, data, msg, letto, messaggi.id_prodotto, Nome FROM messaggi , prodotti
-     WHERE `messaggi`.`id_prodotto` = `prodotti`.`id_prodotto` ORDER BY letto";  
-    $queryResult = mysqli_query($this->connection, $query);
-    $result = array();
+public function getMessages() {  //funzione per prendere messaggi da DB
+    $query = "SELECT messaggi.id_messaggio, utente.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome, utente.email
+    FROM messaggi LEFT JOIN prodotti ON messaggi.id_prodotto = prodotti.id_prodotto
+    INNER JOIN utente ON messaggi.username = utente.username ORDER BY letto"; 
+  
+    $queryResult = mysqli_query($this->connection, $query); 
     while ($row = mysqli_fetch_assoc($queryResult)) {
         $result[] = $row;
     }
@@ -76,8 +77,18 @@ class DBAccess {
 
   public function Message_Read($id_messaggio) {
     $OKId = pulisciInput($id_messaggio);
+    
     $query = "UPDATE messaggi SET letto = '1' WHERE id_messaggio = '$OKId' AND  letto = '0'";
     mysqli_query($this->connection, $query);
+  }
+  
+  public function delete_Message($id_messaggio) {
+    $OKId = pulisciInput($id_messaggio);
+
+    $query = "DELETE FROM messaggi WHERE id_messaggio = '$OKId'";
+    $success = mysqli_query($this->connection, $query);
+
+    return $success;
   }
 
   public function addtoWishList($id_prodotto,$id_categoria,$username) {
