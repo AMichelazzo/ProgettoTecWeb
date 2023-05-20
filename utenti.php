@@ -1,8 +1,8 @@
 <?php
-require_once "connessione.php";
+require_once "PHP/connessione.php";
 use DB\DBAccess;
 
-$paginaHTML = file_get_contents("../HTML/utenti2.html");
+$paginaHTML = file_get_contents("HTML/utenti2.html");
 
 $utenti = "";
 $stringaUtenti = "";
@@ -19,12 +19,6 @@ if ($connessioneRiuscita) {
                 <div class="flexutente">
                 <div>Username: ' . $utente['username'] . ' </div>
                 <div>Email: ' . $utente['email'] . ' </div>
-                <div>
-                    <form method="post" action="" class="inline">
-                    <input type="hidden" id="userid" name="userid" value="' . $utente['username'] . '"/>
-                    <input type="submit" id="submit" name="submit" class="invio" value="Elimina" />
-                    </form>
-                </div>
             </div>
         </div>';
         }
