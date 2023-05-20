@@ -6,8 +6,7 @@ use DB\DBAccess;
 $connessione = new DBAccess();
 $connessioneRiuscita = $connessione->openDBConnection();
 
-if(isset($_POST["username"]) && isset($_POST["messaggio"]))
-{
+if (isset($_POST["username"]) && isset($_POST["messaggio"])) {
     $user = $_POST["username"];
     $msg = $_POST["messaggio"];
 
@@ -31,5 +30,3 @@ $paginaHTML = file_get_contents("../HTML/contatti.html");
 echo $paginaHTML;
 
 ?>
-
-

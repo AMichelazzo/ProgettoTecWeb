@@ -21,6 +21,7 @@ if ($connessioneRiuscita) {
                 <div>Email: ' . $utente['email'] . ' </div>
                 <div>
                     <form method="post" action="" class="inline">
+                    <input type="hidden" id="userid" name="userid" value="' . $utente['username'] . '"/>
                     <input type="submit" id="submit" name="submit" class="invio" value="Elimina" />
                     </form>
                 </div>

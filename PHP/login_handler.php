@@ -17,7 +17,7 @@ else
         $replace = "";
         $connessioneRiuscita = $connessione->openDBConnection();
         $result=$connessione->checkLogin($_POST["username"],$_POST["password"]);
-        $connessione->closeConnection(); 
+        $connessione->closeConnection();
         if(isset($result)){
             $_SESSION["username"]=$result['username'];
             $_SESSION["ruolo"]=$result['ruolo'];
