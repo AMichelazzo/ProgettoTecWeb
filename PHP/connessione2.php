@@ -14,7 +14,7 @@ class DBAccess {
         $connection = new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
 
         if ($connection->connect_errno) {
-            echo "Fallita";
+            echo "Fallita"; // funzione per gestire errore 500
         }
 
         return $connection;
@@ -23,10 +23,13 @@ class DBAccess {
     public static function dbQuery($query, ...$parametri) {
         $connection = self::startConnection();
         $stmt = $connection->prepare($query);
-        if (count($parametri)>0) $stmt->bind_param("'" . str_repeat("s", count($parametri)) . "'", ...$parametri);
+        // controllo parametri
         foreach ($parametri as $parametro) {
             $parametro = mysqli_real_escape_string(stripslashes($parametro));
         }
+        // aggiunta parametri
+        if (count($parametri)>0) $stmt->bind_param("'" . str_repeat("s", count($parametri)) . "'", ...$parametri);
+
         $stmt->execute();
         $queryResult = $stmt->get_result();
 
