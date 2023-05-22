@@ -23,22 +23,25 @@ class DBAccess {
     public static function dbQuery($query, ...$parametri) {
         $connection = self::startConnection();
         $stmt = $connection->prepare($query);
+
         // controllo parametri
         foreach ($parametri as $parametro) {
-            $parametro = mysqli_real_escape_string(stripslashes($parametro));
+            $parametro = mysqli_real_escape_string($connection, $parametro);
         }
-        // aggiunta parametri
-        if (count($parametri)>0) $stmt->bind_param("'" . str_repeat("s", count($parametri)) . "'", ...$parametri);
 
+        // aggiunta parametri
+        if (count($parametri) > 0) {
+            $stmt->bind_param( str_repeat("s", count($parametri)), ...$parametri);}
+        
         $stmt->execute();
         $queryResult = $stmt->get_result();
-
+        
         if (!$queryResult) {return false;}
         $result = array();
         while ($row = mysqli_fetch_assoc($queryResult)) {
-             array_push($result, $row);
+            array_push($result, $row);
         }
-
+        
         $connection->close();
 
         return $result;

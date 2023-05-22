@@ -10,11 +10,13 @@ class Utente {
     
     public static function isAdmin($username) {
         //if (!isset) return false;
-        return (DBAccess::dbQuery("SELECT username FROM utente WHERE username = '?' ruolo = 'admin'", $username) === $username);
+        $amministratore = DBAccess::dbQuery("SELECT * FROM utente WHERE username = ? ruolo = 'admin'", $username);
+        $amministratore = $amministratore['username'];
+        return $amministratore == $username;
     }
     
     public static function isUser($username) {
-        return (DBAccess::dbQuery("SELECT username FROM utente WHERE username = '?' ruolo = 'user'", $username) === $username);
+        return (DBAccess::dbQuery("SELECT * FROM utente WHERE username = ? ruolo = 'user'", $username) === $username);
     }
 
     public static function insert($username, $password, $email) {
@@ -22,7 +24,7 @@ class Utente {
     }
 
     public static function delete($username) {
-        return DBAccess::dbQuery("DELETE FROM utente WHERE username = '?' AND ruolo = 'user'", $user);
+        return DBAccess::dbQuery("DELETE FROM utente WHERE username = ? AND ruolo = 'user'", $username);
     }
 }
 ?>
