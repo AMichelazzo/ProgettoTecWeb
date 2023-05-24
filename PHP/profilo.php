@@ -17,7 +17,7 @@ if(/*isset($_SESSION["username"]) &&*/ isset($_POST["old_password"])  && isset($
         if($_POST["new_password"] == $_POST["new_password_repeat"]) {
 
             $result = $connessione->checkOldPassword(/*$_SESSION["username"]*/"user", $_POST["old_password"]);
-            $result2 = $connessione->checkAndChangePassword(/*$_SESSION["username"]*/"user", $_POST["old_password"], $_POST["new_password"]);
+            $result2 = $connessione->ChangePassword(/*$_SESSION["username"]*/"user", $_POST["old_password"], $_POST["new_password"]);
             $connessione->closeConnection();
             header("Location: ../profilo.php");
         }
@@ -39,7 +39,7 @@ if(/*isset($_SESSION["username"]) &&*/ isset($_POST["old_password"])  && isset($
         }
 
         }
-}
+
     
 
 echo $paginaHTML;

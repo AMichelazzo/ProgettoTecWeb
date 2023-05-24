@@ -6,6 +6,7 @@ use DB\DBAccess;
 $connessione = new DBAccess();
 $connessioneRiuscita = $connessione->openDBConnection();
 $target="Elementi_Messaggi";
+$ElencoMsg="";
 $paginaHTML = file_get_contents("../HTML/messaggi.html");
 
 if (isset($_POST['form_msg'])) {   // funzione che segna come letti i messaggi selezionati
