@@ -148,25 +148,34 @@ public function getMessages() {  //funzione per prendere messaggi da DB
       return null;
     }
   }
-    public function checkAndChangePassword($user, $old, $new) {
+
+    public function checkOldPassword($user, $old) {
+      $OKUser = pulisciInput($user);
+      $OKOld = pulisciInput($old);
+
+      $query = "SELECT username FROM utente WHERE username = '$OKUser' AND password = 'OKOld'";
+      $queryResult = mysqli_query($this->connection, $query);
+
+      if(isset($queryResult))
+        return true;
+      else  
+        return false;
+    }
+
+    
+    public function ChangePassword($user, $old, $new) {
     $OKUser = pulisciInput($user);
     $OKOld = pulisciInput($old);
     $OKNew = pulisciInput($new);
 
-    $query = "SELECT password FROM utente WHERE username = '$OKUser'";
+    $query = "UPDATE utente SET password = '$OKNew' WHERE username = '$OKUser' AND password = '$OKOld'";
     $queryResult = mysqli_query($this->connection, $query);
 
-    if($queryResult != $OKOld)
-      return "old_wrong";
-    else
-      {
-        $query = "UPDATE utente SET password = '$OKNew' WHERE username = '$OKUser' AND password = '$OKOld'";
-        $queryResult = mysqli_query($this->connection, $query);
-
-        if($queryResult)
-          return "success";
-        else
-          return "error";
+    if(isset($queryResult))
+        return true;
+      else  
+        return false;
+     
       }
   }
 

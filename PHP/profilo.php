@@ -18,17 +18,18 @@ if(isset($_POST["cambia_password"]))
 
     // da aggiungere controllo lato server e client sulle password (lunghezza, caratteri ecc..)
 
-    if($newpassword == $newpassword_repeat)
-    {
-        $result = $connessione->checkAndChangePassword($username, $oldpassword, $newpassword);
-        if($result = "old_wrong") {}
-            //errore: vecchia password errata
-        if($result = "error") {}
-         // errore nel cambio password
-        if($result = "success") {}
-            // password cambiata con successo
+    if($newpassword == $newpassword_repeat)  {
+        $result = $connessione->checkOldPassowrd($username, $oldpassword);
 
-    
+        if($result) {  // vecchia password giusta
+
+            $result = $connessione->ChangePassword($username, $oldpassword, $newpassword);
+
+
+        }
+        else {   //vecchia password sbagliata
+        }
+
     }
     else {}
       // errore: nuova password e password repeat non sono uguali!!
