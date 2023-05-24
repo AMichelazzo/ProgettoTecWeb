@@ -162,7 +162,7 @@ public function getMessages() {  //funzione per prendere messaggi da DB
         return false;
     }
 
-    
+
     public function ChangePassword($user, $old, $new) {
     $OKUser = pulisciInput($user);
     $OKOld = pulisciInput($old);
@@ -177,7 +177,7 @@ public function getMessages() {  //funzione per prendere messaggi da DB
         return false;
      
       }
-  }
+
 
   public function getUtenti() {
     $query = "SELECT * FROM utente WHERE ruolo = 'user'";
