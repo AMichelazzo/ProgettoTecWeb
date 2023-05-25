@@ -94,8 +94,7 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   public function addtoWishList($id_prodotto,$id_categoria,$username) {
     $OKProd=pulisciInput($id_prodotto);
     $OKcat=pulisciInput($id_categoria);
-    $OKuser=pulisciInput($username);
-    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
+    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$username', '$OKProd', '$OKcat')";
     $result = mysqli_query($this->connection, $query);
     return $result;
   }
@@ -104,14 +103,15 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   public function removeFromWishList($id_prodotto,$id_categoria,$username) {
     $OKProd=pulisciInput($id_prodotto);
     $OKcat=pulisciInput($id_categoria);
-    $OKuser=pulisciInput($username);
-    $query = "DELETE FROM wishlist WHERE `wishlist`.`username` = '$OKuser' AND `wishlist`.`id_prodotto` = '$OKProd' AND `wishlist`.`id_categoria`='$OKcat'";
+    $query = "DELETE FROM wishlist WHERE `wishlist`.`username` = '$username' AND `wishlist`.`id_prodotto` = '$OKProd' AND `wishlist`.`id_categoria`='$OKcat'";
     $result = mysqli_query($this->connection, $query);
     return $result;
   }
   
   public function isInWishList($idprod,$idcat,$user){
-    $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$idprod' AND `id_categoria`='$idcat'"; 
+    $OKprod=pulisciInput($idprod);
+    $OKcat=pulisciInput($idcat);
+    $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$OKprod' AND `id_categoria`='$OKcat'"; 
     $queryResult = mysqli_query($this->connection, $query);
     $row = mysqli_fetch_assoc($queryResult);
     return isset($row);
@@ -212,7 +212,8 @@ public function getMessages() {  //funzione per prendere messaggi da DB
 
   public function registraNuovoUtente($pass_reg,$username_reg,$email_reg){
     $OKEmail=pulisciInput($email_reg);
-    $OKPw=pulisciInput($pass_reg);
+    $OKPw=password_hash($pass_reg, PASSWORD_DEFAULT);
+    echo $OKPw;die;
     $OKuser=pulisciInput($username_reg);
     $query = "INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES ('$OKuser', '$OKPw', '$OKEmail', 'user', current_timestamp())";
     $result = mysqli_query($this->connection, $query);

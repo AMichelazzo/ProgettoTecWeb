@@ -42,25 +42,32 @@
     <main>
         <div id="contenuto">
             <div id="login">
-                <div id="operazione">REGISTRATI</div>
+                <h2><div id="operazione">REGISTRATI</div></h2>
                 <form method="post" action="PHP/registrati_handler.php">
-                    <!-- <fieldset>
-                        <legend>LOGIN</legend> -->
+                    <fieldset>
+                        <legend>LOGIN</legend>
                         <div><label for="email_reg" lang="en">Email: </label></div>
-                        <div><input type="email" id="email_reg" name="email_reg" placeholder="email@test.org"/><img id="email_disponibile" src="" alt=""/><!--email--></div>
+                        <div><input type="email" id="email_reg" name="email_reg" placeholder="email@test.org" required/><img id="email_disponibile" src="" alt=""/><!--email--></div>
 
 
                         <div><label for="username_reg" lang="en">Username: </label></div>
-                        <div><input type="text" id="username_reg" name="username_reg" placeholder="Pinco Pallino"/><img id="username_disponibile" src="" alt=""/><!--user--></div>
+                        <div><input type="text" id="username_reg" name="username_reg" placeholder="Pinco Pallino" required/><img id="username_disponibile" src="" alt=""/><!--user--></div>
 
                         <div><label for="pass_reg" lang="en">Password: </label></div>
-                        <div><input type="password" id="pass_reg" name="pass_reg"/><img id="password_rispetta" src="" alt=""/><!--password--></div>
+                        <div><input type="password" id="pass_reg" name="pass_reg" required/><img id="password_rispetta" src="" alt=""/></div>
 
                         <div><label for="pass_reg2">Ripeti <span lang="en">password</span>: </label></div>
-                        <div><input type="password" id="pass_reg2" name="pass_reg2"/><img id="password_rispetta2" src="" alt=""/><!--password--></div>
+                        <div><input type="password" id="pass_reg2" name="pass_reg2" required/><img id="password_rispetta2" src="" alt=""/><!--password--></div>
+                        <div id="message">
+                            <h3>La password deve contenere almeno:</h3>
+                            <div id="minusc" >Una lettera <em>minuscola</em><img class="invalid" id="lowecase" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></div>
+                            <div id="maiusc" >Una lettera <em>MAIUSCOLA</em><img class="invalid" id="uppercase" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></div>
+                            <div id="numeri" >Un <em>numero</em><img class="invalid" id="number" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></div>
+                            <div id="lunghezza" >Un minimo di <em>8 caratteri</em>, massimo di <em>16 caratteri</em><img class="invalid" id="lenght" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></div>
+                        </div>
 
                         <input type="submit" id="submit" name="submit" class="invio" value="Registrati" />
-                    <!-- </fieldset> -->
+                    </fieldset>
                 </form>
                 <p><a href="login.php" lang="en">Login</a></p>
             </div>

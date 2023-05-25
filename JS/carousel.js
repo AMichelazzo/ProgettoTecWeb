@@ -24,25 +24,24 @@ function showSlides(n) {
 
 
 // Get the button element
-let button = document.getElementById("buttonid");
+let button = document.getElementById("button");
 // Add an event listener for the button click
 button.addEventListener("click", function() {
   let prod = document.getElementsByClassName("product-id");
   let categ = document.getElementsByClassName("categoria");
-  //var username = document.getElementsByClassName("username");
-
+  let buttontext = document.getElementById("buttonid");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           let response = JSON.parse(this.responseText);
           if (response.success) {
-                button.innerHTML == "Aggiungi a WishList" ? button.innerHTML = "Togli dalla WishList" : button.innerHTML = "Aggiungi a WishList";
+            buttontext.innerHTML == "Aggiungi a WishList" ? buttontext.innerHTML = "Togli dalla WishList" : button.innerHTML = "Aggiungi a WishList";
               alert(response.message);
           } else {
               alert(response.message); /*Forse si può tenere fuori dal costrutto*/
           }
       }
   };
-  xhr.open("GET", (button.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id:"PHP/addWish.php?remove=1&product-ID="+prod[0].id+"&categoria="+categ[0].id, true);
+  xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id:"PHP/addWish.php?remove=1&product-ID="+prod[0].id+"&categoria="+categ[0].id, true);
   xhr.send();
 });

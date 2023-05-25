@@ -7,7 +7,6 @@ require_once "PHP/connessione.php";
 use DB\DBAccess;
 
 $connessione = new DBAccess();
-
 if (isset($_GET["prod"])) { 
     $result = $nome = $descrizione = $replace ="";
     $connessioneRiuscita = $connessione->openDBConnection();
@@ -27,9 +26,9 @@ if (isset($_GET["prod"])) {
         }
         if(isset($_SESSION["username"])){
             $connessioneRiuscita = $connessione->openDBConnection();
-            $result=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
+            $result2=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
             $connessione->closeConnection();
-            ($result) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList"; 
+            ($result2) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList"; 
             $isLogged="<button type=\"button\" id=\"button\" class=\"button\">
                                                 <span class=\"button__text\" id=\"buttonid\">".$testoButton."</span>
                                                 </button>";
