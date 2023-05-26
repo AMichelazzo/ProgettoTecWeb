@@ -22,34 +22,40 @@ class DBAccess {
 
     public static function dbQuery($query, ...$parametri) {
         $connection = self::startConnection();
-        $stmt = $connection->prepare($query);
 
+        $stmt = $connection->prepare($query);
         // controllo parametri
         foreach ($parametri as $parametro) {
             $parametro = mysqli_real_escape_string($connection, $parametro);
         }
-
         // aggiunta parametri
         if (count($parametri) > 0) {
-            $stmt->bind_param( str_repeat("s", count($parametri)), ...$parametri);}
-        
+            $stmt->bind_param( str_repeat("s", count($parametri)), ...$parametri);
+        }
         $stmt->execute();
         $queryResult = $stmt->get_result();
 
-        // capire che tipo di query è: SELECT || ALTRO
-        // se select deve ritornare delle righe, altrimenti ritorna null?
-        // una select ritorna delle righe, se vuota ritorna true, se c'è un errore ritorna false
-        // altre non ritornano delle righe, se portano delle modifiche ritorna true, se non porta a delle modifiche?, se c'è un errore false
-        
-        if (strpos($query, "SELECT") === 0) { /* è una select */
-            if ($queryResult === false) {return false;}
-            $result = array();
-            while ($row = mysqli_fetch_assoc($queryResult)) {
-            array_push($result, $row);
-            }
+        $select = false;
+        if(strpos($query, "SELECT") === 0) {
+            $select = true;
         }
-        $connection->close();
 
+        if ($stmt->errno != 0) {
+            $connection->close(); return false; // messaggio di errore
+        }
+        if (empty($queryResult) && $select) { // select senza risultato
+            $queryResult->free(); $connection->close(); return null;
+        }
+        if (empty($queryResult) && !$select) {
+            $connection->close(); return true;
+        }
+
+        $result = array();
+        while ($row = mysqli_fetch_assoc($queryResult)) {
+            array_push($result, $row);
+        }
+        $queryResult->free();
+        $connection->close();
         return $result;
     }
 };

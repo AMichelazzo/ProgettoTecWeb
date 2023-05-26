@@ -53,7 +53,7 @@ else { // modifica del prodotto
 
     $Elenco_prod= "<input type=\"button\" id=\"submit_modifca_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></form>"; 
 }   
-
+// Close connection?
 $paginaHTML = str_replace($target, $Elenco_prod, $paginaHTML);
 echo $paginaHTML;
 ?>
