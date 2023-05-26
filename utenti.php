@@ -18,7 +18,7 @@ $stringaUtenti = "";
     $utenti = Utente::get();
     if (!empty($utenti)) {
         foreach ($utenti as $utente) {
-            $stringaUtenti .= '<div id="utenti">
+            $stringaUtenti .= '<div class="utenti">
                 <div class="flexutente">
                 <div>Username: ' . $utente['username'] . ' </div>
                 <div>Email: ' . $utente['email'] . ' </div>
@@ -31,7 +31,7 @@ $stringaUtenti = "";
         }
     } else {
         $stringaUtenti =
-        '<div id="utenti">
+        '<div class="utenti">
             <div class="flexutente">
                 Nessun utente è presente nel sistema.
             </div>
@@ -39,7 +39,7 @@ $stringaUtenti = "";
     }
 /*} else {
     $stringaUtenti =
-        '<div id="utenti">
+        '<div class="utenti">
             <div class="flexutente">
                 Il sistema non è al momento raggiungibile, ci scusiamo per il disagio.
             </div>
