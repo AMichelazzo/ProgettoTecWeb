@@ -15,6 +15,7 @@ if(!isset($_POST["modifica_prod"])) {
     $result=$connessione->getAllProducts();
     $connessione->closeConnection();
 
+    $Elenco_prod .= "<form action=\"catalogo.php\" method=\"POST\">";
     for($i=0; $i<count($result); $i++) {  // funzione per la creazione dell'inline
 
         $Elenco_prod .= "<div id=\"prodotti\"><p class=\"inline\"><input type=\"checkbox\" name=\"form_id_prodotti[]\" value=" . $result[$i]["id_prodotto"] .
@@ -25,8 +26,9 @@ if(!isset($_POST["modifica_prod"])) {
         $Elenco_prod .= "<p class=\"inline\"> Categoria: " . $result[$i]["Cat_Nome"] . "|</p>";
         $Elenco_prod .= "<p class=\"inline\"> Descrizione: " . $result[$i]["Descrizione"] . ".</p></div>";
         $Elenco_prod .= "<p align=\"right\"><input type=\"button\" class=\"invio\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p><br>";
-
     }
+
+    $Elenco_prod .= "<input type=\"button\" id=\"elimina_prod\" name=\"elimina_prod\" class=\"invio\" value=\"Elimina prodotti selezionati\" /></form>";
 }
 else { // modifica del prodotto
     
