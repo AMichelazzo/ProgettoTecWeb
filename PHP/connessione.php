@@ -54,6 +54,42 @@ class DBAccess {
     }
     return $result;
   }
+    public function getAllProducts() {
+    $query = "SELECT `id_prodotto`, `prodotti`.`id_categoria`, `prodotti`.`Descrizione`, `categoria`.`Nome` AS Cat_Nome, `prodotti`.`Nome` AS Prod_Nome FROM `prodotti` 
+      JOIN `categoria` on `prodotti`.`id_categoria` = `categoria`.`id_categoria` ";
+    $queryResult = mysqli_query($this->connection, $query);
+    $result = array();
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $result[] = $row;
+    }
+    return $result;
+  }
+
+  public function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione) {
+    $OKId=pulisciInput($id_prodotto);
+    $OKCat=pulisciInput($id_categoria);
+    $OKNome=pulisciInput($nome);
+    $OKDes=pulisciInput($descrizione);
+    
+    $query = "UPDATE `prodotti` SET `id_categoria` = '$OKCat', `Nome` = '$OKNome', `Descrizione` = '$OKDes' WHERE `id_prodotto` = '$OKId'";
+
+    return mysqli_query($this->connection, $query);
+  }
+  
+    public function getProductName($id_prodotto, $id_categoria) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKCat=pulisciInput(($id_categoria));
+
+    $query = "SELECT DISTINCT `Nome` FROM `prodotti` WHERE `prodotti`.`id_prodotto` = '$id_prodotto' AND `prodotti`.`id_categoria` = '$id_categoria'";
+    $queryResult = mysqli_query($this->connection, $query);
+
+    if($queryResult == false) 
+      return null;
+    else {
+      $result = mysqli_fetch_array($queryResult);
+      return $result['Nome'];
+    }
+  }
 
 public function getMessages() {  //funzione per prendere messaggi da DB
     $query = "SELECT messaggi.id_messaggio, utente.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome, utente.email
@@ -94,8 +130,7 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   public function addtoWishList($id_prodotto,$id_categoria,$username) {
     $OKProd=pulisciInput($id_prodotto);
     $OKcat=pulisciInput($id_categoria);
-    $OKuser=pulisciInput($username);
-    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$OKuser', '$OKProd', '$OKcat')";
+    $query = "INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES ('$username', '$OKProd', '$OKcat')";
     $result = mysqli_query($this->connection, $query);
     return $result;
   }
@@ -104,14 +139,15 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   public function removeFromWishList($id_prodotto,$id_categoria,$username) {
     $OKProd=pulisciInput($id_prodotto);
     $OKcat=pulisciInput($id_categoria);
-    $OKuser=pulisciInput($username);
-    $query = "DELETE FROM wishlist WHERE `wishlist`.`username` = '$OKuser' AND `wishlist`.`id_prodotto` = '$OKProd' AND `wishlist`.`id_categoria`='$OKcat'";
+    $query = "DELETE FROM wishlist WHERE `wishlist`.`username` = '$username' AND `wishlist`.`id_prodotto` = '$OKProd' AND `wishlist`.`id_categoria`='$OKcat'";
     $result = mysqli_query($this->connection, $query);
     return $result;
   }
   
   public function isInWishList($idprod,$idcat,$user){
-    $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$idprod' AND `id_categoria`='$idcat'"; 
+    $OKprod=pulisciInput($idprod);
+    $OKcat=pulisciInput($idcat);
+    $query = "SELECT * FROM `wishlist` WHERE `username`='$user' AND `id_prodotto`='$OKprod' AND `id_categoria`='$OKcat'"; 
     $queryResult = mysqli_query($this->connection, $query);
     $row = mysqli_fetch_assoc($queryResult);
     return isset($row);
@@ -148,27 +184,36 @@ public function getMessages() {  //funzione per prendere messaggi da DB
       return null;
     }
   }
-    public function checkAndChangePassword($user, $old, $new) {
+
+    public function checkOldPassword($user, $old) {
+      $OKUser = pulisciInput($user);
+      $OKOld = pulisciInput($old);
+
+      $query = "SELECT username FROM utente WHERE username = '$OKUser' AND password = 'OKOld'";
+      $queryResult = mysqli_query($this->connection, $query);
+
+      if(isset($queryResult))
+        return true;
+      else  
+        return false;
+    }
+
+
+    public function ChangePassword($user, $old, $new) {
     $OKUser = pulisciInput($user);
     $OKOld = pulisciInput($old);
     $OKNew = pulisciInput($new);
 
-    $query = "SELECT password FROM utente WHERE username = '$OKUser'";
+    $query = "UPDATE utente SET password = '$OKNew' WHERE username = '$OKUser' AND password = '$OKOld'";
     $queryResult = mysqli_query($this->connection, $query);
 
-    if($queryResult != $OKOld)
-      return "old_wrong";
-    else
-      {
-        $query = "UPDATE utente SET password = '$OKNew' WHERE username = '$OKUser' AND password = '$OKOld'";
-        $queryResult = mysqli_query($this->connection, $query);
-
-        if($queryResult)
-          return "success";
-        else
-          return "error";
+    if(isset($queryResult))
+        return true;
+      else  
+        return false;
+     
       }
-  }
+
 
   public function getUtenti() {
     $query = "SELECT * FROM utente WHERE ruolo = 'user'";
@@ -203,7 +248,8 @@ public function getMessages() {  //funzione per prendere messaggi da DB
 
   public function registraNuovoUtente($pass_reg,$username_reg,$email_reg){
     $OKEmail=pulisciInput($email_reg);
-    $OKPw=pulisciInput($pass_reg);
+    $OKPw=password_hash($pass_reg, PASSWORD_DEFAULT);
+    echo $OKPw;die;
     $OKuser=pulisciInput($username_reg);
     $query = "INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES ('$OKuser', '$OKPw', '$OKEmail', 'user', current_timestamp())";
     $result = mysqli_query($this->connection, $query);

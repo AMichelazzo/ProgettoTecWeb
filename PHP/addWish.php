@@ -6,6 +6,8 @@ use DB\DBAccess;
 $connessione = new DBAccess();
 $response = array();
 session_start();
+
+
 if (isset($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"])) {
     if(!isset($_GET["remove"])||$_GET["remove"]!=1){ 
         $result="";

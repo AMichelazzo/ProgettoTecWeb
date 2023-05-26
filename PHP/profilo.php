@@ -4,41 +4,44 @@ require_once "connessione.php";
 use DB\DBAccess;
 
 $connessione = new DBAccess();
-$connessioneRiuscita = $connessione->openDBConnection();
 $paginaHTML = file_get_contents("../HTML/profilo.html");
 $result = "";
 
 
-if(isset($_POST["cambia_password"])) 
-{
-    $username = /*$_SESSION["username"]*/ "user";
-    $oldpassword = $_POST["old_password"];
-    $newpassword = $_POST["new_password"];
-    $newpassword_repeat = $_POST["new_password_repeat"];
 
-    // da aggiungere controllo lato server e client sulle password (lunghezza, caratteri ecc..)
+if(/*isset($_SESSION["username"]) &&*/ isset($_POST["old_password"])  && isset($_POST["new_password"]) 
+    && isset($_POST["new_password_repeat"]) && isset($_POST["cambia_password"])) {
 
-    if($newpassword == $newpassword_repeat)
-    {
-        $result = $connessione->checkAndChangePassword($username, $oldpassword, $newpassword);
-        if($result = "old_wrong") {}
-            //errore: vecchia password errata
-        if($result = "error") {}
-         // errore nel cambio password
-        if($result = "success") {}
-            // password cambiata con successo
+        $connessioneRiuscita = $connessione->openDBConnection();
+
+        if($_POST["new_password"] == $_POST["new_password_repeat"]) {
+
+            $result = $connessione->checkOldPassword(/*$_SESSION["username"]*/"user", $_POST["old_password"]);
+            $result2 = $connessione->ChangePassword(/*$_SESSION["username"]*/"user", $_POST["old_password"], $_POST["new_password"]);
+            $connessione->closeConnection();
+            header("Location: ../profilo.php");
+        }
+        else {
+            $_SESSION["error_new_pass"]="<img id=\"passNOT_combaciano\" src=\"img/Xrossa.png\" alt=\"Le due nuove <span lang=\en\">password</span> non sono uguali.
+            \ height=\"15px\" width=\"15px\"/>";
+                $connessione->closeConnection(); 
+                header("Location: ../profilo.php");
+        }
+        $connessione->closeConnection();
+        if(isset($result)) {
+            $_SESSION["error_old_pass"]=$result;
+            $_SESSION["error_old_pass2"]="<img id=\"old_passwordNOT_giusta\" src=\"img/Xrossa.png\" alt=\"Vecchia password sbagliata.\" height=\"15px\" width=\"15px\"/>";
+        }
+        else if(isset($result2)) {
+            $_SESSION["error_generic"]=$result2;
+            $_SESSION["error_generic2"]="<img id=\"errore_generico\" src=\"img/Xrossa.png\" alt=\"Errore nella modifica della password.\" height=\"15px\" width=\"15px\"/>";
+        
+        }
+
+        }
 
     
-    }
-    else {}
-      // errore: nuova password e password repeat non sono uguali!!
-      // altrimenti farlo con js?
 
-    
-}
-
-$connessione->closeConnection();
-
-echo $result;
+echo $paginaHTML;
 
 ?>

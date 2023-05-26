@@ -1,13 +1,13 @@
 <?php
 
-require_once "connessione.php";
+require_once "PHP/connessione.php";
 use DB\DBAccess;
 
 $connessione = new DBAccess();
 $connessioneRiuscita = $connessione->openDBConnection();
 $target="Elementi_Messaggi";
 $ElencoMsg="";
-$paginaHTML = file_get_contents("../HTML/messaggi.html");
+$paginaHTML = file_get_contents("HTML/messaggi.html");
 
 if (isset($_POST['form_msg'])) {   // funzione che segna come letti i messaggi selezionati
     $msg_checked = $_POST['form_msg'];
@@ -26,7 +26,6 @@ if(isset($_POST["submit_elimina"])) {  // funzione che elimina i messaggi selezi
         }
     }
 }
-
 
     $result=$connessione->getMessages();
     $connessione->closeConnection();
@@ -50,7 +49,7 @@ if(isset($_POST["submit_elimina"])) {  // funzione che elimina i messaggi selezi
             $ElencoMsg .= "<p class=\"inline\"> Letto:No</p></div>";
     }
     
-    $paginaHTML = str_replace("Elementi_Messaggi", $ElencoMsg, $paginaHTML);
+    $paginaHTML = str_replace($target, $ElencoMsg, $paginaHTML);
 
     echo $paginaHTML;
 ?>
