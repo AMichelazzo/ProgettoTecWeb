@@ -35,13 +35,19 @@ class DBAccess {
         
         $stmt->execute();
         $queryResult = $stmt->get_result();
+
+        // capire che tipo di query è: SELECT || ALTRO
+        // se select deve ritornare delle righe, altrimenti ritorna null?
+        // una select ritorna delle righe, se vuota ritorna true, se c'è un errore ritorna false
+        // altre non ritornano delle righe, se portano delle modifiche ritorna true, se non porta a delle modifiche?, se c'è un errore false
         
-        if (!$queryResult) {return false;}
-        $result = array();
-        while ($row = mysqli_fetch_assoc($queryResult)) {
+        if (strpos($query, "SELECT") === 0) { /* è una select */
+            if ($queryResult === false) {return false;}
+            $result = array();
+            while ($row = mysqli_fetch_assoc($queryResult)) {
             array_push($result, $row);
+            }
         }
-        
         $connection->close();
 
         return $result;
