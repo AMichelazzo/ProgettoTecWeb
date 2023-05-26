@@ -54,6 +54,42 @@ class DBAccess {
     }
     return $result;
   }
+    public function getAllProducts() {
+    $query = "SELECT `id_prodotto`, `prodotti`.`id_categoria`, `prodotti`.`Descrizione`, `categoria`.`Nome` AS Cat_Nome, `prodotti`.`Nome` AS Prod_Nome FROM `prodotti` 
+      JOIN `categoria` on `prodotti`.`id_categoria` = `categoria`.`id_categoria` ";
+    $queryResult = mysqli_query($this->connection, $query);
+    $result = array();
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $result[] = $row;
+    }
+    return $result;
+  }
+
+  public function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione) {
+    $OKId=pulisciInput($id_prodotto);
+    $OKCat=pulisciInput($id_categoria);
+    $OKNome=pulisciInput($nome);
+    $OKDes=pulisciInput($descrizione);
+    
+    $query = "UPDATE `prodotti` SET `id_categoria` = '$OKCat', `Nome` = '$OKNome', `Descrizione` = '$OKDes' WHERE `id_prodotto` = '$OKId'";
+
+    return mysqli_query($this->connection, $query);
+  }
+  
+    public function getProductName($id_prodotto, $id_categoria) {
+    $OKProd=pulisciInput($id_prodotto);
+    $OKCat=pulisciInput(($id_categoria));
+
+    $query = "SELECT DISTINCT `Nome` FROM `prodotti` WHERE `prodotti`.`id_prodotto` = '$id_prodotto' AND `prodotti`.`id_categoria` = '$id_categoria'";
+    $queryResult = mysqli_query($this->connection, $query);
+
+    if($queryResult == false) 
+      return null;
+    else {
+      $result = mysqli_fetch_array($queryResult);
+      return $result['Nome'];
+    }
+  }
 
 public function getMessages() {  //funzione per prendere messaggi da DB
     $query = "SELECT messaggi.id_messaggio, utente.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome, utente.email
