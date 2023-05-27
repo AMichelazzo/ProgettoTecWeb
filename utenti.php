@@ -15,8 +15,8 @@ if (!empty($utenti)) {
     foreach ($utenti as $utente) {
         $stringaUtenti .= '<div class="utenti">
             <div class="flexutente">
-            <div>Username: ' . $utente['username'] . ' </div>
-            <div>Email: ' . $utente['email'] . ' </div>
+            <div><span lang="en">Username</span>: ' . $utente['username'] . ' </div>
+            <div><span lang="en">Email</span>: ' . $utente['email'] . ' </div>
             <form action="utenti.php" method="post">
             <input type="hidden" id="userId" name="userId" value="' . $utente['username'] . '"/>
             <input type="submit" id="delete" name="delete" class="invio" value="Elimina"/>
