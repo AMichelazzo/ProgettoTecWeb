@@ -1,0 +1,204 @@
+* {
+    padding: 0em;
+    margin: 0em;
+    /*per vedere i bordi di tutti gli elementi e capire dove si posizionano basta togliere commento da riga sotto*/
+    /*outline: red dashed 1px;*/
+}
+
+:root {
+    --visitedcolor: #000000;
+    --linkcolor: #FFFFFF;
+    --bgfuncolor: #DB334F;
+    --bgcolor: #FFFFFF;
+    --txtcolor: #000000;
+    --shadowcolor: #d2d2d2;
+}
+
+html, body {
+	font-size: 100%;
+	font-family: "Verdana", sans-serif;
+	line-height: 1.5em;
+	background-color: var(--bgcolor);
+	color: var(--txtcolor);
+	margin: auto;
+}
+
+body {
+    max-width: 1024px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/*SALTA CONTENUTO*/
+
+.noview { /*da rivedere*/
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.noview:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+/*TITOLO*/
+
+#nomemenu h1 {
+    background-image: url('../img/logo_vetrina.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-indent: -9999px;
+    line-height: 1.5em;
+    font-size: 6em;
+}
+
+/*HAMBURGER*/
+
+.hambuttonoff { /*Il menu è chiuso*/
+    width: 3em;
+    height: 3em;
+}
+
+.hambuttonon { /*Il menu è aperto*/
+    width: 3em;
+    height: 3em;
+}
+
+/*BOX*/
+
+#box {
+    background-color: var(--bgfuncolor);
+    padding: 0.3em 1em 0.1em 1.0em;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+
+/*MENUBAR*/
+
+.menubaroff {
+    display: none;
+}
+
+.menubaron {
+    display: block;
+    text-align: left;
+    background-color: var(--bgfuncolor);
+    border-radius: 0.5em 0.5em 0em 0em;
+    font-size: 1.3em;
+}
+
+.menubaron ul {
+    list-style-type: none;
+}
+
+.menubaron ul li{
+	margin-top: 1em;
+    font-size: 1.3em;
+}
+
+@media(orientation: landscape) {
+    .menubaron {
+        text-align: right;
+    }
+    .menubaron ul li {
+        display: inline;
+    }
+}
+
+/*MENU*/
+
+#menu {
+    background-color: var(--bgfuncolor);
+    border-radius: 0.5em 0.5em 0em 0em;
+    text-align: left;
+    font-size: 1.3em;
+}
+
+#menu ul {
+    list-style-type: none;
+}
+
+#menu ul li{
+	margin-top: 1em;
+    font-size: 1.3em;
+}
+
+@media(orientation: landscape) {
+
+    #menu {
+        text-align: left;
+    }
+
+    #menu ul li {
+        display: inline;
+    }
+}
+
+/*LINK*/
+
+a {
+    background-color: var(--bgfuncolor);
+}
+
+a:link {
+    color: var(--linkcolor);
+}
+
+a:visited {
+    color: var(--visitedcolor);
+}
+
+#currentLink {
+    color: var(--linkcolor);
+    background-image: url("../img/logo_vetrina.svg"); /*bianco?*/
+    background-size: 1.3em;
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 1.4em;
+    padding-right: 1em;
+    font-size: 1.3em;
+}
+
+/*BREADCRUMB*/
+
+#breadcrumb {
+    background-color: var(--bgfuncolor);
+    padding: 0.1em 0em 0.3em 1.0em;
+    border-radius: 0px 0px 0.5em 0.5em;
+    font-size: 1.3em;
+}
+
+#contenuto {
+    width: 85%;
+    /*
+    -webkit-border-radius:2em;
+    -moz-border-radius:2em;
+    */
+    border-radius: 0.5em;
+    padding: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0em 0em 1em 0em var(--shadowcolor);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+/* INIZIO PAGINA */
+
+#iniziopagina {
+    text-align: center;
+}
+
+/* FOOTER */
+
+#footer {
+    background-color: var(--bgfuncolor);
+    border-radius: 0.5em 0.5em 0em 0em;
+}

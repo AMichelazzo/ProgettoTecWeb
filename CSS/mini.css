@@ -3,6 +3,12 @@ h1 {
     display: inline-flex;
     flex: 77%;
 }
+
+header h1{
+    line-height: 1em;
+    font-size: 4em;
+}
+
 .menubaron li {
     display: block;
     text-align: center;
@@ -41,7 +47,7 @@ display: none;
     border-radius: 12px 12px 0px 0px; /*ATTENZIONE VALORE ASSOLUTO*/
 }
 
-#hambutton {
+#hambuttonon {
     display: inline-flex;
 }
 

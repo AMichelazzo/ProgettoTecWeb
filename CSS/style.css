@@ -27,6 +27,16 @@ h1 {
     text-align: center;
 }
 
+#nomemenu h1{
+  background-image: url('../img/logo_vetrina.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  text-indent: -9999px;
+  line-height: 1.5em;
+  font-size: 6em;
+}
+
 body {
     max-width: 1024px;
 }
@@ -196,7 +206,11 @@ a:visited {
     clip: rect(1px, 1px, 1px, 1px);
 }
 
-
+.noview:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
 
 /*CAROUSEL*/
     /* Slideshow container */
