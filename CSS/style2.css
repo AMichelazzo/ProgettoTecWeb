@@ -86,28 +86,33 @@ h1 {
 }
 
 .menubaron {
-    display: block;
-    text-align: left;
+    text-align: center;
     background-color: var(--bgfuncolor);
     border-radius: 0.5em 0.5em 0em 0em;
     font-size: 1.3em;
 }
 
 .menubaron ul {
+    display: inline-block;
     list-style-type: none;
+    text-align: left;
 }
 
-.menubaron ul li{
+.menubaron ul li {
 	margin-top: 1em;
     font-size: 1.3em;
+    text-align: center;
 }
 
-@media(orientation: landscape) {
+@media(orientation: landscape) and (min-width: 790px) {
+    
     .menubaron {
         text-align: right;
+        padding-bottom: 1em;
     }
     .menubaron ul li {
         display: inline;
+        padding-right: 0.6em;
     }
 }
 
@@ -115,21 +120,24 @@ h1 {
 
 #menu {
     background-color: var(--bgfuncolor);
-    border-radius: 0.5em 0.5em 0em 0em;
-    text-align: left;
+    /*border-radius: 0.5em 0.5em 0em 0em;*/
+    text-align: center;
     font-size: 1.3em;
 }
 
 #menu ul {
     list-style-type: none;
+    display: inline-block;
+    text-align: left;
 }
 
 #menu ul li{
 	margin-top: 1em;
     font-size: 1.3em;
+    text-align: center;
 }
 
-@media(orientation: landscape) {
+@media(orientation: landscape) and (min-width: 790px) {
 
     #menu {
         text-align: left;
@@ -137,6 +145,7 @@ h1 {
 
     #menu ul li {
         display: inline;
+        padding-right: 1em;
     }
 }
 
@@ -160,8 +169,8 @@ a:visited {
     background-size: 1.3em;
     background-position: left center;
     background-repeat: no-repeat;
-    padding-left: 1.4em;
-    padding-right: 1em;
+    padding-left: 1.4em; /*distanza img da link corrente */
+    /*padding-right: 1em; /*distanza dalla voce successiva*/
     font-size: 1.3em;
 }
 
