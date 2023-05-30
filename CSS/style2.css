@@ -77,6 +77,7 @@ h1 {
     background-color: var(--bgfuncolor);
     padding: 0.3em 1em 0.1em 1.0em;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
+    font-size: 1.3em;
 }
 
 /*MENUBAR*/
@@ -87,42 +88,46 @@ h1 {
 
 .menubaron {
     text-align: center;
-    background-color: var(--bgfuncolor);
-    border-radius: 0.5em 0.5em 0em 0em;
-    font-size: 1.3em;
 }
 
 .menubaron ul {
-    display: inline-block;
     list-style-type: none;
+    display: inline-block;
     text-align: left;
 }
 
 .menubaron ul li {
 	margin-top: 1em;
-    font-size: 1.3em;
     text-align: center;
 }
 
 @media(orientation: landscape) and (min-width: 790px) {
+
+    #box {
+        background-color: var(--bgfuncolor);
+        padding: 0.6em 1em 0.1em 1.0em;
+        border-radius: 0.5em 0.5em 0.5em 0.5em;
+    }
     
     .menubaron {
         text-align: right;
-        padding-bottom: 1em;
+        margin-bottom: 1em;
     }
-    .menubaron ul li {
+/*
+    .menubaron ul {
         display: inline;
+    }*/
+
+    .menubaron ul li {
         padding-right: 0.6em;
+        display: inline;
     }
 }
 
 /*MENU*/
 
 #menu {
-    background-color: var(--bgfuncolor);
-    /*border-radius: 0.5em 0.5em 0em 0em;*/
     text-align: center;
-    font-size: 1.3em;
 }
 
 #menu ul {
@@ -133,9 +138,10 @@ h1 {
 
 #menu ul li{
 	margin-top: 1em;
-    font-size: 1.3em;
     text-align: center;
 }
+
+/*serve un aspect ratio*/
 
 @media(orientation: landscape) and (min-width: 790px) {
 
@@ -163,10 +169,25 @@ a:visited {
     color: var(--visitedcolor);
 }
 
+#box a {
+    background-color: var(--bgfuncolor);
+    font-size: 1.3em;
+}
+
+#box a:link {
+    color: var(--linkcolor);
+    font-size: 1.3em;
+}
+
+#box a:visited {
+    color: var(--visitedcolor);
+    font-size: 1.3em;
+}
+
 #currentLink {
     color: var(--linkcolor);
     background-image: url("../img/logo_vetrina.svg"); /*bianco?*/
-    background-size: 1.3em;
+    background-size: 1.0em;
     background-position: left center;
     background-repeat: no-repeat;
     padding-left: 1.4em; /*distanza img da link corrente */
