@@ -33,6 +33,15 @@ class DBAccess {
     }
     return $result;
   }
+  
+   public function newCategory($nome, $descrizione) {
+    $OKNome = pulisciInput($nome);
+    $OKDes = pulisciInput($descrizione);
+
+    $query = "INSERT INTO categoria(Nome, Descrizione) VALUES ('$OKNome', '$OKDes')";
+    return mysqli_query($this->connection, $query);
+  }
+
   public function getProductListANDCheckCategory($id_categ) {
   $OKCateg=pulisciInput($id_categ);
   $query = "SELECT * FROM `prodotti` WHERE id_categoria ='$OKCateg'";
@@ -65,6 +74,15 @@ class DBAccess {
     return $result;
   }
 
+   public function newProduct($id_categoria, $nome, $descrizione) {  // da implementare l'aggiunta di immagini
+    $OKCat=pulisciInput($id_categoria);
+    $OKNome=pulisciInput($nome);
+    $OKDes=pulisciInput($descrizione);
+    
+    $query = "INSERT INTO prodotti(id_categoria, Nome, Descrizione) VALUES ('$OKCat', '$OKNome', '$OKDes')";
+    return mysqli_query($this->connection, $query);
+  }
+  
   public function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione) {
     $OKId=pulisciInput($id_prodotto);
     $OKCat=pulisciInput($id_categoria);
@@ -73,6 +91,12 @@ class DBAccess {
     
     $query = "UPDATE `prodotti` SET `id_categoria` = '$OKCat', `Nome` = '$OKNome', `Descrizione` = '$OKDes' WHERE `id_prodotto` = '$OKId'";
 
+    return mysqli_query($this->connection, $query);
+  }
+  
+  public function deleteProduct($id_prodotto) {
+    $OKId = pulisciInput($id_prodotto);
+    $query = "DELETE FROM `prodotti` WHERE `id_prodotto` = '$OKId'";
     return mysqli_query($this->connection, $query);
   }
   
