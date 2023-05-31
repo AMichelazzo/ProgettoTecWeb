@@ -141,8 +141,6 @@ h1 {
     text-align: center;
 }
 
-/*serve un aspect ratio*/
-
 @media(orientation: landscape) and (min-width: 790px) {
 
     #menu {
@@ -193,6 +191,24 @@ a:visited {
     padding-left: 1.4em; /*distanza img da link corrente */
     /*padding-right: 1em; /*distanza dalla voce successiva*/
     font-size: 1.3em;
+}
+
+@media(max-aspect-ratio: 1/1.7) {
+    .menubaron {
+        font-size: 2.3em;
+    }
+
+    .menubaron ul {
+        line-height: 1.5em;
+    }
+	
+    #menu {
+        font-size: 2.3em;
+    }
+
+    #menu ul {
+		line-height: 1.5em;
+	}
 }
 
 /*BREADCRUMB*/
