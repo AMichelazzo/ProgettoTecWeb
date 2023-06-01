@@ -178,7 +178,6 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   }
   public function checkLogin($user,$pass){
     $OKuser=pulisciInput($user);
-    $OKpass=pulisciInput($pass);
     /*
     $user = mysqli_real_escape_string(stripslashes($user));
     $pass = mysqli_real_escape_string(stripslashes($pass));
@@ -187,11 +186,10 @@ public function getMessages() {  //funzione per prendere messaggi da DB
     $query->execute();
     $queryResult = $query->get_result();
     */
-    $query = "SELECT * FROM `utente` WHERE `username`='$OKuser' AND `password`='$OKpass'"; 
+    $query = "SELECT * FROM `utente` WHERE `username`='$OKuser'"; 
     $queryResult = mysqli_query($this->connection, $query);
     $row = mysqli_fetch_assoc($queryResult);
-    if(isset($row))
-    {
+    if(isset($row)&&password_verify($pass, $row["password"])){
       if($row["ruolo"]==true)
       {
           return array("username"=>$row["username"],
@@ -273,14 +271,24 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   public function registraNuovoUtente($pass_reg,$username_reg,$email_reg){
     $OKEmail=pulisciInput($email_reg);
     $OKPw=password_hash($pass_reg, PASSWORD_DEFAULT);
-    echo $OKPw;die;
     $OKuser=pulisciInput($username_reg);
     $query = "INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES ('$OKuser', '$OKPw', '$OKEmail', 'user', current_timestamp())";
     $result = mysqli_query($this->connection, $query);
     return $result;
   }
 
-
+  public function getKeyWordsProdotto($id_prodott){
+    $OKProd=pulisciInput($id_prodott);
+    $query = "SELECT `Nome` FROM `tags` WHERE `prodotto` = '$OKProd'";
+    $queryResult = mysqli_query($this->connection, $query);
+    if (mysqli_num_rows($queryResult) != 0) {
+      $result = array();
+      while ($row = mysqli_fetch_assoc($queryResult)) {
+          $result[] = $row;
+      }
+    return $result;
+    }
+  }
   public function closeConnection() {
     mysqli_close($this->connection);
   }

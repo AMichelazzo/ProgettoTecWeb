@@ -8,9 +8,14 @@ use DB\DBAccess;
 
 $connessione = new DBAccess();
 if (isset($_GET["prod"])) { 
-    $result = $nome = $descrizione = $replace ="";
+    
+    
+    $result = $nome = $descrizione = $replace = $keywords ="";
     $connessioneRiuscita = $connessione->openDBConnection();
     $result=$connessione->getProduct($_GET["prod"]);
+    $connessione->closeConnection();
+    $connessioneRiuscita = $connessione->openDBConnection();
+    $result3=$connessione->getKeyWordsProdotto($_GET["prod"]);
     $connessione->closeConnection();
     if(count($result)>0){
         $nome=$result[0]['Nome'];
@@ -31,7 +36,8 @@ if (isset($_GET["prod"])) {
             ($result2) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList"; 
             $isLogged="<button type=\"button\" id=\"button\" class=\"button\">
                                                 <span class=\"button__text\" id=\"buttonid\">".$testoButton."</span>
-                                                </button>";
+                                                </button>
+                                                <div id=\"msgWish\"></div>";
         }
         
         $replace = array("Titolo" =>$nome,
@@ -44,6 +50,18 @@ if (isset($_GET["prod"])) {
     }
     else{
         header("Location: categorie.php");
+    }
+    if(count($result3)>0){
+        for ($i = 0; $i < count($result3); $i++) {
+            if($i == count($result3)-1){
+                $keywords=$keywords.$result3[$i]["Nome"];
+            }
+            else{
+                $keywords=$keywords.$result3[$i]["Nome"].", ";
+                }
+        }
+        $keywords="<meta name=\"keywords\" content=\"".$keywords."\" />";
+        $replace["<!--Keywords-->"] = $keywords;
     }
 }
 foreach($replace as $key => $value) 

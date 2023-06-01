@@ -30,15 +30,20 @@ button.addEventListener("click", function() {
   let prod = document.getElementsByClassName("product-id");
   let categ = document.getElementsByClassName("categoria");
   let buttontext = document.getElementById("buttonid");
+  let msg = document.getElementById("msgWish");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           let response = JSON.parse(this.responseText);
           if (response.success) {
-            buttontext.innerHTML == "Aggiungi a WishList" ? buttontext.innerHTML = "Togli dalla WishList" : button.innerHTML = "Aggiungi a WishList";
-              alert(response.message);
+            buttontext.innerHTML == "Aggiungi a WishList" ? buttontext.innerHTML = "Togli dalla WishList" : buttontext.innerHTML = "Aggiungi a WishList";
+            msg.style.display = "block";
+            msg.innerHTML = response.message;
+            msg.style.color = "green";
           } else {
-              alert(response.message); /*Forse si può tenere fuori dal costrutto*/
+            msg.style.display = "block";
+            msg.innerHTML = response.message;
+            msg.style.color = "red";
           }
       }
   };

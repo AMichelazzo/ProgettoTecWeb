@@ -345,3 +345,16 @@ a:visited {
 #minusc, #maiusc, #numeri, #lunghezza{
   color:red;
 }
+
+#msgWish {
+  display:none;
+  text-align: center;
+  box-shadow: 0em 0em 1em 0em var(--shadowcolor);
+  border-radius: 12px; /*ATTENZIONE VALORE ASSOLUTO*/
+  margin-top: 3em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  position: inherit;
+  background-color: var(--shadowcolor);
+}

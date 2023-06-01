@@ -130,12 +130,6 @@ passwordInput2.addEventListener('keyup', function() {
     validatePassword(password1,password2);
     abilitaSubmit();
 });
-passwordInput2.addEventListener('blur', function() {
-    let password1 = passwordInput1.value;
-    let password2 = passwordInput2.value;
-    validatePassword(password1,password2);
-    abilitaSubmit();
-});
 
 let passw = document.getElementById("pass_reg");
 let minusc = document.getElementById("minusc");
