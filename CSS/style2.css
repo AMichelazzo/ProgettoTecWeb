@@ -62,13 +62,29 @@ h1 {
 /*HAMBURGER*/
 
 .hambuttonoff { /*Il menu è chiuso*/
-    width: 3em;
-    height: 3em;
+    width: 4em;
+    height: 4em;
+    /*background-image: url("../img/hamOn.png");*/
+    filter: invert(100%);/*
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-indent: -9999px;*/
+    background-color: #24ccb0;
+    border-radius: 1.5em 1.5em 1.5em 1.5em;
+
 }
 
 .hambuttonon { /*Il menu è aperto*/
-    width: 3em;
-    height: 3em;
+    width:4em;
+    height: 4em;
+    /*background-image: url("../img/hamOff.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-indent: -9999px;*/
+    background-color: #DB334F;
+    border-radius: 1.5em 1.5em 1.5em 1.5em;
 }
 
 /*BOX*/
@@ -207,7 +223,7 @@ a:visited {
     }
 
     #menu ul {
-		line-height: 1.5em;
+        line-height: 1.5em;
 	}
 }
 
