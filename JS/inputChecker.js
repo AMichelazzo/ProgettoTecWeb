@@ -22,7 +22,7 @@ function ValidateEmail(email)
 
 let emailInput = document.getElementById('email_reg');
 
-emailInput.addEventListener('blur', function() {
+emailInput.addEventListener('keyup', function() {
   let email = emailInput.value;
   if(email!=="" && ValidateEmail(email)){
     let xhr = new XMLHttpRequest();
@@ -53,7 +53,7 @@ abilitaSubmit();
 
 function validateUserName(username){
     let regexPattern = /^[a-zA-Z0-9]+$/;
-    if(regexPattern.test(username)){
+    if(regexPattern.test(username) && username.length>=4){
         return true;
     } else {
         let img = document.getElementById('username_disponibile');
@@ -70,27 +70,27 @@ function validateUserName(username){
 
 let userInput = document.getElementById('username_reg');
 
-userInput.addEventListener('blur', function() {
+userInput.addEventListener('keyup', function() {
   let username = userInput.value;
   if(username!=="" && validateUserName(username)){
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-        let response = JSON.parse(this.responseText);
-        let img = document.getElementById('username_disponibile');
-        let imgphp = document.getElementById('usernameNOT_disponibile');
-        if (imgphp){
-            imgphp.style.display = "none";
-        }
-        img.style.display = "inline";  
-        if (response.trovato) {
-            img.src = "img/Xrossa.png";
-            img.alt = "Errore nell'inserimento."; 
-        }
-        else{
-            img.src = "img/spuntaVerde.png";
-            img.alt = "Username disponibile."; 
-        }
+            let response = JSON.parse(this.responseText);
+            let img = document.getElementById('username_disponibile');
+            let imgphp = document.getElementById('usernameNOT_disponibile');
+            if (imgphp){
+                imgphp.style.display = "none";
+            }
+            img.style.display = "inline";  
+            if (response.trovato) {
+                img.src = "img/Xrossa.png";
+                img.alt = "Errore nell'inserimento."; 
+            }
+            else{
+                img.src = "img/spuntaVerde.png";
+                img.alt = "Username disponibile."; 
+            }
         }
     };
     xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
@@ -196,7 +196,7 @@ function testIfRight(pass)
     
     // Validate length
     let imgle = document.getElementById("lenght");
-    if(pass.value.length >= 8) {
+    if(pass.value.length >= 4) {
       imgle.src = "img/spuntaVerde.png";
       imgle.alt = "Requisito rispettato."; 
       lunghezza.style.color="green";

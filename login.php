@@ -12,10 +12,10 @@ $template = (file_get_contents('HTML/login.html'));
 $err = isset($_SESSION['error']) ? $_SESSION['error'] : null;
 
 try {
-    if (isset($err))
+    if (isset($err)){
         $template = str_replace("<!-- errors -->", $err, $template);
         unset($_SESSION["error"]);
-
+    }
     echo $template;
 } catch (Exception $e) {
     //errore 500

@@ -37,7 +37,7 @@ if (isset($_GET["prod"])) {
             $isLogged="<button type=\"button\" id=\"button\" class=\"button\">
                                                 <span class=\"button__text\" id=\"buttonid\">".$testoButton."</span>
                                                 </button>
-                                                <div id=\"msgWish\"></div>";
+                                                <div id=\"msgWish\" role=\"alert\"></div>";
         }
         
         $replace = array("Titolo" =>$nome,

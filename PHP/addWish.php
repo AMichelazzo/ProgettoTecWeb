@@ -35,7 +35,7 @@ if (isset($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"])) {
             
             if ($result) {
                 $response["success"] = true;
-                $response["message"] = "Prodotto Rimosso correttamente alla tua lista dei desideri.";
+                $response["message"] = "Prodotto rimosso correttamente dalla tua lista dei desideri.";
             }
             else
             {

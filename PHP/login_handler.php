@@ -24,7 +24,10 @@ else
         }
         else
         {
-            $_SESSION["error"]="<div id='Login-Error'>Password o Username Errati!</div>";
+            $_SESSION["error"]="<div class=\"error-message\" role=\"alert\">
+                                    <span class=\"sr-only\">Errore di login:</span>
+                                    Credenziali non valide. Riprova.
+                                </div>";
         }
     }
     header("Location: ../login.php");

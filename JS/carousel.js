@@ -47,6 +47,7 @@ button.addEventListener("click", function() {
           }
       }
   };
+  console.log("PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id);
   xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id:"PHP/addWish.php?remove=1&product-ID="+prod[0].id+"&categoria="+categ[0].id, true);
   xhr.send();
 });

@@ -55,7 +55,7 @@ class DBAccess {
 
   public function getProduct($id_prodotto) {
   $OKProd=pulisciInput($id_prodotto);
-    $query = "SELECT * FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
+    $query = "SELECT `prodotti`.`id_prodotto`,`prodotti`.`id_categoria`,`prodotti`.`Nome`,`prodotti`.`Descrizione`,`immagini`.`path`,`immagini`.`alt_img` FROM `prodotti` LEFT JOIN `immagini` on `prodotti`.`id_prodotto` = `immagini`.`id_prodotto` WHERE `prodotti`.`id_prodotto` ='$OKProd'";
     $queryResult = mysqli_query($this->connection, $query);
     $result = array();
     while ($row = mysqli_fetch_assoc($queryResult)) {
@@ -286,7 +286,7 @@ public function getMessages() {  //funzione per prendere messaggi da DB
       while ($row = mysqli_fetch_assoc($queryResult)) {
           $result[] = $row;
       }
-    return $result;
+      return $result;
     }
   }
   public function closeConnection() {
