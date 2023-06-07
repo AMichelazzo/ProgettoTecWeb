@@ -32,8 +32,7 @@ if (isset($_GET["cat"])) {
     if(count($result)>0){
         $ElencoProdot="";
         for ($i = 0; $i < count($result); $i++) {
-            $ElencoProdot=$ElencoProdot."<div><a href=\"categorie.php\"></div>
-                            <div><a href=\"prodotto.php?prod=".$result[$i]['id_prodotto']."\">".$result[$i]['Nome']."</a></div>
+            $ElencoProdot=$ElencoProdot."<div><a href=\"prodotto.php?prod=".$result[$i]['id_prodotto']."\">".$result[$i]['Nome']."</a></div>
                             <div>".$result[$i]['Descrizione']."</div>
                             <div><img <lt=\"\"></img></div> ";
         }

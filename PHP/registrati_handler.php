@@ -39,7 +39,7 @@ else
             $result=$connessione->checkUsern($_POST["username_reg"]);
         }
         if(!isset($result)&&!isset($result2)&&$okemail&&$okuser){
-            if($_POST["pass_reg2"]==$_POST["pass_reg"]){
+            if($_POST["pass_reg2"]==$_POST["pass_reg"] && ($_POST["pass_reg"]>=4 &&$_POST["pass_reg"]<=16)){
                 $resultReg=$connessione->registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
                 $connessione->closeConnection(); 
                 header("Location: ../index.php");//o area utente? IMPOSTA SESSIONI DA UTENTE LOGGATO 

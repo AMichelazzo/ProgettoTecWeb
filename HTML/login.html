@@ -3,7 +3,7 @@
     <!-- pagina per capire/creare/provare le parti comuni del sito -->
 <head>
     <meta charset="utf-8" />
-    <title>Nome negozio</title> <!-- DA SOSTITUIRE -->
+    <title>Login - Nome Negozio</title> <!-- DA SOSTITUIRE -->
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
@@ -45,19 +45,18 @@
     <main>
         <div id="contenuto">
             <div id="login">
-                <div id="operazione" lang="en">LOGIN</div>
-                <form method="post" action="PHP/login_handler.php">
-                    <!-- <fieldset>
-                        <legend>LOGIN</legend> -->
+                <form method="post" action="PHP/login_handler.php" role="region">
+                    <fieldset>
+                        <legend>LOGIN</legend><!--metti css aposta per togliere contorno-->
                         <!-- errors -->
                         <div><label for="username" lang="en">Username: </label></div>
-                        <div><span><input type="text" id="username" name="username"/></span></div>
+                        <div><input type="text" id="username" name="username" required/></div>
 
                         <div><label for="password" lang="en">Password: </label></div>
-                        <div><span><input type="password" id="password" name="password"/></span></div>
+                        <div><input type="password" id="password" name="password" required /></div>
 
                         <input type="submit" id="submit" name="submit" class="invio" value="Login" />
-                    <!-- </fieldset> -->
+                    </fieldset>
                 </form>
                 <p><a href="registrazione.php">Registrati</a></p>
             </div>

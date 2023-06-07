@@ -22,7 +22,7 @@ if (isset($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"])) {
         else
         {
             $response["success"] = false;
-            $response["message"] = "Errore aggiungimento prodotto dalla wishlist.";
+            $response["message"] = "Errore aggiungimento prodotto alla wishlist.";
         }
     }
     else
