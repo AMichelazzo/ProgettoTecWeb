@@ -42,6 +42,22 @@ class DBAccess {
     return mysqli_query($this->connection, $query);
   }
 
+  public function modifyCategory($id_categoria, $nome, $descrizione) {
+    $OKCat=pulisciInput($id_categoria);
+    $OKNome=pulisciInput($nome);
+    $OKDes=pulisciInput($descrizione);
+
+    $query = "UPDATE `categoria` SET `Nome` = '$OKNome', `Descrizione` = '$OKDes' WHERE `id_categoria` = '$OKCat'";
+
+    return mysqli_query($this->connection, $query);
+  }
+
+  public function deleteProduct($id_categoria) {
+    $OKId = pulisciInput($id_categoria);
+    $query = "DELETE FROM `categoria` WHERE `id_categoria` = '$OKId'";
+    return mysqli_query($this->connection, $query);
+  }
+
   public function getProductListANDCheckCategory($id_categ) {
   $OKCateg=pulisciInput($id_categ);
   $query = "SELECT * FROM `prodotti` WHERE id_categoria ='$OKCateg'";
@@ -74,7 +90,7 @@ class DBAccess {
     return $result;
   }
 
-   public function newProduct($id_categoria, $nome, $descrizione) {  // da implementare l'aggiunta di immagini
+   public function newProduct($nome, $id_categoria, $descrizione) {  // da implementare l'aggiunta di immagini
     $OKCat=pulisciInput($id_categoria);
     $OKNome=pulisciInput($nome);
     $OKDes=pulisciInput($descrizione);
