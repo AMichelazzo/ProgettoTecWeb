@@ -1,8 +1,8 @@
 <?php
-require_once "PHP/classUtente.php";
+require_once "PHP/class.php";
 
 if (isset($_POST["userId"], $_POST["delete"])) {
-    utente::delete($_POST["userId"]);
+    Access::deleteUtente($_POST["userId"]);
 }
 
 $paginaHTML = file_get_contents("HTML/utenti2.html");
@@ -10,7 +10,7 @@ $paginaHTML = file_get_contents("HTML/utenti2.html");
 $utenti = "";
 $stringaUtenti = "";
 
-$utenti = Utente::get();
+$utenti = Access::getUtenti();
 if (!empty($utenti)) {
     foreach ($utenti as $utente) {
         $stringaUtenti .= '<div class="utenti">
