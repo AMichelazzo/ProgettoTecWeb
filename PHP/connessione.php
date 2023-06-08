@@ -34,6 +34,31 @@ class DBAccess {
     return $result;
   }
   
+  public function getCategory($id_categoria) {
+    $OKCat=pulisciInput(($id_categoria));
+    $query = "SELECT * FROM `categoria` WHERE `id_categoria` = '$OKCat'";
+    $queryResult = mysqli_query($this->connection, $query);
+    $result = array();
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $result[] = $row;
+    }
+    return $result;
+  }
+  
+   public function getCategoryName($id_categoria) {
+
+    $OKCat=pulisciInput(($id_categoria));
+    $query = "SELECT DISTINCT `Nome` FROM `categoria` WHERE `id_categoria` = '$OKCat'";
+    $queryResult = mysqli_query($this->connection, $query);
+
+    if($queryResult == false) 
+      return null;
+    else {
+      $result = mysqli_fetch_array($queryResult);
+      return $result['Nome'];
+    }
+  }
+  
    public function newCategory($nome, $descrizione) {
     $OKNome = pulisciInput($nome);
     $OKDes = pulisciInput($descrizione);
@@ -52,6 +77,12 @@ class DBAccess {
     return mysqli_query($this->connection, $query);
   }
 
+    public function deleteCategory($id_categoria) {
+    $OKId = pulisciInput($id_categoria);
+    $query = "DELETE FROM `categoria` WHERE `id_categoria` = '$OKId'";
+    return mysqli_query($this->connection, $query);
+  }
+  
   public function deleteProduct($id_categoria) {
     $OKId = pulisciInput($id_categoria);
     $query = "DELETE FROM `categoria` WHERE `id_categoria` = '$OKId'";
@@ -116,11 +147,11 @@ class DBAccess {
     return mysqli_query($this->connection, $query);
   }
   
-    public function getProductName($id_prodotto, $id_categoria) {
+   public function getProductName($id_prodotto, $id_categoria) {
     $OKProd=pulisciInput($id_prodotto);
     $OKCat=pulisciInput(($id_categoria));
 
-    $query = "SELECT DISTINCT `Nome` FROM `prodotti` WHERE `prodotti`.`id_prodotto` = '$id_prodotto' AND `prodotti`.`id_categoria` = '$id_categoria'";
+    $query = "SELECT DISTINCT `Nome` FROM `prodotti` WHERE `prodotti`.`id_prodotto` = '$OKProd' AND `prodotti`.`id_categoria` = '$OKCat'";
     $queryResult = mysqli_query($this->connection, $query);
 
     if($queryResult == false) 
