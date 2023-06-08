@@ -145,7 +145,7 @@ INSERT INTO `prodotti` (`id_prodotto`, `id_categoria`, `Nome`, `Descrizione`) VA
 
 CREATE TABLE `utente` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `ruolo` varchar(10) NOT NULL DEFAULT 'user',
   `data_creazione` date NOT NULL DEFAULT current_timestamp()
