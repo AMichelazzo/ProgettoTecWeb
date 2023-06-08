@@ -1,5 +1,4 @@
 <?php
-//namespace DB;
 
 error_reporting(E_ALL); ini_set('display_errors', '1');
 
@@ -30,13 +29,13 @@ class DBAccess {
         }
         // aggiunta parametri
         if (count($parametri) > 0) {
-            $stmt->bind_param( str_repeat("s", count($parametri)), ...$parametri);
+            $stmt->bind_param(str_repeat("s", count($parametri)), ...$parametri);
         }
         $stmt->execute();
         $queryResult = $stmt->get_result();
 
         $select = false;
-        if(strpos($query, "SELECT") === 0) {
+        if (strpos($query, "SELECT") === 0) {
             $select = true;
         }
 
@@ -46,7 +45,7 @@ class DBAccess {
         if (empty($queryResult) && $select) { // select senza risultato
             $queryResult->free(); $connection->close(); return null;
         }
-        if (empty($queryResult) && !$select) {
+        if (empty($queryResult) && !$select) {// non select senza risultato
             $connection->close(); return true;
         }
 
