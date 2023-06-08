@@ -21,7 +21,7 @@ else
         $okemail=true;
         if (!filter_var($_POST["email_reg"], FILTER_VALIDATE_EMAIL)) {
             $_SESSION["error_email"]=$_POST["email_reg"];
-            $_SESSION["error_email2"]="<img id=\"emailNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento.\" height=\"15px\" width=\"15px\"/>";
+            $_SESSION["error_email2"]="<img id=\"emailNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento della email.\" height=\"15px\" width=\"15px\" role=\"alert\"/>";
             $okemail=false;
         }
         else{
@@ -32,7 +32,7 @@ else
         $okuser=true;
         if (!preg_match('/^[a-zA-Z0-9]{4,}$/', pulisciInput($_POST["username_reg"]))){
             $_SESSION["error_user"]=$_POST["username_reg"];
-            $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento.\" height=\"15px\" width=\"15px\"/>";
+            $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento dello username, minimo 4 caratteri, massimo 17.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
             $okuser=false;
         }
         else{
@@ -45,7 +45,7 @@ else
                 header("Location: ../index.php");//o area utente? IMPOSTA SESSIONI DA UTENTE LOGGATO 
             }
             else{
-                $_SESSION["error_pass"]="<img id=\"passNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento.\ height=\"15px\" width=\"15px\"/>";
+                $_SESSION["error_pass"]="<img id=\"passNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Le password non coincidono.\ height=\"15px\" width=\"15px\" role=\"alert\" />";
                 $connessione->closeConnection(); 
                 header("Location: ../registrazione.php");
             }
@@ -53,11 +53,11 @@ else
         $connessione->closeConnection(); 
         if(isset($result)){
             $_SESSION["error_user"]=$result;
-            $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento.\" height=\"15px\" width=\"15px\"/>";
+            $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Username non disponibile.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
         }
         if(isset($result2)){
             $_SESSION["error_email"]=$result2;
-            $_SESSION["error_email2"]="<img id=\"emailNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento.\" height=\"15px\" width=\"15px\"/>";
+            $_SESSION["error_email2"]="<img id=\"emailNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Email non disponibile.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
         }
     }
     header("Location: ../registrazione.php");

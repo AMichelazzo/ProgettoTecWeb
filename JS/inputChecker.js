@@ -1,6 +1,5 @@
 document.getElementById("submit").disabled =true;
-function ValidateEmail(email)
-{
+function ValidateEmail(email) {
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(email.match(mailformat))
     {
@@ -8,87 +7,84 @@ function ValidateEmail(email)
     }
     else
     {
-        let img = document.getElementById('email_disponibile');
-        let imgphp = document.getElementById('emailNOT_disponibile');
-        if (imgphp){
-            imgphp.style.display = "none";
+        let imge = document.getElementById('email_disponibile');
+        let imgphpe = document.getElementById('emailNOT_disponibile');
+        if (imgphpe){
+            imgphpe.style.display = "none";
         }
-        img.style.display = "inline";
-        img.src = "img/Xrossa.png";
-        img.alt = "Errore nell'inserimento.";
+        imge.style.display = "inline";
+        imge.src = "img/Xrossa.png";
+        imge.alt = "Errore nell'inserimento della email.";
         return false;
     }
 }
 
 let emailInput = document.getElementById('email_reg');
 
-emailInput.addEventListener('keyup', function() {
+emailInput.addEventListener('keyup', function(key) {
   let email = emailInput.value;
-  if(email!=="" && ValidateEmail(email)){
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let response = JSON.parse(this.responseText);
-            let img = document.getElementById('email_disponibile');
-            let imgphp = document.getElementById('emailNOT_disponibile');
-            img.style.display = "inline";
-            if (imgphp){
-                imgphp.style.display = "none";
+  let imge = document.getElementById('email_disponibile');
+  imge.role = "";
+  if(key.keycode !== 9){
+    if(email.length!=0 && ValidateEmail(email)){
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(this.responseText);
+                let imgphpe = document.getElementById('emailNOT_disponibile');
+                if (imgphpe){
+                    imgphpe.style.display = "none";
+                }
+                imge.style.display = "inline";
+                if (response.trovato) {
+                    imge.src = "img/Xrossa.png";
+                    imge.alt = "Email non disponibile."; 
+                }
+                else{
+                    imge.src = "img/spuntaVerde.png";
+                    imge.alt = "Email disponibile.";
+                }
             }
-            if (response.trovato) {
-                img.src = "img/Xrossa.png";
-                img.alt = "Email non disponibile."; 
-            }
-            else{
-                img.src = "img/spuntaVerde.png";
-                img.alt = "Email disponibile."; 
-            }
-        }
-    };
-    xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
-    xhr.send();
-  }
-abilitaSubmit();
+        };
+        xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
+        xhr.send();
+    }
+    }
 });
 emailInput.addEventListener('blur', function() {
     let email = emailInput.value;
-    let img = document.getElementById('email_disponibile');
-    let imgphp = document.getElementById('emailNOT_disponibile');
-    if(email!=="" && ValidateEmail(email)){
+    let imge = document.getElementById('email_disponibile');
+    let imgphpe = document.getElementById('emailNOT_disponibile');
+    if(email.length!=0 && ValidateEmail(email)){
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
               let response = JSON.parse(this.responseText);
-              img.style.display = "inline";
-              if (imgphp){
-                  imgphp.style.display = "none";
+              if (imgphpe){
+                imgphpe.style.display = "none";
               }
+              imge.style.display = "inline";
               if (response.trovato) {
-                  img.src = "img/Xrossa.png";
-                  img.alt = "Email non disponibile.";
-                  img.role = "alert"; 
+                imge.src = "img/Xrossa.png";
+                imge.alt = "Email non disponibile.";
               }
               else{
-                  img.src = "img/spuntaVerde.png";
-                  img.alt = "Email disponibile.";
-                  img.role = "alert"; 
+                imge.src = "img/spuntaVerde.png";
+                imge.alt = "Email disponibile.";
               }
           }
       };
       xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
       xhr.send();
     }
-    else{
-        img.src = "img/Xrossa.png";
-        img.alt = "Errore nell'inserimento della email.";
-        img.role = "alert"; 
-    }
-  abilitaSubmit();
-  });
+    imge.role = "alert";
+    abilitaSubmit();
+});
 
 function validateUserName(username){
+    
     let regexPattern = /^[a-zA-Z0-9]+$/;
-    if(regexPattern.test(username) && username.length>=4){
+    if(regexPattern.test(username) && username.length >= 4){
         return true;
     } else {
         let img = document.getElementById('username_disponibile');
@@ -98,47 +94,48 @@ function validateUserName(username){
         }
         img.style.display = "inline";
         img.src = "img/Xrossa.png";
-        img.alt = "Errore nell'inserimento.";
+        img.alt = "Errore nell'inserimento dello username, almeno 4 caratteri, massimo 17."; 
         return false;
     }
 }
 
 let userInput = document.getElementById('username_reg');
 
-userInput.addEventListener('keyup', function() {
+userInput.addEventListener('keyup', function(key) {
   let username = userInput.value;
-  if(username!=="" && validateUserName(username)){
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let response = JSON.parse(this.responseText);
-            let img = document.getElementById('username_disponibile');
-            let imgphp = document.getElementById('usernameNOT_disponibile');
-            if (imgphp){
-                imgphp.style.display = "none";
+  let img = document.getElementById('username_disponibile');
+  if(key.keycode !== 9){
+    img.role = "";
+    if(username.length!=0 && validateUserName(username)){
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(this.responseText);
+                let imgphp = document.getElementById('usernameNOT_disponibile');
+                if (imgphp){
+                    imgphp.style.display = "none";
+                }
+                img.style.display = "inline";  
+                if (response.trovato) {
+                    img.src = "img/Xrossa.png";
+                    img.alt = "Username non disponibile."; 
+                }
+                else{
+                    img.src = "img/spuntaVerde.png";
+                    img.alt = "Username disponibile."; 
+                }
             }
-            img.style.display = "inline";  
-            if (response.trovato) {
-                img.src = "img/Xrossa.png";
-                img.alt = "Username non disponibile."; 
-            }
-            else{
-                img.src = "img/spuntaVerde.png";
-                img.alt = "Username disponibile."; 
-            }
+        };
+        xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
+        xhr.send();
         }
-    };
-    xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
-    xhr.send();
     }
-abilitaSubmit();
 });
 userInput.addEventListener('blur', function() {
   let username = userInput.value;
-  console.log("check");
   let img = document.getElementById('username_disponibile');
   let imgphp = document.getElementById('usernameNOT_disponibile');
-  if(username!=="" && validateUserName(username)){
+  if(username.length!=0 && validateUserName(username)){
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -149,25 +146,19 @@ userInput.addEventListener('blur', function() {
             img.style.display = "inline";  
             if (response.trovato) {
                 img.src = "img/Xrossa.png";
-                img.alt = "Username non disponibile."; 
-                img.role = "alert"; 
+                img.alt = "Username non disponibile.";
             }
             else{
                 img.src = "img/spuntaVerde.png";
                 img.alt = "Username disponibile.";
-                img.role = "alert"; 
             }
         }
     };
     xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
     xhr.send();
     }
-    else{
-        img.src = "img/Xrossa.png";
-        img.alt = "Errore nell'inserimento dello username, alemno 4 caratteri."; 
-        img.role = "alert"; 
-    }
-abilitaSubmit();
+    img.role = "alert";
+    abilitaSubmit();
 });
 
 function validatePassword(pass1,pass2){
@@ -182,7 +173,7 @@ function validatePassword(pass1,pass2){
             }
             img2.src = "img/spuntaVerde.png";
             img2.alt = "Le password corrispondono.";
-            img2.role = "alert"; 
+            img2.role = "alert";
             return true;
         }
         else{
@@ -218,13 +209,11 @@ function validatescreenreader(pass1,pass2){
 let passwordInput2 = document.getElementById('pass_reg2');
 let passwordInput1 = document.getElementById('pass_reg');
 passwordInput2.addEventListener('keyup', function() {
-    let password1 = passwordInput1.value;
-    let password2 = passwordInput2.value;
-    validatePassword(password1,password2);
+    validatePassword(passwordInput1.value,passwordInput2.value);
     abilitaSubmit();
 });
 passwordInput2.addEventListener('blur', function() {
-    validatescreenreader(password1,password2);
+    validatescreenreader(passwordInput1.value,passwordInput2.value);
 });
 
 let passw = document.getElementById("pass_reg");
@@ -238,13 +227,7 @@ passw.onfocus = function() {
     document.getElementById("message").style.display = "block";
 }
 
-// When the user clicks outside of the password field, hide the message box
-passw.onblur = function() {
-    if(testIfRight(passw)){
-        document.getElementById("message").style.display = "none";
-        abilitaSubmit();
-    }
-}
+
 
 function testIfRight(pass)
 {
@@ -318,6 +301,7 @@ function testIfalert(pass)
       imgl.alt = "Requisito non rispettato.";
       minusc.style.color="red";
       minusc.role = "alert";
+      boolvar=false;
     }
     
     // Validate capital letters
@@ -327,6 +311,7 @@ function testIfalert(pass)
       imgu.src = "img/Xrossa.png";
       imgu.alt = "Requisito non rispettato.";
       maiusc.style.color="red";
+      boolvar=false;
       maiusc.role = "alert";
     }
   
@@ -338,6 +323,7 @@ function testIfalert(pass)
       imgn.alt = "Requisito non rispettato.";
       numero.style.color="red";
       numero.role = "alert";
+      boolvar=false;
     }
     
     // Validate length
@@ -346,7 +332,9 @@ function testIfalert(pass)
       imgle.src = "img/Xrossa.png";
       imgle.alt = "Requisito non rispettato.";
       lunghezza.style.color="red";
+      boolvar=false;
     }
+    return boolvar;
 }
 
 // When the user starts to type something inside the password field
@@ -355,7 +343,10 @@ passw.onkeyup = function() {
     abilitaSubmit();
 }
 passw.blur = function() {
-    testIfalert(passw);
+    if(testIfalert(passw)){
+        document.getElementById("message").style.display = "none";
+        abilitaSubmit();
+    }
 }
 
 function abilitaSubmit(){
