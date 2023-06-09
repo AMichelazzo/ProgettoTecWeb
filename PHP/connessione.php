@@ -228,18 +228,17 @@ public function getMessages() {  //funzione per prendere messaggi da DB
     $query = "SELECT * FROM `utente` WHERE `username`='$OKuser'"; 
     $queryResult = mysqli_query($this->connection, $query);
     $row = mysqli_fetch_assoc($queryResult);
-    //if(isset($row)&&password_verify($pass, $row["password"])){
-      if(isset($row) && hash("sha256",$pass)==$row["password"]) {
-      if($row["ruolo"]==true)
-      {
-          return array("username"=>$row["username"],
-                      "ruolo"=> $row["ruolo"]);
-      }
-      else
-      {
-          return array("username"=>$row["username"],
-                      "ruolo"=> null);
-      }
+      if(isset($row)&&password_verify($pass, $row["password"])){
+        if($row["ruolo"]==true)
+        {
+            return array("username"=>$row["username"],
+                        "ruolo"=> $row["ruolo"]);
+        }
+        else
+        {
+            return array("username"=>$row["username"],
+                        "ruolo"=> null);
+        }
     }
     else
     {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 11, 2023 alle 19:45
+-- Creato il: Giu 09, 2023 alle 10:08
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -35,10 +35,6 @@ CREATE TABLE `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELAZIONI PER TABELLA `categoria`:
---
-
---
 -- Dump dei dati per la tabella `categoria`
 --
 
@@ -60,21 +56,13 @@ CREATE TABLE `immagini` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELAZIONI PER TABELLA `immagini`:
---   `id_prodotto`
---       `prodotti` -> `id_prodotto`
---   `id_categoria`
---       `prodotti` -> `id_categoria`
---
-
---
 -- Dump dei dati per la tabella `immagini`
 --
 
 INSERT INTO `immagini` (`id_prodotto`, `id_categoria`, `path`, `alt_img`) VALUES
-(1, 1, '../img/lampadario.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente. '),
-(1, 1, '../img/lampadario2.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso.'),
-(1, 1, '../img/lampadario3.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso, da vicino.');
+(1, 1, 'img/lampadario.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente. '),
+(1, 1, 'img/lampadario2.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso.'),
+(1, 1, 'img/lampadario3.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso, da vicino.');
 
 -- --------------------------------------------------------
 
@@ -93,21 +81,11 @@ CREATE TABLE `messaggi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELAZIONI PER TABELLA `messaggi`:
---   `username`
---       `utente` -> `username`
---   `id_prodotto`
---       `prodotti` -> `id_prodotto`
---   `id_categoria`
---       `prodotti` -> `id_categoria`
---
-
---
 -- Dump dei dati per la tabella `messaggi`
 --
 
 INSERT INTO `messaggi` (`id_messaggio`, `msg`, `data`, `id_prodotto`, `id_categoria`, `username`, `letto`) VALUES
-(1, 'Volevo delle informazioni riguardanti il \"Lampadario di lusso\"', '2023-04-04', 1, 1, 'user', 0);
+(2, 'dsadfsafsafsa', '2023-06-05', 1, 1, 'user', 0);
 
 -- --------------------------------------------------------
 
@@ -123,12 +101,6 @@ CREATE TABLE `prodotti` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELAZIONI PER TABELLA `prodotti`:
---   `id_categoria`
---       `categoria` -> `id_categoria`
---
-
---
 -- Dump dei dati per la tabella `prodotti`
 --
 
@@ -140,29 +112,51 @@ INSERT INTO `prodotti` (`id_prodotto`, `id_categoria`, `Nome`, `Descrizione`) VA
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `tags`
+--
+
+CREATE TABLE `tags` (
+  `tag_id` int(11) NOT NULL,
+  `Nome` varchar(255) NOT NULL,
+  `Pagina` varchar(255) NOT NULL,
+  `prodotto` int(11) DEFAULT NULL,
+  `categoria` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `tags`
+--
+
+INSERT INTO `tags` (`tag_id`, `Nome`, `Pagina`, `prodotto`, `categoria`) VALUES
+(1, 'Ciaone', 'home', NULL, NULL),
+(2, 'Lampadario di vetro', 'prodotto', 1, 1),
+(3, 'fsafas', 'fasdfas', 2, 1),
+(4, 'vfafas', 'fsafas', 3, 2),
+(5, 'Lusso', 'prodotto', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `utente`
 --
 
 CREATE TABLE `utente` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(64) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `ruolo` varchar(10) NOT NULL DEFAULT 'user',
   `data_creazione` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELAZIONI PER TABELLA `utente`:
---
-
---
 -- Dump dei dati per la tabella `utente`
 --
 
 INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES
-('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin@admin.com', 'admin', '2023-04-04'),
-('guest', 'guest', 'guest@guest.com', 'guest', '2023-04-04'),
-('user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user@user.com', 'user', '2023-04-04');
+('admin', '$2y$10$f53.u6E5rAtZC44t.8SHs.GFYFUrZrZFeEcL7m5Zxftrs3tHEO4xG', 'admin@admin.com', 'admin', '2023-05-25'),
+('guest', '$2y$10$yebql9GbhZP/t0i4p6vRK.RL/L.pfgpZvZer7wtGi7IAFtuvpEWfq', 'guest@guest.com', 'user', '2023-05-25'),
+('test1', '$2y$10$3GhmJRhaWV1MJ9BP6UzJIOt8Bm86lRqVE1tdxo.fIrKSVle40Ujbi', 'test@test.com', 'user', '2023-05-25'),
+('user', '$2y$10$WsN.xGDn9xbYf00RYdoZUe2NGCFZQWfTs8pqh3h/EGY1N7w1GxNm.', 'user@user.com', 'user', '2023-05-25');
 
 -- --------------------------------------------------------
 
@@ -178,22 +172,14 @@ CREATE TABLE `wishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELAZIONI PER TABELLA `wishlist`:
---   `username`
---       `utente` -> `username`
---   `id_prodotto`
---       `prodotti` -> `id_prodotto`
---   `id_categoria`
---       `prodotti` -> `id_categoria`
---
-
---
 -- Dump dei dati per la tabella `wishlist`
 --
 
 INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`, `data_salvataggio`) VALUES
-('user', 2, 1, '2023-05-11'),
-('user', 3, 2, '2023-05-11');
+('test1', 1, 1, '2023-05-25'),
+('test1', 2, 1, '2023-05-25'),
+('test1', 3, 2, '2023-05-25'),
+('user', 1, 1, '2023-06-07');
 
 --
 -- Indici per le tabelle scaricate
@@ -228,6 +214,13 @@ ALTER TABLE `prodotti`
   ADD KEY `prodotti` (`id_categoria`);
 
 --
+-- Indici per le tabelle `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`tag_id`),
+  ADD KEY `prodotto` (`prodotto`,`categoria`);
+
+--
 -- Indici per le tabelle `utente`
 --
 ALTER TABLE `utente`
@@ -254,13 +247,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT per la tabella `messaggi`
 --
 ALTER TABLE `messaggi`
-  MODIFY `id_messaggio` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_messaggio` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
   MODIFY `id_prodotto` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT per la tabella `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Limiti per le tabelle scaricate
@@ -284,6 +283,12 @@ ALTER TABLE `messaggi`
 --
 ALTER TABLE `prodotti`
   ADD CONSTRAINT `prodotti` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
+
+--
+-- Limiti per la tabella `tags`
+--
+ALTER TABLE `tags`
+  ADD CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`prodotto`,`categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`);
 
 --
 -- Limiti per la tabella `wishlist`
