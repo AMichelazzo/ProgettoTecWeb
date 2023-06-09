@@ -94,7 +94,7 @@ function validateUserName(username){
         }
         img.style.display = "inline";
         img.src = "img/Xrossa.png";
-        img.alt = "Errore nell'inserimento dello username, almeno 4 caratteri, massimo 17."; 
+        img.alt = "Errore nell'inserimento dello username."; 
         return false;
     }
 }
@@ -188,7 +188,7 @@ function validatescreenreader(pass1,pass2){
         let img2 = document.getElementById('password_rispetta2');
         img2.style.display = "inline";  
         let imgphp = document.getElementById('passNOT_disponibile');
-        
+        img2.role = "";
         if (pass1===pass2) {
             if (imgphp){
                 imgphp.style.display = "none";
@@ -328,7 +328,7 @@ function testIfalert(pass)
     
     // Validate length
     let imgle = document.getElementById("lenght");
-    if(pass.value.length <= 4 || pass.value.length >= 17) {
+    if(pass.value.length <= 4 || pass.value.length >= 16) {
       imgle.src = "img/Xrossa.png";
       imgle.alt = "Requisito non rispettato.";
       lunghezza.style.color="red";

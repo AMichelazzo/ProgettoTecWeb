@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8" />
+        <title>Wishlist</title>
+        <meta name="description" content="Vetrina di articoli di vetro come vasi, lampadari, specchi, bicchieri, e piccoli oggetti " /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
+        <!--Keywords-->
+        <meta name="author" content="Web Triplet (?) (Matteo Vignaga)" />
+
+    <link rel="stylesheet" href="../CSS/style.css" media="handheld, screen"/>
+    <link rel="stylesheet" href="../CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
+    <link rel="stylesheet" href="../CSS/print.css" media="print"/>
+    <link rel="shortcut icon" type="image/png" href="../img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
+    
+</head>
+<body>
+    <header>
+        <a class="noview" href="#iniziocontenuto">Passa al contenuto</a>
+
+        <!-- <nav id="menubar"><ul><li><a href="login.html">Login</a></li><li><a href="registrazione.html">Registrazione</a></li></ul></nav> -->
+
+        <div id="nomemenu">
+            <div id="hambmenu">
+                <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
+                <button id="hambutton" type="button" class="hambuttonoff" onclick="notHamb()">Menu</button> <!-- DA SISTEMARE, verificare che button porti i vantaggi voluti, altrimenti optare per input; varia in base all'utente -->
+            </div>
+        </div>
+
+        <nav id="menubar" aria-label="Opzioni utente" class="menubaroff"> <!-- DA VERIFICARE -->
+            <ul>
+                <li><a href="../HTML/profilo.html">Profilo</a></li>
+                <li><a href="../HTML/utenti.html">Utenti</a></li>
+                <li><a href="../categorie.php">Catalogo</a></li>
+                <li><a href="../HTML/messaggi.html">Messaggi</a></li>
+                <li><a href="../HTML/prototipo.html">Esci</a></li>
+            </ul>
+        </nav>
+        <!-- <h1></h1> -->
+ 
+        <nav id="menu" aria-label="Menu"> <!-- DA VERIFICARE, inoltre tenere conto della lingua -->
+            <ul>
+                <li id="currentLink" lang="en">Home</li>
+                <li><a href="../categorie.php">Prodotti</a></li>
+                <li><a href="../HTML/contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+        <nav id="breadcrumb" aria-labelledby="breadcrumb"> <!-- DA VERIFICARE -->
+            <p>Ti trovi in: <span lang="en">Home</span></p>
+        </nav>
+
+        <!-- <a href="#" aria-hidden="true" tabindex="-1" data-bs-toggle="backtotop" class="back-to-top" id="example">
+            <svg class="icon icon-light"><use href="/img/gotop3.svg"></use></svg>
+            </a>
+                    (pulsante per tornare a inizio pagina da implementare)-->
+
+    </header>
+    <!-- FINE PROTOTIPO -->
+    <main id="iniziocontenuto">
+        <h1>Wishlist</h1>
+        
+        <div class="container">
+            <form action="../PHP/prod.php" id="contact-form" class="prodotto" method="post">
+                <div class="image-container">
+                    <img src="../img/lampadario.jpg" alt="Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente." />
+                    <button class="open-button" id="../img/lampadario.jpg"><img src="../img/lente.png" alt="Ingrandisci immagine." /></button>
+                </div>
+                <div class="contentProdotto">
+                    <div class="nome">Nome prodotto: Lampadario di lusso</div>
+                    <div class="descrizione">Descrizione: Lampadario semplice ed efficace</div>
+                    <div class="categoria">Categoria: Lampadari</div>
+                    <div class="button-container">
+                        <input type="submit" id="info-button" name="informazioni" value="Richiedi Informazioni" />
+                    </div>
+                </div>
+                <div class="rimuovi-container">
+                    <button type="submit" class="remove-button" id="rimuovi" name="rimuovi">
+                      <img src="../img/binClosed.png" alt="Rimuovi prodotto dalla lista dei desideri." class="non-hover-image" />
+                      <img src="../img/binOpened.png" alt="Rimuovi prodotto dalla lista dei desideri." class="hover-image" />
+                    </button>
+                </div>
+            </form>
+            <form action="../PHP/prod.php" id="contact-form" class="prodotto" method="post">
+                <div class="image-container">
+                    <img src="../img/lampadario2.jpg" alt="Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente." />
+                    <button class="open-button" id="../img/lampadario.jpg"><img src="../img/lente.png" alt="Ingrandisci immagine." /></button>
+                </div>
+                <div class="contentProdotto">
+                    <div class="nome">Nome prodotto: Lampadario di lusso</div>
+                    <div class="descrizione">Descrizione: Lampadario semplice ed efficace</div>
+                    <div class="categoria">Categoria: Lampadari</div>
+                    <div class="button-container">
+                        <input type="submit" id="info-button" name="informazioni" value="Richiedi Informazioni" />
+                    </div>
+                </div>
+                <div class="rimuovi-container">
+                    <button type="submit" class="remove-button" id="rimuovi" name="rimuovi">
+                      <img src="../img/binClosed.png" alt="Rimuovi prodotto dalla lista dei desideri." class="non-hover-image" />
+                      <img src="../img/binOpened.png" alt="Rimuovi prodotto dalla lista dei desideri." class="hover-image" />
+                    </button>
+                </div>
+            </form>
+        </div>
+  
+        <!--Errors-->
+        <div id="iniziopagina">
+            <a href="#">Inizio pagina</a>
+        </div>
+    </main>
+    <footer>
+        <div id = footer>
+                <p>Web Triplet - <span lang="en">All Rights Reserved</span></p>
+        </div>
+    </footer>
+</body>
+<script src="../JS/wishlist.js"></script>
+</html>

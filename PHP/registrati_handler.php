@@ -32,7 +32,7 @@ else
         $okuser=true;
         if (!preg_match('/^[a-zA-Z0-9]{4,}$/', pulisciInput($_POST["username_reg"]))){
             $_SESSION["error_user"]=$_POST["username_reg"];
-            $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento dello username, minimo 4 caratteri, massimo 17.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
+            $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento dello username.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
             $okuser=false;
         }
         else{
