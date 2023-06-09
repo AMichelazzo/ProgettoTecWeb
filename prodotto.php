@@ -9,8 +9,7 @@ use DB\DBAccess;
 $connessione = new DBAccess();
 if (isset($_GET["prod"])) { 
     
-    
-    $result = $nome = $descrizione = $replace = $keywords ="";
+    $replace = $keywords ="";
     $connessioneRiuscita = $connessione->openDBConnection();
     $result=$connessione->getProduct($_GET["prod"]);
     $connessione->closeConnection();
@@ -43,8 +42,8 @@ if (isset($_GET["prod"])) {
                             "Nome Prodotto" =>$nome,
                             "Descrizione Prodotto" =>$desc,
                             "<div>img</div>" => $slideshow,
-                            "product-ID" => $idprod,
-                            "categ_id" => $idcat,
+                            "product-ID" => "product-ID=".$idprod,
+                            "categ_id" => "categoria=".$idcat,
                             "<!--Wish-->" => $isLogged);
     }
     else{

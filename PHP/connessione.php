@@ -323,6 +323,19 @@ public function getMessages() {  //funzione per prendere messaggi da DB
       return $result;
     }
   }
+  
+  public function getProductsOnWishlist($username){
+    $OKuser=pulisciInput($username);
+    $query = "SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = '$OKuser'";
+    $queryResult = mysqli_query($this->connection, $query);
+    if (mysqli_num_rows($queryResult) != 0) {
+      $result = array();
+      while ($row = mysqli_fetch_assoc($queryResult)) {
+          $result[] = $row;
+      }
+      return $result;
+    }
+  }
   public function closeConnection() {
     mysqli_close($this->connection);
   }

@@ -37,17 +37,19 @@ button.addEventListener("click", function() {
           let response = JSON.parse(this.responseText);
           if (response.success) {
             buttontext.innerHTML == "Aggiungi a WishList" ? buttontext.innerHTML = "Togli dalla WishList" : buttontext.innerHTML = "Aggiungi a WishList";
-            msg.style.display = "block";
-            msg.innerHTML = response.message;
-            msg.style.color = "green";
+            showMessage(response.message, "green");
           } else {
-            msg.style.display = "block";
-            msg.innerHTML = response.message;
-            msg.style.color = "red";
+            showMessage(response.message, "red");
           }
       }
   };
-  console.log("PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id);
-  xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product-ID="+prod[0].id+"&categoria="+categ[0].id:"PHP/addWish.php?remove=1&product-ID="+prod[0].id+"&categoria="+categ[0].id, true);
+  xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?"+prod[0].id+"&"+categ[0].id:"PHP/addWish.php?remove=1&"+prod[0].id+"&"+categ[0].id, true);
   xhr.send();
 });
+
+function showMessage(message, color) {
+var msg = document.getElementById("msgWish");
+msg.style.display = "block";
+msg.innerHTML = message;
+msg.style.color = color;
+}
