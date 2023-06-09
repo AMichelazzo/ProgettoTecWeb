@@ -198,6 +198,18 @@ a:visited {
     border-radius: 12px 12px 12px 12px; /*ATTENZIONE VALORE ASSOLUTO*/
 }
 
+.modifica {
+  font-size: 103%;
+    color: white;
+    background-color: var(--bgfuncolor);
+    border-color: var(--bgfuncolor);
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    padding: 0.2em 0.5em 0.5em 0.5em;
+    border-radius: 12px 12px 12px 12px; /*ATTENZIONE VALORE ASSOLUTO*/
+    float: right;
+}
+
 .noview { /*da rivedere*/
     position: absolute;
     height: 1px;

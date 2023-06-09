@@ -83,11 +83,6 @@ class DBAccess {
     return mysqli_query($this->connection, $query);
   }
   
-  public function deleteProduct($id_categoria) {
-    $OKId = pulisciInput($id_categoria);
-    $query = "DELETE FROM `categoria` WHERE `id_categoria` = '$OKId'";
-    return mysqli_query($this->connection, $query);
-  }
 
   public function getProductListANDCheckCategory($id_categ) {
   $OKCateg=pulisciInput($id_categ);
@@ -140,12 +135,12 @@ class DBAccess {
 
     return mysqli_query($this->connection, $query);
   }
-  /* SEGNALA ERRORE PHP
+
   public function deleteProduct($id_prodotto) {
     $OKId = pulisciInput($id_prodotto);
     $query = "DELETE FROM `prodotti` WHERE `id_prodotto` = '$OKId'";
     return mysqli_query($this->connection, $query);
-  }*/
+  }
   
    public function getProductName($id_prodotto, $id_categoria) {
     $OKProd=pulisciInput($id_prodotto);
