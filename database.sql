@@ -76,7 +76,7 @@ CREATE TABLE `messaggi` (
   `data` date NOT NULL DEFAULT current_timestamp(),
   `id_prodotto` int(100) DEFAULT NULL,
   `id_categoria` int(100) DEFAULT NULL,
-  `username` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `letto` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -84,8 +84,8 @@ CREATE TABLE `messaggi` (
 -- Dump dei dati per la tabella `messaggi`
 --
 
-INSERT INTO `messaggi` (`id_messaggio`, `msg`, `data`, `id_prodotto`, `id_categoria`, `username`, `letto`) VALUES
-(2, 'dsadfsafsafsa', '2023-06-05', 1, 1, 'user', 0);
+INSERT INTO `messaggi` (`id_messaggio`, `msg`, `data`, `id_prodotto`, `id_categoria`, `email`, `letto`) VALUES
+(2, 'dsadfsafsafsa', '2023-06-05', 1, 1, 'user@user.com', 0);
 
 -- --------------------------------------------------------
 
@@ -202,8 +202,7 @@ ALTER TABLE `immagini`
 -- Indici per le tabelle `messaggi`
 --
 ALTER TABLE `messaggi`
-  ADD PRIMARY KEY (`id_messaggio`,`username`),
-  ADD KEY `username` (`username`),
+  ADD PRIMARY KEY (`id_messaggio`,`email`),
   ADD KEY `id_prodotto` (`id_prodotto`,`id_categoria`);
 
 --
@@ -269,33 +268,32 @@ ALTER TABLE `tags`
 -- Limiti per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  ADD CONSTRAINT `immagini_ibfk_1` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`);
+  ADD CONSTRAINT `immagini_ibfk_1` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `messaggi`
 --
 ALTER TABLE `messaggi`
-  ADD CONSTRAINT `messaggi_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`),
-  ADD CONSTRAINT `messaggi_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`);
+  ADD CONSTRAINT `messaggi_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  ADD CONSTRAINT `prodotti` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
+  ADD CONSTRAINT `prodotti` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `tags`
 --
 ALTER TABLE `tags`
-  ADD CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`prodotto`,`categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`);
+  ADD CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`prodotto`,`categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `wishlist`
 --
 ALTER TABLE `wishlist`
-  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`),
-  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`);
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`) ON UPDATE CASCADE ON DELETE CASCADE,
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
