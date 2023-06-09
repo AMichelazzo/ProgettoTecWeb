@@ -160,9 +160,9 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES
-('admin', 'admin', 'admin@admin.com', 'admin', '2023-04-04'),
+('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin@admin.com', 'admin', '2023-04-04'),
 ('guest', 'guest', 'guest@guest.com', 'guest', '2023-04-04'),
-('user', 'user', 'user@user.com', 'user', '2023-04-04');
+('user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user@user.com', 'user', '2023-04-04');
 
 -- --------------------------------------------------------
 
