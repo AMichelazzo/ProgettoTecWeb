@@ -140,12 +140,12 @@ class DBAccess {
 
     return mysqli_query($this->connection, $query);
   }
-  
+  /* SEGNALA ERRORE PHP
   public function deleteProduct($id_prodotto) {
     $OKId = pulisciInput($id_prodotto);
     $query = "DELETE FROM `prodotti` WHERE `id_prodotto` = '$OKId'";
     return mysqli_query($this->connection, $query);
-  }
+  }*/
   
    public function getProductName($id_prodotto, $id_categoria) {
     $OKProd=pulisciInput($id_prodotto);
@@ -225,18 +225,11 @@ public function getMessages() {  //funzione per prendere messaggi da DB
   }
   public function checkLogin($user,$pass){
     $OKuser=pulisciInput($user);
-    /*
-    $user = mysqli_real_escape_string(stripslashes($user));
-    $pass = mysqli_real_escape_string(stripslashes($pass));
-    $query = $dbConnection->prepare("SELECT * FROM utente WHERE username = ? AND password = ?");
-    $query->bind_param('ss', $user, $pass);
-    $query->execute();
-    $queryResult = $query->get_result();
-    */
     $query = "SELECT * FROM `utente` WHERE `username`='$OKuser'"; 
     $queryResult = mysqli_query($this->connection, $query);
     $row = mysqli_fetch_assoc($queryResult);
-    if(isset($row)&&password_verify($pass, $row["password"])){
+    //if(isset($row)&&password_verify($pass, $row["password"])){
+      if(isset($row) && hash("sha256",$pass)==$row["password"]) {
       if($row["ruolo"]==true)
       {
           return array("username"=>$row["username"],
