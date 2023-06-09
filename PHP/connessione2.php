@@ -13,7 +13,7 @@ class DBAccess {
         $connection = new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
 
         if ($connection->connect_errno) {
-            echo "Fallita"; // funzione per gestire errore 500
+            http_response_code(500); // funzione per gestire errore 500
         }
 
         return $connection;
@@ -35,7 +35,7 @@ class DBAccess {
         $queryResult = $stmt->get_result();
 
         $select = false;
-        if (strpos($query, "SELECT") === 0) {
+        if (strpos($query, "SELECT") === 0) { // verifica se è una select
             $select = true;
         }
 

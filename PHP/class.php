@@ -7,12 +7,27 @@ class Access
 {
     public static function getUtenti() /*solo quelli con ruolo user*/
     {
-        return DBAccess::dbQuery("SELECT * FROM utente WHERE ruolo = 'user'");
+        $result = DBAccess::dbQuery("SELECT * FROM utente WHERE ruolo = 'user'");
+        return $result;
     }
 
     public static function deleteUtente($username)
     {
         return DBAccess::dbQuery("DELETE FROM utente WHERE username = ? AND ruolo = 'user'", $username);
+    }
+
+    public static function getCategories() 
+    {
+        return DBAccess::dbQuery("SELECT * FROM 'categoria'");
+    }
+
+    public static function getCategory($id_categoria) 
+    {
+        return DBAccess::dbQuery("SELECT * FROM categoria WHERE id_categoria = ?", $id_categoria);
+    }
+
+    public static function getCategoryName($id_categoria) {
+
     }
 }
 /*
