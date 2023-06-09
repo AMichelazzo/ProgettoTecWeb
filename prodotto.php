@@ -26,8 +26,7 @@ if (isset($_GET["prod"])) {
         $slideshow = "";
         for ($i = 0; $i < count($result); $i++) {
             $slideshow .= "<div class=\"mySlides fade\">
-            <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"/>"
-            </div>";
+            <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"/>"."</div>";
         }
         if(isset($_SESSION["username"])){
             $connessioneRiuscita = $connessione->openDBConnection();
