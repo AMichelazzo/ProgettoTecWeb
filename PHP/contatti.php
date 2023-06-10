@@ -9,6 +9,7 @@ $paginaHTML = file_get_contents("../HTML/contatti.html");
 $target = "Elementi_Contatti";
 $Element_Contatti="";
 $Id_prodotto = null;
+//
 
 if(isset($_SESSION["username"]))
     $Element_Contatti .= "<a>Stai inviando questo messaggio come: " . $_SESSION["username"] . "</a><br>";
