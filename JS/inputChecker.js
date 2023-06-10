@@ -162,15 +162,14 @@ userInput.addEventListener('blur', function() {
 });
 
 function validatePassword(pass1,pass2){
-    if(pass1!==""||pass2!==""){
+    if(pass1!=="" || pass2!==""){
         let img2 = document.getElementById('password_rispetta2');
         img2.style.display = "inline";  
         let imgphp = document.getElementById('passNOT_disponibile');
-        
+        if (imgphp){
+            imgphp.style.display = "none";
+        }
         if (pass1===pass2) {
-            if (imgphp){
-                imgphp.style.display = "none";
-            }
             img2.src = "img/spuntaVerde.png";
             img2.alt = "Le password corrispondono.";
             img2.role = "alert";
@@ -189,10 +188,11 @@ function validatescreenreader(pass1,pass2){
         img2.style.display = "inline";  
         let imgphp = document.getElementById('passNOT_disponibile');
         img2.role = "";
+        if (imgphp){
+            imgphp.style.display = "none";
+        }
         if (pass1===pass2) {
-            if (imgphp){
-                imgphp.style.display = "none";
-            }
+            
             img2.src = "img/spuntaVerde.png";
             img2.alt = "Le password corrispondono.";
             return true;

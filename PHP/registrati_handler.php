@@ -39,13 +39,13 @@ else
             $result=$connessione->checkUsern($_POST["username_reg"]);
         }
         if(!isset($result)&&!isset($result2)&&$okemail&&$okuser){
-            if($_POST["pass_reg2"]==$_POST["pass_reg"] && ($_POST["pass_reg"]>=4 &&$_POST["pass_reg"]<=16)){
+            if($_POST["pass_reg2"]==$_POST["pass_reg"] && strlen($_POST["pass_reg"])>=4 && strlen($_POST["pass_reg"])<=16){
                 $resultReg=$connessione->registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
                 $connessione->closeConnection(); 
-                header("Location: ../index.php");//o area utente? IMPOSTA SESSIONI DA UTENTE LOGGATO 
+                header("Location: ../login.php");//o area utente? IMPOSTA SESSIONI DA UTENTE LOGGATO 
             }
             else{
-                $_SESSION["error_pass"]="<img id=\"passNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Le password non coincidono.\ height=\"15px\" width=\"15px\" role=\"alert\" />";
+                $_SESSION["error_pass"]="<img id=\"passNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Le password non corrispondono\" height=\"15px\" width=\"15px\" role=\"alert\" />";
                 $connessione->closeConnection(); 
                 header("Location: ../registrazione.php");
             }
