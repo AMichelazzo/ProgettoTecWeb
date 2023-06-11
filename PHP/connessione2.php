@@ -1,27 +1,27 @@
 <?php
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
-
-class DBAccess {
+class DBAccess
+{
     private const HOST_DB = "127.0.0.1";
     private const DATABASE_NAME = "tecweb";
     private const USERNAME = "root";
     private const PASSWORD = "";
     private static $connection;
 
-    private static function startConnection() {
-        $connection = new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
-
-        if ($connection->connect_errno) {
-            http_response_code(500); // funzione per gestire errore 500
+    private static function startConnection()
+    {
+        try {
+            return new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
+        } catch (Exception $e) {
+            return false;
         }
-
-        return $connection;
     }
 
-    public static function dbQuery($query, ...$parametri) {
+    public static function dbQuery($query, ...$parametri)
+    {
         $connection = self::startConnection();
-
+        if ($connection === false) {return false;}
+        
         $stmt = $connection->prepare($query);
         // controllo parametri
         foreach ($parametri as $parametro) {
@@ -42,11 +42,13 @@ class DBAccess {
         if ($stmt->errno != 0) {
             $connection->close(); return false; // messaggio di errore
         }
-        if (empty($queryResult) && $select) { // select senza risultato
-            $queryResult->free(); $connection->close(); return null;
-        }
-        if (empty($queryResult) && !$select) {// non select senza risultato
-            $connection->close(); return true;
+
+        if (empty($queryResult)) { // senza risultato
+            if ($select) {
+                $queryResult->free(); $connection->close(); return null;
+            } else {
+                $connection->close(); return true;
+            }
         }
 
         $result = array();
@@ -57,6 +59,13 @@ class DBAccess {
         $connection->close();
         return $result;
     }
-};
+}
+
+function error500()
+{
+    http_response_code(500);
+    echo file_get_contents("HTML/500.html");
+    exit();
+}
 
 ?>
