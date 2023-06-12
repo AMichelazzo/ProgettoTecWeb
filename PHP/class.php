@@ -1,6 +1,7 @@
 <?php
 
 require_once "connessione2.php";
+//use DBAccess;
 
 
 class Access
