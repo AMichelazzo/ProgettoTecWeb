@@ -15,11 +15,11 @@ $Id_categoria = NULL;
 $result = null;
 
 
-if(isset($_SESSION["username"]))
+if(isset($_SESSION["username"])) // utente loggato
     $Element_Contatti .= "<a>Stai inviando questo messaggio come: " . $_SESSION["username"] . "</a><br>";
 else {
-    $Element_Contatti .= "<div><label for=\"nome\"><span lang=\"en\">Email:</span></label><br>
-    <input type=\"text\" id=\"email\" name=\"email\"></div>";
+    $Element_Contatti .= "<div><label for=\"nome\"><span lang=\"en\">Email:</span></label><br>" .  // utente non loggato
+    "<input type=\"text\" id=\"email\" name=\"email\"></div>";
     }
 
 if(isset($_POST["product_id"]) && isset($_POST["category_id"]))
