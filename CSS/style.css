@@ -538,3 +538,15 @@ a:visited {
   margin: 10px;
   text-align: center;
 }
+
+a.wish-link{
+  background-color: transparent;
+}
+
+a.wish-link:link{
+  color: darkblue;
+}
+
+a.wish-link:visited {
+  color: blueviolet;
+}
