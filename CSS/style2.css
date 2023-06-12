@@ -59,6 +59,12 @@ h1 {
     font-size: 6em;
 }
 
+/*AREA RISERVATA*/
+
+#riservata {
+    text-align: right;
+}
+
 /*HAMBURGER*/
 
 .hambuttonoff { /*Il menu è chiuso*/
