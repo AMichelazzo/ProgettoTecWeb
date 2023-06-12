@@ -30,7 +30,7 @@ class Access
     {
         $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM categoria WHERE id_categoria = ?", $id_categoria);
         if ($result !== false && $result !== null) {
-            $result = $result['Nome'];
+            $result = $result[0]['Nome'];
         }
         return $result;
     }
@@ -83,9 +83,9 @@ class Access
 
     public static function getProductName($id_prodotto, $id_categoria)
     {
-        $result = DBAccess::dbQuery("SELECT DISTINCT `Nome` FROM `prodotti` WHERE `prodotti`.`id_prodotto` = ? AND `prodotti`.`id_categoria` = ?", $id_prodotto, $id_categoria);
+        $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM `prodotti` WHERE `prodotti`.`id_prodotto` = ? AND `prodotti`.`id_categoria` = ?", $id_prodotto, $id_categoria);
         if ($result !== false && $result !== null) {
-            $result = $result['Nome'];
+            $result = $result[0]['Nome'];
         }
         return $result;
     }
