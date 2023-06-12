@@ -61,10 +61,9 @@ class Access
         return DBAccess::dbQuery("SELECT prodotti.id_prodotto, prodotti.id_categoria, prodotti.Nome, prodotti.Descrizione, immagini.path, immagini.alt_img FROM prodotti LEFT JOIN immagini on prodotti.id_prodotto = immagini.id_prodotto WHERE prodotti.id_prodotto = ?", $id_prodotto);
     }
 
-    public static function getAllProducts() 
+    public static function getAllProducts()
     {
-        return DBAccess::dbQuery("SELECT `id_prodotto`, `prodotti`.`id_categoria`, `prodotti`.`Descrizione`, `categoria`.`Nome` AS Cat_Nome, `prodotti`.`Nome` AS Prod_Nome FROM `prodotti` 
-        JOIN `categoria` on `prodotti`.`id_categoria` = `categoria`.`id_categoria`" );
+        return DBAccess::dbQuery("SELECT `id_prodotto`, `prodotti`.`id_categoria`, `prodotti`.`Descrizione`, `categoria`.`Nome` AS Cat_Nome, `prodotti`.`Nome` AS Prod_Nome FROM `prodotti` JOIN `categoria` on `prodotti`.`id_categoria` = `categoria`.`id_categoria`");
     }
 
     public static function newProduct($nome, $id_categoria, $descrizione)
@@ -72,12 +71,12 @@ class Access
         return DBAccess::dbQuery("INSERT INTO prodotti(id_categoria, Nome, Descrizione) VALUES (?,?,?)", $nome, $id_categoria, $descrizione);
     }
 
-    public static function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione) 
+    public static function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione)
     {
         return DBAccess::dbQuery("UPDATE `prodotti` SET `id_categoria` = ?, `Nome` = ?, `Descrizione` = ? WHERE `id_prodotto` = ?", $id_categoria, $nome, $descrizione, $id_prodotto);
     }
 
-    public static function deleteProduct($id_prodotto) 
+    public static function deleteProduct($id_prodotto)
     {
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
@@ -89,9 +88,9 @@ class Access
             $result = $result['Nome'];
         }
         return $result;
-    } 
+    }
 
-    public static function getMessages() 
+    public static function getMessages()
     {
         return DBAccess::dbQuery("SELECT messaggi.id_messaggio, utente.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome, utente.email
         FROM messaggi LEFT JOIN prodotti ON messaggi.id_prodotto = prodotti.id_prodotto
@@ -102,8 +101,9 @@ class Access
     {
         $currentDate = date("Y-m-d");
         return DBAccess::dbQuery("INSERT INTO messaggi(msg, data, id_prodotto, id_categoria, email) VALUES (?,?,?,?,?)", $msg, $currentDate, $id_prodotto, $id_categoria, $email);
-    } 
-    public static function Message_Read($id_messaggio) 
+    }
+
+    public static function Message_Read($id_messaggio)
     {
         return DBAccess::dbQuery("UPDATE messaggi SET letto = '1' WHERE id_messaggio = ? AND  letto = '0'", $id_messaggio);
     }
@@ -123,7 +123,7 @@ class Access
         return DBAccess::dbQuery("DELETE FROM wishlist WHERE `wishlist`.`username` = ? AND `wishlist`.`id_prodotto` = ? AND `wishlist`.`id_categoria`=?", $username, $id_prodotto, $id_categoria);
     }
  
-    public static function isInWishList($idprod,$idcat,$user)
+    public static function isInWishList($idprod,$idcat,$user) // ritorna true se vero, ritorna null se falso, ritorna false se errore
     {
         return DBAccess::dbQuery("SELECT * FROM `wishlist` WHERE `username`=? AND `id_prodotto`=? AND `id_categoria`=?", $user, $idprod, $idcat);
         // su connessione ritornava isset(row) CONTROLLARE SE FUNZIONA

@@ -9,6 +9,7 @@ $pagina = str_replace('<meta name="description" content="" />', '<meta name="des
 // inserisce keywords
 $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
+// attiva il link corrente
 switch ($title) {
     case "Prototipo":
         $pagina = str_replace('<li><a href="prototipo.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
@@ -16,6 +17,10 @@ switch ($title) {
     
     case "Prodotti":
         $pagina = str_replace('<li><a href="categorie.php">Prodotti</a></li>', '<li id="currentLink">Prodotti</li>', $pagina);
+        break;
+    
+    case "Contatti":
+        $pagina = str_replace('<li><a href="contatti.php">Contatti</a></li>', '<li id="currentLink">Contatti</li>', $pagina);
         break;
 }
 ?>
