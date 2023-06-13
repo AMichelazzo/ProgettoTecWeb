@@ -1,11 +1,10 @@
 <?php
-
-
 require_once "PHP/class.php";
 
 $paginaHTML = file_get_contents("HTML/contatti.html");
 $target = "<!--Elementi_Contatti-->";
 $target2 = "<!--Risposta_Messaggi-->";
+session_start();
 $Element_Contatti="";
 $Result_msg ="";
 $Id_prodotto = null;
@@ -15,7 +14,7 @@ $email = null;
 
 
 if(isset($_SESSION["username"])) // utente loggato
-    $Element_Contatti .= "<div><a>Stai inviando questo messaggio come: " . $_SESSION["username"] . "</a></div>";
+    $Element_Contatti .= "<div><p>Stai inviando questo messaggio come: " . $_SESSION["username"] . "</p></div>";
 else {
     $Element_Contatti .= "<div><label for=\"email\"><span lang=\"en\">Email:</span></label>" .  // utente non loggato
     "<input type=\"text\" id=\"email\" name=\"email\"></div>";
@@ -26,7 +25,6 @@ if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product-id"]) && isse
     $Id_prod = $_POST["product-id"];
     $Id_categoria = $_POST["categoria"];
     $Nome_prodotto = Access::getProductName($_POST["product-id"], $_POST["categoria"]);
-    echo "d";
 
     if(!is_null($Nome_prodotto)) {
         $Element_Contatti .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"/>
