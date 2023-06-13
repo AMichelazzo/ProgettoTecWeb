@@ -1,38 +1,35 @@
 <?php
 
-require_once "PHP/connessione.php";
-use DB\DBAccess;
+require_once "PHP/class.php";
 
-$connessione = new DBAccess();
-$connessioneRiuscita = $connessione->openDBConnection();
 $Elenco_prod = "";
 $target="<!--Elementi_Catalogo-->";
 $errors = "<!--Errors-->";
 $paginaHTML = file_get_contents("HTML/catalogo.html");
 
 if(isset($_POST["submit_modifica_prod"], $_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]))   // chiamata al DB per modifica del prodotto
-    $connessione->modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
+    Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
 
 if(isset($_POST["elimina_prod"])) {  // funzione per l'eliminazione del prodotto
-    $connessione->deleteProduct($_POST["product_id"]);
+    Access::deleteProduct($_POST["product_id"]);
     // da implementare messaggio di conferma
     }
 
 if(isset($_POST["submit_new_prod"], $_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"])) {
-    $connessione->newProduct($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]);
+    Access::newProduct($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]);
     // da implementare messaggio di conferma
 }
 else {} // da implementare errore in caso di omissione dei campi del prodotto
     
 if(isset($_POST["submit_modifica_cat"], $_POST["nome_cat"], $_POST["desc_cat"]))  // funzione per la modifica della categoria
-    $connessione->modifyCategory($_POST["cat_id"],$_POST["nome_cat"], $_POST["desc_cat"]);
+    Access::modifyCategory($_POST["cat_id"],$_POST["nome_cat"], $_POST["desc_cat"]);
 
 if(isset($_POST["submit_new_cat"], $_POST["new_nome_cat"], $_POST["new_desc_cat"])) {  // funzione per la creazione di una nuova categoria
-    $connessione->newCategory($_POST["new_nome_cat"], $_POST["new_desc_cat"]);
+    Access::newCategory($_POST["new_nome_cat"], $_POST["new_desc_cat"]);
 }
 
 if(isset($_POST["elimina_cat"])) {  // funzione per l'eliminazione di una categoria
-    $result = $connessione->deleteCategory($_POST["category_id"]);
+    $result = Access::deleteCategory($_POST["category_id"]);
     if(is_null($result))
         $paginaHTML = str_replace($errors, "Errore nell'eliminazione della categoria!", $paginaHTML); 
 }
@@ -43,7 +40,7 @@ if(isset($_POST["elimina_cat"])) {  // funzione per l'eliminazione di una catego
 
 // deve funzionare solo se admin!
 /* if(user is admin) { !! fare controllo */
-    $result=$connessione->getAllProducts();   // parte del codice che mostra il catalogo
+    $result=Access::getAllProducts();   // parte del codice che mostra il catalogo
 
     $Elenco_prod .= "<form action=\"catalogo.php\" method=\"POST\"><p class=\"inline\"><input type=\"submit\" class=\"invio\" id=\"new_product\" name=\"new_product\" value=\"Aggiungi nuovo prodotto\" /></p>";
     $Elenco_prod .= "<p class=\"inline\"><input type=\"submit\" class=\"invio\" id=\"category_list\" name=\"category_list\" value=\"Vai a lista delle Categorie\" /></p></form><br>";
@@ -67,7 +64,7 @@ else // user non è admin
 } */
 if(isset($_POST["modifica_prod"])) {  // funzione che mostra la pagina di modifica del prodotto selezionato
 
-    $result = $connessione->getProduct($_POST["product_id"]); 
+    $result = Access::getProduct($_POST["product_id"]); 
     $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML); 
 
     $Elenco_prod = "<form action=\"catalogo.php\" method=\"POST\">";
@@ -76,8 +73,8 @@ if(isset($_POST["modifica_prod"])) {  // funzione che mostra la pagina di modifi
     <div><input type=\"text\" id=\"nome_prod\" name=\"nome_prod\" value=\"" . $result[0]["Nome"] . "\"/></div>";
     $Elenco_prod .= "<div><label for=\"cat_prod\">Categoria prodotto:</label><br></div><select name=\"category_id\" id=\"categories\">";
 
-    $Elenco_prod .= "<option value=\"" . $_POST["category_id"] . "\">" . $connessione->getCategoryName($_POST["category_id"]) . "</option>"; // mostra come selezionata la categoria del prodotto
-    $categories = $connessione->getCategories();
+    $Elenco_prod .= "<option value=\"" . $_POST["category_id"] . "\">" . Access::getCategoryName($_POST["category_id"]) . "</option>"; // mostra come selezionata la categoria del prodotto
+    $categories = Access::getCategories();
     $x = $_POST["category_id"] ;
     echo $x;
 
@@ -103,7 +100,7 @@ if(isset($_POST["new_product"])) {  // pagina per la creazione di un nuovo prodo
     $Elenco_prod .= "<div><label for=\"new_category_id\">Categoria prodotto:</label><br></div>
     <select name=\"new_category_id\" id=\"new_category_id\"> ";
 
-    $categories = $connessione->getCategories();
+    $categories = Access::getCategories();
     
     for($i=0; $i<count($categories); $i++)   // creazione del menu a tendina delle categorie
         $Elenco_prod .= "<option value=\"" . $categories[$i]["id_categoria"] . "\">" . $categories[$i]["Nome"] . "</option>";
@@ -122,7 +119,7 @@ if(isset($_POST["new_product"])) {  // pagina per la creazione di un nuovo prodo
 if(isset($_POST["category_list"]) || isset($_POST["annulla_modifica_cat"]) || isset($_POST["submit_modifica_cat"]) || isset($_POST["annulla_new_cat"])  
   || isset($_POST["submit_new_cat"]) || isset($_POST["elimina_cat"])) {     // mostra il "catalogo" delle categorie
 
-    $result = $connessione->getCategories();
+    $result = Access::getCategories();
     $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML); 
 
     $Elenco_prod = "<form action=\"catalogo.php\" method=\"POST\"><p class=\"inline\"><input type=\"submit\" class=\"invio\" id=\"new_category\" name=\"new_category\" value=\"Aggiungi nuova categoria\" /></p>";
@@ -153,7 +150,7 @@ if(isset($_POST["new_category"])) {  // pagina per la creazione di nuova categor
 }
 
 if(isset($_POST["modifica_cat"])) {  // pagina per la modifica della categoria
-    $result = $connessione->getCategory($_POST["category_id"]); 
+    $result = Access::getCategory($_POST["category_id"]); 
     $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML); 
 
     $Elenco_prod = "<form action=\"catalogo.php\" method=\"POST\">";
@@ -168,7 +165,6 @@ if(isset($_POST["modifica_cat"])) {  // pagina per la modifica della categoria
 
 // fine catalogo categorie
 
-$connessione->closeConnection();
 $paginaHTML = str_replace($target, $Elenco_prod, $paginaHTML);
 echo $paginaHTML;
 ?>

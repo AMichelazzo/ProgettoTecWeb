@@ -19,19 +19,19 @@
         <!-- <nav id="menubar"><a href="areariservata.html">Area Riservata</a></nav> -->
         <nav id="menubar">
             <ul>
-                <li><a href="HTML/profilo.html">Profilo</a></li>
-                <li><a href="HTML/utenti.html">Utenti</a></li>
-                <li><a href="PHP/categorie.php">Catalogo</a></li>
+                <li><a href="profilo.php">Profilo</a></li>
+                <li><a href="utenti.php">Utenti</a></li>
+                <li><a href="catalogo.php">Catalogo</a></li>
                 <li id="currentLink">Messaggi</li>
-                <li><a href="HTML/prototipo.html">Esci</a></li>
+                <li><a href="prototipo.php">Esci</a></li>
             </ul>
         </nav>
         <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
         <nav id="menu">
             <ul>
                 <li><a href="HTML/index.html" lang="en">Home</a></li>
-                <li><a href="PHP/categorie.php">Prodotti</a></li>
-                <li><a href="HTML/contatti.html">Contatti</a></li>
+                <li><a href="categorie.php">Prodotti</a></li>
+                <li><a href="contatti.php">Contatti</a></li>
             </ul>
         </nav>
         <nav id="breadcrumb">
@@ -40,10 +40,10 @@
     </header>
     <!-- FINE PROTOTIPO -->
     <main> <!-- scala male --> <!-- problemi lingua -->
-        <form action="PHP/messaggi.php" method="POST">
-        Elementi_Messaggi <br/>
-          <input type="submit" name="submit_letti" value="Segna messaggi selezionati come letti" />
-          <input type="submit" name="submit_elimina" value="Elimina messaggi selezionati" />   
+        <form action="messaggi.php" method="POST">
+        <div>Elementi_Messaggi</div>
+          <input type="submit" class="invio" name="submit_letti" value="Segna messaggi selezionati come letti" />
+          <input type="submit" class="invio" name="submit_elimina" value="Elimina messaggi selezionati" />
         </form>
           
         <div id="iniziopagina">

@@ -16,6 +16,15 @@ class Access
         return DBAccess::dbQuery("DELETE FROM utente WHERE username = ? AND ruolo = 'user'", $username);
     }
 
+    public static function getUserEmail($username)
+    {
+        $result = DBAccess::dbQuery("SELECT DISTINCT email FROM utente WHERE username = ?", $username);
+        if ($result !== false && $result !== null) {
+            $result = $result[0]['email'];
+        }
+        return $result;
+    }
+
     public static function getCategories()
     {
         return DBAccess::dbQuery("SELECT * FROM 'categoria'");
@@ -30,7 +39,7 @@ class Access
     {
         $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM categoria WHERE id_categoria = ?", $id_categoria);
         if ($result !== false && $result !== null) {
-            $result = $result['Nome'];
+            $result = $result[0]['Nome'];
         }
         return $result;
     }
@@ -84,18 +93,18 @@ class Access
 
     public static function getProductName($id_prodotto, $id_categoria)
     {
-        $result = DBAccess::dbQuery("SELECT DISTINCT `Nome` FROM `prodotti` WHERE `prodotti`.`id_prodotto` = ? AND `prodotti`.`id_categoria` = ?", $id_prodotto, $id_categoria);
+        $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM `prodotti` WHERE `prodotti`.`id_prodotto` = ? AND `prodotti`.`id_categoria` = ?", $id_prodotto, $id_categoria);
         if ($result !== false && $result !== null) {
-            $result = $result['Nome'];
+            $result = $result[0]['Nome'];
         }
         return $result;
     } 
 
     public static function getMessages() 
     {
-        return DBAccess::dbQuery("SELECT messaggi.id_messaggio, utente.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome, utente.email
+        return DBAccess::dbQuery("SELECT messaggi.id_messaggio, messaggi.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome
         FROM messaggi LEFT JOIN prodotti ON messaggi.id_prodotto = prodotti.id_prodotto
-        INNER JOIN utente ON messaggi.username = utente.username ORDER BY letto");
+        ORDER BY letto");
     }
 
     public static function newMessage($email, $id_prodotto, $id_categoria, $msg)
