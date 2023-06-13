@@ -1,13 +1,14 @@
 <?php
 session_start();
-///////////per testing/////////////session_destroy();
 if (isset($_SESSION["username"])) {
-    if (isset($_SESSION["ruolo"])&&$_SESSION["ruolo"]=="admin")
-        header("Location: prototipo.php");
-    else
-        header("Location: index.php");
+    header("Location: index.php");
 }
-$template = (file_get_contents('HTML/login.html'));
+else{
+    require_once "PHP/class.php";
+    $template=Access::getHeader("Login", "ciao", "Login, Registrazione", "guest", "guest");
+}
+
+$template.= file_get_contents('HTML/login.html');
 
 $err = isset($_SESSION['error']) ? $_SESSION['error'] : null;
 

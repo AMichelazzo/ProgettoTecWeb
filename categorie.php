@@ -1,11 +1,17 @@
 <?php
+session_start();
+require_once "PHP/class.php";
+if (isset($_SESSION["username"])) {
+    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"]);
+}
+else{
+    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest");
+}
+
+$template .= file_get_contents('HTML/categorie.html');
+
 require_once "PHP/connessione.php";
 use DB\DBAccess;
-
-session_start();
-$template = (file_get_contents('HTML/categorie.html'));
-
-
 $connessione = new DBAccess();
 $replace = "";
 //SE HO CLICCATO PRODOTTI DA QUALSIASI PAGINA
