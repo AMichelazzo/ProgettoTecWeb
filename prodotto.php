@@ -2,10 +2,10 @@
 session_start();
 require_once "PHP/class.php";
 if (isset($_SESSION["username"])) {
-    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"]);
+    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], "Prodotto");
 }
 else{
-    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest");
+    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest", "Prodotto");
 }
 
 $template .= file_get_contents("HTML/prodotto.html");
