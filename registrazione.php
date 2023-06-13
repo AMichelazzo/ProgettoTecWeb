@@ -1,12 +1,14 @@
 <?php
 session_start();
-if (isset($_SESSION["username"])) { 
-    if (isset($_SESSION["ruolo"])&&$_SESSION["ruolo"]=="admin")
-        header("Location: prototipo.php");
-    else
-        header("Location: index.php");
+require_once "PHP/class.php";
+if (isset($_SESSION["username"])) {
+    header("Location: index.php");
 }
-$template = (file_get_contents('HTML/registrazione.html'));
+else{
+    $template=Access::getHeader("Registrati", "Registra un nuovo account.", "registrati, signup, accedi, login, crea account, username, email", "guest", "guest");
+}
+
+$template .= file_get_contents('HTML/registrazione.html');
 
 $errUs = isset($_SESSION['error_user']) ? $_SESSION['error_user2'] : null;
 $errEm = isset($_SESSION['error_email']) ? $_SESSION['error_email2'] : null;
