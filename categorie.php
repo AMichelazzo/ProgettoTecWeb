@@ -2,10 +2,10 @@
 session_start();
 require_once "PHP/class.php";
 if (isset($_SESSION["username"])) {
-    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], "<span lang=\"en\">Home</span> - Categorie");
+    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], "Categorie");
 }
 else{
-    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest", "<span lang=\"en\">Home</span> - Categorie");
+    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest", "Categorie");
 }
 
 $template .= file_get_contents('HTML/categorie.html');

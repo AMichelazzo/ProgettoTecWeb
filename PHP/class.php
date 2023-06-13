@@ -149,7 +149,7 @@ class Access
         return DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ? AND password = ?", $new, $user, $old);
     }
 
-    public static function getHeader($title, $description, $keywords, $username, $ruolo)
+    public static function getHeader($title, $description, $keywords, $username, $ruolo, $breadcrumb)
     {
         $pagina="";
         if($ruolo == "utente") {

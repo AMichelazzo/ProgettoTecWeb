@@ -5,7 +5,7 @@ if (isset($_SESSION["username"])) {
     header("Location: index.php");
 }
 else{
-    $template=Access::getHeader("Registrati", "Registra un nuovo account.", "registrati, signup, accedi, login, crea account, username, email", "guest", "guest", "<span lang=\"en\">Home</span> - Registrati");
+    $template=Access::getHeader("Registrati", "Registra un nuovo account.", "registrati, signup, accedi, login, crea account, username, email", "guest", "guest", "Registrati");
 }
 
 $template .= file_get_contents('HTML/registrazione.html');
