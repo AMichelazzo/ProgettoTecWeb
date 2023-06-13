@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION["username"])) {
     require_once "PHP/class.php";
-    $template=Access::getHeader("Wishlist", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["username"], $_SESSION["ruolo"]);
+    $template=Access::getHeader("Wishlist", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["username"], $_SESSION["ruolo"], "<span lang=\"en\">Home - Wishlist</span>");
 }
 else{
     header("Location: index.php");

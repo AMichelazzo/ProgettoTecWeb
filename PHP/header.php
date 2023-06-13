@@ -9,6 +9,9 @@ $pagina = str_replace('<meta name="description" content="" />', '<meta name="des
 // inserisce keywords
 $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
+// inserisci breadcrumb dinamico
+$pagina = str_replace('<p>Ti trovi in: <span lang="en">Home</span></p>', '<p>Ti trovi in: <span lang="en">'.$breadcrumb.'</span></p>');
+
 // attiva il link corrente
 switch ($title) {
     case "Prototipo":
