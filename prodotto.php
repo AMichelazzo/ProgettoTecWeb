@@ -21,7 +21,7 @@ if (isset($_GET["prod"])) {
     $connessione->closeConnection();
     $connessioneRiuscita = $connessione->openDBConnection();
     $result3=$connessione->getKeyWordsProdotto($_GET["prod"]);
-    $connessione->closeConnection();
+    $connessione->closeConnection();    
     if(count($result)>0){
         $nome=$result[0]['Nome'];
         $desc=$result[0]['Descrizione'];

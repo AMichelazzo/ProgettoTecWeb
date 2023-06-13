@@ -25,12 +25,11 @@ function showSlides(n) {
 
 // Get the button element
 let button = document.getElementById("button");
-// Add an event listener for the button click
+// Add an event listener for the button
 button.addEventListener("click", function() {
-  let prod = document.getElementsByClassName("product-id");
-  let categ = document.getElementsByClassName("categoria");
+  let prod = document.getElementById("product_id");
+  let categ = document.getElementById("categ_id");
   let buttontext = document.getElementById("buttonid");
-  let msg = document.getElementById("msgWish");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -43,7 +42,7 @@ button.addEventListener("click", function() {
           }
       }
   };
-  xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?"+prod[0].id+"&"+categ[0].id:"PHP/addWish.php?remove=1&"+prod[0].id+"&"+categ[0].id, true);
+  xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product_id="+prod.value+"&categ_id="+categ.value:"PHP/addWish.php?remove=1&product_id="+prod.value+"&categ_id="+categ.value, true);
   xhr.send();
 });
 

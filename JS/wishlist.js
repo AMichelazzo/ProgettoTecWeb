@@ -36,7 +36,7 @@ for (let i = 0; i < buttons.length; i++) {
         }
       }
     };
-    let url = "PHP/addWish.php?remove=1&product-ID="+prod+"&categoria="+categ;
+    let url = "PHP/addWish.php?remove=1&product_id="+prod+"&categ_id="+categ;
     xhr.open("GET", url, true);
     xhr.send();
   });
@@ -53,7 +53,7 @@ function showMessage(message, color) {
     }
     else{
         msg.id = "wish-error";
-        msg.style.color = "red";
+        msg.style.color = "#cc0000";
         msg.innerHTML = message+ " Lista dei desideri vuota!";
     }
     msg.role="alert";

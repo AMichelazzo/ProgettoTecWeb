@@ -6,23 +6,20 @@ use DB\DBAccess;
 $connessione = new DBAccess();
 $response = array();
 session_start();
-
-
-if (isset($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"])) {
-    if(!isset($_GET["remove"])||$_GET["remove"]!=1){ 
-        $result="";
+if (isset($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"])) {
+    if(!isset($_GET["remove"])||$_GET["remove"]!=1){
         $connessioneRiuscita = $connessione->openDBConnection();
-        $result=$connessione->addtoWishList($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"]);
+        $result=$connessione->addtoWishList($_GET["product_id"], $_GET["categ_id"], $_SESSION["username"]);
         $connessione->closeConnection();
         
-        if ($result) {
-            $response["success"] = true;
-            $response["message"] = "Prodotto aggiunto correttamente alla tua lista dei desideri.";
+        if (!$result) {
+            $response["success"] = false;
+            $response["message"] = "Errore aggiunta prodotto alla wishlist.";
         }
         else
         {
-            $response["success"] = false;
-            $response["message"] = "Errore aggiungimento prodotto alla wishlist.";
+            $response["success"] = true;
+            $response["message"] = "Prodotto aggiunto correttamente alla tua lista dei desideri.";
         }
     }
     else
@@ -30,7 +27,7 @@ if (isset($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"])) {
         if($_GET["remove"]==1){
             $result="";
             $connessioneRiuscita = $connessione->openDBConnection();
-            $result=$connessione->removeFromWishList($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"]);
+            $result=$connessione->removeFromWishList($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"]);
             $connessione->closeConnection();
             
             if ($result) {
@@ -40,7 +37,7 @@ if (isset($_GET["product-ID"],$_GET["categoria"],$_SESSION["username"])) {
             else
             {
                 $response["success"] = false;
-                $response["message"] = "Errore cancellamento prodotto dalla wishlist.";
+                $response["message"] = "Errore cancellazione prodotto dalla wishlist.";
             }
         }
     }
