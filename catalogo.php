@@ -9,7 +9,7 @@ $errors = "<!--Errors-->";
 session_start();
 if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
-    $paginaHTML = Access::getHeader("Profilo -", "Catalogo prodotti e categorie di prodotti","catalogo, prodotti, categorie", $_SESSION["username"], $_SESSION["ruolo"]);
+    $paginaHTML = Access::getHeader("Profilo -", "Catalogo prodotti e categorie di prodotti","catalogo, prodotti, categorie", $_SESSION["username"], $_SESSION["ruolo"], "Catalogo");
     $paginaHTML .= file_get_contents("HTML/catalogo.html");
 
     if(isset($_POST["submit_modifica_prod"], $_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]))   // chiamata al DB per modifica del prodotto
