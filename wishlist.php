@@ -48,10 +48,10 @@ else{
                 $productlist .= "<div class=\"descrizione\">Descrizione: ".$desc."</div>";
                 $productlist .= "<div class=\"categoria\">Categoria: <a class=\"wish-link\" href=\"categorie.php?cat=".$result2[0]['id_categoria']."\">".$cat."</a></div>";
                 $productlist .= "<div class=\"button-container\">";
-                $productlist .= "<input type=\"submit\" name=\"informazioni\" value=\"Richiedi Informazioni\" />";
+                $productlist .= "<input type=\"submit\" name=\"informazioni_prodotto\" value=\"Richiedi Informazioni\" />";
                 $productlist .= "<button id=\"".$idprod."\" class=\"vaiProdotto\" name=\"vaiProdotto\">Scheda Prodotto <span aria-hidden=\"true\">-></span></button>";
-                $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id\" id=\"product-ID\=".$idprod."\"/>";
-                $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\" id=\"categoria\=".$idcat."\"/>";
+                $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id\" id=\"product-ID\" value=\"". $idprod . "\"/>";
+                $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\" id=\"categoria\" value=\"" . $idcat . "\"/>";
                 $productlist .= "</div>";
                 $productlist .= "</div>";
                 $productlist .= "<div class=\"rimuovi-container\">";
