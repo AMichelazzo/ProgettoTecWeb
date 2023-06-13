@@ -1,13 +1,17 @@
 <?php
 session_start();
+require_once "PHP/class.php";
+if (isset($_SESSION["username"])) {
+    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"]);
+}
+else{
+    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest");
+}
 
-$template = file_get_contents("HTML/prodotto.html");
+$template .= file_get_contents("HTML/prodotto.html");
 
 require_once "PHP/connessione.php";
 use DB\DBAccess;
-
-require_once "PHP/class.php";
-
 $connessione = new DBAccess();
 if (isset($_GET["prod"])) { 
     

@@ -5,7 +5,7 @@ if (isset($_SESSION["username"])) {
 }
 else{
     require_once "PHP/class.php";
-    $template=Access::getHeader("Login", "ciao", "Login, Registrazione", "guest", "guest");
+    $template=Access::getHeader("Login", "Accedi al tuo account.", "accedi, login, registrati, signup, crea account, username, email", "guest", "guest");
 }
 
 $template.= file_get_contents('HTML/login.html');

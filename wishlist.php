@@ -1,9 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION["username"])) {
+if (isset($_SESSION["username"])) {
+    require_once "PHP/class.php";
+    $template=Access::getHeader("Wishlist", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["username"], $_SESSION["ruolo"]);
+}
+else{
     header("Location: index.php");
 }
-$template = (file_get_contents('HTML/wishlist.html'));
+
+$template .= file_get_contents('HTML/wishlist.html');
 
 
 require_once "PHP/connessione.php";

@@ -15,7 +15,7 @@ switch ($title) {
         $pagina = str_replace('<li><a href="prototipo.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
         break;
     
-    case "Prodotti":
+    case "Categorie":
         $pagina = str_replace('<li><a href="categorie.php">Prodotti</a></li>', '<li id="currentLink">Prodotti</li>', $pagina);
         break;
     
