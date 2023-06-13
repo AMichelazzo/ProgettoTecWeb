@@ -6,6 +6,8 @@ $template = file_get_contents("HTML/prodotto.html");
 require_once "PHP/connessione.php";
 use DB\DBAccess;
 
+require_once "PHP/class.php";
+
 $connessione = new DBAccess();
 if (isset($_GET["prod"])) { 
     
@@ -28,10 +30,13 @@ if (isset($_GET["prod"])) {
             <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"/></div>";
         }
         if(isset($_SESSION["username"])){
+            /*
             $connessioneRiuscita = $connessione->openDBConnection();
             $result2=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
-            $connessione->closeConnection();
-            ($result2) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList"; 
+            $connessione->closeConnection();*/
+            $result2 = Access::isInWishList($idprod, $idcat, $_SESSION["username"]);
+            if ($result2 == null) {$result2 = false;}
+            ($result2) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList";
             $isLogged="<button type=\"button\" id=\"button\" class=\"button\">
                                                 <span class=\"button__text\" id=\"buttonid\">".$testoButton."</span>
                                                 </button>
