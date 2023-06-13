@@ -10,13 +10,26 @@ $pagina = str_replace('<meta name="description" content="" />', '<meta name="des
 $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
 // inserisci breadcrumb dinamico
-if(!isset($breadcrumb)){
-    $breadcrumb="<p>Ti trovi in: <span lang=\"en\">Home</span></p>";
+/*if(!isset($breadcrumb)){
+    $breadcrumb='<p>Ti trovi in: <span lang="en">Home</span></p>';
 }else{
-    $breadcrumb='<p>Ti trovi in: <span lang=\"en\">Home</span> - '.$breadcrumb.'</span></p>';
+    $breadcrumb='<p>Ti trovi in: <span lang="en">Home</span> - '.$breadcrumb.'</span></p>';
+}
+/*
+Ti trovi in: Home >> Prodotti >> Something >> aProduct;
+Ti trovi in: <a href="" lang="en">Home</a> >> <a href="">Prodotti</a> >> <a href="" lang="en">Something</a> >> <span>aProduct</span>
+*/
+if ($breadcrumb !== null)
+{
+    if ($category === null) {
+        $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . $title . '</p>';
+    } else {
+        $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+    }
+    $pagina = str_replace('<p>Ti trovi in: <span lang="en">Home</span></p>', $breadcrumb, $pagina);
 }
 
-$pagina = str_replace('<p>Ti trovi in: <span lang="en">Home</span></p>', $breadcrumb, $pagina);
+
 
 // attiva il link corrente
 switch ($title) {

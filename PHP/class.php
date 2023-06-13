@@ -148,15 +148,15 @@ class Access
     {
         return DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ? AND password = ?", $new, $user, $old);
     }
-
-    public static function getHeader($title, $description, $keywords, $username, $ruolo, $breadcrumb)
+                                //nome_prodotto
+    public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $breadcrumb = null, $category = null)
     {
         $pagina="";
-        if($ruolo == "utente") {
+        if ($ruolo == "utente") {
             $pagina = file_get_contents("HTML/headerUtente.html");
         } elseif ($ruolo == "admin") {
             $pagina = file_get_contents("HTML/headerAmministratore.html");
-        } else{
+        } else {
             $pagina = file_get_contents("HTML/headerSemplice.html");
         }
         
