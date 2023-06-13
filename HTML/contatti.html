@@ -1,57 +1,14 @@
-<!DOCTYPE html>
-<html lang="it">
-    <!-- pagina per capire/creare/provare le parti comuni del sito -->
-    <!-- manca un sistema per passare direttamente al contenuto per lo screen reader -->
-<head>
-    <meta charset="utf-8" />
-    <title>Nome negozio</title> <!-- DA SOSTITUIRE -->
-        <meta name="description" content="Vetrina di articoli di vetro come vasi, lampadari, specchi, bicchieri, e piccoli oggetti " /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
-        <meta name="keywords" content="vetro, vasi, lampadari, specchi, bicchieri" /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
-        <meta name="author" content="Web Triplet (?) (Alberto Michelazzo)" />
-
-    <link rel="stylesheet" href="CSS/style.css" media="handheld, screen"/>
-    <link rel="stylesheet" href="CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
-    <link rel="stylesheet" href="CSS/print.css" media="print"/>
-    <link rel="shortcut icon" type="image/png" href="img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
-</head>
-<body>
-    <header>
-        <!-- <nav id="menubar"><a href="areariservata.html">Area Riservata</a></nav> -->
-        <nav id="menubar">
-            <ul>
-                <li><a href="HTML/profilo.html">Profilo</a></li>
-                <li><a href="HTML/utenti.html">Utenti</a></li>
-                <li><a href="catalogo.php">Catalogo</a></li>
-                <li><a href="PHP/messaggi.php">Messaggi</a></li>
-                <li><a href="HTML/prototipo.html">Esci</a></li>
-            </ul>
-        </nav>
-        <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
-        <nav id="menu">
-            <ul>
-                <li><a href="HTML/index.html">Home</a></li>
-                <li><a href="categorie.php">Prodotti</a></li>
-                <li id="currentLink">Contatti</li>
-            </ul>
-        </nav>
-        <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Contatti</span></p>
-        </nav>
-
-
-    </header>
         <main>
-
-        <fieldset>
-            <form action="contatti.php" method="POST">
-                <div><label>Compila questo form per ricevere informazioni.</label></div>
-                <!--Elementi_Contatti-->
-                <div><label for="messaggio">Messaggio:</label></div>
-                <div><textarea name="messaggio" id="messaggio" placeholder="Buongiorno, vorrei avere informazioni riguardo a..." rows="10" cols="40" maxlength="1000"></textarea></div>
-                <div><input type="submit" name="submit_informazioni" id="submit_informazioni" class="invio" value="Informazioni"></div>
-            </form>
-            <!--Risposta_Messaggi-->
-        </fieldset>
+            <fieldset>
+                <form action="contatti.php" method="POST">
+                    <div><label>Compila questo form per ricevere informazioni.</label></div>
+                    <!--Elementi_Contatti-->
+                    <div><label for="messaggio">Messaggio:</label></div>
+                    <div><textarea name="messaggio" id="messaggio" placeholder="Buongiorno, vorrei avere informazioni riguardo a..." rows="10" cols="40" maxlength="1000"></textarea></div>
+                    <div><input type="submit" name="submit_informazioni" id="submit_informazioni" class="invio" value="Informazioni"></div>
+                </form>
+                <!--Risposta_Messaggi-->
+            </fieldset>
 
         </main>
         <footer id="footer">

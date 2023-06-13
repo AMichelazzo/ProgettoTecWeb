@@ -1,10 +1,15 @@
 <?php
 require_once "PHP/class.php";
+session_start();
+$user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
+$ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
 
-$paginaHTML = file_get_contents("HTML/contatti.html");
+$paginaHTML = Access::getHeader("Contatti -", "Pagina per richiedere informazioni generiche o informazioni su un prodotto specifico", "contatti, informazioni", 
+$user , $ruolo);
+
+$paginaHTML .= file_get_contents("HTML/contatti.html");
 $target = "<!--Elementi_Contatti-->";
 $target2 = "<!--Risposta_Messaggi-->";
-session_start();
 $Element_Contatti="";
 $Result_msg ="";
 $Id_prodotto = null;
