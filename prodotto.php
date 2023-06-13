@@ -51,8 +51,8 @@ if (isset($_GET["prod"])) {
                             "Nome Prodotto" =>$nome,
                             "Descrizione Prodotto" =>$desc,
                             "<div>img</div>" => $slideshow,
-                            "product-ID" => "product-ID=".$idprod,
-                            "categ_id" => "categoria=".$idcat,
+                            "product-id_placeholder" => $idprod,
+                            "category-id_placeholder" => $idcat,
                             "<!--Wish-->" => $isLogged);
     }
     else{
