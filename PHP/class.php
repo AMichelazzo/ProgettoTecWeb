@@ -164,4 +164,20 @@ class Access
         return $pagina;
     }
 
+    public static function lang($stringa, $isLink = false, $link = false)
+    {
+        preg_match('/(\{.+?\})/i', $stringa, $parentesi);
+        $language = $parentesi[1];
+        $language = str_replace('{', '', $language);
+        $language = str_replace('}', '', $language);
+        
+        if (!$isLink) {
+            $stringa = str_replace('{' . $language . '}', '<span lang="' . strtolower($language) . '">', $stringa);
+            $stringa = str_replace('{' . $language . '*}', '</span>', $stringa);
+        } else {
+            $stringa = str_replace('{' . $language . '}', '<a href="' . $link . '" lang="' . strtolower($language) . '">', $stringa);
+            $stringa = str_replace('{' . $language . '*}', '</a>', $stringa);
+        }
+        return $stringa;
+    }
 }
