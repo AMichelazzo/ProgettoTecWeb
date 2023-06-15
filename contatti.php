@@ -54,14 +54,18 @@ if(isset($_POST["submit_informazioni"]))
             $result = Access::newMessage($email, $Id_prodotto, $Id_categoria, $_POST["messaggio"]);
         
         if($result && $okemail)
-            $Result_msg = "<div><p>Messaggio inviato correttamente!</p></div>";
+            $Result_msg = "<div class=\"success-message\" role=\"alert\"><span class=\"sr-only\">Invio riuscito:</span>
+            Messaggio inviato correttamente</div>";
         else if(!$okemail)
-            $Result_msg = "<div><p>Errore: <span lang=\"en\">Email</span> inserita non corretta!</p></div>";
+            $Result_msg = "<div class=\"error-message\" role=\"alert\"><span class=\"sr-only\">Errore invio:</span>
+            <span lang =\"en\">Email</span> inserita non corretta. Riprova.</div>";
         else
-            $Result_msg = "<div><p>Errore nell'invio del messaggio, riprovare!<p></div>";            
+            $Result_msg = "<div class=\"error-message\" role=\"alert\"><span class=\"sr-only\">Errore invio:</span>
+            Errore nell'invio del messaggio. Riprova.</div>";            
     }
     else
-        $Result_msg = "<div><p>Errore: inserisci la <span lang=\"en\">email</span>!</p></div>";
+        $Result_msg = "<div class=\"error-message\" role=\"alert\"><span class=\"sr-only\">Errore invio:</span>
+        <span lang =\"en\">Email</span> non inserita. Riprova.</div>";
 }
 
 if($Result_msg != "")

@@ -395,6 +395,16 @@ font-size: 103%;
   margin-bottom: 10px;
 }
 
+.success-message {
+  background-color: #dbf8dd;
+  color: #00ff40;
+  padding: 10px;
+  border: 1px solid #00ff40;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+
 .sr-only {
   position: absolute;
   width: 1px;
