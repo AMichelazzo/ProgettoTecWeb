@@ -1,16 +1,12 @@
 <?php
 
-require_once "connessione.php";
-use DB\DBAccess;
-
-$connessione = new DBAccess();
+require_once "class.php";
 $response = array();
 session_start();
 if (isset($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"])) {
     if(!isset($_GET["remove"])||$_GET["remove"]!=1){
-        $connessioneRiuscita = $connessione->openDBConnection();
-        $result=$connessione->addtoWishList($_GET["product_id"], $_GET["categ_id"], $_SESSION["username"]);
-        $connessione->closeConnection();
+        
+        $result=Access::addtoWishList($_GET["product_id"], $_GET["categ_id"], $_SESSION["username"]);
         
         if (!$result) {
             $response["success"] = false;
@@ -26,9 +22,7 @@ if (isset($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"])) {
     {
         if($_GET["remove"]==1){
             $result="";
-            $connessioneRiuscita = $connessione->openDBConnection();
-            $result=$connessione->removeFromWishList($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"]);
-            $connessione->closeConnection();
+            $result=Access::removeFromWishList($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"]);
             
             if ($result) {
                 $response["success"] = true;
