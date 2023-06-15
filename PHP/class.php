@@ -123,7 +123,7 @@ class Access
 
     public static function addtoWishList($id_prodotto,$id_categoria,$username)
     {
-        return DBAccess::dbQuery("INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES (?,?,?), $username, $id_prodotto, $id_categoria");
+        return DBAccess::dbQuery("INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES (?,?,?)", $username, $id_prodotto, $id_categoria);
     }
 
     public static function removeFromWishList($id_prodotto,$id_categoria,$username)
