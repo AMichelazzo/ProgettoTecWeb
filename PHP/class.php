@@ -136,7 +136,17 @@ class Access
         return DBAccess::dbQuery("SELECT * FROM `wishlist` WHERE `username`=? AND `id_prodotto`=? AND `id_categoria`=?", $user, $idprod, $idcat);
         // su connessione ritornava isset(row) CONTROLLARE SE FUNZIONA
     }
-     // check login
+    
+    public static function checkLogin($user, $pass) {
+        $result = DBAccess::dbQuery("SELECT * FROM `utente` WHERE `username`= ?", $user);
+        if ($result !== false && $result !== null && password_verify($pass, $result[0]['password'])) {
+            $result = array("username" => $result[0]['username'],
+            "ruolo" => $result[0]['ruolo']);
+        } else {
+            $result = null; // per avere lo stesso comportamento di connessione
+        }
+        return $result;
+    }
 
     public static function checkOldPassword($user, $old)
     {
@@ -192,5 +202,16 @@ class Access
         return DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
     }
 
-    
+    public static function registraNuovoUtente($pass_reg,$username_reg,$email_reg) {
+        $password = password_hash($pass_reg, PASSWORD_DEFAULT);
+        return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES (?, ?, ?, 'user', current_timestamp())", $username_reg, $password, $email_reg);
+    }
+
+    public static function getKeyWordsProdotto($id_prodott) {
+        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `prodotto` = ?", $id_prodott);
+    }
+
+    public static function getProductsOnWishlist($username) {
+        return DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
+    }
 }
