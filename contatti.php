@@ -27,7 +27,7 @@ else {
 
 if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isset($_POST["categoria"]))
 {
-    $Id_prod = $_POST["product-id"];
+    $Id_prod = $_POST["product_id"];
     $Id_categoria = $_POST["categoria"];
     $Nome_prodotto = Access::getProductName($_POST["product_id"], $_POST["categoria"]);
 
