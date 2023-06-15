@@ -516,7 +516,6 @@ font-size: 103%;
   cursor: pointer;
   border: none;
   background: transparent;
-  cursor: pointer;
 }
 
 .image-container .open-button img {
@@ -575,8 +574,6 @@ font-size: 103%;
   overflow: hidden;
   width: 30px;
   height: 30px;
-  border: none;
-  background-color: transparent;
   cursor: pointer;
   border-radius: 30%;
   border: 1px solid #505050;
