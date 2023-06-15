@@ -50,7 +50,7 @@ else{
                 $productlist .= "<div class=\"button-container\">";
                 $productlist .= "<input type=\"submit\" name=\"informazioni_prodotto\" value=\"Richiedi Informazioni\" />";
                 $productlist .= "<button id=\"".$idprod."\" class=\"vaiProdotto\" name=\"vaiProdotto\">Scheda Prodotto <span aria-hidden=\"true\">-></span></button>";
-                $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id\" id=\"product-ID\" value=\"". $idprod . "\"/>";
+                $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product_id\" id=\"product-ID\" value=\"". $idprod . "\"/>";
                 $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\" id=\"categoria\" value=\"" . $idcat . "\"/>";
                 $productlist .= "</div>";
                 $productlist .= "</div>";

@@ -25,11 +25,11 @@ else {
     "<input type=\"text\" id=\"email\" name=\"email\"></div>";
     }
 
-if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product-id"]) && isset($_POST["categoria"]))
+if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isset($_POST["categoria"]))
 {
     $Id_prod = $_POST["product-id"];
     $Id_categoria = $_POST["categoria"];
-    $Nome_prodotto = Access::getProductName($_POST["product-id"], $_POST["categoria"]);
+    $Nome_prodotto = Access::getProductName($_POST["product_id"], $_POST["categoria"]);
 
     if(!is_null($Nome_prodotto)) {
         $Element_Contatti .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"/>
