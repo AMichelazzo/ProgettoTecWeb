@@ -59,11 +59,10 @@ class Access
         return DBAccess::dbQuery("DELETE FROM categoria WHERE id_categoria = ?", $id_categoria);
     }
 
-    public static function getProductsbyCategory($id_categoria)
+    public static function getProductsbyCategory($id_categoria) //getProductListANDCheckCategory
     {
         return DBAccess::dbQuery("SELECT * FROM prodotti WHERE id_categoria = ?", $id_categoria);
     }
-    // da aggiungere getProductListANDCheckCategory
 
     public static function getProduct($id_prodotto)
     {
@@ -148,7 +147,7 @@ class Access
     {
         return DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ? AND password = ?", $new, $user, $old);
     }
-                                //nome_prodotto
+
     public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $breadcrumb = null, $category = null)
     {
         $pagina="";
@@ -164,14 +163,14 @@ class Access
         return $pagina;
     }
 
-    public static function lang($stringa, $isLink = false, $link = false)
+    public static function lang($stringa, $link = false)
     {
         preg_match('/(\{.+?\})/i', $stringa, $parentesi);
         $language = $parentesi[1];
         $language = str_replace('{', '', $language);
         $language = str_replace('}', '', $language);
         
-        if (!$isLink) {
+        if (!$link) {
             $stringa = str_replace('{' . $language . '}', '<span lang="' . strtolower($language) . '">', $stringa);
             $stringa = str_replace('{' . $language . '*}', '</span>', $stringa);
         } else {
@@ -180,4 +179,18 @@ class Access
         }
         return $stringa;
     }
+
+    public static function getCategoryIdfromProduct($id_prodotto) {
+        return DBAccess::dbQuery("SELECT id_categoria FROM prodotti WHERE id_prodotto = ?", $id_prodotto);
+    }
+
+    public static function checkUsern($user) {
+        return DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
+    }
+
+    public static function checkEmail($email) {
+        return DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
+    }
+
+    
 }

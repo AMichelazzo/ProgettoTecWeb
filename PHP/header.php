@@ -19,7 +19,7 @@ $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywor
 Ti trovi in: Home >> Prodotti >> Something >> aProduct;
 Ti trovi in: <a href="" lang="en">Home</a> >> <a href="">Prodotti</a> >> <a href="" lang="en">Something</a> >> <span>aProduct</span>
 */
-if ($breadcrumb !== null)
+if ($breadcrumb !== null)   // tramite i nuovi get e la lang
 {
     if ($category === null) {
         $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . $title . '</p>';
