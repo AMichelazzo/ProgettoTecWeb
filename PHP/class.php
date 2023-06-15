@@ -27,7 +27,7 @@ class Access
 
     public static function getCategories()
     {
-        return DBAccess::dbQuery("SELECT * FROM 'categoria'");
+        return DBAccess::dbQuery("SELECT * FROM categoria");
     }
 
     public static function getCategory($id_categoria)
@@ -71,17 +71,17 @@ class Access
 
     public static function getAllProducts()
     {
-        return DBAccess::dbQuery("SELECT `id_prodotto`, `prodotti`.`id_categoria`, `prodotti`.`Descrizione`, `categoria`.`Nome` AS Cat_Nome, `prodotti`.`Nome` AS Prod_Nome FROM `prodotti` JOIN `categoria` on `prodotti`.`id_categoria` = `categoria`.`id_categoria`");
+        return DBAccess::dbQuery("SELECT id_prodotto, prodotti.id_categoria, prodotti.Descrizione, categoria.Nome AS Cat_Nome, prodotti.Nome AS Prod_Nome FROM prodotti JOIN categoria on prodotti.id_categoria = categoria.id_categoria");
     }
 
     public static function newProduct($nome, $id_categoria, $descrizione)
     {
-        return DBAccess::dbQuery("INSERT INTO prodotti(id_categoria, Nome, Descrizione) VALUES (?,?,?)", $nome, $id_categoria, $descrizione);
+        return DBAccess::dbQuery("INSERT INTO prodotti(id_categoria, Nome, Descrizione) VALUES (?,?,?)", $id_categoria, $nome, $descrizione);
     }
 
     public static function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione)
     {
-        return DBAccess::dbQuery("UPDATE `prodotti` SET `id_categoria` = ?, `Nome` = ?, `Descrizione` = ? WHERE `id_prodotto` = ?", $id_categoria, $nome, $descrizione, $id_prodotto);
+        return DBAccess::dbQuery("UPDATE prodotti SET id_categoria = ?, Nome = ?, Descrizione = ? WHERE id_prodotto = ?", $id_categoria, $nome, $descrizione, $id_prodotto);
     }
 
     public static function deleteProduct($id_prodotto)
@@ -89,9 +89,9 @@ class Access
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
 
-    public static function getProductName($id_prodotto, $id_categoria)
+   public static function getProductName($id_prodotto, $id_categoria)
     {
-        $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM `prodotti` WHERE `prodotti`.`id_prodotto` = ? AND `prodotti`.`id_categoria` = ?", $id_prodotto, $id_categoria);
+        $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM prodotti WHERE prodotti.id_prodotto = ? AND prodotti.id_categoria = ?", $id_prodotto, $id_categoria);
         if ($result !== false && $result !== null) {
             $result = $result[0]['Nome'];
         }
