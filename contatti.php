@@ -16,6 +16,7 @@ $Id_prodotto = null;
 $Id_categoria = null;
 $result = null;
 $email = null;
+$okemail = true;
 
 
 if(isset($_SESSION["username"])) // utente loggato
@@ -38,28 +39,31 @@ if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isse
     }
 }
 
-if (isset($_POST["submit_informazioni"]) && isset($_POST["messaggio"]) && (isset($_POST["email"]) || isset($_SESSION["username"]))) {
-
-    if(!isset($_SESSION["username"]) && !isset($_POST["email"]) && !is_null($_POST["email"])) // errore mail non inserita e non loggato
-        $Result_msg = "<a>Inserisci la <span lang=\"en\">mail</span>!</a>";
-    else {
-        if(isset($_SESSION["username"])) {
-               $email = Access::getUserEmail($_SESSION["username"]);
-        }
-        else if(isset($_POST["email"]))
+if(isset($_POST["submit_informazioni"])) 
+{
+    if((isset($_POST["email"]) && $_POST["email"] != null) || isset($_SESSION["username"]))
+    {  
+        if(isset($_SESSION["username"])) 
+            $email = Access::getUserEmail($_SESSION["username"]);
+        else if(isset($_POST["email"]) && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) 
+            $okemail = false;
+        else
             $email = $_POST["email"];
-
-        $msg = $_POST["messaggio"];
+            
+        if($okemail && $_POST["messaggio"] != "") 
+            $result = Access::newMessage($email, $Id_prodotto, $Id_categoria, $_POST["messaggio"]);
         
-        if($email != null)
-            $result = Access::newMessage($email, $Id_prodotto, $Id_categoria, $msg);
-
-        if ($result && !is_null($email))
+        if($result && $okemail)
             $Result_msg = "<div><p>Messaggio inviato correttamente!</p></div>";
-        else       
-            $Result_msg = "<div><p>Errore nell'invio del messaggio, riprovare!<p></div>";
+        else if(!$okemail)
+            $Result_msg = "<div><p>Errore: <span lang=\"en\">Email</span> inserita non corretta!</p></div>";
+        else
+            $Result_msg = "<div><p>Errore nell'invio del messaggio, riprovare!<p></div>";            
     }
+    else
+        $Result_msg = "<div><p>Errore: inserisci la <span lang=\"en\">email</span>!</p></div>";
 }
+
 if($Result_msg != "")
     $paginaHTML = str_replace($target2, $Result_msg, $paginaHTML);
 
