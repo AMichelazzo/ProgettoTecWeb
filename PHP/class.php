@@ -195,7 +195,9 @@ class Access
     }
 
     public static function checkUsern($user) {
-        return DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
+        $result = DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
+        if (empty($result)) return null;
+        return $result;
     }
 
     public static function checkEmail($email) {
