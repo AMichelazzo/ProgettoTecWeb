@@ -10,18 +10,11 @@ else{
 
 $template .= file_get_contents("HTML/prodotto.html");
 
-require_once "PHP/connessione.php";
-use DB\DBAccess;
-$connessione = new DBAccess();
 if (isset($_GET["prod"])) { 
     
     $replace = $keywords ="";
-    $connessioneRiuscita = $connessione->openDBConnection();
-    $result=$connessione->getProduct($_GET["prod"]);
-    $connessione->closeConnection();
-    $connessioneRiuscita = $connessione->openDBConnection();
-    $result3=$connessione->getKeyWordsProdotto($_GET["prod"]);
-    $connessione->closeConnection();    
+    $result=Access::getProduct($_GET["prod"]);
+    $result3=Access::getKeyWordsProdotto($_GET["prod"]);
     if(count($result)>0){
         $nome=$result[0]['Nome'];
         $desc=$result[0]['Descrizione'];
@@ -34,10 +27,6 @@ if (isset($_GET["prod"])) {
             <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"/></div>";
         }
         if(isset($_SESSION["username"])){
-            /*
-            $connessioneRiuscita = $connessione->openDBConnection();
-            $result2=$connessione->isInWishList($idprod,$idcat,$_SESSION["username"]);
-            $connessione->closeConnection();*/
             $result2 = Access::isInWishList($idprod, $idcat, $_SESSION["username"]);
             if ($result2 == null) {$result2 = false;}
             ($result2) ? $testoButton="Togli dalla WishList" : $testoButton="Aggiungi a WishList";

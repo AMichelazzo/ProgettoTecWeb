@@ -1,9 +1,6 @@
 <?php
-require_once "connessione.php";
-use DB\DBAccess;
+require_once "class.php";
 use function DB\pulisciInput;
-
-$connessione = new DBAccess();
 session_start();
 if (isset($_SESSION["username"])) {
     if (isset($_SESSION["is_admin"]))
@@ -15,8 +12,6 @@ else
 {
     if(isset($_POST["pass_reg2"],$_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]))
     {
-        $replace = "";
-        $connessioneRiuscita = $connessione->openDBConnection();
         //REGEX email è valida
         $okemail=true;
         if (!filter_var($_POST["email_reg"], FILTER_VALIDATE_EMAIL)) {
@@ -25,9 +20,8 @@ else
             $okemail=false;
         }
         else{
-            $result2=$connessione->checkEmail($_POST["email_reg"]);
+            $result2=Access::checkEmail($_POST["email_reg"]);
         }
-
         //REGEX username ha solo lettere e spazi
         $okuser=true;
         if (!preg_match('/^[a-zA-Z0-9]{4,}$/', pulisciInput($_POST["username_reg"]))){
@@ -36,21 +30,18 @@ else
             $okuser=false;
         }
         else{
-            $result=$connessione->checkUsern($_POST["username_reg"]);
+            $result=Access::checkUsern($_POST["username_reg"]);
         }
         if(!isset($result)&&!isset($result2)&&$okemail&&$okuser){
             if($_POST["pass_reg2"]==$_POST["pass_reg"] && strlen($_POST["pass_reg"])>=4 && strlen($_POST["pass_reg"])<=16){
-                $resultReg=$connessione->registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
-                $connessione->closeConnection(); 
-                header("Location: ../login.php");//o area utente? IMPOSTA SESSIONI DA UTENTE LOGGATO 
+                $resultReg=Access::registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
+                header("Location: ../login.php");
             }
             else{
                 $_SESSION["error_pass"]="<img id=\"passNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Le password non corrispondono\" height=\"15px\" width=\"15px\" role=\"alert\" />";
-                $connessione->closeConnection(); 
                 header("Location: ../registrazione.php");
             }
         }
-        $connessione->closeConnection(); 
         if(isset($result)){
             $_SESSION["error_user"]=$result;
             $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Username non disponibile.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
