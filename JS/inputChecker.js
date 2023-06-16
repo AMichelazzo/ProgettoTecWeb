@@ -74,6 +74,7 @@ emailInput.addEventListener('blur', function() {
               }
           }
       };
+      console.log('PHP/checkNewUser.php?email=' + email);
       xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
       xhr.send();
     }

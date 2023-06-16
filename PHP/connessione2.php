@@ -33,7 +33,6 @@ class DBAccess
         }
         $stmt->execute();
         $queryResult = $stmt->get_result();
-
         $select = false;
         if (strpos($query, "SELECT") === 0) { // verifica se è una select
             $select = true;
@@ -42,7 +41,6 @@ class DBAccess
         if ($stmt->errno != 0) {
             $connection->close(); return false; // messaggio di errore
         }
-
         if (empty($queryResult)) { // senza risultato
             if ($select) {
                 $queryResult->free(); $connection->close(); return null;

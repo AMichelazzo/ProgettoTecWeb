@@ -10,11 +10,6 @@ else{
 
 $template .= file_get_contents('HTML/wishlist.html');
 
-
-require_once "PHP/connessione.php";
-use DB\DBAccess;
-
-$connessione = new DBAccess();
 if (!isset($_SESSION["username"])) {
     header("Location: index.php");
 }
@@ -22,21 +17,17 @@ else{
     $replace = "";
     $productlist = ""; 
     $msg="<div id=\"msgWish\" role=\"alert\"></div>";
-    $connessioneRiuscita = $connessione->openDBConnection();
-    $result=$connessione->getProductsOnWishlist($_SESSION["username"]);
-    $connessione->closeConnection();
+    $result=Access::getProductsOnWishlist($_SESSION["username"]);
     if(isset($result)){
         if(count($result)>0){
             for($i=0;$i<count($result);$i++){
-                $connessioneRiuscita = $connessione->openDBConnection();
-                $result2=$connessione->getProduct($result[$i]["id_prodotto"]);
+                $result2=Access::getProduct($result[$i]["id_prodotto"]);
                 $nome=$result2[0]['Nome'];
                 $desc=$result2[0]['Descrizione'];
                 $idprod=$result2[0]['id_prodotto'];
-                $cat=$connessione->getCategory($result2[0]['id_categoria'])[0]["Nome"];
+                $cat=Access::getCategory($result2[0]['id_categoria'])[0]["Nome"];
                 $idcat=$result2[0]['id_categoria'];
                 $img = "<img src=\"".$result2[0]["path"]."\" alt=\"".$result2[0]["alt_img"]."\" width=\"200\" height=\"200\"/>";
-                $connessione->closeConnection();
                 
                 $productlist .= "<form action=\"contatti.php\" class=\"prodotto\" name=\"form-prodotto\" method=\"post\">";
                 $productlist .= "<div class=\"image-container\">";
@@ -75,13 +66,4 @@ else{
 foreach($replace as $key => $value) 
         $template = str_replace($key, $value, $template);
 echo $template;
-/*try {
-    if (isset($err)){
-        $template = str_replace("<!-- errors -->", $err, $template);
-        unset($_SESSION["error"]);
-    }
-    echo $template;
-} catch (Exception $e) {
-    //errore 500
-}*/
 ?>

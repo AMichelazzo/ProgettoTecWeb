@@ -1,8 +1,5 @@
 <?php
-require_once "connessione.php";
-use DB\DBAccess;
-
-$connessione = new DBAccess();
+require_once "class.php";
 session_start();
 if (isset($_SESSION["username"])) {
     if (isset($_SESSION["is_admin"]))
@@ -14,10 +11,7 @@ else
 {
     if(isset($_POST["username"],$_POST["password"]))
     {
-        $replace = "";
-        $connessioneRiuscita = $connessione->openDBConnection();
-        $result=$connessione->checkLogin($_POST["username"],$_POST["password"]);
-        $connessione->closeConnection();
+        $result=Access::checkLogin($_POST["username"],$_POST["password"]);
         if(isset($result)){
             $_SESSION["username"]=$result['username'];
             $_SESSION["ruolo"]=$result['ruolo'];

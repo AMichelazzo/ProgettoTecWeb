@@ -41,7 +41,7 @@ button.addEventListener("click", function() {
             showMessage(response.message, "red");
           }
       }
-  };console.log((buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product_id="+prod.value+"&categ_id="+categ.value:"PHP/addWish.php?remove=1&product_id="+prod.value+"&categ_id="+categ.value);
+  };
   xhr.open("GET", (buttontext.innerHTML == "Aggiungi a WishList")?"PHP/addWish.php?product_id="+prod.value+"&categ_id="+categ.value:"PHP/addWish.php?remove=1&product_id="+prod.value+"&categ_id="+categ.value, true);
   xhr.send();
 });
