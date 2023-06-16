@@ -48,7 +48,7 @@ class DBAccess
                 $connection->close(); return true;
             }
         }
-
+        
         $result = array();
         while ($row = mysqli_fetch_assoc($queryResult)) {
             array_push($result, $row);

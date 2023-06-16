@@ -615,3 +615,7 @@ font-size: 103%;
   margin: 10px;
   text-align: center;
 }
+
+fieldset {
+  border: 0;
+}

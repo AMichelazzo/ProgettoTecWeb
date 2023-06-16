@@ -15,7 +15,7 @@ use DB\DBAccess;
 $connessione = new DBAccess();
 $replace = "";
 //SE HO CLICCATO PRODOTTI DA QUALSIASI PAGINA
-if (!isset($_GET["cat"])) { //check per login? oppure non serve perche ci puo entrare chiunque, o magari se hai fatto login ti mostra prima le categorie preferite? boh
+if (!isset($_GET["cat"])) {
     $result = $nome = $descrizione = "";
     $connessioneRiuscita = $connessione->openDBConnection();
     $result=$connessione->getCategories();

@@ -42,7 +42,7 @@ if(isset($_SESSION["username"]) && isset($_POST["old_password"])  && isset($_POS
             $_SESSION["error_generic2"]="<img id=\"errore_generico\" src=\"img/Xrossa.png\" alt=\"Errore nella modifica della password.\" height=\"15px\" width=\"15px\"/>";
         
         }
-        }
+    }
 
 echo $paginaHTML;
 
