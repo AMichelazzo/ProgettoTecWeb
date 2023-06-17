@@ -273,7 +273,7 @@ a:visited {
   border-radius: 0.5em 0.5em 0em 0em;
 }
 
-#login, #signup {
+#login, #signup, #cambio_pass {
   text-align: center;
 }
 

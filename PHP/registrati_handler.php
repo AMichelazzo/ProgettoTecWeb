@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once "class.php";
 session_start();
 if (isset($_SESSION["username"])) {
@@ -34,11 +36,16 @@ else
         if(!isset($result)&&!isset($result2)&&$okemail&&$okuser){
             if($_POST["pass_reg2"]==$_POST["pass_reg"] && strlen($_POST["pass_reg"])>=4 && strlen($_POST["pass_reg"])<=16){
                 $resultReg=Access::registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
-                header("Location: ../login.php");
+                if(isset($resultReg) && $resultReg){
+                    $_SESSION['reg_eff']='<div class="change-success" role="alert">Registazione avvenuta con successo.</div>';
+                    header("Location: ../login.php");
+                }
+                else{
+                    $_SESSION["genericError"]='<div id="msgchange" class="change-error" role="alert">Errore nella creazione dell\'account, riprova più tardi.</div>';
+                }
             }
             else{
                 $_SESSION["error_pass"]="<img id=\"passNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Le password non corrispondono\" height=\"15px\" width=\"15px\" role=\"alert\" />";
-                header("Location: ../registrazione.php");
             }
         }
         if(isset($result)){
@@ -50,7 +57,9 @@ else
             $_SESSION["error_email2"]="<img id=\"emailNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Email non disponibile.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
         }
     }
-    header("Location: ../registrazione.php");
+    if(isset($result) && isset($result2)&&!isset($resultReg)&&!($_POST["pass_reg2"]==$_POST["pass_reg"] && strlen($_POST["pass_reg"])>=4 && strlen($_POST["pass_reg"])<=16)){
+        header("Location: ../registrazione.php");
+    }
 }
 
 ?>

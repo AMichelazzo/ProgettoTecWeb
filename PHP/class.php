@@ -219,6 +219,8 @@ class Access
     }
 
     public static function getProductsOnWishlist($username) {
-        return DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
+        $result= DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
+        if (empty($result)) return null;
+            return $result;
     }
 }

@@ -13,7 +13,12 @@ $template .= file_get_contents('HTML/registrazione.html');
 $errUs = isset($_SESSION['error_user']) ? $_SESSION['error_user2'] : null;
 $errEm = isset($_SESSION['error_email']) ? $_SESSION['error_email2'] : null;
 $errPw = isset($_SESSION['error_pass']) ? $_SESSION['error_pass'] : null;
+$gen = isset($_SESSION["genericError"])? $_SESSION['genericError']:null;
 
+if (isset($gen)){
+    $template = str_replace('<div id="msgchange" role="alert"></div>', $gen, $template);
+    unset($_SESSION["genericError"]);
+}
 if (isset($errUs)){
     $template = str_replace("<!--user-->", $errUs, $template);
     $template = str_replace('name="username_reg" placeholder=""', 'name="username_reg" placeholder="'.$_SESSION['error_user'].'"', $template);

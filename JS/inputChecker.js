@@ -350,8 +350,12 @@ passw.blur = function() {
 }
 
 function abilitaSubmit(){
-if(ValidateEmail(emailInput.value)&&validateUserName(userInput.value)&&testIfRight(passw)&&validatePassword(passwordInput2.value,passwordInput1.value))
+    if(ValidateEmail(emailInput.value)&&validateUserName(userInput.value)&&testIfRight(passw)&&validatePassword(passwordInput2.value,passwordInput1.value))
     {
         document.getElementById("submit").disabled =false;
+    }
+    else
+    {
+        document.getElementById("submit").disabled =true;
     }
 }
