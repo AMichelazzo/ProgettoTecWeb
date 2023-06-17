@@ -71,7 +71,7 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     }
 
     if(isset($_POST["new_product"])) {              // pagina per la creazione di un nuovo prodotto
-        $paginaHTML = str_replace("Catalogo prodotti", "Aggiunta nuovo prodotto", $paginaHTML); 
+        $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $paginaHTML); 
         $Elenco_prod = Catalogo::show_newProduct();
     }
     // fine catalogo prodotti
@@ -85,7 +85,7 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     }
 
     if(isset($_POST["new_category"])) {             // pagina per la creazione di nuova categoria
-        $paginaHTML = str_replace("Catalogo prodotti", "Aggiunta nuova categoria", $paginaHTML); 
+        $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuova categoria", $paginaHTML); 
         $Elenco_prod = Catalogo::show_newCategory();
     }
 

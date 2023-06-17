@@ -11,7 +11,6 @@ $paginaHTML .= file_get_contents("HTML/contatti.html");
 $target = "<!--Elementi_Contatti-->";
 $target2 = "<!--Risposta_Messaggi-->";
 $Element_Contatti="";
-$Result_msg ="";
 $Id_prodotto = null;
 $Id_categoria = null;
 $result = null;
@@ -23,7 +22,7 @@ if(isset($_SESSION["username"])) // utente loggato
     $Element_Contatti .= "<div><p>Stai inviando questo messaggio come: " . $_SESSION["username"] . "</p></div>";
 else {
     $Element_Contatti .= "<div><label for=\"email\"><span lang=\"en\">Email:</span></label>" .  // utente non loggato
-    "<input type=\"text\" id=\"email\" name=\"email\"></div>";
+    "<input type=\"email\" id=\"email\" name=\"email\"></div>";
     }
 
 if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isset($_POST["categoria"]))
@@ -52,24 +51,30 @@ if(isset($_POST["submit_informazioni"]))
             
         if($okemail && $_POST["messaggio"] != "") 
             $result = Access::newMessage($email, $Id_prodotto, $Id_categoria, $_POST["messaggio"]);
+            
         
-        if($result && $okemail)
-            $Result_msg = "<div class=\"success-message\" role=\"alert\"><span class=\"sr-only\">Invio riuscito:</span>
-            Messaggio inviato correttamente</div>";
-        else if(!$okemail)
-            $Result_msg = "<div class=\"error-message\" role=\"alert\"><span class=\"sr-only\">Errore invio:</span>
-            <span lang =\"en\">Email</span> inserita non corretta. Riprova.</div>";
-        else
-            $Result_msg = "<div class=\"error-message\" role=\"alert\"><span class=\"sr-only\">Errore invio:</span>
-            Errore nell'invio del messaggio. Riprova.</div>";            
+        if($result && $okemail) {
+            $paginaHTML = str_replace("message_class", "success-message", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_sr-->", "Invio riuscito:", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_errors-->", "Messaggio inviato correttamente", $paginaHTML);
+        }
+        else if(!$okemail) {
+            $paginaHTML = str_replace("message_class", "error-message", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_sr-->", "Errore invio:", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_errors-->", "<span lang =\"en\">Email</span> inserita non corretta. Riprova.", $paginaHTML);
+        }
+        else {
+            $paginaHTML = str_replace("message_class", "error-message", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_sr-->", "Errore invio:", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_errors-->", "Errore nell'invio del messaggio. Riprova.", $paginaHTML);
+        }       
     }
-    else
-        $Result_msg = "<div class=\"error-message\" role=\"alert\"><span class=\"sr-only\">Errore invio:</span>
-        <span lang =\"en\">Email</span> non inserita. Riprova.</div>";
+    else {
+        $paginaHTML = str_replace("message_class", "error-message", $paginaHTML);
+        $paginaHTML = str_replace("<!--Contenuto_sr-->", "Errore invio:", $paginaHTML);
+        $paginaHTML = str_replace("<!--Contenuto_errors-->", "<span lang =\"en\">Email</span> non inserita. Riprova.", $paginaHTML);
+    }
 }
-
-if($Result_msg != "")
-    $paginaHTML = str_replace($target2, $Result_msg, $paginaHTML);
 
 $paginaHTML = str_replace($target, $Element_Contatti, $paginaHTML);
 echo $paginaHTML;

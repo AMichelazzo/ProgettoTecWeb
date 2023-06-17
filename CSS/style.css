@@ -287,16 +287,16 @@ a:visited {
 }
 
 .modifica {
-font-size: 103%;
-  color: white;
-  background-color: var(--bgfuncolor);
-  border-color: var(--bgfuncolor);
-  margin-left: 0.2em;
-  margin-right: 0.2em;
-  padding: 0.2em 0.5em 0.5em 0.5em;
-  border-radius: 12px 12px 12px 12px; /*ATTENZIONE VALORE ASSOLUTO*/
-  float: right;
-}
+  font-size: 103%;
+    color: white;
+    background-color: var(--bgfuncolor);
+    border-color: var(--bgfuncolor);
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    padding: 0.2em 0.5em 0.5em 0.5em;
+    border-radius: 0.5em 0.5em 0.5em 0.5em; 
+    float: right;
+  }
 
 /*CAROUSEL*/
     /* Slideshow container */
@@ -387,21 +387,27 @@ font-size: 103%;
 /*END CAROUSEL*/
 
 .error-message {
+  text-align: center;
+  border-radius: 12px; /*ATTENZIONE VALORE ASSOLUTO*/
+  margin-top: 3em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  position: inherit;
   background-color: #ffcccc;
-  color: #cc0000;
-  padding: 10px;
   border: 1px solid #cc0000;
-  border-radius: 4px;
-  margin-bottom: 10px;
 }
 
 .success-message {
-  background-color: #dbf8dd;
-  color: #00ff40;
-  padding: 10px;
-  border: 1px solid #00ff40;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 12px; /*ATTENZIONE VALORE ASSOLUTO*/
+  margin-top: 3em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  position: inherit;
+  background-color: #c2e0c6;
+  color: #276749;
 }
 
 
@@ -614,4 +620,20 @@ font-size: 103%;
   border-radius: 4px;
   margin: 10px;
   text-align: center;
+}
+
+#messaggi {
+    
+  width: 85%;
+  /*
+  -webkit-border-radius:2em;
+  -moz-border-radius:2em;
+  */
+  border-radius: 0.5em; 
+  padding: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
+  margin-left: auto;
+  margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
 }

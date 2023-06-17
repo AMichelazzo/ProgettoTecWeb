@@ -43,12 +43,12 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
                 if(!is_null($result[$i]["id_prodotto"]))  // se è presente un "id prodotto" nel risultato della query lo mostra con il rispettivo link
                     $ElencoMsg .= "<p class=\"inline\"> Prodotto:<a href=\"prodotto.php?prod=".$result[$i]['id_prodotto']."\">".$result[$i]['Nome']."</a></p>";
                 
-                $ElencoMsg .= "<p class=\"inline\"> Messaggio:" . $result[$i]["msg"] . "</p>";
+                $ElencoMsg .= "<p class=\"inline\"> Messaggio: " . $result[$i]["msg"] . "</p>";
 
                 if($result[$i]["letto"] == 1)
-                    $ElencoMsg .= "<p class=\"inline\"> Letto:Si</p></div>";
+                    $ElencoMsg .= "<p class=\"inline\"> Letto: Si</p></div>";
                 else    
-                    $ElencoMsg .= "<p class=\"inline\"> Letto:No</p></div>";
+                    $ElencoMsg .= "<p class=\"inline\"> Letto: No</p></div>";
             }
         }
         

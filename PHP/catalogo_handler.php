@@ -45,8 +45,20 @@ class Catalogo {
         $result .= "</select><div><label for=\"desc_prod\">Descrizione prodotto:</label></div>"
                 .  "<div><textarea id=\"desc_prod\" name=\"desc_prod\" rows=\"10\" cols=\"40\" maxlength=\"500\">" . $product[0]["Descrizione"]. "</textarea></div>"
                 . "<input type=\"submit\" class=\"invio\" id=\"annulla_modifica_prod\" name=\"annulla_modifica_prod\" value=\"Annulla modifiche\"/>"
-                . "<input type=\"submit\" class=\"invio\" id=\"submit_modifica_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></form>"; 
-
+                . "<input type=\"submit\" class=\"invio\" id=\"submit_modifica_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></form>"
+                . "<div class=\"slideshow-container\"><div class=\"position-container\">";
+        
+        for ($i = 0; $i < count($product); $i++) {
+            $result .= "<div class=\"mySlides fade\">
+            <img src=\"".$product[$i]["path"]."\" alt=\"".$product[$i]["alt_img"]."\" width=\"300\" height=\"300\"/></div>";
+        }
+    
+        $result .=  "<a class=\"prev\" onclick=\"plusSlides(-1)\">&#10094;</a>"
+                .  "<a class=\"next\" onclick=\"plusSlides(1)\">&#10095;</a></div></div>";
+            
+        /*$result .= "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">" .
+                "<div class=\"upload\"><input type=\"file\" name=\"immagini[]\" multiple><input type=\"submit\" class=\"invio\" name=\"upload_img\" value=\"Carica immagine per prodotto\"></form></div>";
+                */
         return $result;
     }
 
@@ -54,7 +66,7 @@ class Catalogo {
        
         $categories = Access::getCategories();
 
-        $result = "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">"
+        $result = "<form action=\"catalogo.php\" method=\"POST\">"
                 . "<div><label for=\"new_nome_prod\">Nome prodotto:</label></div>"
                 . "<div><input type=\"text\" id=\"nome_prod\" name=\"new_nome_prod\" value=\"\"/></div>"
                 . "<div><label for=\"new_category_id\">Categoria prodotto:</label></div>"
@@ -65,11 +77,9 @@ class Catalogo {
         
         $result .= "</select><div><label for=\"new_desc_prod\">Descrizione prodotto:</label></div>"
                 . "<div><textarea id=\"new_desc_prod\" name=\"new_desc_prod\" rows=\"10\" cols=\"40\" maxlength=\"500\"></textarea></div>"
-                . "<input type=\"submit\" class=\"invio\" id=\"annulla_new_cat\" name=\"annulla_new_prod\" value=\"Annulla creazione prodotto\"/>"
-                . "<input type=\"submit\" class=\"invio\" id=\"submit_new_cat\" name=\"submit_new_prod\" value=\"Conferma nuovo prodotto\"/>"; 
+                . "<div><input type=\"submit\" class=\"invio\" id=\"annulla_new_cat\" name=\"annulla_new_prod\" value=\"Annulla creazione prodotto\"/>"
+                . "<input type=\"submit\" class=\"invio\" id=\"submit_new_cat\" name=\"submit_new_prod\" value=\"Conferma nuovo prodotto\"/></div></form>"; 
 
-        $result .= "<div class=\"upload\"><input type=\"file\" name=\"immagini[]\" multiple><input type=\"submit\" class=\"invio\" name=\"upload\" value=\"Carica immagini prodotti\"></form></div>";
-   
         return $result;
     }
 
@@ -120,4 +130,7 @@ class Catalogo {
     }
 
 }
+
+if(isset($_POST["upload"]))
+    echo "ciao";
 ?>
