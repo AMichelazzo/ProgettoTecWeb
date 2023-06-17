@@ -1,6 +1,5 @@
 <?php
 require_once "class.php";
-use function DB\pulisciInput;
 session_start();
 if (isset($_SESSION["username"])) {
     if (isset($_SESSION["is_admin"]))
@@ -24,7 +23,7 @@ else
         }
         //REGEX username ha solo lettere e spazi
         $okuser=true;
-        if (!preg_match('/^[a-zA-Z0-9]{4,}$/', pulisciInput($_POST["username_reg"]))){
+        if (!preg_match('/^[a-zA-Z0-9]{4,}$/', $_POST["username_reg"])){
             $_SESSION["error_user"]=$_POST["username_reg"];
             $_SESSION["error_user2"]="<img id=\"usernameNOT_disponibile\" src=\"img/Xrossa.png\" alt=\"Errore nell'inserimento dello username.\" height=\"15px\" width=\"15px\" role=\"alert\" />";
             $okuser=false;

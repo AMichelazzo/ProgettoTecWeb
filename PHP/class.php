@@ -150,12 +150,15 @@ class Access
 
     public static function checkOldPassword($user, $old)
     {
-        return DBAccess::dbQuery("SELECT username FROM utente WHERE username = ? AND password = ?", $user, $old);
+        $result = DBAccess::dbQuery("SELECT `utente`.`password` FROM `utente` WHERE `username`= ?", $user);
+        return (isset($result) && $result !== false && $result !== null && password_verify($old, $result[0]['password']));
     }
     
     public static function ChangePassword($user, $old, $new)
     {
-        return DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ? AND password = ?", $new, $user, $old);
+        $password = password_hash($new, PASSWORD_DEFAULT);
+        (self::checkOldPassword($user,$old))? $result=DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ?", $password, $user): $result= false;
+        return $result;
     }
 
     public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $breadcrumb = null, $category = null)
@@ -195,11 +198,15 @@ class Access
     }
 
     public static function checkUsern($user) {
-        return DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
+        $result = DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
+        if (empty($result)) return null;
+        return $result;
     }
 
     public static function checkEmail($email) {
-        return DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
+        $result = DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
+        if (empty($result)) return null;
+        return $result;
     }
 
     public static function registraNuovoUtente($pass_reg,$username_reg,$email_reg) {
