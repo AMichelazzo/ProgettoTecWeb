@@ -423,7 +423,13 @@ font-size: 103%;
   width:15px;
   margin:0 auto;
 }
-#usernameNOT_disponibile, #emailNOT_disponibile, #passNOT_disponibile{
+#usernameNOT_disponibile, 
+#emailNOT_disponibile, 
+#passNOT_disponibile, 
+#errore_generico,
+#passNOT_combaciano,
+#passuguale,
+#old_passwordNOT_giusta{
   height:15px;
   width:15px;
   margin:0 auto;
@@ -611,6 +617,26 @@ font-size: 103%;
   color: #cc0000;
   padding: 10px;
   border: 1px solid #cc0000;
+  border-radius: 4px;
+  margin: 10px;
+  text-align: center;
+}
+
+.change-error{
+  background-color: #ffcccc;
+  color: #cc0000;
+  padding: 10px;
+  border: 1px solid #cc0000;
+  border-radius: 4px;
+  margin: 10px;
+  text-align: center;
+}
+
+.change-success {
+  background-color: #ccffcc;
+  color: #006600;
+  padding: 10px;
+  border: 1px solid #006600;
   border-radius: 4px;
   margin: 10px;
   text-align: center;
