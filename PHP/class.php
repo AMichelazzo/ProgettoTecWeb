@@ -160,7 +160,7 @@ class Access
         (self::checkOldPassword($user,$old))? $result=DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ?", $password, $user): $result= false;
         return $result;
     }
-    // nome della scheda, descrizione pagina, keywords pagina, username, ruolo, breadcrumb true per pagine a tempo di esecuzione, 
+
     public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
     {
         $pagina="";
@@ -181,11 +181,11 @@ class Access
         $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
         if ($uppercategory !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> <a href="">' . $uppercategory .'</a> >>' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> <a href="">' . $uppercategory .'</a> >>' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($category !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($title != "Prototipo") {
-            $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> ' . $title . '</p>';
         } else {
             $breadcrumb = '<p>Ti trovi in: <span lang="en">Home</span></p>';
         }
