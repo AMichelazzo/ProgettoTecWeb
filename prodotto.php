@@ -1,27 +1,27 @@
 <?php
 session_start();
 require_once "PHP/class.php";
-if (isset($_GET["prod"])) {
-    if (isset($_SESSION["username"])) {
-        $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], "Prodotto");
-    } else {
-    $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest", "Prodotto");
-    }
-}
-$template .= file_get_contents("HTML/prodotto.html");
 
-if (isset($_GET["prod"])) { 
+
+
+if (isset($_GET["prod"])) {
     
     $replace = $keywords ="";
     $result=Access::getProduct($_GET["prod"]);
     $result3=Access::getKeyWordsProdotto($_GET["prod"]);
-    if(count($result)>0){
+    if (count($result)>0) {
         $nome=$result[0]['Nome'];
         $desc=$result[0]['Descrizione'];
         $idprod=$result[0]['id_prodotto'];
         $idcat=$result[0]['id_categoria'];
         $isLogged="";
         $slideshow = "";
+        if (isset($_SESSION["username"])) {
+            $template=Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], $idcat, "Prodotti");
+        } else {
+        $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest", "Prodotto");
+        }
+        $template .= file_get_contents("HTML/prodotto.html");
         for ($i = 0; $i < count($result); $i++) {
             $slideshow .= "<div class=\"mySlides fade\">
             <img src=\"".$result[$i]["path"]."\" alt=\"".$result[$i]["alt_img"]."\" width=\"300\" height=\"300\"/></div>";
