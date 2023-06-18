@@ -27,7 +27,7 @@ class Catalogo {
 
     public static function show_modifyProduct($product_id) {  // viene mostrata la pagina di modifica di un prodotto
 
-        $product= Access::getProduct($_POST["product_id"]); 
+        $product= Access::getProduct($product_id); 
         $categories = Access::getCategories();
 
         $result = "<form action=\"catalogo.php\" method=\"POST\">"
@@ -35,30 +35,38 @@ class Catalogo {
                 . "<div><label for=\"nome_prod\">Nome prodotto:</label></div>" 
                 . "<div><input type=\"text\" id=\"nome_prod\" name=\"nome_prod\" value=\"" . $product[0]["Nome"] . "\"/></div>"
                 . "<div><label for=\"cat_prod\">Categoria prodotto:</label></div><select name=\"category_id\" id=\"categories\">"
-                . "<option value=\"" . $_POST["category_id"] . "\">" . Access::getCategoryName($_POST["category_id"]) . "</option>"; // mostra come selezionata la categoria del prodotto
+                . "<option value=\"" . $product[0]["id_categoria"] . "\">" . Access::getCategoryName($product[0]["id_categoria"] ) . "</option>"; // mostra come selezionata la categoria del prodotto
        
         for($i=0; $i<count($categories); $i++) { // creazione del menu a tendina delle varie categorie
-            if($categories[$i]["id_categoria"] != $_POST["category_id"]) 
+            if($categories[$i]["id_categoria"] != $product[0]["id_categoria"] ) 
                 $result .= "<option value=\"" . $categories[$i]["id_categoria"] . "\">" . $categories[$i]["Nome"] . "</option>";
         }   
         
         $result .= "</select><div><label for=\"desc_prod\">Descrizione prodotto:</label></div>"
                 .  "<div><textarea id=\"desc_prod\" name=\"desc_prod\" rows=\"10\" cols=\"40\" maxlength=\"500\">" . $product[0]["Descrizione"]. "</textarea></div>"
-                . "<input type=\"submit\" class=\"invio\" id=\"annulla_modifica_prod\" name=\"annulla_modifica_prod\" value=\"Annulla modifiche\"/>"
-                . "<input type=\"submit\" class=\"invio\" id=\"submit_modifica_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></form>"
-                . "<div class=\"slideshow-container\"><div class=\"position-container\">";
-        
-        for ($i = 0; $i < count($product); $i++) {
-            $result .= "<div class=\"mySlides fade\">
-            <img src=\"".$product[$i]["path"]."\" alt=\"".$product[$i]["alt_img"]."\" width=\"300\" height=\"300\"/></div>";
-        }
-    
-        $result .=  "<a class=\"prev\" onclick=\"plusSlides(-1)\">&#10094;</a>"
-                .  "<a class=\"next\" onclick=\"plusSlides(1)\">&#10095;</a></div></div>";
-            
-        /*$result .= "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">" .
-                "<div class=\"upload\"><input type=\"file\" name=\"immagini[]\" multiple><input type=\"submit\" class=\"invio\" name=\"upload_img\" value=\"Carica immagine per prodotto\"></form></div>";
-                */
+                . "<div><input type=\"submit\" class=\"invio\" id=\"annulla_modifica_prod\" name=\"annulla_modifica_prod\" value=\"Annulla modifiche\"/>"
+                . "<input type=\"submit\" class=\"invio\" id=\"submit_modifica_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></div>";
+
+        $result .= "<div id=\"img_products\"><legend>Aggiungi o elimina immagini del prodotto</legend>";
+
+        if($product[0]["path"] == null)
+            $result .= "<p>Non sono presenti immagini per questo prodotto.</p>";
+        else
+            for ($i = 0; $i < count($product); $i++) {
+                $result .= "<div class=\"images\">"
+                . "<img src=\"".$product[$i]["path"]."\" alt=\"".$product[$i]["alt_img"]."\" width=\"100\" height=\"100\"/></div>"
+                . "<input type=\"hidden\" name=\"path_img\" value=\"" . $product[$i]["path"] . "\"/>"
+                . "<input type=\"hidden\" name=\"product_id_img\" value=\"" . $product_id . "\"/>"
+                . "<input type=\"submit\" class=\"modifica\" id=\"elimina_img\" name=\"elimina_img\" value=\"Elimina\" /></form>";
+            }
+
+        $result .= "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">"
+                . "<label>Carica una o più immagini per il prodotto (jpg o jpeg). "
+                . "<input type=\"hidden\" name=\"product_id_img\" value=\"" . $product_id . "\"/>"
+                . "<input type=\"hidden\" name=\"category_id_img\" value=\"" . $product[0]["id_categoria"] . "\"/>"
+                . "<input type=\"file\" name=\"img[]\" multiple>"
+                . "<input type=\"submit\" class=\"modifica\" name=\"upload_img\" value=\"Carica\"></form>";
+        $result .= "</div>";
         return $result;
     }
 
@@ -129,8 +137,49 @@ class Catalogo {
                     . "<input type=\"submit\" class=\"invio\" id=\"submit_new_cat\" name=\"submit_new_cat\" value=\"Conferma nuova categoria\"/></form>"; 
     }
 
+    public static function uploadImg($id_prodotto, $id_categoria) {
+
+        if(/*$_FILES['img']['error'] == 0*/1) {
+
+            echo "ciao";
+
+            $countfiles = count($_FILES['img']['name']);
+            $response = 1;
+
+            for($i=0; $i<$countfiles; $i++) {
+                $filename = $_FILES['img']['name'][$i];
+
+                // Location
+                $location = "img/".$filename;
+                $extension = pathinfo($location,PATHINFO_EXTENSION);
+                $extension = strtolower($extension);
+
+                // Estensioni consentite
+                $valid_extensions = array("jpg","jpeg");
+
+                // upload dell'immagine
+                if(in_array(strtolower($extension), $valid_extensions))
+                    if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) {
+                        echo "ciao";
+                        Access::newImg($location, $id_prodotto, $id_categoria); // da aggiunger alt_img
+                    }
+                    else
+                       $response = 0;
+                }
+        
+            if($response)
+                return "Immagini caricate con successo";
+            else    
+                return "Errore nell'<span lang=\"en\">upload</span> dell'immagine";
+
+        }
+        else if($_FILES['img']['error'] == 4)
+            return "Non è stata selezionata nessuna immagine";
+        else
+            return "Errore nell'<span lang=\"en\">upload</span> dell'immagine";
+
+    }
 }
 
-if(isset($_POST["upload"]))
-    echo "ciao";
+
 ?>

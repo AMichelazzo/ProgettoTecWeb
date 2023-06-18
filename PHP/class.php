@@ -223,4 +223,15 @@ class Access
         if (empty($result)) return null;
             return $result;
     }
+
+    public static function deleteImg($path_img) 
+    {
+        unlink($path_img);
+        return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?",$path_img);
+    }
+
+    public static function newImg($location, $id_prodotto, $id_categoria) 
+    {
+        return DBAccess::dbQuery("INSERT INTO immagini(id_prodotto, id_categoria, `path`) VALUES (?,?,?)", $id_prodotto, $id_categoria, $location);
+    }
 }
