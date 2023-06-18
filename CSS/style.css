@@ -242,6 +242,14 @@ a:visited {
   font-size: 1.1em;
 }
 
+#breadcrumb a:link {
+  font-size: 1.1em;
+}
+
+#breadcrumb a:visited {
+  font-size: 1.1em;
+}
+
 #contenuto {
   width: 85%;
   /*
