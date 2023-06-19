@@ -57,9 +57,10 @@ class Access
     public static function deleteCategory($id_categoria)
     {
         return DBAccess::dbQuery("DELETE FROM categoria WHERE id_categoria = ?", $id_categoria);
+        // aggiungere catch exception per prodotti con quella categoria
     }
 
-    public static function getProductsbyCategory($id_categoria) //getProductListANDCheckCategory
+    public static function getProductsbyCategory($id_categoria)
     {
         return DBAccess::dbQuery("SELECT * FROM prodotti WHERE id_categoria = ?", $id_categoria);
     }

@@ -144,11 +144,13 @@ class Catalogo {
 
     public static function uploadImg($id_prodotto, $id_categoria) {
 
-        if(isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK ) {
+        if(isset($_FILES['img'])) {
+
+            //&& $_FILES['img']['error'] == UPLOAD_ERR_OK
 
             $countfiles = count($_FILES['img']['name']);
-            $maxsize = 200000;
-            $response = 1;
+            $maxsize = 2097152; // 2 MB (1 byte * 1024 * 1024 * 2)  
+            $response = 0;
 
             for($i=0; $i<$countfiles; $i++) {
 
@@ -156,7 +158,7 @@ class Catalogo {
                 $filesize = $_FILES['img']['size'][$i];
 
                 if($filesize > $maxsize) 
-                    return  ["error", "La dimensione dell'immagine è maggiore di 2MB"];
+                    return  ["error", "Errore caricamento immagine:", "La dimensione dell'immagine è maggiore di 2MB"];
 
                 // Location
                 $location = "img/".$filename;
@@ -167,26 +169,29 @@ class Catalogo {
                 $valid_extensions = array("jpg","jpeg");
 
                 // upload dell'immagine
-                if(in_array(strtolower($extension), $valid_extensions))
+                if(in_array(strtolower($extension), $valid_extensions)) {
                     if(file_exists($location))
-                        return ["error", "Immagine già presente"];
-                    else {
-                        if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) 
+                        return ["error", "Errore caricamento immagine:", "Immagine già presente"];
+                    else 
+                        if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) {
                             Access::newImg($location, $id_prodotto, $id_categoria); 
+                            $response = 1; 
+                        }
                         else
                             $response = 0;
                 }
-
+                else
+                    return ["error", "Errore caricamento immagine:", "Tipo dell'immagine errato (usare jpg o jpeg)"];
             }
         
             if($response)
-                return ["success", "Immagine caricata correttamente"];
+                return ["success", "Caricamento riuscito:", "Immagine caricata correttamente"];
             else    
-                return ["error", "Errore nel caricamento dell'immagine"];
+                return ["error", "Errore caricamento immagine:", "Errore nel caricamento dell'immagine"];
 
         }
         else
-            return  ["error", "Nessuna immagina è stata selezionata"];
+            return  ["error", "Errore caricamento immagine:", "Nessuna immagina è stata selezionata"];
     }
 
     public static function sendError($class, $sr, $text, $pagina) {

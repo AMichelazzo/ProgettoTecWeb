@@ -1,20 +1,25 @@
 <?php
 
 require_once "PHP/catalogo_handler.php";
+session_start();
+$user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
+$ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
+
 $paginaHTML ="";
 $Elenco_prod = "";
 $errors_prod = "";
 $target = "<!--Elementi_Catalogo-->";
 $errors = "<!--Errors-->";
 
-session_start();
-if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
+if($user && $ruolo == "admin") {
 
-    $paginaHTML = Access::getHeader("Catalogo", "Catalogo prodotti e categorie di prodotti","catalogo, prodotti, categorie", $_SESSION["username"], $_SESSION["ruolo"], "Catalogo");
+    $paginaHTML = Access::getHeader("Catalogo", "Catalogo prodotti e categorie di prodotti","catalogo, prodotti, categorie", $user,$ruolo);
     $paginaHTML .= file_get_contents("HTML/catalogo.html");
 
-    $Elenco_prod = Catalogo::show_allProducts(); // se nessun pulsante è stato premuto
+    // se nessun pulsante è stato premuto
+    $Elenco_prod = Catalogo::show_allProducts(); 
 
+    // chiamate alle varie funzioni di "catalogo_handler"
 
     // modifica del prodotto
     if(isset($_POST["submit_modifica_prod"])) {
@@ -57,6 +62,7 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     // eliminazione di un prodotto
     if(isset($_POST["elimina_prod"])) {     
         $result = Access::deleteProduct($_POST["product_id"]);
+        $Elenco_prod = Catalogo::show_allProducts();
 
         if($result)
             $paginaHTML = Catalogo::sendError("success", "Eliminazione prodotto riuscita", "Prodotto eliminato correttamente", $paginaHTML);
@@ -65,7 +71,6 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     }
 
 
-     
     // modifica di una categoria
     if(isset($_POST["submit_modifica_cat"])) {
         if(isset($_POST["nome_cat"], $_POST["desc_cat"]))  { 
@@ -94,6 +99,7 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     // eliminazione di una categoria
     if(isset($_POST["elimina_cat"])) {    
         $result = Access::deleteCategory($_POST["category_id"]);
+        
         if($result)
             $paginaHTML = Catalogo::sendError("success", "Eliminazione categoria riuscita", "Categoria eliminata correttamente", $paginaHTML);
         else
@@ -119,14 +125,12 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         $result = Catalogo::uploadImg($_POST["product_id_img"], $_POST["category_id_img"]);
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML); 
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
-        if($result)
-            $paginaHTML = Catalogo::sendError("success", "Caricamento dell'immagine riuscito", "Immagine caricata correttamente", $paginaHTML);
-        else
-            $paginaHTML = Catalogo::sendError("error", "Caricamento dell'immagine non riuscito", "Errore nel caricamento dell'immagine", $paginaHTML);
+
+        $paginaHTML = Catalogo::sendError($result[0], $result[1], $result[2], $paginaHTML);
     }
 
 
-    // Funzioni che prendono l'html da mostrare a video
+    // Funzioni che ritornano l'html da mostrare a video
     // inizio catalogo prodotti
 
     if(isset($_POST["modifica_prod"])) {            // funzione che mostra la pagina di modifica del prodotto selezionato
@@ -163,7 +167,7 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     $paginaHTML = str_replace($errors, $errors_prod, $paginaHTML);
     echo $paginaHTML;
 }
-else // utente non è admin
+else // utente non è admin o non loggato
     header("Location: prototipo.php");
 
 ?>

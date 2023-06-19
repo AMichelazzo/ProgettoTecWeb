@@ -4,12 +4,10 @@ session_start();
 $user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
 $ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
 
-$paginaHTML = Access::getHeader("Contatti -", "Pagina per richiedere informazioni generiche o informazioni su un prodotto specifico", "contatti, informazioni", 
-$user , $ruolo, "Contatti");
+$paginaHTML = Access::getHeader("Contatti", "Pagina per richiedere informazioni generiche o informazioni su un prodotto specifico", "contatti, informazioni", $user , $ruolo);
 
 $paginaHTML .= file_get_contents("HTML/contatti.html");
 $target = "<!--Elementi_Contatti-->";
-$target2 = "<!--Risposta_Messaggi-->";
 $Element_Contatti="";
 $Id_prodotto = null;
 $Id_categoria = null;
@@ -40,10 +38,10 @@ if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isse
 
 if(isset($_POST["submit_informazioni"])) 
 {
-    if((isset($_POST["email"]) && $_POST["email"] != null) || isset($_SESSION["username"]))
+    if((isset($_POST["email"]) && $_POST["email"] != null) || $ruolo)
     {  
-        if(isset($_SESSION["username"])) 
-            $email = Access::getUserEmail($_SESSION["username"]);
+        if($user)
+            $email = Access::getUserEmail($user);
         else if(isset($_POST["email"]) && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) 
             $okemail = false;
         else
