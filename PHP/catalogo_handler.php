@@ -54,9 +54,11 @@ class Catalogo {
         else
             for ($i = 0; $i < count($product); $i++) {
                 $result .= "<div class=\"images\">"
-                . "<img src=\"".$product[$i]["path"]."\" alt=\"".$product[$i]["alt_img"]."\" width=\"100\" height=\"100\"/></div>"
+                . "<img src=\"".$product[$i]["path"]."\" alt=\"". $product[$i]["alt_img"]."\" width=\"100\" height=\"100\"/></div>"
                 . "<input type=\"hidden\" name=\"path_img\" value=\"" . $product[$i]["path"] . "\"/>"
                 . "<input type=\"hidden\" name=\"product_id_img\" value=\"" . $product_id . "\"/>"
+                . "<div><label for=\"alt_img\">Alt immagine:</label></div>"
+                . "<input type=\"text\" id=\"alt_img\" name=\"alt_img\" placeholder=\"Inserisic alt per immagine\" value=\"" . $product[$i]["alt_img"] . "\"/></div>" 
                 . "<input type=\"submit\" class=\"modifica\" id=\"elimina_img\" name=\"elimina_img\" value=\"Elimina\" /></form>";
             }
 
@@ -139,15 +141,21 @@ class Catalogo {
 
     public static function uploadImg($id_prodotto, $id_categoria) {
 
-        if(/*$_FILES['img']['error'] == 0*/1) {
-
-            echo "ciao";
+        if(1) {
+        //if(isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
 
             $countfiles = count($_FILES['img']['name']);
+            $maxsize = 200000;
             $response = 1;
 
             for($i=0; $i<$countfiles; $i++) {
+
                 $filename = $_FILES['img']['name'][$i];
+                $filesize = $_FILES['img']['size'][$i];
+
+                
+                if($filesize > $maxsize)
+                    return "La dimensione dell'immagine è maggiore di 2MB";
 
                 // Location
                 $location = "img/".$filename;
@@ -159,13 +167,16 @@ class Catalogo {
 
                 // upload dell'immagine
                 if(in_array(strtolower($extension), $valid_extensions))
-                    if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) {
-                        echo "ciao";
-                        Access::newImg($location, $id_prodotto, $id_categoria); // da aggiunger alt_img
-                    }
-                    else
-                       $response = 0;
+                    if(file_exists($location))
+                        return "Immagine già presente";
+                    else {
+                        if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) 
+                            Access::newImg($location, $id_prodotto, $id_categoria); // da aggiunger alt_img
+                        else
+                            $response = 0;
                 }
+
+            }
         
             if($response)
                 return "Immagini caricate con successo";
@@ -173,11 +184,8 @@ class Catalogo {
                 return "Errore nell'<span lang=\"en\">upload</span> dell'immagine";
 
         }
-        else if($_FILES['img']['error'] == 4)
-            return "Non è stata selezionata nessuna immagine";
         else
-            return "Errore nell'<span lang=\"en\">upload</span> dell'immagine";
-
+            return "Non è stata selezionata nessuna immagine";
     }
 }
 
