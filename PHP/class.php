@@ -161,7 +161,7 @@ class Access
         return $result;
     }
 
-    public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $breadcrumb = null, $category = null)
+    public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
     {
         $pagina="";
         if ($ruolo == "utente") {
@@ -171,8 +171,40 @@ class Access
         } else {
             $pagina = file_get_contents("HTML/headerSemplice.html");
         }
-        
-        require_once "header.php";
+        // inserisce title
+        $pagina = str_replace('<title></title>', '<title>' . $title . ' - Véro</title>', $pagina);
+
+        // inserisce description
+        $pagina = str_replace('<meta name="description" content="" />', '<meta name="description" content="' . $description . '" />', $pagina);
+
+        // inserisce keywords
+        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
+
+        if ($uppercategory !== null) {
+            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> <a href="">' . $uppercategory .'</a> >>' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+        } elseif ($category !== null) {
+            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+        } elseif ($title != "Prototipo") {
+            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> ' . $title . '</p>';
+        } else {
+            $breadcrumb = '<p>Ti trovi in: <span lang="en">Home</span></p>';
+        }
+        $pagina = str_replace('<p>Ti trovi in: <span lang="en">Home</span></p>', $breadcrumb, $pagina);
+
+        // attiva il link corrente
+        switch ($title) {
+            case "Prototipo":
+                $pagina = str_replace('<li><a href="prototipo.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
+                break;
+    
+            case "Prodotti":
+                $pagina = str_replace('<li><a href="categorie.php">Prodotti</a></li>', '<li id="currentLink">Prodotti</li>', $pagina);
+                break;
+    
+            case "Contatti":
+                $pagina = str_replace('<li><a href="contatti.php">Contatti</a></li>', '<li id="currentLink">Contatti</li>', $pagina);
+                break;
+        }
         return $pagina;
     }
 

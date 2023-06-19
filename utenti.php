@@ -3,13 +3,15 @@ require_once "PHP/class.php";
 
 session_start();
 
-if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
+if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
+    //getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
+    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["username"], $_SESSION["ruolo"]);
+    $paginaHTML .= file_get_contents("HTML/utenti.html");
 
-    $paginaHTML = Access::getHeader("Utenti -", "Utenti registrati nel sito","utenti", $_SESSION["username"], $_SESSION["ruolo"], "Utenti");
-    $paginaHTML .= file_get_contents("HTML/utenti2.html");
-
-    if (isset($_POST["userId"], $_POST["delete"])) 
+    if (isset($_POST["userId"], $_POST["delete"])) {
         Access::deleteUtente($_POST["userId"]);
+    }
+        
 
     $utenti = "";
     $stringaUtenti = "";
@@ -47,8 +49,7 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     }
 
     echo str_replace("<utenti/>", $stringaUtenti, $paginaHTML);
-}
-else 
+} else {
     header("Location: prototipo.php");
-
+}
 ?>
