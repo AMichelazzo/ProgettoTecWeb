@@ -148,7 +148,7 @@ class Catalogo {
 
             $countfiles = count($_FILES['img']['name']);
             $maxsize = 200000;
-            $response = array();
+            $response = 1;
 
             for($i=0; $i<$countfiles; $i++) {
 
