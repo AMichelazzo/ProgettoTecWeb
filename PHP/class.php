@@ -262,8 +262,12 @@ class Access
         return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?",$path_img);
     }
 
-    public static function newImg($location, $id_prodotto, $id_categoria) 
+    public static function newImg($path, $id_prodotto, $id_categoria) 
     {
-        return DBAccess::dbQuery("INSERT INTO immagini(id_prodotto, id_categoria, `path`) VALUES (?,?,?)", $id_prodotto, $id_categoria, $location);
+        return DBAccess::dbQuery("INSERT INTO immagini(id_prodotto, id_categoria, `path`) VALUES (?,?,?)", $id_prodotto, $id_categoria, $path);
+    }
+
+    public static function update_altImg($alt, $path) {
+        return DBAccess::dbQuery("UPDATE immagini SET alt_img = ? WHERE `path` = ?", $alt, $path);
     }
 }

@@ -10,17 +10,22 @@ class Catalogo {
 
         $products = Access::getAllProducts();  
 
-        for($i=0; $i<count($products); $i++) {  // funzione per la creazione dell'inline
+        if(empty($products))
+            $result .= "<p>Non sono presenti prodotti</p>";
+        else
+        {
+            for($i=0; $i<count($products); $i++) {  // funzione per la creazione dell'inline
 
-            $result .= "<form action=\"catalogo.php\" method=\"POST\">"
-                    . "<p class=\"inline\"><input type=\"hidden\" name=\"product_id\" value=\"" . $products[$i]["id_prodotto"] . "\"/></p>"     // mi salvo l'id_prodotto
-                    . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $products[$i]["id_categoria"] . "\"/></p>";  // e l'id_categoria
+                $result .= "<form action=\"catalogo.php\" method=\"POST\">"
+                        . "<p class=\"inline\"><input type=\"hidden\" name=\"product_id\" value=\"" . $products[$i]["id_prodotto"] . "\"/></p>"     // mi salvo l'id_prodotto
+                        . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $products[$i]["id_categoria"] . "\"/></p>";  // e l'id_categoria
 
-            $result .= "<p class=\"inline\"> Nome prodotto: " . $products[$i]["Prod_Nome"] . " |</p>"    
-                    . "<p class=\"inline\"> Categoria: " . $products[$i]["Cat_Nome"] . "|</p>"
-                    . "<p class=\"inline\"> Descrizione: " . $products[$i]["Descrizione"] . "</p>"
-                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"elimina_prod\" name=\"elimina_prod\" value=\"Elimina\" /></p>"
-                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p></form>";
+                $result .= "<p class=\"inline\"> Nome prodotto: " . $products[$i]["Prod_Nome"] . " |</p>"    
+                        . "<p class=\"inline\"> Categoria: " . $products[$i]["Cat_Nome"] . "|</p>"
+                        . "<p class=\"inline\"> Descrizione: " . $products[$i]["Descrizione"] . "</p>"
+                        . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"elimina_prod\" name=\"elimina_prod\" value=\"Elimina\" /></p>"
+                        . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p></form>";
+        }
     }
     return $result;
 }
@@ -30,7 +35,7 @@ class Catalogo {
         $product= Access::getProduct($product_id); 
         $categories = Access::getCategories();
 
-        $result = "<form action=\"catalogo.php\" method=\"POST\">"
+        $result = "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">"
                 . "<div><input type=\"hidden\" name=\"prod_id\" value=\"" . $product_id . "\"/></div>"
                 . "<div><label for=\"nome_prod\">Nome prodotto:</label></div>" 
                 . "<div><input type=\"text\" id=\"nome_prod\" name=\"nome_prod\" value=\"" . $product[0]["Nome"] . "\"/></div>"
@@ -44,31 +49,29 @@ class Catalogo {
         
         $result .= "</select><div><label for=\"desc_prod\">Descrizione prodotto:</label></div>"
                 .  "<div><textarea id=\"desc_prod\" name=\"desc_prod\" rows=\"10\" cols=\"40\" maxlength=\"500\">" . $product[0]["Descrizione"]. "</textarea></div>"
-                . "<div><input type=\"submit\" class=\"invio\" id=\"annulla_modifica_prod\" name=\"annulla_modifica_prod\" value=\"Annulla modifiche\"/>"
-                . "<input type=\"submit\" class=\"invio\" id=\"submit_modifica_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></div>";
-
-        $result .= "<div id=\"img_products\"><legend>Aggiungi o elimina immagini del prodotto</legend>";
+                . "<div id=\"img_products\"><legend>Aggiungi o elimina immagini del prodotto</legend>";
 
         if($product[0]["path"] == null)
             $result .= "<p>Non sono presenti immagini per questo prodotto.</p>";
         else
             for ($i = 0; $i < count($product); $i++) {
                 $result .= "<div class=\"images\">"
+                . "<input type=\"checkbox\" name=\"check_img[]\" value=\"". $product[$i]["path"] . "\"/>"
                 . "<img src=\"".$product[$i]["path"]."\" alt=\"". $product[$i]["alt_img"]."\" width=\"100\" height=\"100\"/></div>"
-                . "<input type=\"hidden\" name=\"path_img\" value=\"" . $product[$i]["path"] . "\"/>"
-                . "<input type=\"hidden\" name=\"product_id_img\" value=\"" . $product_id . "\"/>"
+                . "<input type=\"hidden\" name=\"path_img[]\" value=\"" . $product[$i]["path"] . "\"/>"
                 . "<div><label for=\"alt_img\">Alt immagine:</label></div>"
-                . "<input type=\"text\" id=\"alt_img\" name=\"alt_img\" placeholder=\"Inserisic alt per immagine\" value=\"" . $product[$i]["alt_img"] . "\"/></div>" 
-                . "<input type=\"submit\" class=\"modifica\" id=\"elimina_img\" name=\"elimina_img\" value=\"Elimina\" /></form>";
+                . "<textarea id=\"alt_img\" name=\"alt_img[]\" rows=\"4\" cols=\"30\" placeholder=\"Inserisci alt per immagine\">" . $product[$i]["alt_img"] . "</textarea></div>";
             }
 
-        $result .= "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">"
-                . "<label>Carica una o più immagini per il prodotto (jpg o jpeg). "
+        $result .= "<label>Carica una o più immagini per il prodotto (jpg o jpeg). "
                 . "<input type=\"hidden\" name=\"product_id_img\" value=\"" . $product_id . "\"/>"
                 . "<input type=\"hidden\" name=\"category_id_img\" value=\"" . $product[0]["id_categoria"] . "\"/>"
                 . "<input type=\"file\" name=\"img[]\" multiple>"
-                . "<input type=\"submit\" class=\"modifica\" name=\"upload_img\" value=\"Carica\"></form>";
-        $result .= "</div>";
+                . "<input type=\"submit\" class=\"modifica\" name=\"upload_img\" value=\"Carica\"></div>"
+                . "<div><input type=\"submit\" class= \"invio\" id=\"elimina_img\" name=\"elimina_img\" value=\"Elimina immagini selezionate\"/>"
+                . "<div><input type=\"submit\" class=\"invio\" id=\"annulla_modifica_prod\" name=\"annulla_modifica_prod\" value=\"Annulla modifiche\"/>"
+                . "<input type=\"submit\" class=\"invio\" id=\"submit_modifica_prod\" name=\"submit_modifica_prod\" value=\"Conferma modifiche\"/></div></form>";
+        
         return $result;
     }
 
@@ -141,21 +144,19 @@ class Catalogo {
 
     public static function uploadImg($id_prodotto, $id_categoria) {
 
-        if(1) {
-        //if(isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
+        if(isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK ) {
 
             $countfiles = count($_FILES['img']['name']);
             $maxsize = 200000;
-            $response = 1;
+            $response = array();
 
             for($i=0; $i<$countfiles; $i++) {
 
                 $filename = $_FILES['img']['name'][$i];
                 $filesize = $_FILES['img']['size'][$i];
 
-                
-                if($filesize > $maxsize)
-                    return "La dimensione dell'immagine è maggiore di 2MB";
+                if($filesize > $maxsize) 
+                    return  ["error", "La dimensione dell'immagine è maggiore di 2MB"];
 
                 // Location
                 $location = "img/".$filename;
@@ -168,10 +169,10 @@ class Catalogo {
                 // upload dell'immagine
                 if(in_array(strtolower($extension), $valid_extensions))
                     if(file_exists($location))
-                        return "Immagine già presente";
+                        return ["error", "Immagine già presente"];
                     else {
                         if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) 
-                            Access::newImg($location, $id_prodotto, $id_categoria); // da aggiunger alt_img
+                            Access::newImg($location, $id_prodotto, $id_categoria); 
                         else
                             $response = 0;
                 }
@@ -179,14 +180,28 @@ class Catalogo {
             }
         
             if($response)
-                return "Immagini caricate con successo";
+                return ["success", "Immagine caricata correttamente"];
             else    
-                return "Errore nell'<span lang=\"en\">upload</span> dell'immagine";
+                return ["error", "Errore nel caricamento dell'immagine"];
 
         }
         else
-            return "Non è stata selezionata nessuna immagine";
+            return  ["error", "Nessuna immagina è stata selezionata"];
     }
+
+    public static function sendError($class, $sr, $text, $pagina) {
+
+        if($class == "success")
+            $pagina = str_replace("catalogo_class", "success-message", $pagina);
+        else
+            $pagina = str_replace("catalogo_class", "error-message", $pagina);
+
+        $pagina = str_replace("<!--Contenuto_sr-->", $sr, $pagina);
+        $pagina = str_replace("<!--Contenuto_errors-->", $text, $pagina);
+
+        return $pagina;
+    }
+       
 }
 
 
