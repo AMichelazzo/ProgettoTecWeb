@@ -8,11 +8,11 @@ if(isset($_SESSION["username"])) {
     if ($_SESSION["ruolo"] != "user")
         header("Location: prototipo.php");
 
-    $paginaHTML = Access::getHeader("Profilo -", "Profilo dell'utente","profilo, cambio password, eliminazione account", $_SESSION["username"], $_SESSION["ruolo"], "Profilo");
+    $paginaHTML = Access::getHeader("Profilo", "Profilo dell'utente","profilo, cambio password, eliminazione account", $_SESSION["username"], $_SESSION["ruolo"], "Profilo");
 }
-else
+else{
     header("Location: prototipo.php");
-
+}
 $paginaHTML .= file_get_contents("HTML/profilo.html");
 $result = "";
 
@@ -52,7 +52,7 @@ if(isset($_SESSION["username"]) && isset($_POST["old_password"])
         header("Location: profilo.php");
     }
 }
-    else{
+else{
     if(isset($_SESSION["changeExec"])&&$_SESSION["changeExec"])
     {
         $paginaHTML = str_replace('<div id="msgchange" role="alert"></div>', '<div id="msgchange" class="change-success" role="alert">Modifica avvenuta con successo.</div>', $paginaHTML);
@@ -120,5 +120,21 @@ if(isset($_SESSION["username"]) && isset($_POST["old_password"])
         }
     }
 }
+
+if(isset($_POST["elimina"]))
+{
+    $paginaHTML = str_replace('<form method="post" action="profilo.php"><input type="submit" id="submit" name="elimina" class="invio" value="Elimina Profilo" /><div id="msg_confirm" role="alert"></div></form>', '<form method="post" action="profilo.php"><div class="messaggio_elimina" role="alert">Sicuro di voler eliminare il profilo?</div><div id="msg_confirm" role="alert"><input type="submit" name="si" class="invio" value="Si" /><input type="submit" name="no" class="invio" value="No" /></div></form>', $paginaHTML);
+}
+if(isset($_POST["si"]))
+{
+    Access::deleteUtente($_SESSION["username"]);
+    $_SESSION["profiloeliminato"]=true;
+    header("Location: logout.php");
+}
+if(isset($_POST["no"]))
+{
+    header("Location: profilo.php");
+}
+
 echo $paginaHTML;
 ?>
