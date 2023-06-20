@@ -11,7 +11,7 @@ class Catalogo {
         $products = Access::getAllProducts();  
 
         if(empty($products))
-            $result .= "<p>Non sono presenti prodotti</p>";
+            $result .= "<h2>Non sono presenti prodotti</h2>";
         else
         {
             for($i=0; $i<count($products); $i++) {  // funzione per la creazione dell'inline
@@ -20,10 +20,10 @@ class Catalogo {
                         . "<p class=\"inline\"><input type=\"hidden\" name=\"product_id\" value=\"" . $products[$i]["id_prodotto"] . "\"/></p>"     // mi salvo l'id_prodotto
                         . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $products[$i]["id_categoria"] . "\"/></p>";  // e l'id_categoria
 
-                $result .= "<p class=\"inline\"> Nome prodotto: " . $products[$i]["Prod_Nome"] . " |</p>"    
+                $result .= "<p class=\"inline\"> Nome prodotto: " . $products[$i]["Prod_Nome"] . "|</p>"
                         . "<p class=\"inline\"> Categoria: " . $products[$i]["Cat_Nome"] . "|</p>"
                         . "<p class=\"inline\"> Descrizione: " . $products[$i]["Descrizione"] . "</p>"
-                        . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"elimina_prod\" name=\"elimina_prod\" value=\"Elimina\" /></p>"
+                        . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"elimina_prod\" name=\"elimina_prod\" value=\"Elimina\"/><div id=\"elimina_prod\" role=\"alert\"></div></p>"
                         . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p></form>";
         }
     }
@@ -57,7 +57,7 @@ class Catalogo {
             for ($i = 0; $i < count($product); $i++) {
                 $result .= "<div class=\"images\">"
                 . "<input type=\"checkbox\" name=\"check_img[]\" value=\"". $product[$i]["path"] . "\"/>"
-                . "<img src=\"".$product[$i]["path"]."\" alt=\"". $product[$i]["alt_img"]."\" width=\"100\" height=\"100\"/></div>"
+                . "<img src=\"".$product[$i]["path"]."\" alt=\"". $product[$i]["alt_img"]."\" width=\"100\" height=\"100\" maxlength=\"75\"/></div>"
                 . "<input type=\"hidden\" name=\"path_img[]\" value=\"" . $product[$i]["path"] . "\"/>"
                 . "<div><label for=\"alt_img\">Alt immagine:</label></div>"
                 . "<textarea id=\"alt_img\" name=\"alt_img[]\" rows=\"4\" cols=\"30\" placeholder=\"Inserisci alt per immagine\">" . $product[$i]["alt_img"] . "</textarea></div>";
@@ -90,6 +90,7 @@ class Catalogo {
         
         $result .= "</select><div><label for=\"new_desc_prod\">Descrizione prodotto:</label></div>"
                 . "<div><textarea id=\"new_desc_prod\" name=\"new_desc_prod\" rows=\"10\" cols=\"40\" maxlength=\"500\"></textarea></div>"
+                . "<div><p>E' possibile aggiungere immagini al prodotto modificandole successivamente.</p>"
                 . "<div><input type=\"submit\" class=\"invio\" id=\"annulla_new_cat\" name=\"annulla_new_prod\" value=\"Annulla creazione prodotto\"/>"
                 . "<input type=\"submit\" class=\"invio\" id=\"submit_new_cat\" name=\"submit_new_prod\" value=\"Conferma nuovo prodotto\"/></div></form>"; 
 
@@ -146,8 +147,6 @@ class Catalogo {
 
         if(isset($_FILES['img'])) {
 
-            //&& $_FILES['img']['error'] == UPLOAD_ERR_OK
-
             $countfiles = count($_FILES['img']['name']);
             $maxsize = 2097152; // 2 MB (1 byte * 1024 * 1024 * 2)  
             $response = 0;
@@ -171,7 +170,7 @@ class Catalogo {
                 // upload dell'immagine
                 if(in_array(strtolower($extension), $valid_extensions)) {
                     if(file_exists($location))
-                        return ["error", "Errore caricamento immagine:", "Immagine già presente"];
+                        return ["error", "Errore caricamento immagine:", "Immagine già presente in questo o in un altro prodotto"];
                     else 
                         if(move_uploaded_file($_FILES['img']['tmp_name'][$i], $location)) {
                             Access::newImg($location, $id_prodotto, $id_categoria); 
