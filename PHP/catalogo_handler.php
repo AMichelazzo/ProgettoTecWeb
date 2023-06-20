@@ -16,7 +16,7 @@ class Catalogo {
         {
             for($i=0; $i<count($products); $i++) {  // funzione per la creazione dell'inline
 
-                $result .= "<form action=\"catalogo.php\" method=\"POST\">"
+                $result .= "<form action=\"catalogo.php\" method=\"POST\" role=\"group\">"
                         . "<p class=\"inline\"><input type=\"hidden\" name=\"product_id\" value=\"" . $products[$i]["id_prodotto"] . "\"/></p>"     // mi salvo l'id_prodotto
                         . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $products[$i]["id_categoria"] . "\"/></p>";  // e l'id_categoria
 

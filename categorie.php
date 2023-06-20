@@ -10,16 +10,11 @@ else{
 
 $template .= file_get_contents('HTML/categorie.html');
 
-require_once "PHP/connessione.php";
-use DB\DBAccess;
-$connessione = new DBAccess();
 $replace = "";
 //SE HO CLICCATO PRODOTTI DA QUALSIASI PAGINA
 if (!isset($_GET["cat"])) {
     $result = $nome = $descrizione = "";
-    $connessioneRiuscita = $connessione->openDBConnection();
-    $result=$connessione->getCategories();
-    $connessione->closeConnection();
+    $result=Access::getCategories();
     $ElencoCateg="";
     for ($i = 0; $i < count($result); $i++) {
         $ElencoCateg=$ElencoCateg."<div><a href=\"categorie.php?cat=".$result[$i]['id_categoria']."\">".$result[$i]['Nome']."</a></div>
@@ -32,9 +27,7 @@ if (!isset($_GET["cat"])) {
 if (isset($_GET["cat"])) { 
 
     $result = $nome = $descrizione = "";
-    $connessioneRiuscita = $connessione->openDBConnection();
-    $result=$connessione->getProductListANDCheckCategory($_GET["cat"]);
-    $connessione->closeConnection();
+    $result=Access::getProductsbyCategory($_GET["cat"]);
     if(count($result)>0){
         $ElencoProdot="";
         for ($i = 0; $i < count($result); $i++) {
@@ -47,9 +40,7 @@ if (isset($_GET["cat"])) {
     }
     else{
         $result = $nome = $descrizione = "";
-        $connessioneRiuscita = $connessione->openDBConnection();
-        $result=$connessione->getCategories();
-        $connessione->closeConnection();
+        $result=Access::getCategories();
         $ElencoCateg="";
         for ($i = 0; $i < count($result); $i++) {
             $ElencoCateg=$ElencoCateg."<div><a href=\"categorie.php?cat=".$result[$i]['id_categoria']."\">".$result[$i]['Nome']."</a></div>

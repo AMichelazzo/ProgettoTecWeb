@@ -20,13 +20,13 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     if ($utenti !== false) {
         if (!empty($utenti)) {
             foreach ($utenti as $utente) {
-                $stringaUtenti .= '<div class="utenti">
+                $stringaUtenti .= '<div class="utenti" role="group">
                     <div class="flexutente">
                     <div><span lang="en">Username</span>: ' . $utente['username'] . ' </div>
                     <div><span lang="en">Email</span>: ' . $utente['email'] . ' </div>
                     <form action="utenti.php" method="post">
-                    <input type="hidden" id="userId" name="userId" value="' . $utente['username'] . '"/>
-                    <input type="submit" id="delete" name="delete" class="invio" value="Elimina"/>
+                    <input type="hidden" name="userId" value="' . $utente['username'] . '"/>
+                    <input type="submit" name="delete" class="invio" value="Elimina"/>
                     </form>
                 </div>
             </div>';
@@ -50,6 +50,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
     echo str_replace("<utenti/>", $stringaUtenti, $paginaHTML);
 } else {
-    header("Location: prototipo.php");
+    header("Location: index.php");
 }
 ?>

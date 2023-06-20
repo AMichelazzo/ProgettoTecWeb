@@ -6,12 +6,12 @@ session_start();
 
 if(isset($_SESSION["username"])) {
     if ($_SESSION["ruolo"] != "user")
-        header("Location: prototipo.php");
+        header("Location: index.php");
 
     $paginaHTML = Access::getHeader("Profilo", "Profilo dell'utente","profilo, cambio password, eliminazione account", $_SESSION["username"], $_SESSION["ruolo"], "Profilo");
 }
 else{
-    header("Location: prototipo.php");
+    header("Location: index.php");
 }
 $paginaHTML .= file_get_contents("HTML/profilo.html");
 $result = "";

@@ -182,11 +182,11 @@ class Access
         $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
         if ($uppercategory !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> <a href="">' . $uppercategory .'</a> >>' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> <a href="">' . $uppercategory .'</a> >>' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($category !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
-        } elseif ($title != "Prototipo") {
-            $breadcrumb = '<p>Ti trovi in: <a href="prototipo.php" lang="en">Home</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+        } elseif ($title != "index") {
+            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> ' . $title . '</p>';
         } else {
             $breadcrumb = '<p>Ti trovi in: <span lang="en">Home</span></p>';
         }
@@ -194,8 +194,8 @@ class Access
 
         // attiva il link corrente
         switch ($title) {
-            case "Prototipo":
-                $pagina = str_replace('<li><a href="prototipo.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
+            case "index":
+                $pagina = str_replace('<li><a href="index.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
                 break;
     
             case "Prodotti":

@@ -5,7 +5,7 @@ require_once "class.php";
 session_start();
 if (isset($_SESSION["username"])) {
     if (isset($_SESSION["is_admin"]))
-        header("Location: ../prototipo.php");
+        header("Location: ../index.php");
     else
         header("Location: ../index.php");
 }

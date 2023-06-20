@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="utf-8" />
-        <title>Vetrina articoli di Vetro</title>
-        <meta name="description" content="Vetrina di articoli di vetro come vasi, lampadari, specchi, bicchieri, e piccoli oggetti " /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
-        <meta name="keywords" content="vetro, vasi, lampadari, specchi, bicchieri" /> <!-- Aiuta a farsi trovare sui motori di ricerca-->
-        <meta name="author" content="Web Triplet (?) (Alberto Michelazzo)" />
+    <!-- pagina per capire/creare/provare le parti comuni del sito -->
+<head>
+    <meta charset="utf-8" />
+    <title>Nome negozio</title> <!-- DA SOSTITUIRE -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
 
-        <link rel="stylesheet" href="../CSS/style.css" media="handheld, screen"/>
-        <link rel="stylesheet" href="../CSS/mini.css" media="handheld, screen and (max-width:600px)"/>
-        <link rel="stylesheet" href="../CSS/print.css" media="print"/>
-        <link rel="shortcut icon" type="image/png" href="../img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
-    </head>
-    <body>
-         <header>
+    <link rel="stylesheet" href="CSS/style2.css"/>
+    <link rel="stylesheet" href="CSS/print.css" media="print"/>
+    <link rel="shortcut icon" type="image/png" href="img/chandelier.ico"/> <!-- DA SOSTITUIRE -->
+    <script src="JS/script.js"></script>
+</head>
+<body>
+    <header>
         <a class="noview" href="#iniziocontenuto">Passa al contenuto</a>
-        <!-- <nav id="menubar"><a href="areariservata.html">Area Riservata</a></nav> -->
-        <nav id="menubar" aria-labelledby="Menu funzionalità"> <!-- DA VERIFICARE -->
+
+        <!-- <nav id="menubar"><ul><li><a href="login.html">Login</a></li><li><a href="registrazione.html">Registrazione</a></li></ul></nav> -->
+
+        <div id="nomemenu">
+            <h1>Nome negozio</h1> <!-- logo? --> <!-- DA SOSTITUIRE -->
+            <input type="image" src="img/hamOn.png" id="hambutton" class="hambuttonoff" onclick="notHamb()" alt="Apri menù amministratore"> <!-- &#9776; -->
+            <!--<button type="button" id="hambutton" class="hambuttonoff" onclick="notHamb()">Apri menù amministratore</button>-->
+        </div>
+
+        <div id="box">
+        <nav id="menubar" aria-label="Opzioni amministratore" class="menubaroff"> <!-- DA VERIFICARE -->
             <ul>
-                <li><a href="../HTML/profilo.html">Profilo</a></li>
-                <li><a href="../utenti.php">Utenti</a></li>
-                <li><a href="../categorie.php">Catalogo</a></li>
-                <li><a href="../PHP/messaggi.php">Messaggi</a></li>
-                <li><a href="../prototipo.php">Esci</a></li>
+                <li><a href="HTML/profilo.html">Profilo</a></li>
+                <li><a href="HTML/utenti.html">Utenti</a></li>
+                <li id="currentLink" lang="en">Catalogo2</li>
+                <li><a href="categorie.php">Catalogo</a></li>
+                <li><a href="PHP/messaggi.php">Messaggi</a></li>
+                <li><a href="logout.php">Esci</a></li>
             </ul>
         </nav>
-            <img src="../img/logo_vetrina.svg" alt="Logo Vetrina" />
-            <h1>Vetrina Articoli di Vetro</h1>
-        </header>
-        <nav id="breadcrumb"aria-labelledby="Percorso pagina"> <!-- DA VERIFICARE -->
+ 
+        <nav id="menu" aria-label="Menù"> <!-- DA VERIFICARE, inoltre tenere conto della lingua -->
+            <ul>
+                <li id="currentLink" lang="en">Home</li>
+                <li><a href="categorie.php">Prodotti</a></li>
+                <li><a href="HTML/contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+
+        <nav id="breadcrumb" aria-label="Percorso pagina"> <!-- DA VERIFICARE -->
             <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
+        </div>
 
-        <nav id="menu">
-            <ul>
-                <li><span lang="en">Homepage</span></li>
-                <li><a href="../categorie.php">Prodotti</a></li>
-                <li><a href="../HTML/chi_siamo.html">Chi siamo</a></li>
-                <li><a href="../HTML/contatti.html">Contattaci</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            
-            <p>Negozio Fisico per un Maestro Vetraio di Murano.
-                Ogni prodotto visibile nel sito è un prodotto in vetrina di un “azienda/artista” e sarà possibile chiedere informazioni a riguardo.
-                La funzione della vetrina è di sola esposizione al pubblico e non di vendita diretta, nel caso si è interessati basti contattare per informazioni.
-
+    </header>
+    <!-- FINE PROTOTIPO -->
+    <main id="iniziocontenuto">
+        <div id="contenuto">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed felis ante. Proin ut ultricies tortor, interdum semper purus. Proin nulla dolor, porttitor non feugiat a, consequat at nulla. Suspendisse quis enim sit amet est placerat elementum ut vel risus. In consectetur purus eu felis gravida maximus. Nam et tempus ante. Morbi a dapibus libero, ac bibendum odio. Curabitur aliquam pulvinar tellus eget vulputate. Pellentesque nulla purus, mattis elementum sollicitudin in, laoreet in tellus. Phasellus molestie pellentesque arcu, quis fermentum turpis rutrum ac. Vestibulum lobortis enim a magna sodales, a ultricies orci venenatis. Quisque blandit dui sit amet erat pharetra varius. Pellentesque mollis lectus ut lectus commodo suscipit quis at est. Maecenas nec quam a velit laoreet sagittis. Mauris pellentesque aliquet nunc.
             </p>
-            
-            <p>Il negozio offre anche un servizio di personalizzazione.
+            <p>
+                Nam a consectetur lectus. Phasellus fermentum bibendum metus et molestie. Fusce quis diam vel dui consequat varius sollicitudin non ipsum. Praesent sollicitudin, odio sed molestie dictum, neque est consequat mi, quis auctor leo est at nisl. Mauris id justo eros. Phasellus pellentesque sem lectus, vel aliquet mauris maximus quis. Donec sed risus pulvinar, iaculis metus et, dapibus est. Sed sit amet diam quis sapien semper interdum.
             </p>
+            <p>
+                Quisque tristique dictum lectus, vel tempus elit pellentesque porta. In nulla tellus, congue at ligula eget, placerat faucibus lorem. Duis fringilla scelerisque blandit. Donec quam turpis, interdum non diam et, porta tincidunt justo. Mauris nec dui nunc. Aliquam elementum pulvinar ex nec gravida. Donec eget commodo odio, non varius odio.
+            </p>
+            <p>
+                Duis ullamcorper sit amet lorem a pharetra. Morbi non accumsan tellus, ut malesuada nibh. Ut nec tellus tortor. Fusce porta leo vel eros pulvinar facilisis. Etiam facilisis lectus at porttitor molestie. Fusce non mi nec augue viverra placerat eu a nunc. Aenean ac urna augue. Nam facilisis vel mauris eu mattis. Ut vel magna nisl. Nullam sit amet pretium nisl. Ut porttitor magna magna, sit amet dignissim mi dapibus nec. Duis posuere laoreet bibendum.
+            </p>
+            <p>
+                Nam rutrum fermentum velit eget sodales. Proin eu tellus turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer vitae efficitur enim, porttitor suscipit lectus. Proin porta ex et cursus luctus. Suspendisse tortor mi, porttitor ut consequat sed, placerat et quam. Nulla facilisi. Nullam at lorem in nulla tristique lacinia. Nunc auctor sem nisl, ac accumsan ligula tincidunt vitae. Pellentesque ullamcorper velit urna, vitae finibus lorem molestie at. Praesent suscipit elit vel tortor aliquam lacinia. Duis sem est, mollis vitae commodo ac, rutrum a sapien. Quisque vulputate, augue malesuada laoreet gravida, odio mauris rutrum leo, non tempus massa mauris non tortor. Nullam sit amet sapien lorem.
+            </p>
+        </div>
+        <div id="iniziopagina">
+            <a href="#">Inizio pagina</a>
+        </div>
+    </main>
+    <footer>
+        <div id = footer>
+                <p>
+             <span lang="en">Web Triplet - All Rights Reserved</span>
+          </p>
+        </div>
+    </footer>
+</body>
 
-
-        </main>
-        <footer id="footer">
-           <p>Web Triplet - <span lang="en">All Rights Reserved</span></p>
-        </footer>   
-    </body>
 </html>
-
-

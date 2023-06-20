@@ -4,7 +4,7 @@ session_start(); // ATTENZIONE ALLA BREADCRUMB
 
 require_once "PHP/class.php";
 
-$title = "Prototipo";
+$title = "index";
 $description = "Pagina di prova";
 $keywords = "Prova";
 
@@ -31,7 +31,7 @@ $pagina .= file_get_contents("HTML/contenuto.html");
 
 //$titolo = "TITOLO";
 
-//$pagina = file_get_contents("HTML/prototipo.html");
+//$pagina = file_get_contents("HTML/index.html");
 
 echo $pagina;
 ?>
