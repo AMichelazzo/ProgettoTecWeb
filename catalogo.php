@@ -98,12 +98,14 @@ if($user && $ruolo == "admin") {
 
     // eliminazione di una categoria
     if(isset($_POST["elimina_cat"])) {    
-        $result = Access::deleteCategory($_POST["category_id"]);
-        
-        if($result)
+
+        // controllo che non ci siano ancora prodotti con questa categoria
+        if(Access::getProductsbyCategory($_POST["category_id"]))  
+            $paginaHTML = Catalogo::sendError("error", "Eliminazione categoria non riuscita", "Errore nell'eliminazione della categoria, sono presenti prodotti con questa categoria", $paginaHTML);
+        else {
+            Access::deleteCategory($_POST["category_id"]);
             $paginaHTML = Catalogo::sendError("success", "Eliminazione categoria riuscita", "Categoria eliminata correttamente", $paginaHTML);
-        else
-            $paginaHTML = Catalogo::sendError("error", "Eliminazione categoria non riuscita", "Errore nell'eliminazione della categoria", $paginaHTML);
+        }   
     }
 
     // eliminazione di una o più immagini
