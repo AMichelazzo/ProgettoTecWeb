@@ -1,13 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 require_once "class.php";
 session_start();
 if (isset($_SESSION["username"])) {
-    if (isset($_SESSION["is_admin"]))
-        header("Location: ../index.php");
-    else
-        header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 else
 {

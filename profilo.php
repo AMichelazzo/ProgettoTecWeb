@@ -19,7 +19,6 @@ $result = "";
 if(isset($_SESSION["username"]) && isset($_POST["old_password"])  
 && isset($_POST["new_password"]) && isset($_POST["new_password_repeat"]) 
 && isset($_POST["cambia_password"]) && !isset($_SESSION["changeExec"])) {
-    echo "siamo sicuri che entra qui?</br>";
     $result = Access::checkOldPassword($_SESSION["username"], $_POST["old_password"]);
     if(isset($result) && $result){
         if( $_POST["new_password"]!=$_POST["old_password"]){
