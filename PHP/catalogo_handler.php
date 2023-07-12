@@ -148,7 +148,7 @@ class Catalogo {
         if(isset($_FILES['img'])) {
 
             $countfiles = count($_FILES['img']['name']);
-            $maxsize = 2097152; // 2 MB (1 byte * 1024 * 1024 * 2)  
+            $maxsize = 524288; // 512KB (1 byte * 1024 * 512)  
             $response = 0;
 
             for($i=0; $i<$countfiles; $i++) {

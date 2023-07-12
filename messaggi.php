@@ -57,5 +57,5 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         echo $paginaHTML;
 }
 else 
-    header("Location: prototipo.php");
+    header("Location: index.php");
 ?>
