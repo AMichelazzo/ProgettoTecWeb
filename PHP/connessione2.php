@@ -8,18 +8,15 @@ class DBAccess
     private const PASSWORD = "";
     private static $connection;
 
-    private static function startConnection()
-    {
-        try {
-            return new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
     public static function dbQuery($query, ...$parametri)
     {
-        $connection = self::startConnection();
+        $connection=null;
+        try {
+            $connection = new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
+        } catch (Exception $e) {
+            error500();
+            die;
+        }
         if ($connection === false) {return false;}
         
         $stmt = $connection->prepare($query);
@@ -64,8 +61,7 @@ class DBAccess
 function error500()
 {
     http_response_code(500);
-    echo file_get_contents("HTML/500.html");
-    exit();
+    header("Location: ".dirname(__FILE__,2) . DIRECTORY_SEPARATOR."500.php");
 }
 
 

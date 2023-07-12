@@ -170,6 +170,6 @@ if($user && $ruolo == "admin") {
     echo $paginaHTML;
 }
 else // utente non è admin o non loggato
-    header("Location: prototipo.php");
+    header("Location: index.php");
 
 ?>

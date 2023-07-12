@@ -1,4 +1,3 @@
 <?php
-$pagina = file_get_contents("HTML/500.html");
-echo $pagina;
+include("HTML/500.html");
 ?>

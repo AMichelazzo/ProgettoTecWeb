@@ -33,8 +33,8 @@ if ($breadcrumb !== null)   // tramite i nuovi get e la lang
 
 // attiva il link corrente
 switch ($title) {
-    case "Prototipo":
-        $pagina = str_replace('<li><a href="prototipo.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
+    case "index":
+        $pagina = str_replace('<li><a href="index.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
         break;
     
     case "Categorie":

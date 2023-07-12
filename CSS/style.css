@@ -252,10 +252,6 @@ a:visited {
 
 #contenuto {
   width: 85%;
-  /*
-  -webkit-border-radius:2em;
-  -moz-border-radius:2em;
-  */
   border-radius: 0.5em;
   padding: 2em;
   margin-top: 1em;
@@ -673,4 +669,17 @@ a:visited {
 
 fieldset {
   border: 0;
+}
+
+
+#elimina_utente {
+  width: 300px;
+  background-color: #ffcccc;
+  color: #cc0000;
+  padding: 20px;
+  border: 1px solid #cc0000;
+  border-radius: 12px;
+  margin: 10px;
+  text-align: center;
+  box-sizing: border-box;
 }

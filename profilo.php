@@ -6,12 +6,12 @@ session_start();
 
 if(isset($_SESSION["username"])) {
     if ($_SESSION["ruolo"] != "user")
-        header("Location: prototipo.php");
+        header("Location: index.php");
 
     $paginaHTML = Access::getHeader("Profilo", "Profilo dell'utente","profilo, cambio password, eliminazione account", $_SESSION["username"], $_SESSION["ruolo"], "Profilo");
 }
 else{
-    header("Location: prototipo.php");
+    header("Location: index.php");
 }
 $paginaHTML .= file_get_contents("HTML/profilo.html");
 $result = "";
@@ -19,7 +19,6 @@ $result = "";
 if(isset($_SESSION["username"]) && isset($_POST["old_password"])  
 && isset($_POST["new_password"]) && isset($_POST["new_password_repeat"]) 
 && isset($_POST["cambia_password"]) && !isset($_SESSION["changeExec"])) {
-    echo "siamo sicuri che entra qui?</br>";
     $result = Access::checkOldPassword($_SESSION["username"], $_POST["old_password"]);
     if(isset($result) && $result){
         if( $_POST["new_password"]!=$_POST["old_password"]){
