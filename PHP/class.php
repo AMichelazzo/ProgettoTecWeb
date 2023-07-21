@@ -165,7 +165,7 @@ class Access
     public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
     {
         $pagina="";
-        if ($ruolo == "utente") {
+        if ($ruolo == "user") {
             $pagina = file_get_contents("HTML/headerUtente.html");
         } elseif ($ruolo == "admin") {
             $pagina = file_get_contents("HTML/headerAmministratore.html");
