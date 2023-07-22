@@ -209,29 +209,28 @@ class Access
         return $pagina;
     }
 
-    public static function lang($stringa, $link = false)
+    public static function lang($str, $link = false) //link verrà eliminato
     {
-        $pattern = "/(\[.+?\])/";
-preg_match_all($pattern, $str, $match/*, PREG_OFFSET_CAPTURE*/);
-//print_r($match);
-$match = $match[0];
-$match = array_unique($match);
-print_r($match);
-$value = array();
-foreach($match as $n => $l) {
-	// se presenta \ mettere </span> altrimenti
-    $sub = $l;
-    $sub = str_replace('[', '', $sub);
-    $sub = str_replace(']', '', $sub);
-    $sub = str_replace($sub, '<span lang="' . strtolower($sub) . '">Ciao</span>', $sub);
-    print($sub);
-    array_push($value,$sub);
-}
-//print_r($match[0]);
-for($i = 0; $i < count($value); $i++) {
-	$str = str_replace($match[$i], $value[$i], $str);
-}
-echo $str;
+        $pattern = "#\[(.+?)\]#";
+        preg_match_all($pattern, $str, $match);
+        $match = $match[0];
+        $match = array_unique($match);
+        $value = array();
+        foreach($match as $n => $l) {
+            if(strpos($l,'\\')===false) {
+                $sub = $l;
+                $sub = str_replace('[', '', $sub);
+                $sub = str_replace(']', '', $sub);
+                $sub = str_replace($sub, '<span lang="' . strtolower($sub) . '">', $sub);
+                array_push($value,$sub);
+            } else {
+                array_push($value,'</span>');
+            }
+        }
+        for($i = 0; $i < count($value); $i++) {
+	        $str = str_replace($match[$i], $value[$i], $str);
+        }
+        return $str;
     }
 
     public static function getCategoryIdfromProduct($id_prodotto)
