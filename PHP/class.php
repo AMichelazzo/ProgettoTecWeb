@@ -211,64 +211,79 @@ class Access
 
     public static function lang($stringa, $link = false)
     {
-        preg_match('/(\{.+?\})/i', $stringa, $parentesi);
-        $language = $parentesi[1];
-        $language = str_replace('{', '', $language);
-        $language = str_replace('}', '', $language);
-        
-        if (!$link) {
-            $stringa = str_replace('{' . $language . '}', '<span lang="' . strtolower($language) . '">', $stringa);
-            $stringa = str_replace('{' . $language . '*}', '</span>', $stringa);
-        } else {
-            $stringa = str_replace('{' . $language . '}', '<a href="' . $link . '" lang="' . strtolower($language) . '">', $stringa);
-            $stringa = str_replace('{' . $language . '*}', '</a>', $stringa);
-        }
-        return $stringa;
+        $pattern = "/(\[.+?\])/";
+preg_match_all($pattern, $str, $match/*, PREG_OFFSET_CAPTURE*/);
+//print_r($match);
+$match = $match[0];
+$match = array_unique($match);
+print_r($match);
+$value = array();
+foreach($match as $n => $l) {
+	// se presenta \ mettere </span> altrimenti
+    $sub = $l;
+    $sub = str_replace('[', '', $sub);
+    $sub = str_replace(']', '', $sub);
+    $sub = str_replace($sub, '<span lang="' . strtolower($sub) . '">Ciao</span>', $sub);
+    print($sub);
+    array_push($value,$sub);
+}
+//print_r($match[0]);
+for($i = 0; $i < count($value); $i++) {
+	$str = str_replace($match[$i], $value[$i], $str);
+}
+echo $str;
     }
 
-    public static function getCategoryIdfromProduct($id_prodotto) {
+    public static function getCategoryIdfromProduct($id_prodotto)
+    {
         return DBAccess::dbQuery("SELECT id_categoria FROM prodotti WHERE id_prodotto = ?", $id_prodotto);
     }
 
-    public static function checkUsern($user) {
+    public static function checkUsern($user)
+    {
         $result = DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
         if (empty($result)) return null;
         return $result;
     }
 
-    public static function checkEmail($email) {
+    public static function checkEmail($email)
+    {
         $result = DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
         if (empty($result)) return null;
         return $result;
     }
 
-    public static function registraNuovoUtente($pass_reg,$username_reg,$email_reg) {
+    public static function registraNuovoUtente($pass_reg,$username_reg,$email_reg)
+    {
         $password = password_hash($pass_reg, PASSWORD_DEFAULT);
         return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES (?, ?, ?, 'user', current_timestamp())", $username_reg, $password, $email_reg);
     }
 
-    public static function getKeyWordsProdotto($id_prodott) {
+    public static function getKeyWordsProdotto($id_prodott)
+    {
         return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `prodotto` = ?", $id_prodott);
     }
 
-    public static function getProductsOnWishlist($username) {
+    public static function getProductsOnWishlist($username)
+    {
         $result= DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
         if (empty($result)) return null;
             return $result;
     }
 
-    public static function deleteImg($path_img) 
+    public static function deleteImg($path_img)
     {
         unlink($path_img);
         return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?",$path_img);
     }
 
-    public static function newImg($path, $id_prodotto, $id_categoria) 
+    public static function newImg($path, $id_prodotto, $id_categoria)
     {
         return DBAccess::dbQuery("INSERT INTO immagini(id_prodotto, id_categoria, `path`) VALUES (?,?,?)", $id_prodotto, $id_categoria, $path);
     }
 
-    public static function update_altImg($alt, $path) {
+    public static function update_altImg($alt, $path)
+    {
         return DBAccess::dbQuery("UPDATE immagini SET alt_img = ? WHERE `path` = ?", $alt, $path);
     }
 }
