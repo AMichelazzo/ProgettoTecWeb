@@ -3,6 +3,7 @@
 require_once "PHP/class.php";
 $target="Elementi_Messaggi";
 $ElencoMsg="";
+$controllo = 0;
 session_start();
 
 if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
@@ -20,23 +21,49 @@ if(isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     }
 
     if(isset($_POST["submit_elimina"])) {  // funzione che elimina i messaggi selezionati 
+        
+        $paginaHTML = str_replace('<div><input type="submit" class="invio" name="submit_elimina" value="Elimina messaggi selezionati" /></div>
+        <div id="msg_confirm" role="alert"></div>', '<form method="post" action="messaggi.php"><div class="messaggio_elimina" role="alert">Sicuro di voler eliminare i messaggi?</div><div id="msg_confirm" role="alert"><input type="submit" name="si" class="invio" value="Si" /><input type="submit" name="no" class="invio" value="No" /></div></form>', $paginaHTML);
+    
+    }
+        
+    if(isset($_POST["si"])) {
+
         $msg_checked = $_POST['form_msg'];
         if(!empty($msg_checked))  {
             for($i=0; $i < count($msg_checked); $i++) {
                 Access::delete_Message($msg_checked[$i]);
             }
         }
+        header("Location: messaggi.php");
     }
+
+    if(isset($_POST["no"]))
+    {
+        header("Location: messaggi.php");
+    }        
+
         $result=Access::getMessages();
 
         if(count($result) == 0)
             $ElencoMsg = "<div><h3>Non sono presenti messaggi da parte di utenti</h3></div>";
         else {
+            if(isset($_POST['form_msg'])) {
+                $msg_checked = $_POST['form_msg'];
+                $controllo = 1;
+            }
+            else
+                $msg_checked = '';
+
             for($i=0; $i<count($result); $i++) {  // funzione per la creazione dell'inline
 
-                $ElencoMsg .= "<div id=\"messaggi\"><p class=\"inline\"><input type=\"checkbox\" name=\"form_msg[]\" value=" . $result[$i]["id_messaggio"] .
-                "\"/></p>";
+                $ElencoMsg .= '<div id="messaggi"><p class="inline"><input type="checkbox" name="form_msg[]" value="' . $result[$i]["id_messaggio"] . '"';
 
+                if($controllo)  // controllo se qualche checkbox era stata selezionata
+                    if($msg_checked[$i] == $result[$i]["id_messaggio"])
+                        $ElencoMsg .= 'checked = "checked"';
+                
+                $ElencoMsg .=  '/></p>';
                 $ElencoMsg .= "<p class=\"inline\"> Email: " . $result[$i]["email"] . "</p>";
                 $ElencoMsg .= "<p class=\"inline\"> Data: " . $result[$i]["data"] . "</p>";
 

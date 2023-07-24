@@ -25,19 +25,26 @@ else {
 
 if(isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isset($_POST["categoria"]))
 {
-    $Id_prod = $_POST["product_id"];
+    $Id_prodotto = $_POST["product_id"];
     $Id_categoria = $_POST["categoria"];
+
     $Nome_prodotto = Access::getProductName($_POST["product_id"], $_POST["categoria"]);
 
     if(!is_null($Nome_prodotto)) {
-        $Element_Contatti .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"/>
-        <input type=\"hidden\" class=\"categoria\" name=\"categoria_contatti\" id=\"categ_id\"/>";
+        $Element_Contatti .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"" . "value=\"" . $Id_prodotto . "\">"  
+        . "<input type=\"hidden\" class=\"categoria\" name=\"categoria_contatti\" id=\"categ_id\"" . "value=\"" . $Id_categoria . "\">"; 
         $Element_Contatti .= "<div><label>Prodotto su cui si vuole informazioni: " . $Nome_prodotto . "</label></div>";
     }
 }
 
 if(isset($_POST["submit_informazioni"])) 
 {
+    if(isset($_POST["product-id_contatti"]))
+        $Id_prodotto = $_POST["product-id_contatti"];
+
+    if(isset($_POST["categoria_contatti"]))
+        $Id_categoria = $_POST["categoria_contatti"];
+
     if((isset($_POST["email"]) && $_POST["email"] != null) || $ruolo)
     {  
         if($user)
@@ -50,7 +57,6 @@ if(isset($_POST["submit_informazioni"]))
         if($okemail && $_POST["messaggio"] != "") 
             $result = Access::newMessage($email, $Id_prodotto, $Id_categoria, $_POST["messaggio"]);
             
-        
         if($result && $okemail) {
             $paginaHTML = str_replace("message_class", "success-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Invio riuscito:", $paginaHTML);
