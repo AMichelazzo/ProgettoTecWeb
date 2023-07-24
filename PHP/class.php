@@ -162,7 +162,7 @@ class Access
         return $result;
     }
 
-    public static function getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
+    public static function getHeader($title, $description, $keywords, $ruolo = null, $category = null, $linkcategory = null, $uppercategory = null, $linkuppercategory = null)
     {
         $pagina="";
         if ($ruolo == "user") {
@@ -182,11 +182,11 @@ class Access
         $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
         if ($uppercategory !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> <a href="">' . $uppercategory .'</a> >>' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in 1: <a href="index.php" lang="en">Home</a> >> <a href="' . $linkuppercategory . '">' . $uppercategory .'</a> >>' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($category !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in 2: <a href="index.php" lang="en">Home</a> >> ' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($title != "index") {
-            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in 3: <a href="index.php" lang="en">Home</a> >> ' . $title . '</p>';
         } else {
             $breadcrumb = '<p>Ti trovi in: <span lang="en">Home</span></p>';
         }
@@ -206,7 +206,8 @@ class Access
                 $pagina = str_replace('<li><a href="contatti.php">Contatti</a></li>', '<li id="currentLink">Contatti</li>', $pagina);
                 break;
         }
-        return $pagina;
+        $pagina2 = Access::lang($pagina);
+        return $pagina2;
     }
 
     public static function lang($str, $link = false) //link verrà eliminato

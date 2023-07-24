@@ -8,7 +8,7 @@ if(isset($_SESSION["username"])) {
     if ($_SESSION["ruolo"] != "user")
         header("Location: index.php");
 
-    $paginaHTML = Access::getHeader("Profilo", "Profilo dell'utente","profilo, cambio password, eliminazione account", $_SESSION["username"], $_SESSION["ruolo"], "Profilo");
+    $paginaHTML = Access::getHeader("Profilo", "Profilo dell'utente","profilo, cambio password, eliminazione account", $_SESSION["ruolo"]);
 }
 else{
     header("Location: index.php");

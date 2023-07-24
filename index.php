@@ -9,7 +9,7 @@ $description = "Pagina di prova";
 $keywords = "Prova";
 
 if (isset($_SESSION["username"])) {
-    $pagina = Access::getHeader($title, $description, $keywords, $_SESSION["username"], $_SESSION["ruolo"]);
+    $pagina = Access::getHeader($title, $description, $keywords, $_SESSION["ruolo"]);
 } else {
     $pagina = Access::getHeader($title, $description, $keywords);
 }
