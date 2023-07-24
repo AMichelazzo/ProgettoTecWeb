@@ -17,9 +17,9 @@ if (isset($_GET["prod"])) {
         $isLogged="";
         $slideshow = "";
         if (isset($_SESSION["username"])) {
-            $template=Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], $idcat, "Prodotti");
+            $template=Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["ruolo"], Access::getCategoryName($idcat), "categorie.php?cat=".$idcat, "Prodotti", "categorie.php");
         } else {
-        $template=Access::getHeader("Prodotto", "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", "guest", "guest", "Prodotto");
+        $template=Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", null, Access::getCategoryName($idcat), "categorie.php?cat=".$idcat, "Prodotti", "categorie.php");
         }
         $template .= file_get_contents("HTML/prodotto.html");
         for ($i = 0; $i < count($result); $i++) {

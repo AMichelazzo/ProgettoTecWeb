@@ -1,18 +1,19 @@
 <?php
 session_start();
 require_once "PHP/class.php";
-if (isset($_SESSION["username"])) {
-    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["username"], $_SESSION["ruolo"], "Categorie");
-}
-else{
-    $template=Access::getHeader("Categorie", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista");
-}
-
-$template .= file_get_contents('HTML/categorie.html');
 
 $replace = "";
 //SE HO CLICCATO PRODOTTI DA QUALSIASI PAGINA
 if (!isset($_GET["cat"])) {
+
+    if (isset($_SESSION["username"])) {
+        $template=Access::getHeader("Prodotti", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["ruolo"]);
+    }
+    else{
+        $template=Access::getHeader("Prodotti", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista");
+    }
+    $template .= file_get_contents('HTML/categorie.html');
+
     $result = $nome = $descrizione = "";
     $result = Access::getCategories();
     $ElencoCateg="";
@@ -22,10 +23,20 @@ if (!isset($_GET["cat"])) {
     }
     $replace = array("<!--categories_place_holder -->" =>$ElencoCateg);
 }
+
 //SE HO SELEZIONATO UNA CATEGORIA
 if (isset($_GET["cat"])){
     $result = $nome = $descrizione = "";
     $result=Access::getProductsbyCategory($_GET["cat"]);
+    
+    if (isset($_SESSION["username"])) {
+        $template=Access::getHeader(Access::getCategoryName($_GET["cat"]), "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["ruolo"], "Prodotti", "categorie.php");
+    }
+    else{
+        $template=Access::getHeader(Access::getCategoryName($_GET["cat"]), "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", null, "Prodotti", "categorie.php");
+    }
+    $template .= file_get_contents('HTML/categorie.html');
+
     if(!empty($result)){
         $ElencoProdot="";
         for ($i = 0; $i < count($result); $i++) {

@@ -4,7 +4,7 @@ session_start();
 $user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
 $ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
 
-$paginaHTML = Access::getHeader("Contatti", "Pagina per richiedere informazioni generiche o informazioni su un prodotto specifico", "contatti, informazioni", $user , $ruolo);
+$paginaHTML = Access::getHeader("Contatti", "Pagina per richiedere informazioni generiche o informazioni su un prodotto specifico", "contatti, informazioni", $ruolo);
 
 $paginaHTML .= file_get_contents("HTML/contatti.html");
 $target = "<!--Elementi_Contatti-->";
