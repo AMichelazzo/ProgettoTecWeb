@@ -1,11 +1,10 @@
 <?php
 session_start();
-$eliminazione=isset($_SESSION["profiloeliminato"]);
+$eliminazione = isset($_SESSION["profiloeliminato"]);
 session_destroy();
-if (isset($eliminazione) ){
+if (isset($eliminazione)) {
     header("Location: index.php?elim=true");
-}
-else{
+} else {
     header("Location: index.php");
 }
 ?>

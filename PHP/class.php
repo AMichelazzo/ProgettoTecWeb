@@ -90,7 +90,7 @@ class Access
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
 
-   public static function getProductName($id_prodotto, $id_categoria)
+    public static function getProductName($id_prodotto, $id_categoria)
     {
         $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM prodotti WHERE prodotti.id_prodotto = ? AND prodotti.id_categoria = ?", $id_prodotto, $id_categoria);
         if ($result !== false && $result !== null) {
@@ -119,30 +119,33 @@ class Access
 
     public static function delete_Message($id_messaggio)
     {
-        return DBAccess::dbQuery("DELETE FROM messaggi WHERE id_messaggio = ?",$id_messaggio);
+        return DBAccess::dbQuery("DELETE FROM messaggi WHERE id_messaggio = ?", $id_messaggio);
     }
 
-    public static function addtoWishList($id_prodotto,$id_categoria,$username)
+    public static function addtoWishList($id_prodotto, $id_categoria, $username)
     {
         return DBAccess::dbQuery("INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES (?,?,?)", $username, $id_prodotto, $id_categoria);
     }
 
-    public static function removeFromWishList($id_prodotto,$id_categoria,$username)
+    public static function removeFromWishList($id_prodotto, $id_categoria, $username)
     {
         return DBAccess::dbQuery("DELETE FROM wishlist WHERE `wishlist`.`username` = ? AND `wishlist`.`id_prodotto` = ? AND `wishlist`.`id_categoria`=?", $username, $id_prodotto, $id_categoria);
     }
- 
-    public static function isInWishList($idprod,$idcat,$user) // ritorna true se vero, ritorna null se falso, ritorna false se errore
+
+    public static function isInWishList($idprod, $idcat, $user) // ritorna true se vero, ritorna null se falso, ritorna false se errore
     {
         return DBAccess::dbQuery("SELECT * FROM `wishlist` WHERE `username`=? AND `id_prodotto`=? AND `id_categoria`=?", $user, $idprod, $idcat);
         // su connessione ritornava isset(row) CONTROLLARE SE FUNZIONA
     }
-    
-    public static function checkLogin($user, $pass) {
+
+    public static function checkLogin($user, $pass)
+    {
         $result = DBAccess::dbQuery("SELECT * FROM `utente` WHERE `username`= ?", $user);
         if ($result !== false && $result !== null && password_verify($pass, $result[0]['password'])) {
-            $result = array("username" => $result[0]['username'],
-            "ruolo" => $result[0]['ruolo']);
+            $result = array(
+                "username" => $result[0]['username'],
+                "ruolo" => $result[0]['ruolo']
+            );
         } else {
             $result = null; // per avere lo stesso comportamento di connessione
         }
@@ -154,17 +157,17 @@ class Access
         $result = DBAccess::dbQuery("SELECT `utente`.`password` FROM `utente` WHERE `username`= ?", $user);
         return (isset($result) && $result !== false && $result !== null && password_verify($old, $result[0]['password']));
     }
-    
+
     public static function ChangePassword($user, $old, $new)
     {
         $password = password_hash($new, PASSWORD_DEFAULT);
-        (self::checkOldPassword($user,$old))? $result=DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ?", $password, $user): $result= false;
+        (self::checkOldPassword($user, $old)) ? $result = DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ?", $password, $user) : $result = false;
         return $result;
     }
 
     public static function getHeader($title, $description, $keywords, $ruolo = null, $category = null, $linkcategory = null, $uppercategory = null, $linkuppercategory = null)
     {
-        $pagina="";
+        $pagina = "";
         if ($ruolo == "user") {
             $pagina = file_get_contents("HTML/headerUtente.html");
         } elseif ($ruolo == "admin") {
@@ -182,7 +185,7 @@ class Access
         $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
 
         if ($uppercategory !== null) {
-            $breadcrumb = '<p>Ti trovi in 1: <a href="index.php" lang="en">Home</a> >> <a href="' . $linkuppercategory . '">' . $uppercategory .'</a> >>' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in 1: <a href="index.php" lang="en">Home</a> >> <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> >>' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($category !== null) {
             $breadcrumb = '<p>Ti trovi in 2: <a href="index.php" lang="en">Home</a> >> ' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($title != "index") {
@@ -197,11 +200,11 @@ class Access
             case "index":
                 $pagina = str_replace('<li><a href="index.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
                 break;
-    
+
             case "Prodotti":
                 $pagina = str_replace('<li><a href="categorie.php">Prodotti</a></li>', '<li id="currentLink">Prodotti</li>', $pagina);
                 break;
-    
+
             case "Contatti":
                 $pagina = str_replace('<li><a href="contatti.php">Contatti</a></li>', '<li id="currentLink">Contatti</li>', $pagina);
                 break;
@@ -217,19 +220,19 @@ class Access
         $match = $match[0];
         $match = array_unique($match);
         $value = array();
-        foreach($match as $n => $l) {
-            if(strpos($l,'\\')===false) {
+        foreach ($match as $n => $l) {
+            if (strpos($l, '\\') === false) {
                 $sub = $l;
                 $sub = str_replace('[', '', $sub);
                 $sub = str_replace(']', '', $sub);
                 $sub = str_replace($sub, '<span lang="' . strtolower($sub) . '">', $sub);
-                array_push($value,$sub);
+                array_push($value, $sub);
             } else {
-                array_push($value,'</span>');
+                array_push($value, '</span>');
             }
         }
-        for($i = 0; $i < count($value); $i++) {
-	        $str = str_replace($match[$i], $value[$i], $str);
+        for ($i = 0; $i < count($value); $i++) {
+            $str = str_replace($match[$i], $value[$i], $str);
         }
         return $str;
     }
@@ -242,18 +245,20 @@ class Access
     public static function checkUsern($user)
     {
         $result = DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
-        if (empty($result)) return null;
+        if (empty($result))
+            return null;
         return $result;
     }
 
     public static function checkEmail($email)
     {
         $result = DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
-        if (empty($result)) return null;
+        if (empty($result))
+            return null;
         return $result;
     }
 
-    public static function registraNuovoUtente($pass_reg,$username_reg,$email_reg)
+    public static function registraNuovoUtente($pass_reg, $username_reg, $email_reg)
     {
         $password = password_hash($pass_reg, PASSWORD_DEFAULT);
         return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES (?, ?, ?, 'user', current_timestamp())", $username_reg, $password, $email_reg);
@@ -266,15 +271,16 @@ class Access
 
     public static function getProductsOnWishlist($username)
     {
-        $result= DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
-        if (empty($result)) return null;
-            return $result;
+        $result = DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
+        if (empty($result))
+            return null;
+        return $result;
     }
 
     public static function deleteImg($path_img)
     {
         unlink($path_img);
-        return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?",$path_img);
+        return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?", $path_img);
     }
 
     public static function newImg($path, $id_prodotto, $id_categoria)

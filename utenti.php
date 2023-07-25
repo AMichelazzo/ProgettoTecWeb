@@ -11,7 +11,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     if (isset($_POST["userId"], $_POST["delete"])) {
         Access::deleteUtente($_POST["userId"]);
     }
-        
+
 
     $utenti = "";
     $stringaUtenti = "";
@@ -33,7 +33,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             }
         } else {
             $stringaUtenti =
-            '<div class="utenti">
+                '<div class="utenti">
                 <div class="flexutente">
                     Nessun utente è presente nel sistema.
                 </div>

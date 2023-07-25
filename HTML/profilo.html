@@ -1,42 +1,60 @@
 <main>
-        <div id="contenuto">
-            <div id="cambio_pass">
-                <form method="post" action="profilo.php">
-                    <fieldset>
-                        <legend><h2>Cambio <span lang="en">password</span></h2></legend>
-                        <div id="msgchange" role="alert"></div>
-                        <div><label for="old_password" lang="en">Vecchia <span lang="en">password</span>: </label></div>
-                        <div><span><input type="password" id="old_password" name="old_password"/></span><img id="oldPW" src="" alt=""  height="15px" width="15px"/><!--generico--><!--oldnew--><!--old--></div>
+    <div id="contenuto">
+        <div id="cambio_pass">
+            <form method="post" action="profilo.php">
+                <fieldset>
+                    <legend>
+                        <h2>Cambio <span lang="en">password</span></h2>
+                    </legend>
+                    <div id="msgchange" role="alert"></div>
+                    <div><label for="old_password" lang="en">Vecchia <span lang="en">password</span>: </label></div>
+                    <div><span><input type="password" id="old_password" name="old_password" /></span><img id="oldPW"
+                            src="" alt="" height="15px" width="15px" /><!--generico--><!--oldnew--><!--old--></div>
 
-                        <div><label for="new_password" lang="en">Nuova <span lang="en">password</span>: </label></div>
-                        <div><span><input type="password" id="new_password" name="new_password"/></span><img id="newPW" src="" alt=""  height="15px" width="15px"/><!--nonCorrisp--></div>
+                    <div><label for="new_password" lang="en">Nuova <span lang="en">password</span>: </label></div>
+                    <div><span><input type="password" id="new_password" name="new_password" /></span><img id="newPW"
+                            src="" alt="" height="15px" width="15px" /><!--nonCorrisp--></div>
 
-                        <div><label for="new_password_repeat">Ripeti nuova <span lang="en">password</span>: </label></div>
-                        <div><input type="password" id="new_password_repeat" name="new_password_repeat"/><img id="newPW2" src="" alt=""  height="15px" width="15px"/></div>
-                        <div id="message" role="alert">
-                            <ul><h3>La password deve contenere almeno:</h3>
-                                <li id="minusc" >Una lettera <em>minuscola</em><img class="invalid" id="lowecase" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></li>
-                                <li id="maiusc" >Una lettera <em>MAIUSCOLA</em><img class="invalid" id="uppercase" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></li>
-                                <li id="numeri" >Un <em>numero</em><img class="invalid" id="number" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></li>
-                                <li id="lunghezza" >Un minimo di <em>4 caratteri</em>, massimo di <em>16 caratteri</em><img class="invalid" id="lenght" src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" /></li>
-                            </ul>
-                        </div>
-                        <div><input type="submit" id="submit" name="cambia_password" class="invio" value="Cambia password" /></div>
-                    </fieldset>
-                </form>
-            </div>
-            <div id="elimina_utente">
-                <form method="post" action="profilo.php"><input type="submit" id="submit" name="elimina" class="invio" value="Elimina Profilo" /><div id="msg_confirm" role="alert"></div></form>
-            </div>
+                    <div><label for="new_password_repeat">Ripeti nuova <span lang="en">password</span>: </label></div>
+                    <div><input type="password" id="new_password_repeat" name="new_password_repeat" /><img id="newPW2"
+                            src="" alt="" height="15px" width="15px" /></div>
+                    <div id="message" role="alert">
+                        <ul>
+                            <h3>La password deve contenere almeno:</h3>
+                            <li id="minusc">Una lettera <em>minuscola</em><img class="invalid" id="lowecase"
+                                    src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" />
+                            </li>
+                            <li id="maiusc">Una lettera <em>MAIUSCOLA</em><img class="invalid" id="uppercase"
+                                    src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" />
+                            </li>
+                            <li id="numeri">Un <em>numero</em><img class="invalid" id="number" src="img/Xrossa.png"
+                                    alt="Errore nell'inserimento." width="15px" height="15px" /></li>
+                            <li id="lunghezza">Un minimo di <em>4 caratteri</em>, massimo di <em>16 caratteri</em><img
+                                    class="invalid" id="lenght" src="img/Xrossa.png" alt="Errore nell'inserimento."
+                                    width="15px" height="15px" /></li>
+                        </ul>
+                    </div>
+                    <div><input type="submit" id="submit" name="cambia_password" class="invio"
+                            value="Cambia password" /></div>
+                </fieldset>
+            </form>
         </div>
-    </main>
-    <footer>
-        <div id = footer>
-          <p>
-             <span lang="en"></span>Web Triplet - All Rights Reserved</span>
-          </p>
+        <div id="elimina_utente">
+            <form method="post" action="profilo.php"><input type="submit" id="submit" name="elimina" class="invio"
+                    value="Elimina Profilo" />
+                <div id="msg_confirm" role="alert"></div>
+            </form>
         </div>
-    </footer>
+    </div>
+</main>
+<footer>
+    <div id=footer>
+        <p>
+            <span lang="en"></span>Web Triplet - All Rights Reserved</span>
+        </p>
+    </div>
+</footer>
 </body>
 <script src="JS/profilo.js"></script>
+
 </html>
