@@ -299,7 +299,6 @@ a:visited {
     margin-right: 0.2em;
     padding: 0.2em 0.5em 0.5em 0.5em;
     border-radius: 0.5em 0.5em 0.5em 0.5em; 
-    float: right;
   }
 
 /*CAROUSEL*/
@@ -647,6 +646,15 @@ a:visited {
   margin-left: auto;
   margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
 }
+
+#msg_ltto { 
+  background-color: #006600;
+}
+
+#msg_non_letto {
+  background-color: #cc0000;
+}
+
 .change-error{
   background-color: #ffcccc;
   color: #cc0000;

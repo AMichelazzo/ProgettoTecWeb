@@ -10,12 +10,19 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     $paginaHTML = Access::getHeader("Messaggi", "Messaggi inviati da utenti registrati e non", "messaggi, informazioni", $_SESSION["username"], $_SESSION["ruolo"]);
     $paginaHTML .= file_get_contents("HTML/messaggi.html");
 
-    if (isset($_POST['form_msg'])) { // funzione che segna come letti i messaggi selezionati
-        $msg_checked = $_POST['form_msg'];
+    if(isset($_POST["submit_letti"])) { // funzione che segna come letti i messaggi selezionati
+        echo "dentro alla funzione";
+        if (isset($_POST['form_msg']))
+            $msg_checked = $_POST['form_msg'];
+
         if (!empty($msg_checked)) {
-            for ($i = 0; $i < count($msg_checked); $i++) {
+            for ($i = 0; $i < count($msg_checked); $i++)
                 Access::Message_Read($msg_checked[$i]);
-            }
+
+            echo "dentro alla funzione";
+            $paginaHTML = str_replace("msg_class", "success-message", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_sr-->", "Successo: ", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_errors-->", "Messaggi segnati come letti", $paginaHTML);
         } else {
             $paginaHTML = str_replace("msg_class", "error-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Eliminazione non riuscita: ", $paginaHTML);
@@ -23,8 +30,8 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         }
     }
 
-    if (isset($_POST["si_elimina"])) {
-
+    if(isset($_POST["si_elimina"])) {
+        echo "dentro qui";
         if (isset($_POST['form_msg']))
             $msg_checked = $_POST['form_msg'];
 
@@ -43,7 +50,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         }
     }
 
-    if (isset($_POST["no_elimina"])) {
+    if(isset($_POST["no_elimina"])) {
         header("Location: messaggi.php");
     }
 
@@ -54,9 +61,16 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     else {
         for ($i = 0; $i < count($result); $i++) { // funzione per la creazione dell'inline
 
-            $ElencoMsg .= '<div id="messaggi"><p class="inline"><input type="checkbox" name="form_msg[]" value="' . $result[$i]["id_messaggio"] . '"/></p>'
+            $ElencoMsg .= '<div id="messaggi" class="';
+            if($result[$i]["letto"] == 1)
+                $ElencoMsg .="msg_letto";
+            else
+                $ElencoMsg .="msg_non_letto";
+                
+            $ElencoMsg .= '"><p class="inline"><input type="checkbox" name="form_msg[]" value="' 
+                . $result[$i]["id_messaggio"] . '"/></p>'
                 . "<p class=\"inline\"> Email: " . $result[$i]["email"] . "</p>"
-                . "<p class=\"inline\"> Data: " . $result[$i]["data"] . "</p>";
+                . "<p class=\"inline\"> Data invio: " . $result[$i]["data"] . "</p>";
 
             if (!is_null($result[$i]["id_prodotto"])) // se è presente un "id prodotto" nel risultato della query lo mostra con il rispettivo link
                 $ElencoMsg .= "<p class=\"inline\"> Prodotto: <a href=\"prodotto.php?prod=" . $result[$i]['id_prodotto'] . "\">" . $result[$i]['Nome'] . "</a></p>";

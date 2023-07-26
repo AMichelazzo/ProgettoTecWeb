@@ -24,8 +24,11 @@ class Catalogo
                 $result .= "<p class=\"inline\"> Nome prodotto: " . $products[$i]["Prod_Nome"] . "|</p>"
                     . "<p class=\"inline\"> Categoria: " . $products[$i]["Cat_Nome"] . "|</p>"
                     . "<p class=\"inline\"> Descrizione: " . $products[$i]["Descrizione"] . "</p>"
-                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"elimina_prod\" name=\"elimina_prod\" value=\"Elimina\"/><div id=\"elimina_prod\" role=\"alert\"></div></p>"
-                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p></form>";
+                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p>"
+                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"submit_elimina\" name=\"elimina_prod\" onclick=\"confermaEliminazione();\" value=\"Elimina\"/></p>"
+                    . '<div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler cancellare il prodotto?</p></div>'
+                    . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"no_elimina\" name=\"annulla_elimina_prod\" value=\"No\"/>"
+                    . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"si_elimina\" name=\"conferma_elimina_prod\" value=\"Si\"/></form>";
             }
         }
         return $result;
@@ -114,8 +117,11 @@ class Catalogo
                 . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $categories[$i]["id_categoria"] . "\"/></p>" // mi salvo l'id_categoria
                 . "<p class=\"inline\"> Nome: " . $categories[$i]["Nome"] . " |</p>"
                 . "<p class=\"inline\"> Descrizione: " . $categories[$i]["Descrizione"] . ".</p>"
-                . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"elimina_cat\" name=\"elimina_cat\" value=\"Elimina\" /></p>"
-                . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_cat\" name=\"modifica_cat\" value=\"Modifica\" /></form></p>";
+                . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_cat\" name=\"modifica_cat\" value=\"Modifica\" /></p>"
+                . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"submit_elimina\" name=\"elimina_cat\" onclick=\"confermaEliminazione();\" value=\"Elimina\"/></p>"
+                . '<div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler cancellare la categoria?</p></div>'
+                . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"no_elimina\" name=\"annulla_elimina_cat\" value=\"No\"/>"
+                . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"si_elimina\" name=\"conferma_elimina_cat\" value=\"Si\"/></form>";
         }
 
         return $result;
