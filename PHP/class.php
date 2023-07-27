@@ -27,7 +27,14 @@ class Access
 
     public static function getCategories()
     {
-        return DBAccess::dbQuery("SELECT * FROM categoria");
+        return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, c.img_path
+                                    FROM categoria c
+                                    WHERE EXISTS (
+                                        SELECT *
+                                        FROM prodotti p
+                                        WHERE c.id_categoria = p.id_categoria
+                                    );
+                                    ");
     }
 
     public static function getCategory($id_categoria)

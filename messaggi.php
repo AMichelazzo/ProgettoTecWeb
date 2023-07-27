@@ -28,9 +28,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Eliminazione non riuscita: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Non hai selezionato nessun messaggio!", $paginaHTML);
         }
-    }
-
-    if(isset($_POST["si_elimina"])) {
+    }elseif(isset($_POST["si_elimina"])) {
         echo "dentro qui";
         if (isset($_POST['form_msg']))
             $msg_checked = $_POST['form_msg'];

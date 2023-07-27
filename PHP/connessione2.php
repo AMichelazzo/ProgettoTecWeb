@@ -61,7 +61,9 @@ class DBAccess
 function error500()
 {
     http_response_code(500);
-    header("Location: ".dirname(__FILE__,2) . DIRECTORY_SEPARATOR."500.php");
+    $relative_path = dirname(__FILE__,2) . DIRECTORY_SEPARATOR."HTML".DIRECTORY_SEPARATOR."500.html";
+    echo file_get_contents($relative_path);
+    die();
 }
 
 
