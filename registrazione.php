@@ -5,7 +5,7 @@ if (isset($_SESSION["username"])) {
     header("Location: index.php");
 }
 else{
-    $template=Access::getHeader("Registrati", "Registra un nuovo account.", "registrati, signup, accedi, login, crea account, username, email", "guest", "guest", "Registrati");
+    $template=Access::getHeader("Registrati", "Registra un nuovo account.", "registrati, signup, accedi, login, crea account, username, email");
 }
 $template=str_replace('<div id="riservata"><a href="login.php">Area Riservata</a></div>',"",$template);
 $template .= file_get_contents('HTML/registrazione.html');
