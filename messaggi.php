@@ -11,25 +11,24 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     $paginaHTML .= file_get_contents("HTML/messaggi.html");
 
     if(isset($_POST["submit_letti"])) { // funzione che segna come letti i messaggi selezionati
-        echo "dentro alla funzione";
+        echo "dentro qui";
         if (isset($_POST['form_msg']))
             $msg_checked = $_POST['form_msg'];
 
         if (!empty($msg_checked)) {
+
             for ($i = 0; $i < count($msg_checked); $i++)
                 Access::Message_Read($msg_checked[$i]);
-
-            echo "dentro alla funzione";
+            echo "dentro qui qui";
             $paginaHTML = str_replace("msg_class", "success-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Successo: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Messaggi segnati come letti", $paginaHTML);
         } else {
             $paginaHTML = str_replace("msg_class", "error-message", $paginaHTML);
-            $paginaHTML = str_replace("<!--Contenuto_sr-->", "Eliminazione non riuscita: ", $paginaHTML);
+            $paginaHTML = str_replace("<!--Contenuto_sr-->", "Errore: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Non hai selezionato nessun messaggio!", $paginaHTML);
         }
     }elseif(isset($_POST["si_elimina"])) {
-        echo "dentro qui";
         if (isset($_POST['form_msg']))
             $msg_checked = $_POST['form_msg'];
 
@@ -79,7 +78,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
                 $ElencoMsg .= "<p class=\"inline\"> Letto: Si</p></div>";
             else
                 $ElencoMsg .= "<p class=\"inline\"> Letto: No</p></div>";
-        }
+            }
     }
 
     $paginaHTML = str_replace($target, $ElencoMsg, $paginaHTML);
