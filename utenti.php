@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     //getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
-    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["username"], $_SESSION["ruolo"]);
+    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["ruolo"]);
     $paginaHTML .= file_get_contents("HTML/utenti.html");
 
     if (isset($_POST["userId"], $_POST["delete"])) {

@@ -11,7 +11,7 @@ $target = "<!--Elementi_Catalogo-->";
 
 if ($user && $ruolo == "admin") {
 
-    $paginaHTML = Access::getHeader("Catalogo", "Catalogo prodotti e categorie di prodotti", "catalogo, prodotti, categorie", $user, $ruolo);
+    $paginaHTML = Access::getHeader("Catalogo", "Catalogo prodotti e categorie di prodotti", "catalogo, prodotti, categorie", $ruolo);
     $paginaHTML .= file_get_contents("HTML/catalogo.html");
 
     // se nessun pulsante è stato premuto

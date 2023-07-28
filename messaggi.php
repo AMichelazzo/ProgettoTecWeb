@@ -7,7 +7,7 @@ session_start();
 
 if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
-    $paginaHTML = Access::getHeader("Messaggi", "Messaggi inviati da utenti registrati e non", "messaggi, informazioni", $_SESSION["username"], $_SESSION["ruolo"]);
+    $paginaHTML = Access::getHeader("Messaggi", "Messaggi inviati da utenti registrati e non", "messaggi, informazioni", $_SESSION["ruolo"]);
     $paginaHTML .= file_get_contents("HTML/messaggi.html");
 
     if(isset($_POST["submit_letti"])) { // funzione che segna come letti i messaggi selezionati
