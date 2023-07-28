@@ -4,8 +4,7 @@ require_once "PHP/class.php";
 session_start();
 
 if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
-    //getHeader($title, $description, $keywords, $username = null, $ruolo = null, $category = null, $uppercategory = null)
-    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["username"], $_SESSION["ruolo"]);
+    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["ruolo"]);
     $paginaHTML .= file_get_contents("HTML/utenti.html");
 
     if (isset($_POST["userId"], $_POST["delete"])) {
@@ -25,8 +24,8 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
                     <div><span lang="en">Username</span>: ' . $utente['username'] . ' </div>
                     <div><span lang="en">Email</span>: ' . $utente['email'] . ' </div>
                     <form action="utenti.php" method="post">
-                    <input type="hidden" name="userId" value="' . $utente['username'] . '"/>
-                    <input type="submit" name="delete" class="invio" value="Elimina"/>
+                    <input type="hidden" id="id' . $utente['username'] . '"name="userId" value="' . $utente['username'] . '"/>
+                    <input type="submit" id="delete'. $utente['username'] .'"name="delete" class="invio" value="Elimina"/>
                     </form>
                 </div>
             </div>';
@@ -48,7 +47,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             </div>';
     }
 
-    echo str_replace("<utenti/>", $stringaUtenti, $paginaHTML);
+    echo str_replace("<utenti />", $stringaUtenti, $paginaHTML);
 } else {
     header("Location: index.php");
 }
