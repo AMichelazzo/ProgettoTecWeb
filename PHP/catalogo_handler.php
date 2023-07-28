@@ -38,7 +38,7 @@ class Catalogo
     { // viene mostrata la pagina di modifica di un prodotto
 
         $product = Access::getProduct($product_id);
-        $categories = Access::getCategories();
+        $categories = Access::getAllCategories();
 
         $result = "<form action=\"catalogo.php\" method=\"POST\" enctype=\"multipart/form-data\">"
             . "<div><input type=\"hidden\" name=\"prod_id\" value=\"" . $product_id . "\"/></div>"
@@ -83,7 +83,7 @@ class Catalogo
     public static function show_newProduct()
     { // viene mostrata la pagina per la creazione di un nuovo prodotto
 
-        $categories = Access::getCategories();
+        $categories = Access::getAllCategories();
 
         $result = "<form action=\"catalogo.php\" method=\"POST\">"
             . "<div><label for=\"new_nome_prod\">Nome prodotto:</label></div>"
@@ -106,30 +106,33 @@ class Catalogo
     public static function show_allCategories()
     { // vengono mostrate tutte le categorie
 
-        $categories = Access::getCategories();
+        $categories = Access::getAllCategories();
 
         $result = "<form action=\"catalogo.php\" method=\"POST\"><p class=\"inline\"><input type=\"submit\" class=\"invio\" id=\"new_category\" name=\"new_category\" value=\"Aggiungi nuova categoria\" /></p>";
         $result .= "<p class=\"inline\"><input type=\"submit\" class=\"invio\" value=\"Torna al catalogo prodotti\" /></p></form>";
 
-        for ($i = 0; $i < count($categories); $i++) {
+        if (empty($categories))
+            $result .= "<h2>Non sono presenti categorie</h2>";
+        else {
+            for ($i = 0; $i < count($categories); $i++) {
 
-            $result .= "<form action=\"catalogo.php\" method=\"POST\">"
-                . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $categories[$i]["id_categoria"] . "\"/></p>" // mi salvo l'id_categoria
-                . "<p class=\"inline\"> Nome: " . $categories[$i]["Nome"] . " |</p>"
-                . "<p class=\"inline\"> Descrizione: " . $categories[$i]["Descrizione"] . ".</p>"
-                . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_cat\" name=\"modifica_cat\" value=\"Modifica\" /></p>"
-                . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"submit_elimina\" name=\"elimina_cat\" onclick=\"confermaEliminazione();\" value=\"Elimina\"/></p>"
-                . '<div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler cancellare la categoria?</p></div>'
-                . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"no_elimina\" name=\"annulla_elimina_cat\" value=\"No\"/>"
-                . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"si_elimina\" name=\"conferma_elimina_cat\" value=\"Si\"/></form>";
+                $result .= "<form action=\"catalogo.php\" method=\"POST\">"
+                    . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $categories[$i]["id_categoria"] . "\"/></p>" // mi salvo l'id_categoria
+                    . "<p class=\"inline\"> Nome: " . $categories[$i]["Nome"] . " |</p>"
+                    . "<p class=\"inline\"> Descrizione: " . $categories[$i]["Descrizione"] . ".</p>"
+                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_cat\" name=\"modifica_cat\" value=\"Modifica\" /></p>"
+                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"submit_elimina\" name=\"elimina_cat\" onclick=\"confermaEliminazione();\" value=\"Elimina\"/></p>"
+                    . '<div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler cancellare la categoria?</p></div>'
+                    . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"no_elimina\" name=\"annulla_elimina_cat\" value=\"No\"/>"
+                    . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"si_elimina\" name=\"conferma_elimina_cat\" value=\"Si\"/></form>";
+            }
         }
-
         return $result;
     }
     public static function show_modifyCategory($category_id)
     { // viene mostrata la pagina di modifica di una categoria
 
-        $categories = Access::getCategory($category_id);
+        $categories = Access::getCategoryById($category_id);
 
         $result = "<form action=\"catalogo.php\" method=\"POST\">"
             . "<div><input type=\"hidden\" name=\"cat_id\" value=\"" . $category_id . "\"/></div>"

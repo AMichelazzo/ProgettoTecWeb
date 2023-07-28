@@ -25,6 +25,11 @@ class Access
         return $result;
     }
 
+    public static function getAllCategories()
+    {
+        return DBAccess::dbQuery("SELECT * FROM categoria");
+    }
+
     public static function getCategories()
     {
         return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, c.img_path
@@ -37,7 +42,7 @@ class Access
                                     ");
     }
 
-    public static function getCategory($id_categoria)
+    public static function getCategoryById($id_categoria)
     {
         return DBAccess::dbQuery("SELECT * FROM categoria WHERE id_categoria = ?", $id_categoria);
     }
