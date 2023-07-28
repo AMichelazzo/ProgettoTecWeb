@@ -122,7 +122,7 @@ else{
 
 if(isset($_POST["elimina"]))
 {
-    $paginaHTML = str_replace('<form method="post" action="profilo.php"><input type="submit" id="submit" name="elimina" class="invio" value="Elimina Profilo" /><div id="msg_confirm" role="alert"></div></form>',
+    $paginaHTML = str_replace('<form method="post" action="profilo.php"><input type="submit" name="elimina" class="invio" value="Elimina Profilo" /><div id="msg_confirm" role="alert"></div></form>',
     '<form method="post" action="profilo.php"><div class="messaggio_elimina" role="alert">Sicuro di voler eliminare il profilo?</div><div id="msg_confirm" role="alert"><input type="submit" name="si" class="invio" value="Si" /><input type="submit" name="no" class="invio" value="No" /></div></form>', $paginaHTML);
 }
 if(isset($_POST["si"]))
