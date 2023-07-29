@@ -4,7 +4,7 @@ require_once "PHP/class.php";
 session_start();
 
 if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
-    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["ruolo"]);
+    $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["ruolo"], null, null, null, null, true);
     $paginaHTML .= file_get_contents("HTML/utenti.html");
 
     if (isset($_POST["userId"], $_POST["delete"])) {

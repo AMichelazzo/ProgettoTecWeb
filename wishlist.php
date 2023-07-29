@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION["username"])) {
     require_once "PHP/class.php";
-    $template = Access::getHeader("Wishlist", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["ruolo"]);
+    $template = Access::getHeader("Wishlist", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["ruolo"], null, null, null, null, true);
 } else {
     header("Location: index.php");
 }
@@ -23,7 +23,7 @@ if (!isset($_SESSION["username"])) {
                 $nome = $result2[0]['Nome'];
                 $desc = $result2[0]['Descrizione'];
                 $idprod = $result2[0]['id_prodotto'];
-                $cat = Access::getCategory($result2[0]['id_categoria'])[0]["Nome"];
+                $cat = Access::getCategoryById($result2[0]['id_categoria'])[0]["Nome"];
                 $idcat = $result2[0]['id_categoria'];
                 $img = "<img src=\"" . $result2[0]["path"] . "\" alt=\"" . $result2[0]["alt_img"] . "\" width=\"200\" height=\"200\"/>";
 
