@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <!-- noindex -->
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/print.css" media="print" />
+    <link rel="shortcut icon" type="image/png" href="img/chandelier.ico" /> <!-- DA SOSTITUIRE -->
+    <script src="JS/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <a class="noview" href="#iniziocontenuto">Passa al contenuto</a>
+
+        <div id="nomemenu">
+            <h1></h1>
+            <input type="image" src="img/hamOn.png" id="hambutton" class="hambuttonoff" onclick="notHamb()"
+                alt="Apri menù utente">
+        </div>
+
+        <div id="box">
+            <nav id="menubar" aria-label="Opzioni utente" class="menubaroff">
+                <ul>
+                    <li><a href="profilo.php">Profilo</a></li>
+                    <li><a href="wishlist.php" lang="en">Wishlist</a></li>
+                    <li><a href="logout.php">Esci</a></li>
+                </ul>
+            </nav>
+
+            <nav id="menu" aria-label="Menù">
+                <ul>
+                    <li><a href="index.php" lang="en">Home</a></li>
+                    <li><a href="categorie.php">Prodotti</a></li>
+                    <li><a href="contatti.php">Contatti</a></li>
+                </ul>
+            </nav>
+
+            <nav id="breadcrumb" aria-label="Percorso pagina"> <!-- ha senso mettere l'aria-label? -->
+                <p>Ti trovi in: <a href="index.php" lang="en">Home</a> >> Errore 500</p>
+            </nav>
+        </div>
+
+    </header>
+    <!-- FINE index -->
+    <main id="iniziocontenuto">
+        Al momento il servizio non è disonibile. Ci scusiamo per il disagio. Riprova successivamente.
+    </main>
+    <footer>
+        <div id = footer>
+                <p>
+             <span lang="en">Web Triplet - All Rights Reserved</span>
+          </p>
+        </div>
+    </footer>
+</body>
+
+</html>

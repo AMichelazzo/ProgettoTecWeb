@@ -81,7 +81,17 @@ class DBAccess // NUOVA VERSIONE
         try {
             return new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
         } catch (Exception $e) {
-            return false;
+            http_response_code(500);
+            if(isset($_SESSION["ruolo"])) {
+                if($_SESSION["ruolo"] == "user") {
+                    echo file_get_contents(dirname(__FILE__) . "/../HTML/500Utente.html");
+                } elseif($_SESSION["ruolo"] == "admin") {
+                    echo file_get_contents(dirname(__FILE__) . "/../HTML/500Amministratore.html");
+                }
+            } else {
+                echo file_get_contents(dirname(__FILE__) . "/../HTML/500Semplice.html");
+            }
+            die();
         }
     }
 
@@ -128,13 +138,6 @@ class DBAccess // NUOVA VERSIONE
             return true;
         }
     }
-}
-
-function error500()
-{
-    http_response_code(500);
-    echo file_get_contents("HTML/500.html");
-    exit();
 }
 
 ?>
