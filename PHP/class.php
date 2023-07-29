@@ -192,13 +192,13 @@ class Access
         $pagina = str_replace('<!-- noindex -->', '<meta name="robots" content="noindex">', $pagina);
 
         // inserisce title
-        $pagina = str_replace('<title></title>', '<title>' . $title . ' - Véro</title>', $pagina);
+        $pagina = str_replace('<title></title>', '<title>' . Access::deletelang($title) . ' - Véro</title>', $pagina);
 
         // inserisce description
-        $pagina = str_replace('<meta name="description" content="" />', '<meta name="description" content="' . $description . '" />', $pagina);
+        $pagina = str_replace('<meta name="description" content="" />', '<meta name="description" content="' . Access::deletelang($description) . '" />', $pagina);
 
         // inserisce keywords
-        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . $keywords . '" />', $pagina);
+        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . Access::deletelang($keywords) . '" />', $pagina);
 
         if ($uppercategory !== null) {
             $breadcrumb = '<p>Ti trovi in 1: <a href="index.php" lang="en">Home</a> >> <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> >>' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
@@ -249,6 +249,17 @@ class Access
         }
         for ($i = 0; $i < count($value); $i++) {
             $str = str_replace($match[$i], $value[$i], $str);
+        }
+        return $str;
+    }
+
+    public static function deletelang($str) {
+        $pattern = "#\[(.+?)\]#";
+        preg_match_all($pattern, $str, $match);
+        $match = $match[0];
+        $match = array_unique($match);
+        foreach ($match as $n => $l) {
+            $str = str_replace($match[$n], '', $str);
         }
         return $str;
     }
