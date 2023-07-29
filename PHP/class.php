@@ -177,7 +177,7 @@ class Access
         return $result;
     }
 
-    public static function getHeader($title, $description, $keywords, $ruolo = null, $category = null, $linkcategory = null, $uppercategory = null, $linkuppercategory = null)
+    public static function getHeader($title, $description, $keywords, $ruolo = null, $category = null, $linkcategory = null, $uppercategory = null, $linkuppercategory = null, $noindex = false)
     {
         $pagina = "";
         if ($ruolo == "user") {
@@ -187,6 +187,10 @@ class Access
         } else {
             $pagina = file_get_contents("HTML/headerSemplice.html");
         }
+
+        // inserisce noindex
+        $pagina = str_replace('<!-- noindex -->', '<meta name="robots" content="noindex">', $pagina);
+
         // inserisce title
         $pagina = str_replace('<title></title>', '<title>' . $title . ' - Véro</title>', $pagina);
 
