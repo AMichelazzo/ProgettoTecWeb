@@ -1,5 +1,5 @@
 <?php
-
+/*
 class DBAccess
 {
     private const HOST_DB = "127.0.0.1";
@@ -64,10 +64,10 @@ function error500()
     $relative_path = dirname(__FILE__,2) . DIRECTORY_SEPARATOR."HTML".DIRECTORY_SEPARATOR."500.html";
     echo file_get_contents($relative_path);
     die();
-}
+}*/
 
 
-/*
+
 class DBAccess // NUOVA VERSIONE
 {
     private const HOST_DB = "127.0.0.1";
@@ -135,6 +135,6 @@ function error500()
     http_response_code(500);
     echo file_get_contents("HTML/500.html");
     exit();
-}*/
+}
 
 ?>
