@@ -18,18 +18,21 @@ class Catalogo
             for ($i = 0; $i < count($products); $i++) { // funzione per la creazione dell'inline
 
                 $result .= "<form action=\"catalogo.php\" method=\"POST\" role=\"group\">"
-                    . "<p class=\"inline\"><input type=\"hidden\" name=\"product_id\" value=\"" . $products[$i]["id_prodotto"] . "\"/></p>" // mi salvo l'id_prodotto
+                    . "<p class=\"inline\"><input type=\"hidden\" name=\"product_id\" id=\"productId\" value=\"" . $products[$i]["id_prodotto"] . "\"/></p>" // mi salvo l'id_prodotto
                     . "<p class=\"inline\"><input type=\"hidden\" name=\"category_id\" value=\"" . $products[$i]["id_categoria"] . "\"/></p>"; // e l'id_categoria
 
                 $result .= "<p class=\"inline\"> Nome prodotto: " . $products[$i]["Prod_Nome"] . "|</p>"
                     . "<p class=\"inline\"> Categoria: " . $products[$i]["Cat_Nome"] . "|</p>"
                     . "<p class=\"inline\"> Descrizione: " . $products[$i]["Descrizione"] . "</p>"
                     . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"modifica_prod\" name=\"modifica_prod\" value=\"Modifica\" /></p>"
-                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"submit_elimina\" name=\"elimina_prod\" onclick=\"confermaEliminazione();\" value=\"Elimina\"/></p>"
-                    . '<div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler cancellare il prodotto?</p></div>'
-                    . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"no_elimina\" name=\"annulla_elimina_prod\" value=\"No\"/>"
-                    . "<p class=\"inline\"><input type=\"hidden\" class=\"modifica\" id=\"si_elimina\" name=\"conferma_elimina_prod\" value=\"Si\"/></form>";
+                    . "<p class=\"inline\"><input type=\"submit\" class=\"modifica\" id=\"submit_elimina\" name=\"elimina_prod\" onclick=\"confermaEliminazione();\" value=\"Elimina\"/></p>";
             }
+
+
+            $result .= "<form action=\"catalogo.php\" method=\"post\"><input type=\"text\" id=\"product_id_2\" name=\"product_id\"/>" 
+                    . '<div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler cancellare il prodotto?</p></div></form>'
+                    . "<div class=\"prova1\"><input type=\"hidden\" class=\"invio\" id=\"no_elimina\" name=\"annulla_elimina_prod\" value=\"No\"/>"
+                    . "<input type=\"hidden\" class=\"invio\" id=\"si_elimina\" name=\"conferma_elimina_prod\" value=\"Si\"/></div></form>";
         }
         return $result;
     }
@@ -90,6 +93,9 @@ class Catalogo
             . "<div><input type=\"text\" id=\"nome_prod\" name=\"new_nome_prod\" value=\"\"/></div>"
             . "<div><label for=\"new_category_id\">Categoria prodotto:</label></div>"
             . "<select name=\"new_category_id\" id=\"new_category_id\"> ";
+
+        if($categories == null)
+            return 0;
 
         for ($i = 0; $i < count($categories); $i++) // creazione del menu a tendina delle categorie
             $result .= "<option value=\"" . $categories[$i]["id_categoria"] . "\">" . $categories[$i]["Nome"] . "</option>";

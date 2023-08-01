@@ -26,7 +26,7 @@ if (isset($_GET["prod"])) {
             $slideshow .= "<div class=\"mySlides fade\">
             <img src=\"" . $result[$i]["path"] . "\" alt=\"" . $result[$i]["alt_img"] . "\" width=\"300\" height=\"300\"/></div>";
         }
-        if (isset($_SESSION["username"])) {
+        if (isset($_SESSION["username"]) && $_SESSION["ruolo"] != "admin") {
             $result2 = Access::isInWishList($idprod, $idcat, $_SESSION["username"]);
             if ($result2 == null) {
                 $result2 = false;

@@ -55,6 +55,8 @@ if ($user && $ruolo == "admin") {
             $paginaHTML = Catalogo::sendError("error", "Creazione prodotto non riuscita", "Alcuni campi di prodotto non sono stati inseriti", $paginaHTML);
     }
 
+
+ 
     // eliminazione di un prodotto
     if (isset($_POST["conferma_elimina_prod"])) {
         $result = Access::deleteProduct($_POST["product_id"]);
@@ -137,6 +139,9 @@ if ($user && $ruolo == "admin") {
     if (isset($_POST["new_product"])) { // pagina per la creazione di un nuovo prodotto
         $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_newProduct();
+
+        if($Elenco_prod == 0)
+            Catalogo::sendError("error", "Errore:", "Devi prima creare una categoria!", $paginaHTML);
     }
     // fine catalogo prodotti
 

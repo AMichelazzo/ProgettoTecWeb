@@ -115,7 +115,7 @@ class Access
     {
         return DBAccess::dbQuery("SELECT messaggi.id_messaggio, messaggi.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome
         FROM messaggi LEFT JOIN prodotti ON messaggi.id_prodotto = prodotti.id_prodotto
-        ORDER BY letto");
+        ORDER BY messaggi.data DESC");
     }
 
     public static function newMessage($email, $id_prodotto, $id_categoria, $msg)

@@ -660,8 +660,8 @@ a:visited {
   margin-bottom: 0.5em;
   box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
 /*background-color: #006600;*/
-  margin-left: auto;
-  margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
+  margin-left: 0.5em;
+  margin-right: 0.5em;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
   background-color: #006600;
 }
 
@@ -681,7 +681,9 @@ a:visited {
   margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
   background-color: #cc0000;
 }
-
+.prova1 {
+  display: flex;
+}
 .change-error{
   background-color: #ffcccc;
   color: #cc0000;

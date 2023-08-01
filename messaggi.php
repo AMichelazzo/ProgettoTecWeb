@@ -15,7 +15,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         if (isset($_POST['form_msg']))
             $msg_checked = $_POST['form_msg'];
 
-        if (!empty($msg_checked)) {
+        if(!empty($msg_checked)) {
 
             for ($i = 0; $i < count($msg_checked); $i++)
                 Access::Message_Read($msg_checked[$i]);
@@ -23,7 +23,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             $paginaHTML = str_replace("msg_class", "success-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Successo: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Messaggi segnati come letti", $paginaHTML);
-        } else {
+        }else {
             $paginaHTML = str_replace("msg_class", "error-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Errore: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Non hai selezionato nessun messaggio!", $paginaHTML);
@@ -53,9 +53,9 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
     $result = Access::getMessages();
 
-    if (count($result) == 0)
+    if(empty($result))
         $ElencoMsg = "<div><h3>Non sono presenti messaggi da parte di utenti</h3></div>";
-    else {
+    else{
         for ($i = 0; $i < count($result); $i++) { // funzione per la creazione dell'inline
 
             $ElencoMsg .= '<div id="messaggi" class="';
