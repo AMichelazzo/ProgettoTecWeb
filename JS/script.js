@@ -15,14 +15,14 @@ function notHamb() {
 }
 
 function confermaEliminazione() {
+
     document.getElementById("submit_elimina").type = "hidden";
     document.getElementById("si_elimina").type = "submit";
     document.getElementById("no_elimina").type = "submit";
     let msg_conf = document.getElementById("messaggio_conferma");
     msg_conf.removeAttribute("hidden");
 
-    var id_prod = document.getElementById("productId").value;
-
-    alert("id_prod");
-    document.getElementById("product_id_2").innerHTML = id_prod;
+    var id_prod = document.getElementsByName("product_id").value;
+    document.getElementById("product_id_2").value = id_prod;
 }
+

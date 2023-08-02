@@ -56,9 +56,8 @@ if ($user && $ruolo == "admin") {
     }
 
 
- 
     // eliminazione di un prodotto
-    if (isset($_POST["conferma_elimina_prod"])) {
+    if (isset($_POST["elimina_prod"])) {
         $result = Access::deleteProduct($_POST["product_id"]);
         $Elenco_prod = Catalogo::show_allProducts();
 
@@ -92,8 +91,9 @@ if ($user && $ruolo == "admin") {
             $paginaHTML = Catalogo::sendError("error", "Creazione categoria non riuscita", "Alcuni campi di categoria non sono stati inseriti", $paginaHTML);
     }
 
+   
     // eliminazione di una categoria
-    if (isset($_POST["conferma_elimina_cat"])) {
+    if (isset($_POST["elimina_cat"])) {
 
         // controllo che non ci siano ancora prodotti con questa categoria
         if (Access::getProductsbyCategory($_POST["category_id"]))
@@ -140,7 +140,7 @@ if ($user && $ruolo == "admin") {
         $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_newProduct();
 
-        if($Elenco_prod == 0)
+        if ($Elenco_prod == 0)
             Catalogo::sendError("error", "Errore:", "Devi prima creare una categoria!", $paginaHTML);
     }
     // fine catalogo prodotti
