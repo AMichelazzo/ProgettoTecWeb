@@ -7,11 +7,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     $paginaHTML = Access::getHeader("Utenti", "Utenti registrati nel sito", "utenti", $_SESSION["ruolo"], null, null, null, null, true);
     $paginaHTML .= file_get_contents("HTML/utenti.html");
 
-    if (isset($_POST["userId"], $_POST["delete"])) {
-        Access::deleteUtente($_POST["userId"]);
-    }
-
-
     $utenti = "";
     $stringaUtenti = "";
 
@@ -20,17 +15,33 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         if (!empty($utenti)) {
             foreach ($utenti as $utente) {
                 $stringaUtenti .= '<div class="utenti" role="group">
-                    <div class="flexutente">
-                    <div><span lang="en">Username</span>: ' . $utente['username'] . ' </div>
-                    <div><span lang="en">Email</span>: ' . $utente['email'] . ' </div>
-                    <form action="utenti.php" method="post">
-                    <input type="hidden" id="id' . $utente['username'] . '"name="userId" value="' . $utente['username'] . '"/>
-                    <input type="submit" id="delete'. $utente['username'] .'"name="delete" class="invio" value="Elimina"/>
-                    </form>
-                </div>
-            </div>';
+                        <div class="flexutente">
+                        <div><span lang="en">Username</span>: ' . $utente['username'] . ' </div>
+                        <div><span lang="en">Email</span>: ' . $utente['email'] . ' </div>';
+                        (isset($_POST["delete"])&&$_POST["userId"]==$utente['username'])?$stringaUtenti.='<form method="post" action="utenti.php"><div class="messaggio_elimina" role="alert">Sicuro di voler eliminare il profilo?</div>
+                        <input type="hidden" id="id' . $utente['username'] . '"name="userId" value="' . $utente['username'] . '"/>
+                        <div id="msg_confirm" role="alert"><input type="submit" name="si" class="invio" value="Si" />
+                        <input type="submit" name="no" class="invio" value="No" /></div></form>':$stringaUtenti.='<form action="utenti.php" method="post">
+                        <input type="hidden" id="id' . $utente['username'] . '"name="userId" value="' . $utente['username'] . '"/>
+                        <input type="submit" id="delete'. $utente['username'] .'"name="delete" class="invio" value="Elimina"/>
+                        <div id="msg_confirm" role="alert"></div>
+                        </form>
+                    </div>
+                </div>';
             }
-        } else {
+            
+            if(isset($_POST["userId"])){
+                if(isset($_POST["si"]))
+                {
+                    Access::deleteUtente($_POST["userId"]);
+                    header("Location: utenti.php");
+                }
+                if(isset($_POST["no"]))
+                {
+                    header("Location: utenti.php");
+                }
+            }
+        }else {
             $stringaUtenti =
                 '<div class="utenti">
                 <div class="flexutente">
