@@ -7,7 +7,7 @@ class Catalogo
     public static function show_allProducts()
     { // viene mostrato il catalogo con tutti i prodotti
 
-        $result = '<form action="catalogo.php" method="POST"><div><input type="submit" class="invio" id="category_list" name="category_list" value="Vai a lista delle Categorie" />
+        $result = '<form action="catalogo.php" method="POST"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="category_list" value="Vai a lista delle Categorie" />
         <input type="submit" class="invio" id="new_product" name="new_product" value="Aggiungi nuovo prodotto"/></div></form>';
 
         $products = Access::getAllProducts();
@@ -17,14 +17,14 @@ class Catalogo
         else {
             for ($i = 0; $i < count($products); $i++) { // funzione per la creazione dell'inline
 
-                $result .= '<form action="catalogo.php" method="POST" role="group">
+                $result .= '<form action="catalogo.php" method="POST" role="group"><fieldset class="prodotto">
                     <p class="inline"><input type="hidden" name="product_id" id="productId" value="' . $products[$i]["id_prodotto"] . '"/></p>' // mi salvo l'id_prodotto
                     . '<p class="inline"><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></p>'; // e l'id_categoria
 
                 $result .= '<p class="inline"> Nome prodotto: ' . $products[$i]["Prod_Nome"] . '</p>
                     <p class="inline"> Categoria: ' . $products[$i]["Cat_Nome"] . '</p>
                     <p class="inline"> Descrizione: ' . $products[$i]["Descrizione"] . '</p>
-                    <p class="inline"><input type="submit" class="modifica" name="modifica_prod" value="Modifica" /></p>';
+                    <p class="inline"><input type="submit" class="modifica" name="modifica_prod" value="Modifica" /></p></fieldset>';
             }
         }
         return $result;

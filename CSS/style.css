@@ -659,9 +659,8 @@ a:visited {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
-/*background-color: #006600;*/
-  margin-left: 0.5em;
-  margin-right: 0.5em;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
+  margin-left: auto;
+  margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
   background-color: #006600;
 }
 
@@ -676,7 +675,6 @@ a:visited {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
-/*background-color: #006600;*/
   margin-left: auto;
   margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
   background-color: #cc0000;
@@ -719,4 +717,9 @@ fieldset {
   margin: 10px;
   text-align: center;
   box-sizing: border-box;
+}
+
+.pulsanti_catalogo {
+  margin-top: 10em;
+  margin-bottom: 2em;
 }

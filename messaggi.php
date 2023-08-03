@@ -19,7 +19,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
             for ($i = 0; $i < count($msg_checked); $i++)
                 Access::Message_Read($msg_checked[$i]);
-            echo "dentro qui qui";
             $paginaHTML = str_replace("msg_class", "success-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Successo: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Messaggi segnati come letti", $paginaHTML);
@@ -58,7 +57,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     else{
         for ($i = 0; $i < count($result); $i++) { // funzione per la creazione dell'inline
 
-            $ElencoMsg .= '<div id="messaggi" class="';
+            $ElencoMsg .= '<fieldset class="';
             if($result[$i]["letto"] == 1)
                 $ElencoMsg .="msg_letto";
             else
@@ -75,9 +74,9 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             $ElencoMsg .= "<p class=\"inline\"> Messaggio: " . $result[$i]["msg"] . "</p>";
 
             if ($result[$i]["letto"] == 1)
-                $ElencoMsg .= "<p class=\"inline\"> Letto: Si</p></div>";
+                $ElencoMsg .= "<p class=\"inline\"> Letto: Si</p></fieldset>";
             else
-                $ElencoMsg .= "<p class=\"inline\"> Letto: No</p></div>";
+                $ElencoMsg .= "<p class=\"inline\"> Letto: No</p></fieldset>";
             }
     }
 
