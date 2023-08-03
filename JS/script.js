@@ -21,8 +21,5 @@ function confermaEliminazione() {
     document.getElementById("no_elimina").type = "submit";
     let msg_conf = document.getElementById("messaggio_conferma");
     msg_conf.removeAttribute("hidden");
-
-    var id_prod = document.getElementsByName("product_id").value;
-    document.getElementById("product_id_2").value = id_prod;
 }
 

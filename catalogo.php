@@ -22,7 +22,12 @@ if ($user && $ruolo == "admin") {
     // modifica del prodotto
     if (isset($_POST["submit_modifica_prod"])) {
         if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && $_POST["nome_prod"] != NULL && $_POST["desc_prod"] != NULL) {
-            Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
+
+            $nome_prod = Access::lang($_POST["nome_prod"]);
+            $desc_prod = Access::lang($_POST["desc_prod"]);
+
+            Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $nome_prod, $desc_prod);
+
 
             if (isset($_POST["alt_img"])) {
                 $alt = $_POST["alt_img"];
@@ -44,7 +49,11 @@ if ($user && $ruolo == "admin") {
     // creazione di un nuovo prodotto
     if (isset($_POST["submit_new_prod"])) {
         if (isset($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]) && $_POST["new_nome_prod"] != NULL && $_POST["new_desc_prod"] != NULL) {
-            $result = Access::newProduct($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]);
+
+            $nome_prod = Access::lang($_POST["new_nome_prod"]);
+            $desc_prod = Access::lang($_POST["new_desc_prod"]);
+
+            $result = Access::newProduct($nome_prod, $_POST["new_category_id"],$desc_prod);
             $Elenco_prod = Catalogo::show_allProducts();
 
             if ($result)
@@ -55,10 +64,9 @@ if ($user && $ruolo == "admin") {
             $paginaHTML = Catalogo::sendError("error", "Creazione prodotto non riuscita", "Alcuni campi di prodotto non sono stati inseriti", $paginaHTML);
     }
 
-
     // eliminazione di un prodotto
-    if (isset($_POST["elimina_prod"])) {
-        $result = Access::deleteProduct($_POST["product_id"]);
+    if (isset($_POST["conferma_elimina_prod"])) {
+        $result = Access::deleteProduct($_POST["prod_id_2"]);
         $Elenco_prod = Catalogo::show_allProducts();
 
         if ($result)
@@ -67,11 +75,21 @@ if ($user && $ruolo == "admin") {
             $paginaHTML = Catalogo::sendError("error", "Eliminazione prodotto non riuscita", "Errore nell'eliminazione del prodotto", $paginaHTML);
     }
 
+    if( isset($_POST["annulla_elimina_prod"])) {
+        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+        $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+    }
+
 
     // modifica di una categoria
     if (isset($_POST["submit_modifica_cat"])) {
         if (isset($_POST["nome_cat"], $_POST["desc_cat"])) {
-            Access::modifyCategory($_POST["cat_id"], $_POST["nome_cat"], $_POST["desc_cat"]);
+
+            $nome_cat = Access::lang($_POST["nome_cat"]);
+            $desc_cat = Access::lang($_POST["desc_cat"]);
+
+            Access::modifyCategory($_POST["cat_id"], $nome_cat, $desc_cat);
+
             // messaggio di riuscita della modifica
             $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Categoria modificata correttamente", $paginaHTML);
         } else
@@ -81,7 +99,11 @@ if ($user && $ruolo == "admin") {
     // creazione di una nuova categoria
     if (isset($_POST["submit_new_cat"])) {
         if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"])) {
-            $result = Access::newCategory($_POST["new_nome_cat"], $_POST["new_desc_cat"]);
+
+            $new_nome_cat = Access::lang($_POST["new_nome_cat"]);
+            $new_desc_cat = Access::lang($_POST["new_desc_cat"]);
+
+            $result = Access::newCategory($new_nome_cat, $new_desc_cat);
 
             if ($result)
                 $paginaHTML = Catalogo::sendError("success", "Creazione categoria riuscita", "Categoria creata correttamente", $paginaHTML);
@@ -93,15 +115,23 @@ if ($user && $ruolo == "admin") {
 
    
     // eliminazione di una categoria
-    if (isset($_POST["elimina_cat"])) {
+    if (isset($_POST["conferma_elimina_cat"])) {
 
         // controllo che non ci siano ancora prodotti con questa categoria
-        if (Access::getProductsbyCategory($_POST["category_id"]))
+        if (Access::getProductsbyCategory($_POST["cat_id_2"]))
             $paginaHTML = Catalogo::sendError("error", "Eliminazione categoria non riuscita", "Errore nell'eliminazione della categoria, sono presenti prodotti con questa categoria", $paginaHTML);
         else {
-            Access::deleteCategory($_POST["category_id"]);
+            Access::deleteCategory($_POST["cat_id_2"]);
             $paginaHTML = Catalogo::sendError("success", "Eliminazione categoria riuscita", "Categoria eliminata correttamente", $paginaHTML);
         }
+
+        $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
+    $Elenco_prod = Catalogo::show_allCategories();
+    }
+
+    if(isset($_POST["annulla_elimina_cat"])) {
+        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
+        $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id_2"]);
     }
 
     // eliminazione di una o più immagini
