@@ -33,7 +33,7 @@ else
                 $resultReg=Access::registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
                 if(isset($resultReg) && $resultReg){
                     $_SESSION['reg_eff']='<div class="change-success" role="alert">Registazione avvenuta con successo.</div>';
-                    header("Location: ../login.php");
+                    header("Location: ../accesso.php");
                 }
                 else{
                     $_SESSION["genericError"]='<div id="msgchange" class="change-error" role="alert">Errore nella creazione dell\'account, riprova più tardi.</div>';

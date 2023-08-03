@@ -2,12 +2,12 @@
 session_start();
 if (isset($_SESSION["username"])) {
     require_once "PHP/class.php";
-    $template = Access::getHeader("Wishlist", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["ruolo"], null, null, null, null, true);
+    $template = Access::getHeader("Lista dei Desideri", "Lista dei desideri", "Wishlist, lista dei desideri, prodotti piaciuti, prodotto", $_SESSION["ruolo"], null, null, null, null, true);
 } else {
     header("Location: index.php");
 }
 
-$template .= file_get_contents('HTML/wishlist.html');
+$template .= file_get_contents('HTML/listaDesideri.html');
 
 if (!isset($_SESSION["username"])) {
     header("Location: index.php");
@@ -56,7 +56,7 @@ if (!isset($_SESSION["username"])) {
         $msg = "<div id=\"wish-error\" role=\"alert\">Lista dei desideri vuota!</div>";
     }
     $replace = array(
-        "Titolo" => "Wishlist di " . $_SESSION["username"],
+        "Titolo" => "Lista dei desideri di " . $_SESSION["username"],
         "<!--Prodotti-->" => $productlist,
         "<div id=\"msgWish\" role=\"alert\"></div>" => $msg
     );

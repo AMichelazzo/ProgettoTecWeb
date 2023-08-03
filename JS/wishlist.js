@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-let buttons = document.getElementsByName("rimuovi");////////////////////////////////
+let buttons = document.getElementsByName("rimuovi");
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function(event) {
     event.preventDefault();
@@ -42,7 +42,7 @@ for (let i = 0; i < buttons.length; i++) {
   });
 }
 
-function showMessage(message, color) {///////////////////////////////
+function showMessage(message, color) {
     let msg = document.getElementById("msgWish");
     let checknascosti=document.getElementsByName("form-prodotto");
     msg.role="";

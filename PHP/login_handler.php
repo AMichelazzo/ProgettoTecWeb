@@ -19,12 +19,12 @@ else
         else
         {
             $_SESSION["error"]="<div class=\"error-message\" role=\"alert\">
-                                    <span class=\"sr-only\">Errore di login:</span>
+                                    <span class=\"sr-only\">Errore di Accesso:</span>
                                     Credenziali non valide. Riprova.
                                 </div>";
         }
     }
-    header("Location: ../login.php");
+    header("Location: ../accesso.php");
 }
 
 ?>

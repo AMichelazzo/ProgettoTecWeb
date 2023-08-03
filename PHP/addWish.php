@@ -10,7 +10,7 @@ if (isset($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"])) {
         
         if (!$result) {
             $response["success"] = false;
-            $response["message"] = "Errore aggiunta prodotto alla wishlist.";
+            $response["message"] = "Errore aggiunta prodotto alla lista dei desideri.";
         }
         else
         {
@@ -31,7 +31,7 @@ if (isset($_GET["product_id"],$_GET["categ_id"],$_SESSION["username"])) {
             else
             {
                 $response["success"] = false;
-                $response["message"] = "Errore cancellazione prodotto dalla wishlist.";
+                $response["message"] = "Errore cancellazione prodotto dalla lista dei desideri.";
             }
         }
     }

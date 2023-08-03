@@ -31,7 +31,7 @@ if (isset($_GET["prod"])) {
             if ($result2 == null) {
                 $result2 = false;
             }
-            ($result2) ? $testoButton = "Togli dalla WishList" : $testoButton = "Aggiungi a WishList";
+            ($result2) ? $testoButton = "Togli dalla Lista" : $testoButton = "Aggiungi alla Lista";
             $isLogged = "<button type=\"button\" id=\"button\" class=\"button\">
                                                 <span class=\"button__text\" id=\"buttonid\">" . $testoButton . "</span>
                                                 </button>

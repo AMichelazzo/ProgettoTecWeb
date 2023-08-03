@@ -4,10 +4,10 @@ if (isset($_SESSION["username"])) {
     header("Location: index.php");
 } else {
     require_once "PHP/class.php";
-    $template = Access::getHeader("Login", "Accedi al tuo account.", "accedi, login, registrati, signup, crea account, username, email");
+    $template = Access::getHeader("Accesso", "Accedi al tuo account.", "accedi, login, registrati, signup, crea account, username, email");
 }
-$template = str_replace('<div id="riservata"><a href="login.php">Area Riservata</a></div>', '', $template);
-$template .= file_get_contents('HTML/login.html');
+$template = str_replace('<div id="riservata"><a href="accesso.php">Area Riservata</a></div>', '', $template);
+$template .= file_get_contents('HTML/accesso.html');
 
 $err = isset($_SESSION['error']) ? $_SESSION['error'] : null;
 $reg = isset($_SESSION["reg_eff"]) ? $_SESSION["reg_eff"] : null;
