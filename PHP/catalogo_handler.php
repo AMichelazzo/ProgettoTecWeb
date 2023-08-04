@@ -21,9 +21,9 @@ class Catalogo
                     <p class="inline"><input type="hidden" name="product_id" id="productId" value="' . $products[$i]["id_prodotto"] . '"/></p>' // mi salvo l'id_prodotto
                     . '<p class="inline"><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></p>'; // e l'id_categoria
 
-                $result .= '<p class="inline"> Nome prodotto: ' . $products[$i]["Prod_Nome"] . '</p>
-                    <p class="inline"> Categoria: ' . $products[$i]["Cat_Nome"] . '</p>
-                    <p class="inline"> Descrizione: ' . $products[$i]["Descrizione"] . '</p>
+                $result .= '<p class="inline"> <span class="nome">Nome prodotto:</span> ' . $products[$i]["Prod_Nome"] . '</p>
+                    <p class="inline"> <span class="categoria">Categoria:</span> ' . $products[$i]["Cat_Nome"] . '</p>
+                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . $products[$i]["Descrizione"] . '</p>
                     <p class="inline"><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></p></fieldset>';
             }
         }
@@ -132,11 +132,11 @@ class Catalogo
         else {
             for ($i = 0; $i < count($categories); $i++) {
 
-                $result .= '<form action="catalogo.php" method="POST">
+                $result .= '<form action="catalogo.php" method="POST"><fieldset class="categories">
                     <p class="inline"><input type="hidden" name="category_id" value="' . $categories[$i]["id_categoria"] . '"/></p>' // mi salvo l'id_categoria
-                    . '<p class="inline"> Nome: ' . $categories[$i]["Nome"] . ' |</p>
-                    <p class="inline"> Descrizione: ' . $categories[$i]["Descrizione"] . '.</p>
-                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" /></p>';
+                    . '<p class="inline"> <span class="nome">Nome:</span> ' . $categories[$i]["Nome"].' </p>
+                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . $categories[$i]["Descrizione"] . '.</p>
+                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" /></p></fieldset>';
             }
         }
         return $result;

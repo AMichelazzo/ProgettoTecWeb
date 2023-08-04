@@ -65,18 +65,18 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
                 
             $ElencoMsg .= '"><p class="inline"><input type="checkbox" name="form_msg[]" value="' 
                 . $result[$i]["id_messaggio"] . '"/></p>'
-                . "<p class=\"inline\"> Email: " . $result[$i]["email"] . "</p>"
-                . "<p class=\"inline\"> Data invio: " . $result[$i]["data"] . "</p>";
+                . "<p class=\"inline\"> <span class='email'>Email: </span>" . $result[$i]["email"] . "</p>"
+                . "<p class=\"inline\"> <span class='data'>Data invio: </span>" . $result[$i]["data"] . "</p>";
 
             if (!is_null($result[$i]["id_prodotto"])) // se è presente un "id prodotto" nel risultato della query lo mostra con il rispettivo link
-                $ElencoMsg .= "<p class=\"inline\"> Prodotto: <a href=\"prodotto.php?prod=" . $result[$i]['id_prodotto'] . "\">" . $result[$i]['Nome'] . "</a></p>";
+                $ElencoMsg .= "<p class=\"inline\"><span class='product'> Prodotto: </span><a href=\"prodotto.php?prod=" . $result[$i]['id_prodotto'] . "\">" . $result[$i]['Nome'] . "</a></p>";
 
-            $ElencoMsg .= "<p class=\"inline\"> Messaggio: " . $result[$i]["msg"] . "</p>";
+            $ElencoMsg .= "<p class=\"inline\"> <span class='messaggio'>Messaggio: </span>" . $result[$i]["msg"] . "</p>";
 
             if ($result[$i]["letto"] == 1)
-                $ElencoMsg .= "<p class=\"inline\"> Letto: Si</p></fieldset>";
+                $ElencoMsg .= "<p class=\"inline\"> <span class='letto'>Letto: </span>Si</p></fieldset>";
             else
-                $ElencoMsg .= "<p class=\"inline\"> Letto: No</p></fieldset>";
+                $ElencoMsg .= "<p class=\"inline\"> <span class='letto'>Letto: </span>No</p></fieldset>";
             }
     }
 

@@ -502,6 +502,20 @@ a:visited {
   height: auto;
 }
 
+.categories{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #505050;
+  box-sizing: border-box;
+  position: relative;
+  width: 90%;
+  height: auto;
+}
+
 .image-container {
   max-width: 200px;
   max-height: 200px;
@@ -554,6 +568,15 @@ a:visited {
   margin-bottom: 10px;
 }
 
+.inline .nome,.inline .descrizione,.inline .categoria {
+  font-weight: bold;
+}
+span>.nome,span>.email{
+  font-weight: bold;
+}
+.inline .data,.inline .email,.inline .product,.inline .letto,.inline .messaggio{
+  font-weight: bold;
+}
 .prodotto .categoria {
   margin-bottom: 10px;
 }
