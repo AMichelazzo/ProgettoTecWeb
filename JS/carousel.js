@@ -32,8 +32,6 @@ if(button!==null){
     let categ = document.getElementById("categ_id");
     let buttontext = document.getElementById("buttonid");
     let xhr = new XMLHttpRequest();
-    console.log(buttontext.innerHTML);
-    console.log((buttontext.innerHTML == "Aggiungi alla Lista")?"PHP/addWish.php?product_id="+prod.value+"&categ_id="+categ.value:"PHP/addWish.php?remove=1&product_id="+prod.value+"&categ_id="+categ.value);
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(this.responseText);
