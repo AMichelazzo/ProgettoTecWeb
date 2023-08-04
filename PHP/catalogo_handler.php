@@ -21,9 +21,9 @@ class Catalogo
                     <p class="inline"><input type="hidden" name="product_id" id="productId" value="' . $products[$i]["id_prodotto"] . '"/></p>' // mi salvo l'id_prodotto
                     . '<p class="inline"><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></p>'; // e l'id_categoria
 
-                $result .= '<p class="inline"> <span class="nome">Nome prodotto:</span> ' . $products[$i]["Prod_Nome"] . '</p>
-                    <p class="inline"> <span class="categoria">Categoria:</span> ' . $products[$i]["Cat_Nome"] . '</p>
-                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . $products[$i]["Descrizione"] . '</p>
+                $result .= '<p class="inline"> <span class="nome">Nome prodotto:</span> ' . Access::lang($products[$i]["Prod_Nome"]) . '</p>
+                    <p class="inline"> <span class="categoria">Categoria:</span> ' . Access::lang($products[$i]["Cat_Nome"]) . '</p>
+                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . Access::lang($products[$i]["Descrizione"]) . '</p>
                     <p class="inline"><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></p></fieldset>';
             }
         }
@@ -39,7 +39,7 @@ class Catalogo
         $result = '<form action="catalogo.php" method="POST" enctype="multipart/form-data">
             <div><input type="hidden" name="prod_id" value="' . $product_id . '"/></div>
             <div><label for="nome_prod">Nome prodotto:</label></div>
-            <div><input type="text" id="nome_prod" name="nome_prod" value="' . $product[0]["Nome"] . '"/></div>
+            <div><input type="text" id="nome_prod" name="nome_prod" value="' . Access::deletelang($product[0]["Nome"]) . '"/></div>
             <div><label for="cat_prod">Categoria prodotto:</label></div><select name="category_id" id="categories">
             <option value="' . $product[0]["id_categoria"] . '">' . Access::deletelang(Access::getCategoryName($product[0]["id_categoria"])) . '</option>'; // mostra come selezionata la categoria del prodotto
 
@@ -49,7 +49,7 @@ class Catalogo
         }
 
         $result .= '</select><div><label for="desc_prod">Descrizione prodotto:</label></div>
-            <div><textarea id="desc_prod" name="desc_prod" rows="10" cols="40" maxlength="500">' . Access::deletelang($product[0]["Descrizione"]) . '</textarea></div>
+            <div><textarea id="desc_prod" name="desc_prod" rows="10" cols="40" maxlength="500">' . Access::lang($product[0]["Descrizione"]) . '</textarea></div>
             <div><p>Nel caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
             Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[/EN].</p></div>';
 
@@ -64,7 +64,7 @@ class Catalogo
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     input type="hidden" name="path_img[]" value="" . $product[$i]["path"] . ""/>
                     <div><label for="alt_img">Alt immagine:</label></div>
-                    <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . $product[$i]["alt_img"] . '</textarea></div>';
+                    <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
             }
 
         $result .= '<label>Carica una o più immagini per il prodotto (jpg o jpeg). 
@@ -106,7 +106,7 @@ class Catalogo
             return 0;
 
         for ($i = 0; $i < count($categories); $i++) // creazione del menu a tendina delle categorie
-            $result .= '<option value="' . $categories[$i]["id_categoria"] . '">' . $categories[$i]["Nome"] . '</option>';
+            $result .= '<option value="' . $categories[$i]["id_categoria"] . '">' . Access::deletelang($categories[$i]["Nome"]) . '</option>';
 
         $result .= '</select><div><label for="new_desc_prod">Descrizione prodotto:</label></div>
             <div><textarea id="new_desc_prod" name="new_desc_prod" rows="10" cols="40" maxlength="500"></textarea></div>
@@ -134,8 +134,8 @@ class Catalogo
 
                 $result .= '<form action="catalogo.php" method="POST"><fieldset class="categories">
                     <p class="inline"><input type="hidden" name="category_id" value="' . $categories[$i]["id_categoria"] . '"/></p>' // mi salvo l'id_categoria
-                    . '<p class="inline"> <span class="nome">Nome:</span> ' . $categories[$i]["Nome"].' </p>
-                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . $categories[$i]["Descrizione"] . '.</p>
+                    . '<p class="inline"> <span class="nome">Nome:</span> ' . Access::lang($categories[$i]["Nome"]) .' </p>
+                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . Access::lang($categories[$i]["Descrizione"]) . '.</p>
                     <p class="inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" /></p></fieldset>';
             }
         }
@@ -149,9 +149,9 @@ class Catalogo
         $result = '<form action="catalogo.php" method="POST">
             <div><input type="hidden" name="cat_id" value="' . $category_id . '"/></div>
             <div><label for="nome_cat">Nome categoria:</label></div>
-            <div><input type="text" id="nome_cat" name="nome_cat" value="' . $categories[0]["Nome"] . '"/></div>
+            <div><input type="text" id="nome_cat" name="nome_cat" value="' . Access::deletelang($categories[0]["Nome"]) . '"/></div>
             <div><label for="desc_cat">Descrizione categoria:</label></div>
-            <div><textarea id="desc_prod" name="desc_cat" rows="10" cols="40" maxlength="500">' . $categories[0]["Descrizione"] . '</textarea></div>
+            <div><textarea id="desc_prod" name="desc_cat" rows="10" cols="40" maxlength="500">' . Access::lang($categories[0]["Descrizione"]) . '</textarea></div>
             <input type="submit" class="invio" name="annulla_modifica_cat" value="Annulla modifiche"/>
             <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></form>';
 
