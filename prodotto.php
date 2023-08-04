@@ -45,7 +45,21 @@ if (isset($_GET["prod"])) {
             "<div>img</div>" => $slideshow,
             "product-id_placeholder" => $idprod,
             "category-id_placeholder" => $idcat,
-            "<!--Wish-->" => $isLogged
+            "<!--Wish-->" => $isLogged,
+            '<form action="contatti.php" id="contact-form" method="post"></form>'=> 
+            (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin")? "":'<form action="contatti.php" id="contact-form" method="post"><fieldset>
+            <legend>
+                <h3>Per Informazioni</h3>
+            </legend>
+            <input type="hidden" class="product_id" name="product_id" id="product_id"
+                value="product-id_placeholder" />
+            <input type="hidden" class="categ_id" name="categoria" id="categ_id"
+                value="category-id_placeholder" />
+            <div class="submit">
+                <input type="submit" id="informazioni" name="informazioni_prodotto"
+                    value="Richiedi Informazioni" />
+            </div>
+        </fieldset></form>'
         );
     } else {
         header("Location: categorie.php");
@@ -66,3 +80,5 @@ foreach ($replace as $key => $value)
     $template = str_replace($key, $value, $template);
 echo $template;
 ?>
+
+
