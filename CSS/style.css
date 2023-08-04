@@ -661,7 +661,9 @@ a:visited {
   box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
   margin-left: auto;
   margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
-  background-color: #006600;
+  background-color: #c2e0c6;
+  color: #276749;
+  border: 1px solid #276749;
 }
 
 .msg_non_letto {
@@ -677,7 +679,9 @@ a:visited {
   box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
   margin-left: auto;
   margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
-  background-color: #cc0000;
+  background-color: #ffcccc;
+  color: #cc0000;
+  border: 1px solid #cc0000;
 }
 .prova1 {
   display: flex;
@@ -719,7 +723,54 @@ fieldset {
   box-sizing: border-box;
 }
 
+#elimina_utente_big {
+  background-color: #ffcccc;
+  color: #cc0000;
+  padding: 20px;
+  border: 1px solid #cc0000;
+  border-radius: 12px;
+  margin: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 .pulsanti_catalogo {
-  margin-top: 10em;
+  margin-top: 2em;
   margin-bottom: 2em;
+}
+
+.utenti {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.flexutente {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spazio tra i campi utente (Username, Email) */
+}
+
+.utenti form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.messaggio_elimina {
+    color: red;
+    font-weight: bold;
+}
+
+.invio {
+    background-color: #DB334F;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.invio:hover {
+    background-color: #CC0000;
 }

@@ -24,7 +24,7 @@ class Catalogo
                 $result .= '<p class="inline"> Nome prodotto: ' . $products[$i]["Prod_Nome"] . '</p>
                     <p class="inline"> Categoria: ' . $products[$i]["Cat_Nome"] . '</p>
                     <p class="inline"> Descrizione: ' . $products[$i]["Descrizione"] . '</p>
-                    <p class="inline"><input type="submit" class="modifica" name="modifica_prod" value="Modifica" /></p></fieldset>';
+                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></p></fieldset>';
             }
         }
         return $result;
@@ -71,7 +71,7 @@ class Catalogo
             <input type="hidden" name="product_id_img" value="' . $product_id . '"/>
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
             <input type="file" name="img[]" multiple>
-            <input type="submit" class="modifica" name="upload_img" value="Carica"></div>';
+            <input type="submit" class="modifica invio" name="upload_img" value="Carica"></div>';
 
             if($product[0]["path"] != null) {
                 $result .= '<div><input type="submit" class= "invio" id="elimina_img" name="elimina_img" value="Elimina immagini selezionate"/>';
@@ -136,7 +136,7 @@ class Catalogo
                     <p class="inline"><input type="hidden" name="category_id" value="' . $categories[$i]["id_categoria"] . '"/></p>' // mi salvo l'id_categoria
                     . '<p class="inline"> Nome: ' . $categories[$i]["Nome"] . ' |</p>
                     <p class="inline"> Descrizione: ' . $categories[$i]["Descrizione"] . '.</p>
-                    <p class="inline"><input type="submit" class="modifica" name="modifica_cat" value="Modifica" /></p>';
+                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" /></p>';
             }
         }
         return $result;

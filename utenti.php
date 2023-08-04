@@ -18,10 +18,10 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
                         <div class="flexutente">
                         <div><span lang="en">Username</span>: ' . $utente['username'] . ' </div>
                         <div><span lang="en">Email</span>: ' . $utente['email'] . ' </div>';
-                        (isset($_POST["delete"])&&$_POST["userId"]==$utente['username'])?$stringaUtenti.='<form method="post" action="utenti.php"><div class="messaggio_elimina" role="alert">Sicuro di voler eliminare il profilo?</div>
+                        (isset($_POST["delete"])&&$_POST["userId"]==$utente['username'])?$stringaUtenti.='<div id="elimina_utente_big"><form method="post" action="utenti.php"><div class="messaggio_elimina" role="alert">Sicuro di voler eliminare il profilo?</div>
                         <input type="hidden" id="id' . $utente['username'] . '"name="userId" value="' . $utente['username'] . '"/>
                         <div id="msg_confirm" role="alert"><input type="submit" name="si" class="invio" value="Si" />
-                        <input type="submit" name="no" class="invio" value="No" /></div></form>':$stringaUtenti.='<form action="utenti.php" method="post">
+                        <input type="submit" name="no" class="invio" value="No" /></div></form></div>':$stringaUtenti.='<form action="utenti.php" method="post">
                         <input type="hidden" id="id' . $utente['username'] . '"name="userId" value="' . $utente['username'] . '"/>
                         <input type="submit" id="delete'. $utente['username'] .'"name="delete" class="invio" value="Elimina"/>
                         <div id="msg_confirm" role="alert"></div>
