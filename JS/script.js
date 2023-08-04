@@ -23,3 +23,19 @@ function confermaEliminazione() {
     msg_conf.removeAttribute("hidden");
 }
 
+
+function select_all() {
+    var ele = document.getElementsByName('form_msg');
+    for(var i =0; i<ele.length; i++) {
+        if(ele[i].type == 'checkbox')
+            ele[i].checked = true;
+    }
+}
+
+function deselect_all() {
+    var ele = document.getElementsByName('form_msg');
+    for(var i =0; i<ele.length; i++) {
+        if(ele[i].type == 'checkbox')
+            ele[i].checked = false;
+    }
+}

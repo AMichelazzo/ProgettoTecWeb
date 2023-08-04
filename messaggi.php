@@ -11,7 +11,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     $paginaHTML .= file_get_contents("HTML/messaggi.html");
 
     if(isset($_POST["submit_letti"])) { // funzione che segna come letti i messaggi selezionati
-        echo "dentro qui";
         if (isset($_POST['form_msg']))
             $msg_checked = $_POST['form_msg'];
 
