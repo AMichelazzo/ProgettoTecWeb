@@ -56,7 +56,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     else{
         for ($i = 0; $i < count($result); $i++) { // funzione per la creazione dell'inline
 
-            $ElencoMsg .= '<fieldset class="';
+            $ElencoMsg .= '<fieldset class="msggg ';
             if($result[$i]["letto"] == 1)
                 $ElencoMsg .="msg_letto";
             else

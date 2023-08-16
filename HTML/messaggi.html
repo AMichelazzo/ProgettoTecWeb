@@ -1,6 +1,7 @@
 <main>
     <div id="msg_confirm" class="msg_class" role="alert"><span
             class="sr-only"><!--Contenuto_sr--></span><!--Contenuto_errors--></div>
+    <div><button type="button" class="invio right" id="toggleButton">Seleziona tutto</button></div>
     <form action="messaggi.php" method="POST">
         <div>Elementi_Messaggi</div>
         
@@ -18,10 +19,6 @@
             </div>
         </div>
     </form>
-
-    <div><input type="submit" class="invio" onclick="select_all()" value="Seleziona tutti" />
-        <input type="submit" class="invio" onclick="deselect_all()" value="Deseleziona tutti" />
-    </div>
     <div id="iniziopagina">
         <a href="#">Inizio pagina</a>
     </div>

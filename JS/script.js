@@ -24,18 +24,33 @@ function confermaEliminazione() {
 }
 
 
-function select_all() {
-    var ele = document.getElementsByName('form_msg');
-    for(var i =0; i<ele.length; i++) {
-        if(ele[i].type == 'checkbox')
-            ele[i].checked = true;
-    }
-}
 
-function deselect_all() {
-    var ele = document.getElementsByName('form_msg');
-    for(var i =0; i<ele.length; i++) {
-        if(ele[i].type == 'checkbox')
-            ele[i].checked = false;
+document.addEventListener('DOMContentLoaded', function() {
+    const messages = document.querySelectorAll('.msggg');
+    
+    messages.forEach(message => {
+        message.addEventListener('click', function() {
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+        });
+    });
+    var isSelectAll = true; // Stato iniziale
+    var toggleB = document.getElementById('toggleButton');
+    if (toggleB) {
+        toggleB.addEventListener('click', function() {
+            var ele = document.getElementsByName('form_msg[]');
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].type == 'checkbox')
+                    ele[i].checked = isSelectAll;
+            }
+            if (isSelectAll) {
+                toggleB.innerHTML = 'Annulla selezione';
+            } else {
+                toggleB.innerHTML = 'Seleziona tutto';
+            }
+            
+            isSelectAll = !isSelectAll;
+        });
     }
-}
+
+});
