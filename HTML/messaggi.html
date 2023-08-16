@@ -1,19 +1,22 @@
 <main>
+    <div id="msg_confirm" class="msg_class" role="alert"><span
+            class="sr-only"><!--Contenuto_sr--></span><!--Contenuto_errors--></div>
     <form action="messaggi.php" method="POST">
         <div>Elementi_Messaggi</div>
+        
         <div><input type="submit" class="invio" id="submit_letti" name="submit_letti"
                 value="Segna messaggi come letti" />
             <input type="submit" class="invio" id="submit_elimina" name="submit_elimina"
                 onclick="confermaEliminazione();" value="Elimina messaggi selezionati" />
         </div>
-        <div hidden id="messaggio_conferma" role="alert">
-            <p>Sei sicuro di voler cancellare i messaggi?</p>
+        <div hidden id="elimina_utente_big">
+            <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
+                <p>Sei sicuro di voler cancellare i messaggi?</p>
+            </div>
+            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina" value="Si" />
+                <input type="hidden" class="invio" id="no_elimina" name="no_elimina" value="No" />
+            </div>
         </div>
-        <div><input type="hidden" class="invio" id="no_elimina" name="no_elimina" value="No" />
-            <input type="hidden" class="invio" id="si_elimina" name="si_elimina" value="Si" />
-        </div>
-        <div id="msg_confirm" class="msg_class" role="alert"><span
-                class="sr-only"><!--Contenuto_sr--></span><!--Contenuto_errors--></div>
     </form>
 
     <div><input type="submit" class="invio" onclick="select_all()" value="Seleziona tutti" />

@@ -19,7 +19,7 @@ function confermaEliminazione() {
     document.getElementById("submit_elimina").type = "hidden";
     document.getElementById("si_elimina").type = "submit";
     document.getElementById("no_elimina").type = "submit";
-    let msg_conf = document.getElementById("messaggio_conferma");
+    let msg_conf = document.getElementById("elimina_utente_big");
     msg_conf.removeAttribute("hidden");
 }
 

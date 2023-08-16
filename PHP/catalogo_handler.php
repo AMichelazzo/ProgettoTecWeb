@@ -84,9 +84,13 @@ class Catalogo
             '<div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Prodotto"/></div>
             <form action="catalogo.php" method="POST"><input type="hidden" name="prod_id_2" value="' . $product_id .'"/>
             <div id="msg_confirm" role="alert"></div>
-            <div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler eliminare il prodotto?</p></div>
-                    <div class="prova1"><input type="hidden" class="invio" id="no_elimina" name="annulla_elimina_prod" value="No"/>
-                    <input type="hidden" class="invio" id="si_elimina" name="conferma_elimina_prod" value="Si"/></div></form>';
+            <div hidden id="elimina_utente_big">
+            <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
+                <p>Sei sicuro di voler eliminare il prodotto?</p>
+            </div>
+            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina" value="Si" />
+                <input type="hidden" class="invio" id="no_elimina" name="no_elimina" value="No" />
+            </div>';
 
         return $result;
     }
@@ -159,9 +163,13 @@ class Catalogo
             $result .= ' <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Categoria"/></div>
             <form action="catalogo.php" method="POST"><input type="hidden" name="cat_id_2" value="' . $category_id .'"/>
             <div id="msg_confirm" role="alert"></div>
-            <div hidden id="messaggio_conferma" role="alert"><p>Sei sicuro di voler eliminare la categoria?</p></div>
-                    <div class="prova1"><input type="hidden" class="invio" id="no_elimina" name="annulla_elimina_cat" value="No"/>
-                    <input type="hidden" class="invio" id="si_elimina" name="conferma_elimina_cat" value="Si"/></div></form>';
+            <div hidden id="elimina_utente_big">
+            <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
+                <p>Sei sicuro di voler eliminare la categoria?</p>
+            </div>
+            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina" value="Si" />
+                <input type="hidden" class="invio" id="no_elimina" name="no_elimina" value="No" />
+            </div>';
 
 
         return $result;
