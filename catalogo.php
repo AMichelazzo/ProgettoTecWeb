@@ -23,7 +23,6 @@ if ($user && $ruolo == "admin") {
     if (isset($_POST["submit_modifica_prod"])) {
         if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && $_POST["nome_prod"] != NULL && $_POST["desc_prod"] != NULL) {
 
-
             Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
 
             if (isset($_POST["alt_img"])) {
@@ -59,7 +58,7 @@ if ($user && $ruolo == "admin") {
     }
 
     // eliminazione di un prodotto
-    if (isset($_POST["conferma_elimina_prod"])) {
+    if (isset($_POST["si_elimina_prod"])) {
         $result = Access::deleteProduct($_POST["prod_id_2"]);
         $Elenco_prod = Catalogo::show_allProducts();
 
@@ -69,7 +68,7 @@ if ($user && $ruolo == "admin") {
             $paginaHTML = Catalogo::sendError("error", "Eliminazione prodotto non riuscita", "Errore nell'eliminazione del prodotto", $paginaHTML);
     }
 
-    if( isset($_POST["annulla_elimina_prod"])) {
+    if( isset($_POST["no_elimina_prod"])) {
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
     }
@@ -103,7 +102,7 @@ if ($user && $ruolo == "admin") {
 
    
     // eliminazione di una categoria
-    if (isset($_POST["conferma_elimina_cat"])) {
+    if (isset($_POST["si_elimina_cat"])) {
 
         // controllo che non ci siano ancora prodotti con questa categoria
         if (Access::getProductsbyCategory($_POST["cat_id_2"]))
@@ -114,11 +113,13 @@ if ($user && $ruolo == "admin") {
         }
 
         $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Categorie", $paginaHTML);
     $Elenco_prod = Catalogo::show_allCategories();
     }
 
-    if(isset($_POST["annulla_elimina_cat"])) {
+    if(isset($_POST["no_elimina_cat"])) {
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Modifica categoria", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id_2"]);
     }
 
@@ -132,6 +133,7 @@ if ($user && $ruolo == "admin") {
 
         $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagine eliminata", $paginaHTML);
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Modifica prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
     }
 
@@ -140,6 +142,7 @@ if ($user && $ruolo == "admin") {
 
         $result = Catalogo::uploadImg($_POST["product_id_img"], $_POST["category_id_img"]);
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Modifica prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
 
         $paginaHTML = Catalogo::sendError($result[0], $result[1], $result[2], $paginaHTML);
@@ -151,11 +154,13 @@ if ($user && $ruolo == "admin") {
 
     if (isset($_POST["modifica_prod"])) { // funzione che mostra la pagina di modifica del prodotto selezionato
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Modifica prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id"]);
     }
 
     if (isset($_POST["new_product"])) { // pagina per la creazione di un nuovo prodotto
         $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Creazione nuovo prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_newProduct();
 
         if ($Elenco_prod == 0)
@@ -170,16 +175,19 @@ if ($user && $ruolo == "admin") {
     ) { // mostra il "catalogo" delle categorie
 
         $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Categorie", $paginaHTML);
         $Elenco_prod = Catalogo::show_allCategories();
     }
 
     if (isset($_POST["new_category"])) { // pagina per la creazione di nuova categoria
         $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuova categoria", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Creazione nuova categoria", $paginaHTML);
         $Elenco_prod = Catalogo::show_newCategory();
     }
 
     if (isset($_POST["modifica_cat"])) { // pagina per la modifica della categoria
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " >> Catalogo >> Modifica categoria", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyCategory($_POST["category_id"]);
     }
     // fine catalogo categorie

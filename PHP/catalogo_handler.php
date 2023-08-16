@@ -88,8 +88,8 @@ class Catalogo
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 <p>Sei sicuro di voler eliminare il prodotto?</p>
             </div>
-            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina" value="Si" />
-                <input type="hidden" class="invio" id="no_elimina" name="no_elimina" value="No" />
+            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_prod" value="Si" />
+                <input type="hidden" class="invio" id="no_elimina" name="no_elimina_prod" value="No" />
             </div>';
 
         return $result;
@@ -167,8 +167,8 @@ class Catalogo
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 <p>Sei sicuro di voler eliminare la categoria?</p>
             </div>
-            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina" value="Si" />
-                <input type="hidden" class="invio" id="no_elimina" name="no_elimina" value="No" />
+            <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_cat" value="Si" />
+                <input type="hidden" class="invio" id="no_elimina" name="no_elimina_cat" value="No" />
             </div>';
 
 
