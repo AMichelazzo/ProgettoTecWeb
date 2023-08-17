@@ -50,7 +50,7 @@ class Catalogo
 
         $result .= '</select><div><label for="desc_prod">Descrizione prodotto:</label></div>
             <div><textarea id="desc_prod" name="desc_prod" rows="10" cols="40" maxlength="500">' . Access::lang($product[0]["Descrizione"]) . '</textarea></div>
-            <div><p>Nel caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
+            <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
             Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[/EN].</p></div>';
 
         $result.=  '<div id="img_products"><legend>Aggiungi o elimina immagini del prodotto</legend>';
@@ -62,7 +62,7 @@ class Catalogo
                 $result .= '<div class="images">
                     <input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
-                    input type="hidden" name="path_img[]" value="" . $product[$i]["path"] . ""/>
+                    <input type="hidden" name="path_img[]" value="" . $product[$i]["path"] . ""/>
                     <div><label for="alt_img">Alt immagine:</label></div>
                     <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
             }
@@ -115,7 +115,7 @@ class Catalogo
         $result .= '</select><div><label for="new_desc_prod">Descrizione prodotto:</label></div>
             <div><textarea id="new_desc_prod" name="new_desc_prod" rows="10" cols="40" maxlength="500"></textarea></div>
             <div><p>E\' possibile aggiungere immagini al prodotto modificandole successivamente.</p></div>
-            <div><p>Nel caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
+            <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
             Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[/EN].</p></div>
             <div><input type="submit" class="invio" id="annulla_new_cat" name="annulla_new_prod" value="Annulla creazione prodotto"/>
             <input type="submit" class="invio" id="submit_new_cat" name="submit_new_prod" value="Conferma nuovo prodotto"/></div></form>';
@@ -183,7 +183,7 @@ class Catalogo
             <div><input type="text" id="new_nome_cat" name="new_nome_cat" value=""/></div>
             <div><label for="desc_prod">Descrizione categoria:</label></div>
             <div><textarea id="new_desc_cat" name="new_desc_cat" rows="10" cols="30" maxlength="500"></textarea></div>
-            <div><p>Nel caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*] 
+            <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*] 
                 Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[/EN].</p></div>
             <input type="submit" class="invio" id="annulla_new_cat" name="annulla_new_cat" value="Annulla creazione categoria"/>
             <input type="submit" class="invio" id="submit_new_cat" name="submit_new_cat" value="Conferma nuova categoria"/></form>';

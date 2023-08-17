@@ -82,6 +82,11 @@ class Access
         return DBAccess::dbQuery("SELECT prodotti.id_prodotto, prodotti.id_categoria, prodotti.Nome, prodotti.Descrizione, immagini.path, immagini.alt_img FROM prodotti LEFT JOIN immagini on prodotti.id_prodotto = immagini.id_prodotto WHERE prodotti.id_prodotto = ?", $id_prodotto);
     }
 
+    public static function getProductImages($id_prodotto) 
+    {
+        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto WHERE immagini.id_prodotto = ?", $id_prodotto);
+    }
+    
     public static function getAllProducts()
     {
         return DBAccess::dbQuery("SELECT id_prodotto, prodotti.id_categoria, prodotti.Descrizione, categoria.Nome AS Cat_Nome, prodotti.Nome AS Prod_Nome FROM prodotti JOIN categoria on prodotti.id_categoria = categoria.id_categoria");
