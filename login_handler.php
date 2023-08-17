@@ -1,11 +1,11 @@
 <?php
-require_once "class.php";
+require_once "PHP/class.php";
 session_start();
 if (isset($_SESSION["username"])) {
     if (isset($_SESSION["is_admin"]))
-        header("Location: ../index.php");
+        header("Location: index.php");
     else
-        header("Location: ../index.php");
+        header("Location: index.php");
 }
 else
 {
@@ -24,7 +24,7 @@ else
                                 </div>";
         }
     }
-    header("Location: ../accesso.php");
+    header("Location: accesso.php");
 }
 
 ?>
