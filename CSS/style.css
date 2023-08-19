@@ -288,6 +288,9 @@ a:visited {
   border-color: var(--bgfuncolor);
   padding: 0.2em 0.5em 0.5em 0.5em;
   border-radius: 12px 12px 12px 12px; /*ATTENZIONE VALORE ASSOLUTO*/
+  margin: 5px;
+  border: none;
+  cursor: pointer;
 }
 
 .modifica {
@@ -478,7 +481,7 @@ a:visited {
   margin-right: auto;
   position: inherit;
   background-color: #c2e0c6;
-  color: #276749;
+  border: 1px solid #276749;
 }
 
 .container {
@@ -772,16 +775,6 @@ fieldset {
 .messaggio_elimina {
     color: red;
     font-weight: bold;
-}
-
-.invio {
-    background-color: #DB334F;
-    color: #fff;
-    padding: 5px 10px;
-    margin: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 .invio:hover {
