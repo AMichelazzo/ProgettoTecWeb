@@ -3,13 +3,27 @@ session_start();
 require_once "PHP/class.php";
 
 $replace = "";
+$keywords="";
+if(isset($_GET["cat"])){
+    $result3 = Access::getKeyWordsCategoria($_GET["cat"]);
+    if (count($result3) > 0) {
+        for ($i = 0; $i < count($result3); $i++) {
+            if ($i == count($result3) - 1) {
+                $keywords .= $result3[$i]["Nome"];
+            } else {
+                $keywords .= $result3[$i]["Nome"] . ", ";
+            }
+        }
+    }
+}
+
 //SE HO CLICCATO PRODOTTI DA QUALSIASI PAGINA
 if (!isset($_GET["cat"])) {
 
     if (isset($_SESSION["username"])) {
-        $template = Access::getHeader("Prodotti", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["ruolo"]);
+        $template = Access::getHeader("Prodotti", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, $_SESSION["ruolo"]);
     } else {
-        $template = Access::getHeader("Prodotti", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista");
+        $template = Access::getHeader("Prodotti", "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords);
     }
     $template .= file_get_contents('HTML/categorie.html');
 
@@ -21,12 +35,12 @@ if (!isset($_GET["cat"])) {
             $ElencoCateg .= '<div><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
             <div>' . $result[$i]['Descrizione'] . '</div> ';
         }
-        
     }
     else
     {
-        $replace = array("<!--categories_place_holder -->" => '<div id="wish-error" role="alert">Al momento non sono disponibili prodotti!</div>');
+        $ElencoCateg='<div id="wish-error" role="alert">Al momento non sono disponibili prodotti!</div>';
     }
+    $replace = array("<!--categories_place_holder -->" => $ElencoCateg);
 }
 
 //SE HO SELEZIONATO UNA CATEGORIA
@@ -35,9 +49,9 @@ if (isset($_GET["cat"])) {
     $result = Access::getProductsbyCategory($_GET["cat"]);
 
     if (isset($_SESSION["username"])) {
-        $template = Access::getHeader(Access::getCategoryName($_GET["cat"]), "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["ruolo"], "Prodotti", "categorie.php");
+        $template = Access::getHeader(Access::getCategoryName($_GET["cat"]), "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, $_SESSION["ruolo"], "Prodotti", "categorie.php");
     } else {
-        $template = Access::getHeader(Access::getCategoryName($_GET["cat"]), "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, Lista", null, "Prodotti", "categorie.php");
+        $template = Access::getHeader(Access::getCategoryName($_GET["cat"]), "Lista delle categorie presenti nel nostro catalogo di oggetti.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, null, "Prodotti", "categorie.php");
     }
     $template .= file_get_contents('HTML/categorie.html');
 

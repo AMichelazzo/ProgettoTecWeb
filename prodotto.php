@@ -16,10 +16,19 @@ if (isset($_GET["prod"])) {
         $idcat = $result[0]['id_categoria'];
         $isLogged = "";
         $slideshow = "";
+        if (count($result3) > 0) {
+            for ($i = 0; $i < count($result3); $i++) {
+                if ($i == count($result3) - 1) {
+                    $keywords .= $result3[$i]["Nome"];
+                } else {
+                    $keywords .= $result3[$i]["Nome"] . ", ";
+                }
+            }
+        }
         if (isset($_SESSION["username"])) {
-            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", $_SESSION["ruolo"], Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
+            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, $_SESSION["ruolo"], Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
         } else {
-            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, Lista", null, Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
+            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, null, Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
         }
         $template .= file_get_contents("HTML/prodotto.html");
 
@@ -72,17 +81,6 @@ if (isset($_GET["prod"])) {
         );
     } else {
         header("Location: categorie.php");
-    }
-    if (count($result3) > 0) {
-        for ($i = 0; $i < count($result3); $i++) {
-            if ($i == count($result3) - 1) {
-                $keywords = $keywords . $result3[$i]["Nome"];
-            } else {
-                $keywords = $keywords . $result3[$i]["Nome"] . ", ";
-            }
-        }
-        $keywords = "<meta name=\"keywords\" content=\"" . $keywords . "\" />";
-        $replace["<!--Keywords-->"] = $keywords;
     }
 }
 foreach ($replace as $key => $value)

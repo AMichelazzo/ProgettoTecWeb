@@ -301,6 +301,11 @@ class Access
         return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `prodotto` = ?", $id_prodott);
     }
 
+    public static function getKeyWordsCategoria($id_categ)
+    {
+        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `categoria` = ?", $id_categ);
+    }
+
     public static function getProductsOnWishlist($username)
     {
         $result = DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
