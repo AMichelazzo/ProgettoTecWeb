@@ -23,23 +23,20 @@ if (isset($_GET["prod"])) {
         }
         $template .= file_get_contents("HTML/prodotto.html");
 
-        if (empty($result1)) {
-
-            $template = str_replace('<div class="slideshow-container">
-            <div class="position-container">
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-            </div>
-        </div>', "", $template);
-            
-        } else {
-            for ($i = 0; $i < count($result1); $i++) {
-                $slideshow .= "<div class=\"mySlides fade\">
+        if (!empty($result1)) {
+            $slide='<div class="slideshow-container">
+            <div class="position-container">';
+                for ($i = 0; $i < count($result1); $i++) {
+                $slide .= "<div class=\"mySlides fade\">
             <img src=\"" . $result[$i]["path"] . "\" alt=\"" . $result[$i]["alt_img"] . "\" width=\"300\" height=\"300\"/></div>";
             }
+                $slide.='<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>';
+        $template = str_replace('<!--slideShow-->', $slide, $template);
         }
-           
-
+        
         if (isset($_SESSION["username"]) && $_SESSION["ruolo"] != "admin") {
             $result2 = Access::isInWishList($idprod, $idcat, $_SESSION["username"]);
             if ($result2 == null) {

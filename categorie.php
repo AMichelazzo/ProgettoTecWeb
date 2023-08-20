@@ -16,11 +16,17 @@ if (!isset($_GET["cat"])) {
     $result = $nome = $descrizione = "";
     $result = Access::getCategories();
     $ElencoCateg = "";
-    for ($i = 0; $i < count($result); $i++) {
-        $ElencoCateg .= '<div><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
-        <div>' . $result[$i]['Descrizione'] . '</div> ';
+    if($result){
+        for ($i = 0; $i < count($result); $i++) {
+            $ElencoCateg .= '<div><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
+            <div>' . $result[$i]['Descrizione'] . '</div> ';
+        }
+        
     }
-    $replace = array("<!--categories_place_holder -->" => $ElencoCateg);
+    else
+    {
+        $replace = array("<!--categories_place_holder -->" => '<div id="wish-error" role="alert">Al momento non sono disponibili prodotti!</div>');
+    }
 }
 
 //SE HO SELEZIONATO UNA CATEGORIA

@@ -13,7 +13,7 @@ class Catalogo
         $products = Access::getAllProducts();
 
         if (empty($products))
-            $result .= '<h2>Non sono presenti prodotti</h2>';
+            $result .= '<div id="wish-error" role="alert">Al momento non sono disponibili prodotti!</div>';
         else {
             for ($i = 0; $i < count($products); $i++) { // funzione per la creazione dell'inline
 
@@ -132,7 +132,7 @@ class Catalogo
         <input type="submit" class="invio" id="new_category" name="new_category" value="Aggiungi nuova categoria" /></div></form>';
 
         if (empty($categories))
-            $result .= "<h2>Non sono presenti categorie</h2>";
+            $result .= '<div id="wish-error" role="alert">Al momento non sono disponibili categorie!</div>';
         else {
             for ($i = 0; $i < count($categories); $i++) {
 
