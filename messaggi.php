@@ -15,7 +15,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             $msg_checked = $_POST['form_msg'];
 
         if (empty($msg_checked)) {
-            echo "dentro";
             $paginaHTML = str_replace("msg_class", "error-message", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Errore: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Non hai selezionato nessun messaggio!", $paginaHTML);
@@ -47,10 +46,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             $paginaHTML = str_replace("<!--Contenuto_sr-->", "Eliminazione riuscita: ", $paginaHTML);
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Messaggio eliminato con successo", $paginaHTML);
         }
-    }
-
-    if (isset($_POST["no_elimina"])) {
-        header("Location: messaggi.php");
     }
 
     $result = Access::getMessages();
