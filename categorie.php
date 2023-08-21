@@ -32,8 +32,9 @@ if (!isset($_GET["cat"])) {
     $ElencoCateg = "";
     if($result){
         for ($i = 0; $i < count($result); $i++) {
-            $ElencoCateg .= '<div><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
-            <div>' . $result[$i]['Descrizione'] . '</div> ';
+            $ElencoCateg .= '<div class="conteg-container" role="group" aria-label="Categoria"><div class="img-categ"><img src="'. $result[$i]["img_path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
+            <div class="text-container"><div class="link-class"><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
+            <div class="desc-categ">' . $result[$i]['Descrizione'] . '</div></div></div>';
         }
     }
     else
@@ -58,8 +59,10 @@ if (isset($_GET["cat"])) {
     if (!empty($result)) {
         $ElencoProdot = "";
         for ($i = 0; $i < count($result); $i++) {
-            $ElencoProdot .= '<div><a href="prodotto.php?prod=' . $result[$i]['id_prodotto'] . '">' . $result[$i]['Nome'] . '</a></div>
-            <div>' . $result[$i]['Descrizione'] . '</div>' . '<div><img alt=""></img></div> ';
+            $ElencoProdot .= '<div class="conteg-container" role="group" aria-label="Categoria">
+            <div class="img-categ"><img src="'. $result[$i]["path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
+            <div class="text-container"><div class="link-class"><a href="prodotto.php?prod=' . $result[$i]['id_prodotto'] . '">' . $result[$i]['Nome'] . '</a></div>
+            <div class="desc-categ">' . $result[$i]['Descrizione'] . '</div></div></div>';
         }
         $replace = array("<!--categories_place_holder -->" => $ElencoProdot);
     } else {
@@ -67,7 +70,9 @@ if (isset($_GET["cat"])) {
         $result = Access::getCategories();
         $ElencoCateg = "";
         for ($i = 0; $i < count($result); $i++) {
-            $ElencoCateg .= '<div><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>' . '<div>' . $result[$i]['Descrizione'] . '</div> ';
+            $ElencoCateg .= '<div class="conteg-container" role="group" aria-label="Categoria"><div class="img-categ"><img src="'. $result[$i]["img_path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
+            <div class="text-container"><div class="link-class"><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
+            <div class="desc-categ">' . $result[$i]['Descrizione'] . '</div></div></div>';
         }
         $replace = array("<!--categories_place_holder -->" => $ElencoCateg);
     }

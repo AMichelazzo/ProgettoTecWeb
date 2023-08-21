@@ -812,3 +812,42 @@ fieldset {
 .right {
   float:right;
 }
+
+.conteg-container {
+  display: flex;
+  align-items: center;
+  margin: 1em;
+  cursor: pointer;
+  transition: border 0.3s; 
+  border: 1px solid transparent; 
+}
+
+.conteg-container:hover {
+  border: 1px solid var(--visitedcolor); 
+}
+
+.img-categ img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 1em;
+  width: 300px; 
+  height: 300px; 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+}
+
+
+.link-class a {
+  color: var(--visitedcolor);
+  font-weight: bold;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.desc-categ {
+  color: var(--visitedcolor);
+}

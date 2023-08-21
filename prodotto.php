@@ -16,7 +16,7 @@ if (isset($_GET["prod"])) {
         $idcat = $result[0]['id_categoria'];
         $isLogged = "";
         $slideshow = "";
-        if (count($result3) > 0) {
+        if (!empty($result3)) {
             for ($i = 0; $i < count($result3); $i++) {
                 if ($i == count($result3) - 1) {
                     $keywords .= $result3[$i]["Nome"];
