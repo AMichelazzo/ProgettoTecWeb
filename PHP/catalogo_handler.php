@@ -7,7 +7,7 @@ class Catalogo
     public static function show_allProducts()
     { // viene mostrato il catalogo con tutti i prodotti
 
-        $result = '<form action="catalogo.php" method="POST"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="category_list" value="Vai a lista delle Categorie" />
+        $result = '<form action="catalogo.php" method="GET"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="lista_categorie" value="Vai a lista delle Categorie" />
         <input type="submit" class="invio" id="new_product" name="new_product" value="Aggiungi nuovo prodotto"/></div></form>';
 
         $products = Access::getAllProducts();
