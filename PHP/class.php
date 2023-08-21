@@ -306,7 +306,7 @@ class Access
 
     public static function getKeyWordsCategoria($id_categ)
     {
-        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `categoria` = ?", $id_categ);
+        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `categoria` = ? LIMIT 20", $id_categ);
     }
 
     public static function getProductsOnWishlist($username)

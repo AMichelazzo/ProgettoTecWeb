@@ -9,7 +9,7 @@ if (isset($_GET["prod"])) {
     $result1 = Access::getProductImages($_GET["prod"]);
     $result3 = Access::getKeyWordsProdotto($_GET["prod"]);
 
-    if (count($result) > 0) {
+    if (!empty($result)) {
         $nome = $result[0]['Nome'];
         $desc = $result[0]['Descrizione'];
         $idprod = $result[0]['id_prodotto'];
