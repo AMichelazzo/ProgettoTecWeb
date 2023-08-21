@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 09, 2023 alle 10:08
+-- Creato il: Ago 21, 2023 alle 13:44
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -27,20 +27,28 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `categoria`
 --
 
-CREATE TABLE `categoria` (
-  `id_categoria` int(100) NOT NULL,
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `id_categoria` int(100) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(100) NOT NULL,
   `Descrizione` varchar(500) DEFAULT NULL,
-  `img_path` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `img_path` varchar(100) DEFAULT NULL,
+  `alt_img` varchar(255) NOT NULL,
+  UNIQUE KEY `id_categoria` (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `categoria`
+--
+
+TRUNCATE TABLE `categoria`;
 --
 -- Dump dei dati per la tabella `categoria`
 --
 
-INSERT INTO `categoria` (`id_categoria`, `Nome`, `Descrizione`, `img_path`) VALUES
-(1, 'Lampadario', 'Lampadario da soffitto per tutte le stanze', NULL),
-(2, 'Animale', 'Piccolo animale di vetro molto dettagliato', NULL);
+INSERT INTO `categoria` (`id_categoria`, `Nome`, `Descrizione`, `img_path`, `alt_img`) VALUES
+(1, 'Lampadario', 'Lampadario da soffitto per tutte le stanze', 'img/lampa_categ.jpg', 'test lampadario'),
+(2, 'Animale', 'Piccolo animale di vetro molto dettagliato', 'img/animale_categ.jpg', 'test animale');
 
 -- --------------------------------------------------------
 
@@ -48,13 +56,21 @@ INSERT INTO `categoria` (`id_categoria`, `Nome`, `Descrizione`, `img_path`) VALU
 -- Struttura della tabella `immagini`
 --
 
-CREATE TABLE `immagini` (
+DROP TABLE IF EXISTS `immagini`;
+CREATE TABLE IF NOT EXISTS `immagini` (
   `id_prodotto` int(100) NOT NULL,
   `id_categoria` int(100) NOT NULL,
   `path` varchar(500) NOT NULL,
-  `alt_img` text DEFAULT NULL
+  `alt_img` text DEFAULT NULL,
+  UNIQUE KEY `path` (`path`),
+  KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `immagini`
+--
+
+TRUNCATE TABLE `immagini`;
 --
 -- Dump dei dati per la tabella `immagini`
 --
@@ -70,16 +86,24 @@ INSERT INTO `immagini` (`id_prodotto`, `id_categoria`, `path`, `alt_img`) VALUES
 -- Struttura della tabella `messaggi`
 --
 
-CREATE TABLE `messaggi` (
-  `id_messaggio` int(100) NOT NULL,
+DROP TABLE IF EXISTS `messaggi`;
+CREATE TABLE IF NOT EXISTS `messaggi` (
+  `id_messaggio` int(100) NOT NULL AUTO_INCREMENT,
   `msg` text NOT NULL,
   `data` date NOT NULL DEFAULT current_timestamp(),
   `id_prodotto` int(100) DEFAULT NULL,
   `id_categoria` int(100) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
-  `letto` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `letto` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id_messaggio`,`email`),
+  KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `messaggi`
+--
+
+TRUNCATE TABLE `messaggi`;
 --
 -- Dump dei dati per la tabella `messaggi`
 --
@@ -93,13 +117,21 @@ INSERT INTO `messaggi` (`id_messaggio`, `msg`, `data`, `id_prodotto`, `id_catego
 -- Struttura della tabella `prodotti`
 --
 
-CREATE TABLE `prodotti` (
-  `id_prodotto` int(100) NOT NULL,
+DROP TABLE IF EXISTS `prodotti`;
+CREATE TABLE IF NOT EXISTS `prodotti` (
+  `id_prodotto` int(100) NOT NULL AUTO_INCREMENT,
   `id_categoria` int(100) NOT NULL,
   `Nome` varchar(100) NOT NULL,
-  `Descrizione` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `Descrizione` varchar(500) NOT NULL,
+  PRIMARY KEY (`id_prodotto`,`id_categoria`),
+  KEY `prodotti` (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `prodotti`
+--
+
+TRUNCATE TABLE `prodotti`;
 --
 -- Dump dei dati per la tabella `prodotti`
 --
@@ -115,20 +147,27 @@ INSERT INTO `prodotti` (`id_prodotto`, `id_categoria`, `Nome`, `Descrizione`) VA
 -- Struttura della tabella `tags`
 --
 
-CREATE TABLE `tags` (
-  `tag_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE IF NOT EXISTS `tags` (
+  `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(255) NOT NULL,
   `Pagina` varchar(255) NOT NULL,
   `prodotto` int(11) DEFAULT NULL,
-  `categoria` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `categoria` int(11) DEFAULT NULL,
+  PRIMARY KEY (`tag_id`),
+  KEY `prodotto` (`prodotto`,`categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `tags`
+--
+
+TRUNCATE TABLE `tags`;
 --
 -- Dump dei dati per la tabella `tags`
 --
 
 INSERT INTO `tags` (`tag_id`, `Nome`, `Pagina`, `prodotto`, `categoria`) VALUES
-(1, 'Ciaone', 'home', NULL, NULL),
 (2, 'Lampadario di vetro', 'prodotto', 1, 1),
 (3, 'fsafas', 'fasdfas', 2, 1),
 (4, 'vfafas', 'fsafas', 3, 2),
@@ -140,14 +179,21 @@ INSERT INTO `tags` (`tag_id`, `Nome`, `Pagina`, `prodotto`, `categoria`) VALUES
 -- Struttura della tabella `utente`
 --
 
-CREATE TABLE `utente` (
+DROP TABLE IF EXISTS `utente`;
+CREATE TABLE IF NOT EXISTS `utente` (
   `username` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `ruolo` varchar(10) NOT NULL DEFAULT 'user',
-  `data_creazione` date NOT NULL DEFAULT current_timestamp()
+  `data_creazione` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `utente`
+--
+
+TRUNCATE TABLE `utente`;
 --
 -- Dump dei dati per la tabella `utente`
 --
@@ -155,7 +201,6 @@ CREATE TABLE `utente` (
 INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES
 ('admin', '$2y$10$f53.u6E5rAtZC44t.8SHs.GFYFUrZrZFeEcL7m5Zxftrs3tHEO4xG', 'admin@admin.com', 'admin', '2023-05-25'),
 ('guest', '$2y$10$yebql9GbhZP/t0i4p6vRK.RL/L.pfgpZvZer7wtGi7IAFtuvpEWfq', 'guest@guest.com', 'user', '2023-05-25'),
-('test1', '$2y$10$3GhmJRhaWV1MJ9BP6UzJIOt8Bm86lRqVE1tdxo.fIrKSVle40Ujbi', 'test@test.com', 'user', '2023-05-25'),
 ('user', '$2y$10$WsN.xGDn9xbYf00RYdoZUe2NGCFZQWfTs8pqh3h/EGY1N7w1GxNm.', 'user@user.com', 'user', '2023-05-25');
 
 -- --------------------------------------------------------
@@ -164,101 +209,27 @@ INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`
 -- Struttura della tabella `wishlist`
 --
 
-CREATE TABLE `wishlist` (
+DROP TABLE IF EXISTS `wishlist`;
+CREATE TABLE IF NOT EXISTS `wishlist` (
   `username` varchar(20) NOT NULL,
   `id_prodotto` int(100) NOT NULL,
   `id_categoria` int(100) NOT NULL,
-  `data_salvataggio` date NOT NULL DEFAULT current_timestamp()
+  `data_salvataggio` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`username`,`id_prodotto`,`id_categoria`),
+  KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Svuota la tabella prima dell'inserimento `wishlist`
+--
+
+TRUNCATE TABLE `wishlist`;
 --
 -- Dump dei dati per la tabella `wishlist`
 --
 
 INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`, `data_salvataggio`) VALUES
-('test1', 1, 1, '2023-05-25'),
-('test1', 2, 1, '2023-05-25'),
-('test1', 3, 2, '2023-05-25'),
 ('user', 1, 1, '2023-06-07');
-
---
--- Indici per le tabelle scaricate
---
-
---
--- Indici per le tabelle `categoria`
---
-ALTER TABLE `categoria`
-  ADD UNIQUE KEY `id_categoria` (`id_categoria`);
-
---
--- Indici per le tabelle `immagini`
---
-ALTER TABLE `immagini`
-  ADD UNIQUE KEY `path` (`path`),
-  ADD KEY `id_prodotto` (`id_prodotto`,`id_categoria`);
-
---
--- Indici per le tabelle `messaggi`
---
-ALTER TABLE `messaggi`
-  ADD PRIMARY KEY (`id_messaggio`,`email`),
-  ADD KEY `id_prodotto` (`id_prodotto`,`id_categoria`);
-
---
--- Indici per le tabelle `prodotti`
---
-ALTER TABLE `prodotti`
-  ADD PRIMARY KEY (`id_prodotto`,`id_categoria`),
-  ADD KEY `prodotti` (`id_categoria`);
-
---
--- Indici per le tabelle `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`tag_id`),
-  ADD KEY `prodotto` (`prodotto`,`categoria`);
-
---
--- Indici per le tabelle `utente`
---
-ALTER TABLE `utente`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indici per le tabelle `wishlist`
---
-ALTER TABLE `wishlist`
-  ADD PRIMARY KEY (`username`,`id_prodotto`,`id_categoria`),
-  ADD KEY `id_prodotto` (`id_prodotto`,`id_categoria`);
-
---
--- AUTO_INCREMENT per le tabelle scaricate
---
-
---
--- AUTO_INCREMENT per la tabella `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT per la tabella `messaggi`
---
-ALTER TABLE `messaggi`
-  MODIFY `id_messaggio` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT per la tabella `prodotti`
---
-ALTER TABLE `prodotti`
-  MODIFY `id_prodotto` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT per la tabella `tags`
---
-ALTER TABLE `tags`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Limiti per le tabelle scaricate
@@ -268,32 +239,32 @@ ALTER TABLE `tags`
 -- Limiti per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  ADD CONSTRAINT `immagini_ibfk_1` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
+  ADD CONSTRAINT `immagini_ibfk_1` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `messaggi`
 --
 ALTER TABLE `messaggi`
-  ADD CONSTRAINT `messaggi_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
+  ADD CONSTRAINT `messaggi_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  ADD CONSTRAINT `prodotti` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
+  ADD CONSTRAINT `prodotti` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `tags`
 --
 ALTER TABLE `tags`
-  ADD CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`prodotto`,`categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
+  ADD CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`prodotto`,`categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `wishlist`
 --
 ALTER TABLE `wishlist`
-  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`) ON UPDATE CASCADE ON DELETE CASCADE,
-  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON UPDATE CASCADE ON DELETE CASCADE;
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`id_prodotto`,`id_categoria`) REFERENCES `prodotti` (`id_prodotto`, `id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

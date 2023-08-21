@@ -32,7 +32,7 @@ class Access
 
     public static function getCategories()
     {
-        return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, c.img_path
+        return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, c.img_path, c.alt_img
                                     FROM categoria c
                                     WHERE EXISTS (
                                         SELECT *
@@ -74,7 +74,10 @@ class Access
 
     public static function getProductsbyCategory($id_categoria)
     {
-        return DBAccess::dbQuery("SELECT * FROM prodotti WHERE id_categoria = ?", $id_categoria);
+        return DBAccess::dbQuery("SELECT `prodotti`.`id_prodotto`,`prodotti`.`id_categoria`,`prodotti`.`Nome`,`prodotti`.`Descrizione`, `immagini`.`path`,`immagini`.`alt_img`  
+        FROM `prodotti` LEFT JOIN `immagini` ON `prodotti`.`id_prodotto`=`immagini`.`id_prodotto` AND `prodotti`.`id_categoria`=`immagini`.`id_categoria` 
+        WHERE `prodotti`.`id_categoria`= ? 
+        GROUP BY `prodotti`.`id_prodotto`", $id_categoria);
     }
 
     public static function getProduct($id_prodotto)
