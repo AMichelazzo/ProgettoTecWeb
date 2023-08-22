@@ -3,10 +3,10 @@ session_start();
 require_once "PHP/class.php";
 
 $replace = "";
-$keywords="";
+$keywords = "";
 if(isset($_GET["cat"])){
     $result3 = Access::getKeyWordsCategoria($_GET["cat"]);
-    if (count($result3) > 0) {
+    if (!empty($result3)&& isset($result3)) {
         for ($i = 0; $i < count($result3); $i++) {
             if ($i == count($result3) - 1) {
                 $keywords .= $result3[$i]["Nome"];
@@ -32,7 +32,7 @@ if (!isset($_GET["cat"])) {
     $ElencoCateg = "";
     if($result){
         for ($i = 0; $i < count($result); $i++) {
-            $ElencoCateg .= '<div class="conteg-container" role="group" aria-label="Categoria"><div class="img-categ"><img src="'. $result[$i]["img_path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
+            $ElencoCateg .= '<div class="conteg-container" role="group" aria-label="Categoria"><div class="img-categ"><img src="'. $result[$i]["path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
             <div class="text-container"><div class="link-class"><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
             <div class="desc-categ">' . $result[$i]['Descrizione'] . '</div></div></div>';
         }
@@ -70,7 +70,7 @@ if (isset($_GET["cat"])) {
         $result = Access::getCategories();
         $ElencoCateg = "";
         for ($i = 0; $i < count($result); $i++) {
-            $ElencoCateg .= '<div class="conteg-container" role="group" aria-label="Categoria"><div class="img-categ"><img src="'. $result[$i]["img_path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
+            $ElencoCateg .= '<div class="conteg-container" role="group" aria-label="Categoria"><div class="img-categ"><img src="'. $result[$i]["path"] . '" alt="' . $result[$i]["alt_img"] . '" width="300" height="300"/></div>
             <div class="text-container"><div class="link-class"><a href="categorie.php?cat=' . $result[$i]['id_categoria'] . '">' . $result[$i]['Nome'] . '</a></div>
             <div class="desc-categ">' . $result[$i]['Descrizione'] . '</div></div></div>';
         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 21, 2023 alle 13:44
+-- Creato il: Ago 22, 2023 alle 11:40
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -32,10 +32,8 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `id_categoria` int(100) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(100) NOT NULL,
   `Descrizione` varchar(500) DEFAULT NULL,
-  `img_path` varchar(100) DEFAULT NULL,
-  `alt_img` varchar(255) NOT NULL,
   UNIQUE KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Svuota la tabella prima dell'inserimento `categoria`
@@ -46,9 +44,12 @@ TRUNCATE TABLE `categoria`;
 -- Dump dei dati per la tabella `categoria`
 --
 
-INSERT INTO `categoria` (`id_categoria`, `Nome`, `Descrizione`, `img_path`, `alt_img`) VALUES
-(1, 'Lampadario', 'Lampadario da soffitto per tutte le stanze', 'img/lampa_categ.jpg', 'test lampadario'),
-(2, 'Animale', 'Piccolo animale di vetro molto dettagliato', 'img/animale_categ.jpg', 'test animale');
+INSERT INTO `categoria` (`id_categoria`, `Nome`, `Descrizione`) VALUES
+(1, 'Lampadario', 'Lampadario da soffitto per tutte le stanze'),
+(2, 'Animale', 'Piccolo animale di vetro molto dettagliato'),
+(3, 'Oggettistica', 'Oggettistica varia, da bicchieri a piccoli soprammobili.'),
+(4, 'Gioielli', 'Gioielli vari, bracciali, anelli, collane, orecchini e molto altro.'),
+(5, 'Vasi', 'Vasi di varie dimensioni e colori');
 
 -- --------------------------------------------------------
 
@@ -76,9 +77,30 @@ TRUNCATE TABLE `immagini`;
 --
 
 INSERT INTO `immagini` (`id_prodotto`, `id_categoria`, `path`, `alt_img`) VALUES
+(5, 3, 'img/bicchieri.jpg', 'Bicchieri in vetro di colore vario.'),
+(5, 3, 'img/bicchieri2.jpg', 'Bicchieri in vetro di colore vario.'),
+(5, 3, 'img/bicchieri3.jpg', 'Bicchieri in vetro di colore vario.'),
+(5, 3, 'img/bicchieri4.jpg', 'Bicchieri in vetro di colore vario.'),
+(6, 4, 'img/bracciale-vetro-murano.jpg', 'Bracciale di vetro di murano con stoffa.'),
+(7, 2, 'img/cavallo.jpg', 'Cavallo di vetro galoppante a due colori.'),
+(7, 2, 'img/cavallo2.jpg', 'Cavallo di vetro ruspante.'),
+(3, 2, 'img/cavallucciomarino.jpg', 'Cavalluccio marino di vetro azzurro.'),
+(8, 4, 'img/collana.png', 'Collana di vetro con più di 20 pezzi.'),
+(9, 2, 'img/galloMulticolor.png', 'Gallo arcobaleno di vetro.'),
 (1, 1, 'img/lampadario.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente. '),
 (1, 1, 'img/lampadario2.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso.'),
-(1, 1, 'img/lampadario3.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso, da vicino.');
+(1, 1, 'img/lampadario3.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso, da vicino.'),
+(4, 1, 'img/lampadarioblue.png', 'Lampadario di vetro blue con braccia di metallo.'),
+(2, 1, 'img/lampadariominimal.png', 'Lampadario minimal di vetro.'),
+(10, 1, 'img/lampadariorosso.jpg', 'Lampadario di vetro rosso, composto da più di 100 pezzi.'),
+(11, 2, 'img/muflone.png', 'Testa di muflone dalle lunghe corna.'),
+(11, 2, 'img/muflone2.jpeg', 'Testa di muflone dalle lunghe corna.'),
+(11, 2, 'img/muflone3.jpeg', 'Testa di muflone dalle lunghe corna.'),
+(12, 5, 'img/vasogoccia.png', 'Vaso a forma di goccia multicolore.'),
+(12, 5, 'img/vasogoccia2.png', 'Vaso a forma di goccia multicolore.'),
+(12, 5, 'img/vasogoccia3.png', 'Vaso a forma di goccia multicolore.'),
+(14, 5, 'img/vasorosso.jpg', 'Vaso di forma classica colore rosso.'),
+(13, 5, 'img/vasosfera.png', 'Vaso a sfera di diverse dimensione.');
 
 -- --------------------------------------------------------
 
@@ -125,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `prodotti` (
   `Descrizione` varchar(500) NOT NULL,
   PRIMARY KEY (`id_prodotto`,`id_categoria`),
   KEY `prodotti` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Svuota la tabella prima dell'inserimento `prodotti`
@@ -139,7 +161,18 @@ TRUNCATE TABLE `prodotti`;
 INSERT INTO `prodotti` (`id_prodotto`, `id_categoria`, `Nome`, `Descrizione`) VALUES
 (1, 1, 'Lampadario di lusso', 'Lampadario di lusso composto da più di 1000 pezzi fatti a mano'),
 (2, 1, 'Lampadario minimal', 'Lampadario semplice ed efficace'),
-(3, 2, 'Cavalluccio Marino', 'Piccolo cavalluccio marino di diversi colori');
+(3, 2, 'Cavalluccio Marino', 'Piccolo cavalluccio marino di diversi colori'),
+(4, 1, 'Lampadario blue', 'Lampadario di vetro blue con braccia di metallo.'),
+(5, 3, 'Bicchieri', 'Bicchieri di vario colore.'),
+(6, 4, 'Bracciale', 'Bracciale di stoffa con pezzi di vetro colorato.'),
+(7, 2, 'Cavallo', 'Cavallo galoppante di due colori.'),
+(8, 4, 'Collana', 'Collana completamente di vetro, più di 20 pezzi.'),
+(9, 2, 'Gallo', 'Gallo arcobaleno'),
+(10, 1, 'Lampadario rosso', 'Lampadario di vetro rosso, composto da più di 100 pezzi.'),
+(11, 2, 'Muflone', 'Testa di muflone dalle lunghe corna.'),
+(12, 5, 'Vaso goccia', 'Vaso a forma di goccia multicolore.'),
+(13, 5, 'Vaso a sfera', 'Vaso a sfera di diverse dimensione.'),
+(14, 5, 'Vaso classico rosso', 'Vaso di forma classica colore rosso.');
 
 -- --------------------------------------------------------
 
@@ -151,7 +184,6 @@ DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(255) NOT NULL,
-  `Pagina` varchar(255) NOT NULL,
   `prodotto` int(11) DEFAULT NULL,
   `categoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`tag_id`),
@@ -167,11 +199,11 @@ TRUNCATE TABLE `tags`;
 -- Dump dei dati per la tabella `tags`
 --
 
-INSERT INTO `tags` (`tag_id`, `Nome`, `Pagina`, `prodotto`, `categoria`) VALUES
-(2, 'Lampadario di vetro', 'prodotto', 1, 1),
-(3, 'fsafas', 'fasdfas', 2, 1),
-(4, 'vfafas', 'fsafas', 3, 2),
-(5, 'Lusso', 'prodotto', 1, 1);
+INSERT INTO `tags` (`tag_id`, `Nome`, `prodotto`, `categoria`) VALUES
+(2, 'Lampadario di vetro', 1, 1),
+(3, 'fsafas', 2, 1),
+(4, 'vfafas', 3, 2),
+(5, 'Lusso', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -185,7 +217,6 @@ CREATE TABLE IF NOT EXISTS `utente` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `ruolo` varchar(10) NOT NULL DEFAULT 'user',
-  `data_creazione` date NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -198,10 +229,10 @@ TRUNCATE TABLE `utente`;
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES
-('admin', '$2y$10$f53.u6E5rAtZC44t.8SHs.GFYFUrZrZFeEcL7m5Zxftrs3tHEO4xG', 'admin@admin.com', 'admin', '2023-05-25'),
-('guest', '$2y$10$yebql9GbhZP/t0i4p6vRK.RL/L.pfgpZvZer7wtGi7IAFtuvpEWfq', 'guest@guest.com', 'user', '2023-05-25'),
-('user', '$2y$10$WsN.xGDn9xbYf00RYdoZUe2NGCFZQWfTs8pqh3h/EGY1N7w1GxNm.', 'user@user.com', 'user', '2023-05-25');
+INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`) VALUES
+('admin', '$2y$10$f53.u6E5rAtZC44t.8SHs.GFYFUrZrZFeEcL7m5Zxftrs3tHEO4xG', 'admin@admin.com', 'admin'),
+('guest', '$2y$10$yebql9GbhZP/t0i4p6vRK.RL/L.pfgpZvZer7wtGi7IAFtuvpEWfq', 'guest@guest.com', 'user'),
+('user', '$2y$10$WsN.xGDn9xbYf00RYdoZUe2NGCFZQWfTs8pqh3h/EGY1N7w1GxNm.', 'user@user.com', 'user');
 
 -- --------------------------------------------------------
 
