@@ -194,7 +194,7 @@ class Catalogo
         if (isset($_FILES['img'])) {
 
             $countfiles = count($_FILES['img']['name']);
-            $maxsize = 524288; // 512KB (1 byte * 1024 * 512)  
+            $maxsize = 1048576; // 512KB (1 byte * 1024 * 1024)  
             $response = 0;
 
             for ($i = 0; $i < $countfiles; $i++) {
@@ -203,7 +203,7 @@ class Catalogo
                 $filesize = $_FILES['img']['size'][$i];
 
                 if ($filesize > $maxsize)
-                    return ["error", "Errore caricamento immagine:", "La dimensione dell'immagine è maggiore di 2MB"];
+                    return ["error", "Errore caricamento immagine:", "La dimensione dell'immagine è maggiore di 1MB"];
 
                 // Location
                 $location = "img/" . $filename;
