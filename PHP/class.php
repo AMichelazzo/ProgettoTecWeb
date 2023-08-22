@@ -32,14 +32,12 @@ class Access
 
     public static function getCategories()
     {
-        return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, c.img_path, c.alt_img
-                                    FROM categoria c
-                                    WHERE EXISTS (
-                                        SELECT *
-                                        FROM prodotti p
-                                        WHERE c.id_categoria = p.id_categoria
-                                    );
-                                    ");
+        return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, i.path, i.alt_img
+                                    FROM `categoria`c join immagini i on c.id_categoria=i.id_categoria
+                                    WHERE EXISTS (SELECT *
+                                                FROM prodotti p
+                                                WHERE c.id_categoria = p.id_categoria)
+                                    GROUP BY c.id_categoria;");
     }
 
     public static function getCategoryById($id_categoria)
@@ -87,9 +85,19 @@ class Access
 
     public static function getProductImages($id_prodotto) 
     {
-        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto WHERE immagini.id_prodotto = ?", $id_prodotto);
+        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto AND immagini.id_categoria=prodotti.id_categoria WHERE immagini.id_prodotto = ?", $id_prodotto);
     }
-    
+
+    public static function getHomeImages()
+    {
+        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img, prodotti.id_prodotto
+                                FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto AND immagini.id_categoria = prodotti.id_categoria 
+                                GROUP BY immagini.id_prodotto,immagini.id_categoria 
+                                ORDER BY RAND()
+                                LIMIT 5");
+    }
+
+
     public static function getAllProducts()
     {
         return DBAccess::dbQuery("SELECT id_prodotto, prodotti.id_categoria, prodotti.Descrizione, categoria.Nome AS Cat_Nome, prodotti.Nome AS Prod_Nome FROM prodotti JOIN categoria on prodotti.id_categoria = categoria.id_categoria");

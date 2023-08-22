@@ -35,17 +35,22 @@ if (isset($_GET["prod"])) {
         if (!empty($result1)) {
             $slide='<div class="slideshow-container">
             <div class="position-container">';
+            $dotContainer = '<div class="slideshow-dots">';
                 for ($i = 0; $i < count($result1); $i++) {
                 $slide .= "<div class=\"mySlides fade\">
             <img src=\"" . $result[$i]["path"] . "\" alt=\"" . $result[$i]["alt_img"] . "\" width=\"300\" height=\"300\"/></div>";
+            $dotContainer .= '<span class="dot" data-slide-index="' . $i . '"></span>';
             }
-                $slide.='<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            $dotContainer .= '</div>';
+                $slide.='<a class="prev" >&#10094;</a>
+                <a class="next">&#10095;</a>
             </div>
-        </div>';
-        $template = str_replace('<!--slideShow-->', $slide, $template);
+            </div>';
+            
+            $template = str_replace('<!--slideShow-->', $slide, $template);
+            $template = str_replace('<!--dots-->', $dotContainer, $template);
         }
-        
+
         if (isset($_SESSION["username"]) && $_SESSION["ruolo"] != "admin") {
             $result2 = Access::isInWishList($idprod, $idcat, $_SESSION["username"]);
             if ($result2 == null) {
@@ -70,9 +75,9 @@ if (isset($_GET["prod"])) {
                 <h3>Per Informazioni</h3>
             </legend>
             <input type="hidden" class="product_id" name="product_id" id="product_id"
-                value=' . $idprod . ' />
+                value="' . $idprod . '" />
             <input type="hidden" class="categ_id" name="categoria" id="categ_id"
-                value=' . $idcat . ' />
+                value="' . $idcat . '" />
             <div class="submit">
                 <input type="submit" id="informazioni" name="informazioni_prodotto"
                     value="Richiedi Informazioni" />
