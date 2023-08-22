@@ -62,7 +62,7 @@ class Catalogo
                 $result .= '<div class="images">
                     <input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
-                    <input type="hidden" name="path_img[]" value="" . $product[$i]["path"] . ""/>
+                    <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
                     <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
             }

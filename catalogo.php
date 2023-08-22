@@ -25,10 +25,10 @@ if ($user && $ruolo == "admin") {
 
             Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
 
-            if (isset($_POST["alt_img"])) {
+            if(isset($_POST["alt_img"])) {
                 $alt = $_POST["alt_img"];
-                if (!empty($alt)) {
-                    for ($i = 0; $i < count($alt); $i++)
+                if(!empty($alt)) {
+                    for($i = 0; $i < count($alt); $i++)
                         Access::update_altImg($alt[$i], $_POST["path_img"][$i]);
                 }
             }
