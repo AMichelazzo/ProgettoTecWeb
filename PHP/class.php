@@ -321,7 +321,7 @@ class Access
             $breadcrumb = '<p>Ti trovi in 1: <a href="index.php" lang="en">Home</a> >> <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> >>' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
         } elseif ($category !== null) {
             $breadcrumb = '<p>Ti trovi in 2: <a href="index.php" lang="en">Home</a> >> ' . '<a href="' . $linkcategory . '">' . $category . '</a> >> ' . $title . '</p>';
-        } elseif ($title != "index") {
+        } elseif ($title != "Home") {
             $breadcrumb = '<p>Ti trovi in 3: <a href="index.php" lang="en">Home</a> >> ' . $title . '</p>';
         } else {
             $breadcrumb = '<p>Ti trovi in: <span lang="en">Home</span></p>';
@@ -330,7 +330,7 @@ class Access
 
         // attiva il link corrente
         switch ($title) {
-            case "index":
+            case "Home":
                 $pagina = str_replace('<li><a href="index.php" lang="en">Home</a></li>', '<li id="currentLink" lang="en">Home</li>', $pagina);
                 break;
 
