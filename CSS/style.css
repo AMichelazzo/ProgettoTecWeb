@@ -720,6 +720,7 @@ span>.nome,span>.email{
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  word-break: break-all;
 }
 
 .msg_non_letto {
