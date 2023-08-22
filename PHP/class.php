@@ -6,6 +6,8 @@ require_once "connessione2.php";
 
 class Access
 {
+
+    /* FUNZIONI UTENTI */
     public static function getUtenti() /*solo quelli con ruolo user*/
     {
         return DBAccess::dbQuery("SELECT * FROM utente WHERE ruolo = 'user'");
@@ -25,12 +27,65 @@ class Access
         return $result;
     }
 
+    public static function checkLogin($user, $pass)
+    {
+        $result = DBAccess::dbQuery("SELECT * FROM `utente` WHERE `username`= ?", $user);
+        if ($result !== false && $result !== null && password_verify($pass, $result[0]['password'])) {
+            $result = array(
+                "username" => $result[0]['username'],
+                "ruolo" => $result[0]['ruolo']
+            );
+        } else {
+            $result = null; // per avere lo stesso comportamento di connessione
+        }
+        return $result;
+    }
+
+    public static function checkOldPassword($user, $old)
+    {
+        $result = DBAccess::dbQuery("SELECT `utente`.`password` FROM `utente` WHERE `username`= ?", $user);
+        return (isset($result) && $result !== false && $result !== null && password_verify($old, $result[0]['password']));
+    }
+
+    public static function ChangePassword($user, $old, $new)
+    {
+        $password = password_hash($new, PASSWORD_DEFAULT);
+        (self::checkOldPassword($user, $old)) ? $result = DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ?", $password, $user) : $result = false;
+        return $result;
+    }
+
+    public static function checkUsern($user)
+    {
+        $result = DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
+        if (empty($result))
+            return null;
+        return $result;
+    }
+
+    public static function checkEmail($email)
+    {
+        $result = DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
+        if (empty($result))
+            return null;
+        return $result;
+    }
+
+    public static function registraNuovoUtente($pass_reg, $username_reg, $email_reg)
+    {
+        $password = password_hash($pass_reg, PASSWORD_DEFAULT);
+        return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES (?, ?, ?, 'user', current_timestamp())", $username_reg, $password, $email_reg);
+    }
+
+
+
+    /* FUNZIONI CATEGORIE */
+
     public static function getAllCategories()
     {
         return DBAccess::dbQuery("SELECT * FROM categoria");
     }
 
-    public static function getCategories()
+    public static function getCategories()  // categorie che hanno almeno un prodotto
     {
         return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, i.path, i.alt_img
                                     FROM `categoria`c join immagini i on c.id_categoria=i.id_categoria
@@ -67,40 +122,21 @@ class Access
     public static function deleteCategory($id_categoria)
     {
         return DBAccess::dbQuery("DELETE FROM categoria WHERE id_categoria = ?", $id_categoria);
-        // aggiungere catch exception per prodotti con quella categoria
     }
 
-    public static function getProductsbyCategory($id_categoria)
-    {
-        return DBAccess::dbQuery("SELECT `prodotti`.`id_prodotto`,`prodotti`.`id_categoria`,`prodotti`.`Nome`,`prodotti`.`Descrizione`, `immagini`.`path`,`immagini`.`alt_img`  
-        FROM `prodotti` LEFT JOIN `immagini` ON `prodotti`.`id_prodotto`=`immagini`.`id_prodotto` AND `prodotti`.`id_categoria`=`immagini`.`id_categoria` 
-        WHERE `prodotti`.`id_categoria`= ? 
-        GROUP BY `prodotti`.`id_prodotto`", $id_categoria);
-    }
+
+    /* FUNZIONI PRODOTTI */
 
     public static function getProduct($id_prodotto)
     {
-        return DBAccess::dbQuery("SELECT prodotti.id_prodotto, prodotti.id_categoria, prodotti.Nome, prodotti.Descrizione, immagini.path, immagini.alt_img FROM prodotti LEFT JOIN immagini on prodotti.id_prodotto = immagini.id_prodotto WHERE prodotti.id_prodotto = ?", $id_prodotto);
+        return DBAccess::dbQuery("SELECT prodotti.id_prodotto, prodotti.id_categoria, prodotti.Nome, prodotti.Descrizione, immagini.path, immagini.alt_img 
+        FROM prodotti LEFT JOIN immagini ON  prodotti.id_prodotto = immagini.id_prodotto WHERE prodotti.id_prodotto = ?", $id_prodotto);
     }
-
-    public static function getProductImages($id_prodotto) 
-    {
-        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto AND immagini.id_categoria=prodotti.id_categoria WHERE immagini.id_prodotto = ?", $id_prodotto);
-    }
-
-    public static function getHomeImages()
-    {
-        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img, prodotti.id_prodotto
-                                FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto AND immagini.id_categoria = prodotti.id_categoria 
-                                GROUP BY immagini.id_prodotto,immagini.id_categoria 
-                                ORDER BY RAND()
-                                LIMIT 5");
-    }
-
 
     public static function getAllProducts()
     {
-        return DBAccess::dbQuery("SELECT id_prodotto, prodotti.id_categoria, prodotti.Descrizione, categoria.Nome AS Cat_Nome, prodotti.Nome AS Prod_Nome FROM prodotti JOIN categoria on prodotti.id_categoria = categoria.id_categoria");
+        return DBAccess::dbQuery("SELECT id_prodotto, prodotti.id_categoria, prodotti.Descrizione, categoria.Nome AS Cat_Nome, prodotti.Nome AS Prod_Nome 
+        FROM prodotti JOIN categoria on prodotti.id_categoria = categoria.id_categoria");
     }
 
     public static function newProduct($nome, $id_categoria, $descrizione)
@@ -127,6 +163,22 @@ class Access
         return $result;
     }
 
+    public static function getProductsbyCategory($id_categoria)
+    {
+        return DBAccess::dbQuery("SELECT `prodotti`.`id_prodotto`,`prodotti`.`id_categoria`,`prodotti`.`Nome`,`prodotti`.`Descrizione`, `immagini`.`path`,`immagini`.`alt_img`  
+        FROM `prodotti` LEFT JOIN `immagini` ON `prodotti`.`id_prodotto`=`immagini`.`id_prodotto` AND `prodotti`.`id_categoria`=`immagini`.`id_categoria` 
+        WHERE `prodotti`.`id_categoria`= ? 
+        GROUP BY `prodotti`.`id_prodotto`", $id_categoria);
+    }
+
+    public static function getCategoryIdfromProduct($id_prodotto)
+    {
+        return DBAccess::dbQuery("SELECT id_categoria FROM prodotti WHERE id_prodotto = ?", $id_prodotto);
+    }
+
+
+    /* FUNZIONI MESSAGGI */
+
     public static function getMessages()
     {
         return DBAccess::dbQuery("SELECT messaggi.id_messaggio, messaggi.email, messaggi.data, messaggi.msg, messaggi.letto, prodotti.id_prodotto, prodotti.Nome
@@ -150,6 +202,10 @@ class Access
         return DBAccess::dbQuery("DELETE FROM messaggi WHERE id_messaggio = ?", $id_messaggio);
     }
 
+
+
+    /* FUNZIONI WISHLIST */
+
     public static function addtoWishList($id_prodotto, $id_categoria, $username)
     {
         return DBAccess::dbQuery("INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`) VALUES (?,?,?)", $username, $id_prodotto, $id_categoria);
@@ -166,32 +222,62 @@ class Access
         // su connessione ritornava isset(row) CONTROLLARE SE FUNZIONA
     }
 
-    public static function checkLogin($user, $pass)
+    public static function getProductsOnWishlist($username)
     {
-        $result = DBAccess::dbQuery("SELECT * FROM `utente` WHERE `username`= ?", $user);
-        if ($result !== false && $result !== null && password_verify($pass, $result[0]['password'])) {
-            $result = array(
-                "username" => $result[0]['username'],
-                "ruolo" => $result[0]['ruolo']
-            );
-        } else {
-            $result = null; // per avere lo stesso comportamento di connessione
-        }
+        $result = DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
+        if (empty($result))
+            return null;
         return $result;
     }
 
-    public static function checkOldPassword($user, $old)
+
+    /* FUNZIONI IMMAGINI */
+
+    public static function getProductImages($id_prodotto)
     {
-        $result = DBAccess::dbQuery("SELECT `utente`.`password` FROM `utente` WHERE `username`= ?", $user);
-        return (isset($result) && $result !== false && $result !== null && password_verify($old, $result[0]['password']));
+        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img 
+        FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto AND immagini.id_categoria=prodotti.id_categoria 
+        WHERE immagini.id_prodotto = ?", $id_prodotto);
     }
 
-    public static function ChangePassword($user, $old, $new)
+    public static function getHomeImages()
     {
-        $password = password_hash($new, PASSWORD_DEFAULT);
-        (self::checkOldPassword($user, $old)) ? $result = DBAccess::dbQuery("UPDATE utente SET password = ? WHERE username = ?", $password, $user) : $result = false;
-        return $result;
+        return DBAccess::dbQuery("SELECT immagini.path, immagini.alt_img, prodotti.id_prodotto
+                                FROM immagini LEFT JOIN prodotti ON immagini.id_prodotto = prodotti.id_prodotto AND immagini.id_categoria = prodotti.id_categoria 
+                                GROUP BY immagini.id_prodotto,immagini.id_categoria 
+                                ORDER BY RAND()
+                                LIMIT 5");
     }
+
+    public static function deleteImg($path_img)
+    {
+        unlink($path_img);
+        return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?", $path_img);
+    }
+
+    public static function newImg($path, $id_prodotto, $id_categoria)
+    {
+        return DBAccess::dbQuery("INSERT INTO immagini(id_prodotto, id_categoria, `path`) VALUES (?,?,?)", $id_prodotto, $id_categoria, $path);
+    }
+
+    public static function update_altImg($alt, $path)
+    {
+        return DBAccess::dbQuery("UPDATE immagini SET alt_img = ? WHERE `path` = ?", $alt, $path);
+    }
+
+   
+    /* FUNZIONI KEYWORDS */
+
+    public static function getKeyWordsProdotto($id_prodott)
+    {
+        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `prodotto` = ?", $id_prodott);
+    }
+
+    public static function getKeyWordsCategoria($id_categ)
+    {
+        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `categoria` = ? LIMIT 20", $id_categ);
+    }
+
 
     public static function getHeader($title, $description, $keywords, $ruolo = null, $category = null, $linkcategory = null, $uppercategory = null, $linkuppercategory = null, $noindex = false)
     {
@@ -269,7 +355,8 @@ class Access
         return $str;
     }
 
-    public static function deletelang($str) {
+    public static function deletelang($str)
+    {
         $pattern = "#\[(.+?)\]#";
         preg_match_all($pattern, $str, $match);
         $match = $match[0];
@@ -280,64 +367,6 @@ class Access
         return $str;
     }
 
-    public static function getCategoryIdfromProduct($id_prodotto)
-    {
-        return DBAccess::dbQuery("SELECT id_categoria FROM prodotti WHERE id_prodotto = ?", $id_prodotto);
-    }
 
-    public static function checkUsern($user)
-    {
-        $result = DBAccess::dbQuery("SELECT username FROM utente WHERE username = ?", $user);
-        if (empty($result))
-            return null;
-        return $result;
-    }
 
-    public static function checkEmail($email)
-    {
-        $result = DBAccess::dbQuery("SELECT email FROM utente WHERE email = ?", $email);
-        if (empty($result))
-            return null;
-        return $result;
-    }
-
-    public static function registraNuovoUtente($pass_reg, $username_reg, $email_reg)
-    {
-        $password = password_hash($pass_reg, PASSWORD_DEFAULT);
-        return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES (?, ?, ?, 'user', current_timestamp())", $username_reg, $password, $email_reg);
-    }
-
-    public static function getKeyWordsProdotto($id_prodott)
-    {
-        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `prodotto` = ?", $id_prodott);
-    }
-
-    public static function getKeyWordsCategoria($id_categ)
-    {
-        return DBAccess::dbQuery("SELECT `Nome` FROM `tags` WHERE `categoria` = ? LIMIT 20", $id_categ);
-    }
-
-    public static function getProductsOnWishlist($username)
-    {
-        $result = DBAccess::dbQuery("SELECT `wishlist`.`id_prodotto` FROM `wishlist` JOIN `utente` on `wishlist`.`username`=`utente`.`username` WHERE `wishlist`.`username` = ?", $username);
-        if (empty($result))
-            return null;
-        return $result;
-    }
-
-    public static function deleteImg($path_img)
-    {
-        unlink($path_img);
-        return DBAccess::dbQuery("DELETE FROM immagini WHERE `path` = ?", $path_img);
-    }
-
-    public static function newImg($path, $id_prodotto, $id_categoria)
-    {
-        return DBAccess::dbQuery("INSERT INTO immagini(id_prodotto, id_categoria, `path`) VALUES (?,?,?)", $id_prodotto, $id_categoria, $path);
-    }
-
-    public static function update_altImg($alt, $path)
-    {
-        return DBAccess::dbQuery("UPDATE immagini SET alt_img = ? WHERE `path` = ?", $alt, $path);
-    }
 }
