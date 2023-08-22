@@ -310,11 +310,21 @@ a:visited {
 /*CAROUSEL*/
     /* Slideshow container */
   .slideshow-container {
-    max-width: 1000px;
-    margin: auto;
+    height: auto; 
+    width: 300px; 
+    height: 300px;
+    margin: 20px auto; 
+    text-align: center;
+    position: relative;
+    box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.2); 
   }
-  
-  /* Hide the images by default */
+  .slideshow-container img {
+    max-width: 100%; 
+    height: auto; 
+    width: 300px; 
+    height: 300px; 
+  }
+
   .mySlides {
     display: none;
     height: 300px;
@@ -333,43 +343,42 @@ a:visited {
   .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 45%;
     width: auto;
-    margin-top: -22px;
     padding: 16px;
     color: white;
     font-weight: bold;
     font-size: 18px;
-    transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
-    user-select: none;
+    user-select: none; 
   }
   
   /* Position the "next button" to the right */
-  .next {
+  .next { 
     right: 0;
-    border-radius: 3px 0 0 3px;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .prev{
+    left: 0;
+    border-radius: 5px 0 0 5px;
   }
   
   /* On hover, add a black background color with a little bit see-through */
   .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
   }
-
-  .active {
-    background-color: #717171;
-  }
   
   /* Fading animation */
   .fade {
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 2s;
   }
-  
+
   @keyframes fade {
-    from {opacity: .4}
+    from {opacity: .5}
     to {opacity: 1}
-  }  
+  }
 
   #content {
     position: relative;
@@ -892,4 +901,93 @@ fieldset {
   .desc-categ {
     color: var(--visitedcolor);
   }
+
+  .slideshow-container-home {
+    height: auto; 
+    width: 500px; 
+    height: 500px;
+    margin: 20px auto; /* Aggiungi un margine di 20px sopra e sotto, e automaticamente ai lati */
+    text-align: center;
+    position: relative;
+    box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.2); /* Ingrandisci l'ombra e spostala verso il basso e a destra */
+  }
+
+  .slideshow-container-home img {
+    max-width: 100%; 
+    height: auto; 
+    width: 500px; 
+    height: 500px; 
+  }
+
+  .mySlides-home img:hover {
+    cursor: pointer;
+  }
+
+
+  .fade {
+    animation-name: fade;
+    animation-duration: 2s;
+  }
+
+  @keyframes fade {
+    from {opacity: .5}
+    to {opacity: 1}
+  }
+
+  /* Style for slideshow images */
+  .mySlides-home {
+    display: none;
+  }
+
+  /* Style for navigation buttons */
+  .prev-home,
+  .next-home {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0 3px 3px 0;
+    user-select: none; 
+  }
+
+  .prev-home {
+    left: -10%; /* Posiziona il pulsante precedente a sinistra */
+    border-radius: 5px 0 0 5px;
+  }
+
+  .next-home {
+    right: -10%; /* Posiziona il pulsante successivo a destra */
+    border-radius: 0 5px 5px 0;
+  }
+  .prev-home:hover, .next-home:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  /* Style for the dot container */
+  .slideshow-dots {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Style for each dot */
+  .dot {
+    width: 15px;
+    height: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer; /* Cambia il puntatore quando il mouse è sopra un pallino */
+    opacity:  0.6;
+  }
+
+  .dot.active {
+    background-color: #717171;
+    opacity: 1;
+  }
+
 }

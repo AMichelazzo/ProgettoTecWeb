@@ -1,30 +1,50 @@
-let slideIndex = 1;
-showSlides(slideIndex);
+let slideIndex = 0;
+var dots = document.getElementsByClassName("dot");
+var slides = document.getElementsByClassName("mySlides");
 
 // Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
 
-function showSlides(n) {
-  let slides = document.getElementsByClassName('mySlides');
-  if (slides.length > 0) {
-    let i;
-    if (n > slides.length) {slideIndex = 1;}
-    if (n < 1) {slideIndex = slides.length;}
+document.addEventListener('DOMContentLoaded', function() {
+  
+  function showSlides(n) {
+    var i;
+
+    if (n > slides.length) { slideIndex = 1; }
+    if (n < 1) { slideIndex = slides.length; }
+
     for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+      slides[i].style.display = 'none';
     }
-    slides[slideIndex-1].style.display = "block";
+
+    for (i = 0; i < dots.length; i++) {
+      dots[i].classList.remove('active');
+    }
+
+    slides[slideIndex - 1].style.display = 'block';
+    dots[slideIndex - 1].classList.add('active');
   }
-}
 
+  showSlides(slideIndex);
 
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
+  
+  document.querySelector('.next').addEventListener('click', () => plusSlides(1));
+  
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].addEventListener('click', function() {
+        var slideTo = this.getAttribute('data-slide-index');
+        currentSlide(parseInt(slideTo)+1);
+    });
+  }    
+});
 
 // Get the button element
 let button = document.getElementById("button");
