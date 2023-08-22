@@ -85,7 +85,7 @@ class Access
         return DBAccess::dbQuery("SELECT * FROM categoria");
     }
 
-    public static function getCategories()  // categorie che hanno almeno un prodotto
+    public static function getCategories() // categorie che hanno almeno un prodotto
     {
         return DBAccess::dbQuery("SELECT c.id_categoria, c.Nome, c.Descrizione, i.path, i.alt_img
                                     FROM `categoria`c join immagini i on c.id_categoria=i.id_categoria
@@ -141,7 +141,21 @@ class Access
 
     public static function newProduct($nome, $id_categoria, $descrizione)
     {
-        return DBAccess::dbQuery("INSERT INTO prodotti(id_categoria, Nome, Descrizione) VALUES (?,?,?)", $id_categoria, $nome, $descrizione);
+        $result2 = false;
+        $result = DBAccess::dbQuery("INSERT INTO prodotti(id_categoria, Nome, Descrizione) VALUES (?,?,?)", $id_categoria, $nome, $descrizione);
+
+        if ($result) {
+            $id_prodotto = DBAccess::dbQuery("SELECT DISTINCT id_prodotto FROM prodotti 
+            WHERE id_categoria = ? AND Nome = ? AND Descrizione = ? ", $id_categoria, $nome, $descrizione);
+
+            if($id_prodotto != false && $id_prodotto != null)
+            $result2 = DBAccess::dbQuery("INSERT INTO  tags(Nome,prodotto,categoria) VALUES (?,?,?)", $nome, $id_prodotto[0]['id_prodotto'], $id_categoria);
+        }
+
+        if(!$result2)
+            Access::deleteProduct($id_prodotto);
+
+        return ($result && $result2);
     }
 
     public static function modifyProduct($id_prodotto, $id_categoria, $nome, $descrizione)
@@ -151,6 +165,7 @@ class Access
 
     public static function deleteProduct($id_prodotto)
     {
+        DBAccess::dbQuery("DELETE FROM `tags` WHERE `prodotto` = ?", $id_prodotto);
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
 
@@ -265,7 +280,7 @@ class Access
         return DBAccess::dbQuery("UPDATE immagini SET alt_img = ? WHERE `path` = ?", $alt, $path);
     }
 
-   
+
     /* FUNZIONI KEYWORDS */
 
     public static function getKeyWordsProdotto($id_prodott)

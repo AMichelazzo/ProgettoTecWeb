@@ -24,7 +24,7 @@ class Catalogo
                 $result .= '<p class="inline"> <span class="nome">Nome prodotto:</span> ' . Access::lang($products[$i]["Prod_Nome"]) . '</p>
                     <p class="inline"> <span class="categoria">Categoria:</span> ' . Access::lang($products[$i]["Cat_Nome"]) . '</p>
                     <p class="inline"> <span class="descrizione">Descrizione:</span> ' . Access::lang($products[$i]["Descrizione"]) . '</p>
-                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></p></fieldset>';
+                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></p></fieldset></form>';
             }
         }
         return $result;
