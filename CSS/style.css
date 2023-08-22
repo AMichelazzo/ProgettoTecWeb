@@ -534,8 +534,8 @@ a:visited {
 .image-container {
   max-width: 200px;
   max-height: 200px;
-  width: auto;
-  height: auto;
+  width: 200px; 
+  height: 200px;
   margin-bottom: 10px;
   position: relative;
 }
@@ -903,7 +903,6 @@ fieldset {
   }
 
   .slideshow-container-home {
-    height: auto; 
     width: 500px; 
     height: 500px;
     margin: 20px auto; /* Aggiungi un margine di 20px sopra e sotto, e automaticamente ai lati */
