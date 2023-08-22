@@ -67,10 +67,10 @@ class Catalogo
                     <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
             }
 
-        $result .= '<label>Carica una o più immagini per il prodotto (jpg o jpeg). 
+        $result .= '<label>Carica una o più immagini per il prodotto (jpg, jpeg o png). 
             <input type="hidden" name="product_id_img" value="' . $product_id . '"/>
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
-            <input type="file" name="img[]" multiple>
+            <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
             <input type="submit" class="modifica invio" name="upload_img" value="Carica"></div>';
 
             if($product[0]["path"] != null) {
@@ -194,7 +194,7 @@ class Catalogo
         if (isset($_FILES['img'])) {
 
             $countfiles = count($_FILES['img']['name']);
-            $maxsize = 1048576; // 512KB (1 byte * 1024 * 1024)  
+            $maxsize = 1048576; // 512KB (1 byte * 1024 * 1024) 
             $response = 0;
 
             for ($i = 0; $i < $countfiles; $i++) {
@@ -211,7 +211,7 @@ class Catalogo
                 $extension = strtolower($extension);
 
                 // Estensioni consentite
-                $valid_extensions = array("jpg", "jpeg");
+                $valid_extensions = array("jpg", "jpeg", "png");
 
                 // upload dell'immagine
                 if (in_array(strtolower($extension), $valid_extensions)) {
@@ -224,7 +224,7 @@ class Catalogo
                         } else
                             $response = 0;
                 } else
-                    return ["error", "Errore caricamento immagine:", "Tipo dell'immagine errato (usare jpg o jpeg)"];
+                    return ["error", "Errore caricamento immagine:", "Tipo dell'immagine errato (usare jpg, jpeg o png)"];
             }
 
             if ($response)
