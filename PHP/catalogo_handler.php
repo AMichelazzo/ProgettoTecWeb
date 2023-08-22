@@ -7,7 +7,7 @@ class Catalogo
     public static function show_allProducts()
     { // viene mostrato il catalogo con tutti i prodotti
 
-        $result = '<form action="catalogo.php" method="POST"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="category_list" value="Vai a lista delle Categorie" />
+        $result = '<form action="catalogo.php" method="GET"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="lista_categorie" value="Vai a lista delle Categorie" />
         <input type="submit" class="invio" id="new_product" name="new_product" value="Aggiungi nuovo prodotto"/></div></form>';
 
         $products = Access::getAllProducts();
@@ -62,12 +62,12 @@ class Catalogo
                 $result .= '<div class="images">
                     <input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
-                    <input type="hidden" name="path_img[]" value="" . $product[$i]["path"] . ""/>
+                    <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
                     <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
             }
 
-        $result .= '<label>Carica una o più immagini per il prodotto (jpg o jpeg). 
+        $result .= '<label>Carica una o più immagini per il prodotto (jpg, jpeg o png). 
             <input type="hidden" name="product_id_img" value="' . $product_id . '"/>
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
             <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
@@ -194,7 +194,7 @@ class Catalogo
         if (isset($_FILES['img'])) {
 
             $countfiles = count($_FILES['img']['name']);
-            $maxsize = 1048576; // 512KB (1 byte * 1024 * 512)  
+            $maxsize = 1048576; // 512KB (1 byte * 1024 * 1024) 
             $response = 0;
 
             for ($i = 0; $i < $countfiles; $i++) {
@@ -224,7 +224,7 @@ class Catalogo
                         } else
                             $response = 0;
                 } else
-                    return ["error", "Errore caricamento immagine:", "Tipo dell'immagine errato (usare jpg o jpeg o png)"];
+                    return ["error", "Errore caricamento immagine:", "Tipo dell'immagine errato (usare jpg, jpeg o png)"];
             }
 
             if ($response)
