@@ -73,7 +73,7 @@ class Access
     public static function registraNuovoUtente($pass_reg, $username_reg, $email_reg)
     {
         $password = password_hash($pass_reg, PASSWORD_DEFAULT);
-        return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`, `data_creazione`) VALUES (?, ?, ?, 'user', current_timestamp())", $username_reg, $password, $email_reg);
+        return DBAccess::dbQuery("INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`) VALUES (?, ?, ?, 'user')", $username_reg, $password, $email_reg);
     }
 
 

@@ -2,7 +2,7 @@ var slideIndex = 0;
 var dots = document.getElementsByClassName("dot");
 var slides = document.getElementsByClassName("mySlides-home");
 
-function autoshowSlides() {
+/*function autoshowSlides() {
     var i;
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
@@ -24,7 +24,7 @@ function autoshowSlides() {
     setTimeout(autoshowSlides, 5000);
 }
 
-document.addEventListener('DOMContentLoaded', autoshowSlides);
+document.addEventListener('DOMContentLoaded', autoshowSlides);*/ //Slide automatico delle immagini nella home, ma a quanto pare non è accessibile e quindi lo togliamo
 
 
 
