@@ -1,21 +1,19 @@
-<main>
+<main id="iniziocontenuto">
     <div id="contenuto">
         <div id="signup">
-            <h2>
-                <div id="operazione">REGISTRATI</div>
-            </h2>
+            <div id="operazione"><h2>REGISTRATI</h2></div>
             <form method="post" action="PHP/registrati_handler.php">
                 <fieldset>
                     <legend>Registrati</legend>
                     <div id="msgchange" role="alert"></div>
                     <div><label for="email_reg" lang="en">Email: </label></div>
                     <div><input type="email" id="email_reg" name="email_reg" placeholder="" required /><img
-                            id="email_disponibile" src="" alt="" /><!--email--></div>
+                            id="email_disponibile" src=".." alt="" /><!--email--></div>
 
 
                     <div><label for="username_reg" lang="en">Username: </label></div>
                     <div><input type="text" id="username_reg" name="username_reg" placeholder="" required /><img
-                            id="username_disponibile" src="" alt="" /><!--user--></div>
+                            id="username_disponibile" src=".." alt="" /><!--user--></div>
 
                     <div><label for="pass_reg" lang="en">Password: </label></div>
                     <div><input type="password" id="pass_reg" name="pass_reg" required /><img id="password_rispetta"
@@ -23,10 +21,10 @@
 
                     <div><label for="pass_reg2">Ripeti <span lang="en">password</span>: </label></div>
                     <div><input type="password" id="pass_reg2" name="pass_reg2" required /><img id="password_rispetta2"
-                            src="" alt="" /><!--password--></div>
+                            src=".." alt="" /><!--password--></div>
                     <div id="message" role="alert">
+                        <h3>La <span lang="en">password</span> deve contenere almeno:</h3>
                         <ul>
-                            <h3>La password deve contenere almeno:</h3>
                             <li id="minusc">Una lettera <em>minuscola</em><img class="invalid" id="lowecase"
                                     src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" />
                             </li>
@@ -52,9 +50,7 @@
 </main>
 <footer>
     <div id=footer>
-        <p>
-            Web Triplet - <span lang="en">All Rights Reserved</span>
-        </p>
+        <p lang="en">Web Triplet - All Rights Reserved</p>
     </div>
 </footer>
 <script src="JS/inputChecker.js"></script>

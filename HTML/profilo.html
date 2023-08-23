@@ -1,4 +1,4 @@
-<main>
+<main id="iniziocontenuto">
     <div id="contenuto">
         <div id="cambio_pass">
             <form method="post" action="profilo.php">
@@ -9,18 +9,18 @@
                     <div id="msgchange" role="alert"></div>
                     <div><label for="old_password" lang="en">Vecchia <span lang="en">password</span>: </label></div>
                     <div><span><input type="password" id="old_password" name="old_password" /></span><img id="oldPW"
-                            src="" alt="" height="15px" width="15px" /><!--generico--><!--oldnew--><!--old--></div>
+                            src=".." alt="" height="15px" width="15px" /><!--generico--><!--oldnew--><!--old--></div>
 
                     <div><label for="new_password" lang="en">Nuova <span lang="en">password</span>: </label></div>
                     <div><span><input type="password" id="new_password" name="new_password" /></span><img id="newPW"
-                            src="" alt="" height="15px" width="15px" /><!--nonCorrisp--></div>
+                            src=".." alt="" height="15px" width="15px" /><!--nonCorrisp--></div>
 
                     <div><label for="new_password_repeat">Ripeti nuova <span lang="en">password</span>: </label></div>
                     <div><input type="password" id="new_password_repeat" name="new_password_repeat" /><img id="newPW2"
-                            src="" alt="" height="15px" width="15px" /></div>
+                            src=".." alt="" height="15px" width="15px" /></div>
                     <div id="message" role="alert">
+                        <h3>La <span lang="en">password</span> deve contenere almeno:</h3>
                         <ul>
-                            <h3>La password deve contenere almeno:</h3>
                             <li id="minusc">Una lettera <em>minuscola</em><img class="invalid" id="lowecase"
                                     src="img/Xrossa.png" alt="Errore nell'inserimento." width="15px" height="15px" />
                             </li>
@@ -46,12 +46,11 @@
 </main>
 <footer>
     <div id=footer>
-        <p>
-            <span lang="en"></span>Web Triplet - All Rights Reserved</span>
+        <p lang="en">
+           Web Triplet - All Rights Reserved
         </p>
     </div>
 </footer>
 </body>
 <script src="JS/profilo.js"></script>
-
 </html>

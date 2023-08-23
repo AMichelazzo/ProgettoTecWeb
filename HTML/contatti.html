@@ -1,22 +1,24 @@
-<main>
-    <fieldset>
-        <form action="contatti.php" method="POST">
-            <div><label>Compila questo <span lang="en">form</span> per ricevere informazioni.</label></div>
-            <!--Elementi_Contatti-->
-            <div><label for="messaggio">Testo del messaggio:</label></div>
-            <div><textarea name="messaggio" id="messaggio"
-                    placeholder="Buongiorno, vorrei avere informazioni riguardo a..." rows="10" cols="40"
-                    maxlength="1000"></textarea></div>
-            <div><input type="submit" name="submit_informazioni" id="submit_informazioni" class="invio"
-                    value="Informazioni"></div>
-        </form>
-        <div class="message_class" role="alert"><span class="sr-only"><!--Contenuto_sr--></span><!--Contenuto_errors-->
-        </div>
-    </fieldset>
-
+<main id="iniziocontenuto">
+    <form action="contatti.php" method="POST">
+        <fieldset role="region">
+            <legend lang="en">
+                <h2>CONTATTI</h2>
+            </legend>
+        <div><label>Compila questo <span lang="en">form</span> per ricevere informazioni.</label></div>
+        <!--Elementi_Contatti-->
+        <div><label for="messaggio">Testo del messaggio:</label></div>
+        <div><textarea name="messaggio" id="messaggio"
+                placeholder="Buongiorno, vorrei avere informazioni riguardo a..." rows="10" cols="40"
+                maxlength="1000"></textarea></div>
+        <div><input type="submit" name="submit_informazioni" id="submit_informazioni" class="invio"
+                value="Informazioni"></div>
+        </fieldset>
+    </form>
+    <div class="message_class" role="alert"><span class="sr-only"><!--Contenuto_sr--></span><!--Contenuto_errors-->
+    </div>
 </main>
 <footer id="footer">
-    <p>Web Triplet - <span lang="en">All Rights Reserved</span></p>
+    <p lang="en">Web Triplet - All Rights Reserved</p>
 </footer>
 </body>
 

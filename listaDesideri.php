@@ -25,12 +25,12 @@ if (!isset($_SESSION["username"])) {
                 $idprod = $result2[0]['id_prodotto'];
                 $cat = Access::getCategoryById($result2[0]['id_categoria'])[0]["Nome"];
                 $idcat = $result2[0]['id_categoria'];
-                $img = "<img src=\"" . $result2[0]["path"] . "\" alt=\"" . $result2[0]["alt_img"] . "\" width=\"200\" height=\"200\"/>";
+                $img = "<img src=\"" . $result2[0]["path"] . "\" aria-describedby=\"" . $result2[0]["alt_img"] . "\" width=\"200\" height=\"200\"/>";
 
                 $productlist .= "<form action=\"contatti.php\" class=\"prodotto\" name=\"form-prodotto\" method=\"post\">";
                 $productlist .= "<div class=\"image-container\">";
                 $productlist .= $img;
-                $productlist .= "<button class=\"open-button\" id=\"" . $result2[0]["path"] . "\"><img src=\"img/lente.png\" alt=\"Ingrandisci immagine.\" /></button>";
+                $productlist .= "<button class=\"open-button\" name='Ingrandisci' id=\"" . $result2[0]["path"] . "\"><img src=\"img/lente.png\" alt=\"Ingrandisci immagine.\" /></button>";
                 $productlist .= "</div>";
                 $productlist .= "<div class=\"contentProdotto\">";
                 $productlist .= "<div class=\"nome\">Nome prodotto: " . $nome . "</div>";
@@ -38,13 +38,13 @@ if (!isset($_SESSION["username"])) {
                 $productlist .= "<div class=\"categoria\">Categoria: <a class=\"wish-link\" href=\"categorie.php?cat=" . $result2[0]['id_categoria'] . "\">" . $cat . "</a></div>";
                 $productlist .= "<div class=\"button-container\">";
                 $productlist .= "<input type=\"submit\" name=\"informazioni_prodotto\" value=\"Richiedi Informazioni\" />";
-                $productlist .= "<button id=\"" . $idprod . "\" class=\"vaiProdotto\" name=\"vaiProdotto\">Scheda Prodotto <span aria-hidden=\"true\">-></span></button>";
-                $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product_id\" id=\"product-ID\" value=\"" . $idprod . "\"/>";
-                $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\" id=\"categoria\" value=\"" . $idcat . "\"/>";
+                $productlist .= "<button id=\"" . $idprod . "\" name='Scheda-Prodotto' class=\"vaiProdotto\" name=\"vaiProdotto\">Scheda Prodotto <span aria-hidden=\"true\">-></span></button>";
+                $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product_id\" value=\"" . $idprod . "\"/>";
+                $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\"  value=\"" . $idcat . "\"/>";
                 $productlist .= "</div>";
                 $productlist .= "</div>";
                 $productlist .= "<div class=\"rimuovi-container\">";
-                $productlist .= "<button class=\"remove-button\" id=\"" . $idprod . "-" . $idcat . "\" name=\"rimuovi\">";
+                $productlist .= "<button class=\"remove-button\" name='Rimuovi' id=\"" . $idprod . "-" . $idcat . "\" name=\"rimuovi\">";
                 $productlist .= "<img src=\"img/binClosed.png\" alt=\"Rimuovi prodotto dalla lista dei desideri.\" class=\"non-hover-image\" aria-hidden=\"true\"/>";
                 $productlist .= "<img src=\"img/binOpened.png\" alt=\"Rimuovi prodotto dalla lista dei desideri.\" class=\"hover-image\" />";
                 $productlist .= "</button>";
