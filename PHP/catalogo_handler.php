@@ -7,8 +7,8 @@ class Catalogo
     public static function show_allProducts()
     { // viene mostrato il catalogo con tutti i prodotti
 
-        $result = '<form action="catalogo.php" method="GET"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="lista_categorie" value="Vai a lista delle Categorie" />
-        <input type="submit" class="invio" id="new_product" name="new_product" value="Aggiungi nuovo prodotto"/></div></form>';
+        $result = '<form action="catalogo.php" method="GET"><div class="pulsanti_catalogo"><input type="submit" class="invio" id="category_list" name="lista_categorie" value="Lista delle Categorie" />
+        <input type="submit" class="invio" name="new_product" value="Aggiungi nuovo prodotto"/></div></form>';
 
         $products = Access::getAllProducts();
 
@@ -18,7 +18,7 @@ class Catalogo
             for ($i = 0; $i < count($products); $i++) { // funzione per la creazione dell'inline
 
                 $result .= '<form action="catalogo.php" method="POST" role="group"><fieldset class="prodotto">
-                    <p class="inline"><input type="hidden" name="product_id" id="productId" value="' . $products[$i]["id_prodotto"] . '"/></p>' // mi salvo l'id_prodotto
+                    <p class="inline"><input type="hidden" name="product_id" value="' . $products[$i]["id_prodotto"] . '"/></p>' // mi salvo l'id_prodotto
                     . '<p class="inline"><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></p>'; // e l'id_categoria
 
                 $result .= '<p class="inline"> <span class="nome">Nome prodotto:</span> ' . Access::lang($products[$i]["Prod_Nome"]) . '</p>
@@ -36,7 +36,7 @@ class Catalogo
         $product = Access::getProduct($product_id);
         $categories = Access::getAllCategories();
 
-        $result = '<form action="catalogo.php" method="POST" enctype="multipart/form-data">
+        $result = '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST" enctype="multipart/form-data">
             <div><input type="hidden" name="prod_id" value="' . $product_id . '"/></div>
             <div><label for="nome_prod">Nome prodotto:</label></div>
             <div><input type="text" id="nome_prod" name="nome_prod" value="' . Access::deletelang($product[0]["Nome"]) . '"/></div>
@@ -51,38 +51,37 @@ class Catalogo
         $result .= '</select><div><label for="desc_prod">Descrizione prodotto:</label></div>
             <div><textarea id="desc_prod" name="desc_prod" rows="10" cols="40" maxlength="500">' . Access::lang($product[0]["Descrizione"]) . '</textarea></div>
             <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
-            Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p></div>';
+            Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p></div></fieldset>';
 
-        $result.=  '<div id="img_products"><legend>Aggiungi o elimina immagini del prodotto</legend>';
+        $result .= '<div id="img_products"><h2>Aggiungi o elimina immagini del prodotto</h2>';
 
         if ($product[0]["path"] == null)
-            $result .= '<p>Non sono presenti immagini per questo prodotto.</p>';
+            $result .= '<p>Non sono presenti immagini per questo prodotto.</p><fieldset class="form_catalogo">';
         else
             for ($i = 0; $i < count($product); $i++) {
-                $result .= '<div class="images">
-                    <input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
+                $result .= '<div><input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
-                    <textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
+                    <div><textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
             }
 
         $result .= '<label>Carica una o più immagini per il prodotto (jpg, jpeg o png). 
             <input type="hidden" name="product_id_img" value="' . $product_id . '"/>
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
             <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
-            <input type="submit" class="modifica invio" name="upload_img" value="Carica"></div>';
+            <input type="submit" class="modifica invio" name="upload_img" value="Carica">';
 
-            if($product[0]["path"] != null) {
-                $result .= '<div><input type="submit" class= "invio" id="elimina_img" name="elimina_img" value="Elimina immagini selezionate"/>';
-            }
-            
-            $result .= '<div><input type="submit" class="invio" id="annulla_modifica_prod" name="annulla_modifica_prod" value="Annulla modifiche"/>
+        if ($product[0]["path"] != null) {
+            $result .= '<div><input type="submit" class= "invio" id="elimina_img" name="elimina_img" value="Elimina immagini selezionate"/></div>';
+        }
+
+        $result .= '</fieldset><div><input type="submit" class="invio" id="annulla_modifica_prod" name="annulla_modifica_prod" value="Annulla modifiche"/>
             <input type="submit" class="invio" id="submit_modifica_prod" name="submit_modifica_prod" value="Conferma modifiche"/></div></form>';
 
-            $result .= 
+        $result .=
             '<div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Prodotto"/></div>
-            <form action="catalogo.php" method="POST"><input type="hidden" name="prod_id_2" value="' . $product_id .'"/>
+            <form action="catalogo.php" method="POST"><input type="hidden" name="prod_id_2" value="' . $product_id . '"/>
             <div id="msg_confirm" role="alert"></div>
             <div hidden id="elimina_utente_big">
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
@@ -100,13 +99,13 @@ class Catalogo
 
         $categories = Access::getAllCategories();
 
-        $result = '<form action="catalogo.php" method="POST">
+        $result = '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST">
             <div><label for="new_nome_prod">Nome prodotto:</label></div>
             <div><input type="text" id="nome_prod" name="new_nome_prod" value=""/></div>
             <div><label for="new_category_id">Categoria prodotto:</label></div>
             <select name="new_category_id" id="new_category_id">';
 
-        if($categories == null)
+        if ($categories == null)
             return 0;
 
         for ($i = 0; $i < count($categories); $i++) // creazione del menu a tendina delle categorie
@@ -114,11 +113,11 @@ class Catalogo
 
         $result .= '</select><div><label for="new_desc_prod">Descrizione prodotto:</label></div>
             <div><textarea id="new_desc_prod" name="new_desc_prod" rows="10" cols="40" maxlength="500"></textarea></div>
-            <div><p>E\' possibile aggiungere immagini al prodotto modificandole successivamente.</p></div>
+            <div><p>E\' possibile aggiungere immagini al prodotto modificandolo successivamente.</p></div>
             <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
             Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p></div>
             <div><input type="submit" class="invio" id="annulla_new_cat" name="annulla_new_prod" value="Annulla creazione prodotto"/>
-            <input type="submit" class="invio" id="submit_new_cat" name="submit_new_prod" value="Conferma nuovo prodotto"/></div></form>';
+            <input type="submit" class="invio" id="submit_new_cat" name="submit_new_prod" value="Conferma creazione prodotto"/></div></fieldset></form>';
 
         return $result;
     }
@@ -137,9 +136,9 @@ class Catalogo
             for ($i = 0; $i < count($categories); $i++) {
 
                 $result .= '<form action="catalogo.php" class="flex-container" method="POST"><fieldset class="categories">'
-                    . '<p class="flex-item inline"> <span class="nome">Nome:</span> ' . Access::lang($categories[$i]["Nome"]) .' </p>
+                    . '<p class="flex-item inline"> <span class="nome">Nome:</span> ' . Access::lang($categories[$i]["Nome"]) . ' </p>
                     <p class="flex-item inline"> <span class="descrizione">Descrizione:</span> ' . Access::lang($categories[$i]["Descrizione"]) . '.</p>
-                    <p class="flex-item inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" /></p><p class="inline"><input type="hidden" name="category_id" value="' . $categories[$i]["id_categoria"] . '"/></p></fieldset>';// mi salvo l'id_categoria
+                    <p class="flex-item inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" /></p><p class="inline"><input type="hidden" name="category_id" value="' . $categories[$i]["id_categoria"] . '"/></p></fieldset>'; // mi salvo l'id_categoria
             }
         }
         return $result;
@@ -149,18 +148,18 @@ class Catalogo
 
         $categories = Access::getCategoryById($category_id);
 
-        $result = '<form action="catalogo.php" method="POST">
+        $result = '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST">
             <div><input type="hidden" name="cat_id" value="' . $category_id . '"/></div>
             <div><label for="nome_cat">Nome categoria:</label></div>
             <div><input type="text" id="nome_cat" name="nome_cat" value="' . Access::deletelang($categories[0]["Nome"]) . '"/></div>
             <div><label for="desc_cat">Descrizione categoria:</label></div>
             <div><textarea id="desc_prod" name="desc_cat" rows="10" cols="40" maxlength="500">' . Access::lang($categories[0]["Descrizione"]) . '</textarea></div>
             <input type="submit" class="invio" name="annulla_modifica_cat" value="Annulla modifiche"/>
-            <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></form>';
+            <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></fieldset></form>';
 
 
-            $result .= ' <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Categoria"/></div>
-            <form action="catalogo.php" method="POST"><input type="hidden" name="cat_id_2" value="' . $category_id .'"/>
+        $result .= ' <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Categoria"/></div>
+            <form action="catalogo.php" method="POST"><input type="hidden" name="cat_id_2" value="' . $category_id . '"/>
             <div id="msg_confirm" role="alert"></div>
             <div hidden id="elimina_utente_big">
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
@@ -177,7 +176,7 @@ class Catalogo
     public static function show_newCategory()
     { // viene mostrata la pagina per la creazione di un nuova categoria
 
-        return '<form action="catalogo.php" method="POST">
+        return '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST">
             <div><label for="nome_cat">Nome categoria:</label></div>
             <div><input type="text" id="new_nome_cat" name="new_nome_cat" value=""/></div>
             <div><label for="desc_prod">Descrizione categoria:</label></div>
@@ -185,7 +184,7 @@ class Catalogo
             <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*] 
                 Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p></div>
             <input type="submit" class="invio" id="annulla_new_cat" name="annulla_new_cat" value="Annulla creazione categoria"/>
-            <input type="submit" class="invio" id="submit_new_cat" name="submit_new_cat" value="Conferma nuova categoria"/></form>';
+            <input type="submit" class="invio" id="submit_new_cat" name="submit_new_cat" value="Conferma creazione categoria"/></fieldset></form>';
     }
 
     public static function uploadImg($id_prodotto, $id_categoria)

@@ -761,6 +761,7 @@ span>.nome,span>.email{
 
 fieldset {
   border: 0;
+  position:relative;
 }
 
 
@@ -990,4 +991,52 @@ fieldset {
     opacity: 1;
   }
 
+  #form_informazioni {
+    border-radius: 0.2em;
+    background-color: #f2f2f2;
+    padding: 2em;
+    text-align: center;
+    }
+
+  #form_informazioni div { margin-bottom: 0.8em;}
+
+  #form_informazioni h2 { margin-bottom: 0.8em;}
+
+  form label {font-weight:bold;}
+
+  
+  .titolo_catalogo { 
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+  }
+
+
+  .form_catalogo {
+    border-radius: 0.5em;
+    padding: 2em;
+    background-color: #f2f2f2;
+    text-align: justify;
+  }
+
+  .form_catalogo p,input[type="text"] { 
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+  }
+  
+#new_category_id { margin-bottom: 0.8em;
+}
+
+fieldset input[type="submit"] { right: 0em;}
+}
+
+.img_form { 
+  border-radius: 0.5em;
+    padding: 2em;
+    background-color: #f2f2f2;
+    text-align: justify;
+  }
+
+.img_form h2 { 
+  margin-bottom: 0.8em;
+  text-align:center;
 }
