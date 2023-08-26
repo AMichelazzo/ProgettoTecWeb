@@ -17,13 +17,13 @@ $paginaHTML .= file_get_contents("HTML/profilo.html");
 $result = "";
 
 if(isset($_SESSION["username"]) && isset($_POST["old_password"])  
-&& isset($_POST["new_password"]) && isset($_POST["new_password_repeat"]) 
+&& isset($_POST["pass_reg"]) && isset($_POST["pass_reg2"]) 
 && isset($_POST["cambia_password"]) && !isset($_SESSION["changeExec"])) {
     $result = Access::checkOldPassword($_SESSION["username"], $_POST["old_password"]);
     if(isset($result) && $result){
-        if( $_POST["new_password"]!=$_POST["old_password"]){
-            if($_POST["new_password"] == $_POST["new_password_repeat"]) {
-                $result2 =  Access::ChangePassword($_SESSION["username"], $_POST["old_password"], $_POST["new_password"]);
+        if( $_POST["pass_reg"]!=$_POST["old_password"]){
+            if($_POST["pass_reg"] == $_POST["pass_reg2"]) {
+                $result2 =  Access::ChangePassword($_SESSION["username"], $_POST["old_password"], $_POST["pass_reg"]);
                 if(isset($result2)&&$result2){
                     $_SESSION["changeExec"]=true;
                 }
@@ -41,7 +41,7 @@ if(isset($_SESSION["username"]) && isset($_POST["old_password"])
         }
         else {
             $_SESSION["error_new_old"]='<div id="msgchange" class="change-error" role="alert">La nuova <span lang=en">password</span> non può combaciare con quella nuova.</div>';
-            $_SESSION["error_new_old2"]='<img id="passuguale" src="img/Xrossa.png" alt="La nuova password non può combaciare con quella nuova." height="15px" width="15px"/>'; 
+            $_SESSION["error_new_old2"]='<img id="passNOT_disponibile" src="img/Xrossa.png" alt="La nuova password non può combaciare con quella nuova." height="15px" width="15px"/>'; 
             header("Location: profilo.php");
         }
     }

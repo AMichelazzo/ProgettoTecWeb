@@ -37,13 +37,13 @@ if (isset($_GET["prod"])) {
             <div class="position-container">';
             $dotContainer = '<div class="slideshow-dots">';
                 for ($i = 0; $i < count($result1); $i++) {
-                $slide .= "<div class=\"mySlides fade\">
+                $slide .= "<div class=\"mySlides-home fade\">
             <img src=\"" . $result[$i]["path"] . "\" alt=\"" . $result[$i]["alt_img"] . "\" width=\"300\" height=\"300\"/></div>";
             $dotContainer .= '<span class="dot" data-slide-index="' . $i . '"></span>';
             }
             $dotContainer .= '</div>';
-                $slide.='<a class="prev" >&#10094;</a>
-                <a class="next">&#10095;</a>
+                $slide.='<a class="prev-home" >&#10094;</a>
+                <a class="next-home">&#10095;</a>
             </div>
             </div>';
             
@@ -60,7 +60,7 @@ if (isset($_GET["prod"])) {
             $isLogged = "<button type=\"button\" id=\"button\" class=\"button\">
                                                 <span class=\"button__text\" id=\"buttonid\">" . $testoButton . "</span>
                                                 </button>
-                                                <div id=\"msgWish\" role=\"alert\"></div>";
+                                                <div id=\"msgWish2\" role=\"alert\"></div>";
         }
 
         $replace = array(

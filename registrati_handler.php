@@ -1,8 +1,8 @@
 <?php
-require_once "class.php";
+require_once "PHP/class.php";
 session_start();
 if (isset($_SESSION["username"])) {
-    header("Location: ../index.php");
+    header("Location: index.php");
 }
 else
 {
@@ -33,7 +33,7 @@ else
                 $resultReg=Access::registraNuovoUtente($_POST["pass_reg"],$_POST["username_reg"],$_POST["email_reg"]);
                 if(isset($resultReg) && $resultReg){
                     $_SESSION['reg_eff']='<div class="change-success" role="alert">Registazione avvenuta con successo.</div>';
-                    header("Location: ../accesso.php");
+                    header("Location: accesso.php");
                 }
                 else{
                     $_SESSION["genericError"]='<div id="msgchange" class="change-error" role="alert">Errore nella creazione dell\'account, riprova più tardi.</div>';
@@ -53,7 +53,7 @@ else
         }
     }
     if(isset($result) && isset($result2)&&!isset($resultReg)&&!($_POST["pass_reg2"]==$_POST["pass_reg"] && strlen($_POST["pass_reg"])>=4 && strlen($_POST["pass_reg"])<=16)){
-        header("Location: ../registrazione.php");
+        header("Location: registrazione.php");
     }
 }
 
