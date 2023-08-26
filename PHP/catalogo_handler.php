@@ -63,7 +63,8 @@ class Catalogo
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
-                    <div><textarea id="alt_img" name="alt_img[]" rows="4" cols="30" placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea></div>';
+                    <div><textarea id="'.$product[$i]["path"].'" name="alt_img[]" class="limited-textarea" rows="4" cols="30" placeholder="Inserisci alt per immagine"></textarea>
+                    <div id="char-count-'.$product[$i]["path"].'">Caratteri rimanenti: 75</div><div>' . Access::lang($product[$i]["alt_img"]) . '</div></div>';
             }
 
         $result .= '<label>Carica una o più immagini per il prodotto (jpg, jpeg o png). 

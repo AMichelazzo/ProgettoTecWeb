@@ -25,7 +25,7 @@ if (!isset($_SESSION["username"])) {
                 $idprod = $result2[0]['id_prodotto'];
                 $cat = Access::getCategoryById($result2[0]['id_categoria'])[0]["Nome"];
                 $idcat = $result2[0]['id_categoria'];
-                $img = "<img src=\"" . $result2[0]["path"] . "\" aria-describedby=\"" . $result2[0]["alt_img"] . "\" width=\"200\" height=\"200\"/>";
+                $img = "<img src=\"" . $result2[0]["path"] . "\" alt=\"" . $result2[0]["alt_img"] . "\" width=\"200\" height=\"200\"/>";
 
                 $productlist .= "<form action=\"contatti.php\" class=\"prodotto\" name=\"form-prodotto\" method=\"post\">";
                 $productlist .= "<div class=\"image-container\">";

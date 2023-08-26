@@ -54,3 +54,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+function limitTextareaByClassName(className, maxChars) {
+    var textareas = document.querySelectorAll("." + className);
+
+    textareas.forEach(function(textarea) {
+        var id = textarea.id;
+        var charCountId = "char-count-" + id;
+        var charCountDiv = document.getElementById(charCountId);
+
+        textarea.addEventListener("input", function() {
+            if (this.value.length > maxChars) {
+                this.value = this.value.substring(0, maxChars);
+            }
+            var remainingChars = maxChars - this.value.length;
+            charCountDiv.textContent = "Caratteri rimanenti: " + remainingChars;
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    limitTextareaByClassName("limited-textarea", 75);
+});
