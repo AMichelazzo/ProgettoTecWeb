@@ -155,10 +155,10 @@ class Catalogo
             <div><label for="desc_cat">Descrizione categoria:</label></div>
             <div><textarea id="desc_prod" name="desc_cat" rows="10" cols="40" maxlength="500">' . Access::lang($categories[0]["Descrizione"]) . '</textarea></div>
             <input type="submit" class="invio" name="annulla_modifica_cat" value="Annulla modifiche"/>
-            <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></fieldset></form>';
+            <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></form>';
 
 
-        $result .= ' <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Categoria"/></div>
+        $result .= ' <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Categoria"/></div></fieldset>
             <form action="catalogo.php" method="POST"><input type="hidden" name="cat_id_2" value="' . $category_id . '"/>
             <div id="msg_confirm" role="alert"></div>
             <div hidden id="elimina_utente_big">

@@ -992,11 +992,16 @@ fieldset {
   }
 
   #form_informazioni {
-    border-radius: 0.2em;
-    background-color: #f2f2f2;
+    width: 85%;
+    border-radius: 0.5em;
     padding: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0em 0em 1em 0em var(--shadowcolor);
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    }
+  }
 
   #form_informazioni div { margin-bottom: 0.8em;}
 
@@ -1012,15 +1017,24 @@ fieldset {
 
 
   .form_catalogo {
+    width: 85%;
     border-radius: 0.5em;
     padding: 2em;
-    background-color: #f2f2f2;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0em 0em 1em 0em var(--shadowcolor);
+    margin-left: auto;
+    margin-right: auto;
     text-align: justify;
   }
 
   .form_catalogo p,input[type="text"] { 
     margin-top: 0.4em;
     margin-bottom: 0.4em;
+  }
+
+  .form_catalogo #elimina_prod {
+    text-align: center;
   }
   
 #new_category_id { margin-bottom: 0.8em;
@@ -1030,10 +1044,15 @@ fieldset input[type="submit"] { right: 0em;}
 }
 
 .img_form { 
+  width: 85%;
   border-radius: 0.5em;
-    padding: 2em;
-    background-color: #f2f2f2;
-    text-align: justify;
+  padding: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  box-shadow: 0em 0em 1em 0em var(--shadowcolor);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
   }
 
 .img_form h2 { 

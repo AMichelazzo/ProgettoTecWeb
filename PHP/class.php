@@ -306,7 +306,8 @@ class Access
         }
 
         // inserisce noindex
-        $pagina = str_replace('<!-- noindex -->', '<meta name="robots" content="noindex">', $pagina);
+        if($noindex)
+            $pagina = str_replace('<!-- noindex -->', '<meta name="robots" content="noindex">', $pagina);
 
         // inserisce title
         $pagina = str_replace('<title></title>', '<title>' . Access::deletelang($title) . ' - Véro</title>', $pagina);
