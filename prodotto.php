@@ -37,7 +37,7 @@ if (isset($_GET["prod"])) {
             <div class="position-container">';
             $dotContainer = '<div class="slideshow-dots">';
                 for ($i = 0; $i < count($result1); $i++) {
-                $slide .= "<div class=\"mySlides-home fade\">
+                $slide .= "<div class=\"mySlides-home fade mySlides\">
             <img src=\"" . $result[$i]["path"] . "\" alt=\"" . $result[$i]["alt_img"] . "\" width=\"300\" height=\"300\"/></div>";
             $dotContainer .= '<span class="dot" data-slide-index="' . $i . '"></span>';
             }

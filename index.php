@@ -29,7 +29,7 @@ $dotContainer = '<div class="slideshow-dots">';
 if (!empty($result)) {
     for ($i = 0; $i < count($result); $i++) {
         $slide .= '<div class="mySlides-home fade-home">';
-        $slide .= '<img src="' . $result[$i]["path"] . '" alt="' . $result[$i]["alt_img"] . '" width="500" height="500" data-product-id="' . $result[$i]["id_prodotto"] . '" />';
+        $slide .= '<img src="' . $result[$i]["path"] . '" alt="' . $result[$i]["alt_img"] . '"class="homeimg" width="500" height="500" data-product-id="' . $result[$i]["id_prodotto"] . '" />';
         $slide .= '</div>';
         $dotContainer .= '<span class="dot" data-slide-index="' . $i . '"></span>';
     }

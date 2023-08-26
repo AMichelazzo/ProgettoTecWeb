@@ -921,7 +921,7 @@ a:visited {
     height: 500px; 
   }
 
-  .mySlides-home img:hover {
+  .mySlides-home img.homeimg:hover {
     cursor: pointer;
   }
 

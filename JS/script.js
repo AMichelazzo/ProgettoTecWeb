@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }    
 
-        var images = document.querySelectorAll('.mySlides-home img');
+        var images = document.querySelectorAll('.mySlides-home img.homeimg');
         if(images){
             images.forEach(function(image) {
                 image.addEventListener('click', function() {
