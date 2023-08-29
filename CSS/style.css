@@ -517,7 +517,7 @@ a:visited {
     border: 1px solid #505050;
     box-sizing: border-box;
     position: relative;
-    width: 100%;
+    width: 90%;
     height: auto;
   }
   
@@ -533,6 +533,7 @@ a:visited {
     position: relative;
     width: 90%;
     height: auto;
+    word-break: break-all;
   }
   
   .image-container {
@@ -1014,6 +1015,10 @@ a:visited {
   .titolo_catalogo { 
     margin-top: 0.8em;
     margin-bottom: 0.8em;
+  }
+
+  .titolo_img_form {
+    text-align: center;
   }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once "catalogo_handler.php";
+require_once "PHP/catalogo_handler.php";
 session_start();
 $user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
 $ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
@@ -21,14 +21,14 @@ if ($user && $ruolo == "admin") {
 
     // modifica del prodotto
     if (isset($_POST["submit_modifica_prod"])) {
-        if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && $_POST["nome_prod"] != NULL && $_POST["desc_prod"] != NULL) {
+        if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && $_POST["nome_prod"] != "" && $_POST["desc_prod"] != "") {
 
             Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
 
-            if(isset($_POST["alt_img"])) {
+            if (isset($_POST["alt_img"])) {
                 $alt = $_POST["alt_img"];
-                if(!empty($alt)) {
-                    for($i = 0; $i < count($alt); $i++)
+                if (!empty($alt)) {
+                    for ($i = 0; $i < count($alt); $i++)
                         Access::update_altImg($alt[$i], $_POST["path_img"][$i]);
                 }
             }
@@ -37,8 +37,11 @@ if ($user && $ruolo == "admin") {
 
             $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Prodotto modificato correttamente", $paginaHTML);
             // messaggio di riuscita della modifica
-        } else
+        } else {
             $paginaHTML = Catalogo::sendError("error", "Modifica non riuscita", "Alcuni campi di prodotto non sono stati inseriti", $paginaHTML);
+            $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id"]);
+        }
+
         // messaggio di errore omissione campi prodotto
     }
 
@@ -53,80 +56,95 @@ if ($user && $ruolo == "admin") {
                 $paginaHTML = Catalogo::sendError("success", "Creazione prodotto riuscita", "Prodotto creato correttamente", $paginaHTML);
             else
                 $paginaHTML = Catalogo::sendError("error", "Creazione prodotto non riuscita", "Errore nella creazione del prodotto", $paginaHTML);
-        } else
+        } else {
             $paginaHTML = Catalogo::sendError("error", "Creazione prodotto non riuscita", "Alcuni campi di prodotto non sono stati inseriti", $paginaHTML);
-    }
-    
-    // eliminazione di un prodotto
-    
-    if(isset($_POST["elimina_img"]))
-    {
-        if (isset($_POST["si_elimina_img"])) {
-            // eliminazione di una o più immagini
-            if (isset($_POST["check_img"])) {
-                $path = $_POST["check_img"];
-                if (!empty($path))
-                    for ($i = 0; $i < count($path); $i++)
-                        Access::deleteImg($path[$i]);
+            $Elenco_prod = Catalogo::show_newProduct();
+        }
 
+    }
+
+    // eliminazione di immagini di un prodotto
+
+    if (isset($_POST["si_elimina_img"])) {
+        // eliminazione di una o più immagini
+        if (isset($_POST["check_img"])) {
+            $path = $_POST["check_img"];
+            if (!empty($path)) {
+                for ($i = 0; $i < count($path); $i++)
+                    Access::deleteImg($path[$i]);
                 $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagine eliminata", $paginaHTML);
-                $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-                $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
-                $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
-            }       
-        }   
-        if( isset($_POST["no_elimina_img"])) {
-            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-            $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
-            $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
-        }
-    }
-    if(isset($_POST["elimina_prod"]))
-    {
-        if (isset($_POST["si_elimina_prod"])) {
-            $result = Access::deleteProduct($_POST["prod_id_2"]);
-            $Elenco_prod = Catalogo::show_allProducts();
+            }
 
-            if ($result)
-                $paginaHTML = Catalogo::sendError("success", "Eliminazione prodotto riuscita", "Prodotto eliminato correttamente", $paginaHTML);
-            else
-                $paginaHTML = Catalogo::sendError("error", "Eliminazione prodotto non riuscita", "Errore nell'eliminazione del prodotto", $paginaHTML);
-        }
-        if( isset($_POST["no_elimina_prod"])) {
+            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+            $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
+            $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+        } else {
+            $paginaHTML = Catalogo::sendError("error", "Eliminazione immagine non riuscita", "Non hai selezionato nessuna immagine!", $paginaHTML);
+
             $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
             $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
         }
     }
+    if (isset($_POST["no_elimina_img"])) {
+        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
+        $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+    }
+
+
+    // eliminazione di un prodotto
+
+
+    if (isset($_POST["si_elimina_prod"])) {
+        $result = Access::deleteProduct($_POST["prod_id"]);
+        $Elenco_prod = Catalogo::show_allProducts();
+
+        if ($result)
+            $paginaHTML = Catalogo::sendError("success", "Eliminazione prodotto riuscita", "Prodotto eliminato correttamente", $paginaHTML);
+        else
+            $paginaHTML = Catalogo::sendError("error", "Eliminazione prodotto non riuscita", "Errore nell'eliminazione del prodotto", $paginaHTML);
+    }
+    if (isset($_POST["no_elimina_prod"])) {
+        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+        $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
+        $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id"]);
+    }
+
 
 
     // modifica di una categoria
     if (isset($_POST["submit_modifica_cat"])) {
-        if (isset($_POST["nome_cat"], $_POST["desc_cat"])) {
+        if (isset($_POST["nome_cat"], $_POST["desc_cat"]) && $_POST["nome_cat"] != "" && $_POST["desc_cat"] != "") {
 
-            Access::modifyCategory($_POST["cat_id"],$_POST["nome_cat"],$_POST["desc_cat"]);
+            Access::modifyCategory($_POST["cat_id"], $_POST["nome_cat"], $_POST["desc_cat"]);
 
             // messaggio di riuscita della modifica
             $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Categoria modificata correttamente", $paginaHTML);
-        } else
+        } else {
             $paginaHTML = Catalogo::sendError("error", "Modifica non riuscita", "Alcuni campi di categoria non sono stati inseriti", $paginaHTML);
+            $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id"]);
+        }
     }
 
     // creazione di una nuova categoria
     if (isset($_POST["submit_new_cat"])) {
-        if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"])) {
+        if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"]) && $_POST["new_nome_cat"] != NULL && $_POST["new_desc_cat"] != NULL) {
 
             $result = Access::newCategory($_POST["new_nome_cat"], $_POST["new_desc_cat"]);
+            $Elenco_prod = Catalogo::show_allProducts();
 
             if ($result)
                 $paginaHTML = Catalogo::sendError("success", "Creazione categoria riuscita", "Categoria creata correttamente", $paginaHTML);
             else
                 $paginaHTML = Catalogo::sendError("error", "Creazione categoria non riuscita", "Errore nella creazione della categoria", $paginaHTML);
-        } else
+        } else {
             $paginaHTML = Catalogo::sendError("error", "Creazione categoria non riuscita", "Alcuni campi di categoria non sono stati inseriti", $paginaHTML);
+            $Elenco_prod = Catalogo::show_newCategory();
+        }
     }
 
-   
+
     // eliminazione di una categoria
     if (isset($_POST["si_elimina_cat"])) {
 
@@ -140,16 +158,16 @@ if ($user && $ruolo == "admin") {
 
         $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
         $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Categorie", $paginaHTML);
-    $Elenco_prod = Catalogo::show_allCategories();
+        $Elenco_prod = Catalogo::show_allCategories();
     }
 
-    if(isset($_POST["no_elimina_cat"])) {
+    if (isset($_POST["no_elimina_cat"])) {
         $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
         $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica categoria", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id_2"]);
     }
 
-    
+
     // upload di una o più immagini
     if (isset($_POST["upload_img"])) {
 
@@ -163,7 +181,7 @@ if ($user && $ruolo == "admin") {
 
 
 
-    // Funzioni che ritornano l'html da mostrare a video
+    // Funzioni che ritornano l'HTML da mostrare a video
     // inizio catalogo prodotti
 
     if (isset($_POST["modifica_prod"])) { // funzione che mostra la pagina di modifica del prodotto selezionato
