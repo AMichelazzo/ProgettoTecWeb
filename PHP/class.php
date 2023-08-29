@@ -319,9 +319,9 @@ class Access
         $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . Access::deletelang($keywords) . '" />', $pagina);
 
         if ($uppercategory !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> /' . '<a href="' . $linkcategory . '">' . $category . '</a> / ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> / ' . '<a href="' . $linkcategory . '">' . $category . '</a> / ' . $title . '</p>';
         } elseif ($category !== null) {
-            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / ' . '<a href="' . $linkcategory . '">' . $category . '</a> / ' . $title . '</p>';
+            $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / ' . ' <a href="' . $linkcategory . '">' . $category . '</a> / ' . $title . '</p>';
         } elseif ($title != "Home") {
             $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / ' . $title . '</p>';
         } else {
