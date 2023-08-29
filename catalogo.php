@@ -1,6 +1,6 @@
 <?php
 
-require_once "PHP/catalogo_handler.php";
+require_once "catalogo_handler.php";
 session_start();
 $user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
 $ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
