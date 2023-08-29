@@ -49,6 +49,20 @@ function confermaEliminazione() {
         msg_conf.removeAttribute("hidden");
     }
 }
+function confermaEliminazioneImg() {console.log("test");
+    let s = document.getElementById("submit_elimina_img");
+    let si = document.getElementById("si_elimina_img");
+    let no = document.getElementById("no_elimina_img");
+    if(s && si && no){
+        s.type = "hidden";
+        si.type = "submit";
+        no.type = "submit";
+    }
+    let msg_conf = document.getElementById("elimina_utente_big-img");
+    if(msg_conf){
+        msg_conf.removeAttribute("hidden");
+    }
+}
 document.addEventListener("DOMContentLoaded", function() {
     limitTextareaByClassName("limited-textarea", 75);
     let passwordInput2 = document.getElementById('pass_reg2');
@@ -85,6 +99,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 window.location.href="prodotto.php?prod="+this.id;
             });
         }
+    }
+
+    const immagini = document.querySelectorAll('.clickImg');
+    if(immagini){
+        immagini.forEach(immagini => {
+            const checkbox = immagini.querySelector('input[type="checkbox"]');
+            immagini.addEventListener('click', function(event) {
+                if (event.target !== checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                }
+                event.stopPropagation();
+            });
+        });
     }
     const messages = document.querySelectorAll('.msggg');
     if(messages){

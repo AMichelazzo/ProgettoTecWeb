@@ -1,6 +1,6 @@
 <?php
 
-require_once "PHP/catalogo_handler.php";
+require_once "catalogo_handler.php";
 session_start();
 $user = (isset($_SESSION["username"])) ? $_SESSION["username"] : null;
 $ruolo = (isset($_SESSION["ruolo"])) ? $_SESSION["ruolo"] : null;
@@ -56,21 +56,46 @@ if ($user && $ruolo == "admin") {
         } else
             $paginaHTML = Catalogo::sendError("error", "Creazione prodotto non riuscita", "Alcuni campi di prodotto non sono stati inseriti", $paginaHTML);
     }
-
+    
     // eliminazione di un prodotto
-    if (isset($_POST["si_elimina_prod"])) {
-        $result = Access::deleteProduct($_POST["prod_id_2"]);
-        $Elenco_prod = Catalogo::show_allProducts();
+    
+    if(isset($_POST["elimina_img"]))
+    {
+        if (isset($_POST["si_elimina_img"])) {
+            // eliminazione di una o più immagini
+            if (isset($_POST["check_img"])) {
 
-        if ($result)
-            $paginaHTML = Catalogo::sendError("success", "Eliminazione prodotto riuscita", "Prodotto eliminato correttamente", $paginaHTML);
-        else
-            $paginaHTML = Catalogo::sendError("error", "Eliminazione prodotto non riuscita", "Errore nell'eliminazione del prodotto", $paginaHTML);
+                $path = $_POST["check_img"];
+                if (!empty($path))
+                    for ($i = 0; $i < count($path); $i++)
+                        Access::deleteImg($path[$i]);
+
+                $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagine eliminata", $paginaHTML);
+                $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+                $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
+                $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
+            }       
+        }   
+        if( isset($_POST["no_elimina_img"])) {
+            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+            $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+        }
     }
+    if(isset($_POST["elimina_prod"]))
+    {
+        if (isset($_POST["si_elimina_prod"])) {
+            $result = Access::deleteProduct($_POST["prod_id_2"]);
+            $Elenco_prod = Catalogo::show_allProducts();
 
-    if( isset($_POST["no_elimina_prod"])) {
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-        $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+            if ($result)
+                $paginaHTML = Catalogo::sendError("success", "Eliminazione prodotto riuscita", "Prodotto eliminato correttamente", $paginaHTML);
+            else
+                $paginaHTML = Catalogo::sendError("error", "Eliminazione prodotto non riuscita", "Errore nell'eliminazione del prodotto", $paginaHTML);
+        }
+        if( isset($_POST["no_elimina_prod"])) {
+            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+            $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+        }
     }
 
 
@@ -123,20 +148,7 @@ if ($user && $ruolo == "admin") {
         $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id_2"]);
     }
 
-    // eliminazione di una o più immagini
-    if (isset($_POST["elimina_img"])) {
-
-        $path = $_POST["check_img"];
-        if (!empty($path))
-            for ($i = 0; $i < count($path); $i++)
-                Access::deleteImg($path[$i]);
-
-        $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagine eliminata", $paginaHTML);
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-        $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
-        $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
-    }
-
+    
     // upload di una o più immagini
     if (isset($_POST["upload_img"])) {
 

@@ -168,7 +168,7 @@ class Access
         DBAccess::dbQuery("DELETE FROM `tags` WHERE `prodotto` = ?", $id_prodotto);
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
-
+    
     public static function getProductName($id_prodotto, $id_categoria)
     {
         $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM prodotti WHERE prodotti.id_prodotto = ? AND prodotti.id_categoria = ?", $id_prodotto, $id_categoria);

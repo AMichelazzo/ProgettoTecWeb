@@ -36,7 +36,7 @@ class Catalogo
         $product = Access::getProduct($product_id);
         $categories = Access::getAllCategories();
 
-        $result = '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST" enctype="multipart/form-data">
+        $result = '<form action="catalogo.php" method="POST" enctype="multipart/form-data"><fieldset class="form_catalogo">
             <div><input type="hidden" name="prod_id" value="' . $product_id . '"/></div>
             <div><label for="nome_prod">Nome prodotto:</label></div>
             <div><input type="text" id="nome_prod" name="nome_prod" value="' . Access::deletelang($product[0]["Nome"]) . '"/></div>
@@ -53,44 +53,52 @@ class Catalogo
             <div><p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
             Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p></div></fieldset>';
 
-        $result .= '<div id="img_products"><h2>Aggiungi o elimina immagini del prodotto</h2>';
+        $result .= '<fieldset class="form_catalogo"><div id="img_products"><h2>Aggiungi o elimina immagini del prodotto</h2>';
 
         if ($product[0]["path"] == null)
             $result .= '<p>Non sono presenti immagini per questo prodotto.</p><fieldset class="form_catalogo">';
         else
             for ($i = 0; $i < count($product); $i++) {
-                $result .= '<div><input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
+                $result .= '<div class="clickImg"><label for="form-'.$product[$i]["path"].'" >Selezione:</label>
+                <input type="checkbox" id="form-'.$product[$i]["path"].'" name="check_img[]" value="'. $product[$i]["path"] . '"/>
                     <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
-                    <div><textarea id="'.$product[$i]["path"].'" name="alt_img[]" class="limited-textarea" rows="4" cols="30" placeholder="Inserisci alt per immagine"></textarea>
+                    <div><textarea id="'.$product[$i]["path"].'" name="alt_img[]" class="limited-textarea" rows="4" cols="30" placeholder="Inserisci alt per immagine">'.$product[$i]["alt_img"].'</textarea>
                     <div id="char-count-'.$product[$i]["path"].'">Caratteri rimanenti: 75</div><div>' . Access::lang($product[$i]["alt_img"]) . '</div></div>';
             }
 
-        $result .= '<label>Carica una o più immagini per il prodotto (jpg, jpeg o png). 
+        $result .= '<div><label name="upload_img">Carica una o più immagini per il prodotto (jpg, jpeg o png).</label> 
             <input type="hidden" name="product_id_img" value="' . $product_id . '"/>
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
-            <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
-            <input type="submit" class="modifica invio" name="upload_img" value="Carica">';
+            <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png"/>
+            <input type="submit" class="modifica invio" name="upload_img" value="Carica"/></div>';
 
         if ($product[0]["path"] != null) {
-            $result .= '<div><input type="submit" class= "invio" id="elimina_img" name="elimina_img" value="Elimina immagini selezionate"/></div>';
+            $result .= '<div id="elimina_img"><input type="submit" class="invio" id="submit_elimina_img" name="elimina_img" onclick="confermaEliminazioneImg();" value="Elimina immagini selezionate"/></div>
+            <input type="hidden" name="prod_id_2" value="' . $product_id . '"/>
+            <div hidden id="elimina_utente_big-img">
+            <div id="messaggio_conferma-img" class="messaggio_elimina" role="alert">
+                <p>Sei sicuro di voler eliminare il questa/e immagini?</p>
+            </div>
+            <div><input type="hidden" class="invio" id="si_elimina-img" name="si_elimina_img" value="Si" />
+                <input type="hidden" class="invio" id="no_elimina-img" name="no_elimina_img" value="No" />
+            </div></div>';
         }
 
-        $result .= '</fieldset><div><input type="submit" class="invio" id="annulla_modifica_prod" name="annulla_modifica_prod" value="Annulla modifiche"/>
-            <input type="submit" class="invio" id="submit_modifica_prod" name="submit_modifica_prod" value="Conferma modifiche"/></div></form>';
+        $result .= '<div><input type="submit" class="invio" id="annulla_modifica_prod" name="annulla_modifica_prod" value="Annulla modifiche"/>
+            <input type="submit" class="invio" id="submit_modifica_prod" name="submit_modifica_prod" value="Conferma modifiche"/></div>';
 
         $result .=
-            '<div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Prodotto"/></div>
-            <form action="catalogo.php" method="POST"><input type="hidden" name="prod_id_2" value="' . $product_id . '"/>
-            <div id="msg_confirm" role="alert"></div>
+            '<div id="elimina_prodotto"><input type="submit" class="invio" id="submit_elimina" name="elimina_prod" onclick="confermaEliminazione();" value="Elimina Prodotto"/></div>
+            <input type="hidden" name="prod_id_2" value="' . $product_id . '"/>
             <div hidden id="elimina_utente_big">
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 <p>Sei sicuro di voler eliminare il prodotto?</p>
             </div>
             <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_prod" value="Si" />
                 <input type="hidden" class="invio" id="no_elimina" name="no_elimina_prod" value="No" />
-            </div>';
+            </div></div></fieldset></form>';
 
         return $result;
     }
@@ -100,7 +108,7 @@ class Catalogo
 
         $categories = Access::getAllCategories();
 
-        $result = '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST">
+        $result = '<form action="catalogo.php" method="POST"><fieldset class="form_catalogo">
             <div><label for="new_nome_prod">Nome prodotto:</label></div>
             <div><input type="text" id="nome_prod" name="new_nome_prod" value=""/></div>
             <div><label for="new_category_id">Categoria prodotto:</label></div>
@@ -149,26 +157,25 @@ class Catalogo
 
         $categories = Access::getCategoryById($category_id);
 
-        $result = '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST">
+        $result = '<form action="catalogo.php" method="POST"><fieldset class="form_catalogo">
             <div><input type="hidden" name="cat_id" value="' . $category_id . '"/></div>
             <div><label for="nome_cat">Nome categoria:</label></div>
             <div><input type="text" id="nome_cat" name="nome_cat" value="' . Access::deletelang($categories[0]["Nome"]) . '"/></div>
             <div><label for="desc_cat">Descrizione categoria:</label></div>
             <div><textarea id="desc_prod" name="desc_cat" rows="10" cols="40" maxlength="500">' . Access::lang($categories[0]["Descrizione"]) . '</textarea></div>
             <input type="submit" class="invio" name="annulla_modifica_cat" value="Annulla modifiche"/>
-            <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></form>';
+            <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/>';
 
 
         $result .= ' <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();" value="Elimina Categoria"/></div></fieldset>
             <form action="catalogo.php" method="POST"><input type="hidden" name="cat_id_2" value="' . $category_id . '"/>
-            <div id="msg_confirm" role="alert"></div>
             <div hidden id="elimina_utente_big">
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 <p>Sei sicuro di voler eliminare la categoria?</p>
             </div>
             <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_cat" value="Si" />
                 <input type="hidden" class="invio" id="no_elimina" name="no_elimina_cat" value="No" />
-            </div>';
+            </div></form>';
 
 
         return $result;
@@ -177,7 +184,7 @@ class Catalogo
     public static function show_newCategory()
     { // viene mostrata la pagina per la creazione di un nuova categoria
 
-        return '<fieldset class="form_catalogo"><form action="catalogo.php" method="POST">
+        return '<form action="catalogo.php" method="POST"><fieldset class="form_catalogo">
             <div><label for="nome_cat">Nome categoria:</label></div>
             <div><input type="text" id="new_nome_cat" name="new_nome_cat" value=""/></div>
             <div><label for="desc_prod">Descrizione categoria:</label></div>
