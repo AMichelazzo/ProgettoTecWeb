@@ -16,15 +16,15 @@ $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywor
     $breadcrumb='<p>Ti trovi in: <span lang="en">Home</span> - '.$breadcrumb.'</span></p>';
 }
 /*
-Ti trovi in: Home >> Prodotti >> Something >> aProduct;
-Ti trovi in: <a href="" lang="en">Home</a> >> <a href="">Prodotti</a> >> <a href="" lang="en">Something</a> >> <span>aProduct</span>
+Ti trovi in: Home / Prodotti / Something / aProduct;
+Ti trovi in: <a href="" lang="en">Home</a> / <a href="">Prodotti</a> / <a href="" lang="en">Something</a> / <span>aProduct</span>
 */
 if ($breadcrumb !== null)   // tramite i nuovi get e la lang
 {
     if ($category === null) {
-        $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . $title . '</p>';
+        $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> / ' . $title . '</p>';
     } else {
-        $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> >> ' . '<a href="">' . $category . '</a> >> ' . $title . '</p>';
+        $breadcrumb = '<p>Ti trovi in: <a href="" lang="en">Home</a> / ' . '<a href="">' . $category . '</a> / ' . $title . '</p>';
     }
     $pagina = str_replace('<p>Ti trovi in: <span lang="en">Home</span></p>', $breadcrumb, $pagina);
 }
