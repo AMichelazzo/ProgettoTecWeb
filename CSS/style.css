@@ -70,27 +70,28 @@ height: auto;
 .hambuttonoff { /*Il menu è chiuso*/
   width: 4em;
   height: 4em;
-  /*background-image: url("../img/hamOn.png");*/
-  filter: invert(100%);/*
+  background-image: url("../img/hamOn.png");
+  filter: invert(100%);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  text-indent: -9999px;*/
+  text-indent: -9999px;
   background-color: #24ccb0;
   border-radius: 1.5em 1.5em 1.5em 1.5em;
-
+  cursor: pointer;
 }
 
 .hambuttonon { /*Il menu è aperto*/
   width:4em;
   height: 4em;
-  /*background-image: url("../img/hamOff.png");
+  background-image: url("../img/hamOff.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  text-indent: -9999px;*/
+  text-indent: -9999px;
   background-color: #DB334F;
   border-radius: 1.5em 1.5em 1.5em 1.5em;
+  cursor: pointer;
 }
 
 /*BOX*/
