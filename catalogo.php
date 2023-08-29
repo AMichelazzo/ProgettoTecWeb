@@ -64,7 +64,6 @@ if ($user && $ruolo == "admin") {
         if (isset($_POST["si_elimina_img"])) {
             // eliminazione di una o più immagini
             if (isset($_POST["check_img"])) {
-
                 $path = $_POST["check_img"];
                 if (!empty($path))
                     for ($i = 0; $i < count($path); $i++)
@@ -78,6 +77,7 @@ if ($user && $ruolo == "admin") {
         }   
         if( isset($_POST["no_elimina_img"])) {
             $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+            $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
         }
     }
@@ -94,6 +94,7 @@ if ($user && $ruolo == "admin") {
         }
         if( isset($_POST["no_elimina_prod"])) {
             $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
+            $paginaHTML = str_replace(" >> Catalogo", " &gt&gt <a href=\"catalogo.php\">Catalogo</a> &gt&gt Modifica prodotto", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
         }
     }
