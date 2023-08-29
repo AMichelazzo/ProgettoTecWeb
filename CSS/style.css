@@ -1019,6 +1019,7 @@ a:visited {
   }
 
   .titolo_img_form {
+    margin-top: 0.8em;
     text-align: center;
   }
 
@@ -1040,7 +1041,7 @@ a:visited {
     margin-bottom: 0.4em;
   }
 
-  .form_catalogo #elimina_prod {
+  .form_catalogo #elimina_prod, #elimina_img {
     text-align: center;
   }
   
