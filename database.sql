@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 22, 2023 alle 11:40
+-- Creato il: Ago 29, 2023 alle 14:39
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -36,11 +36,6 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Svuota la tabella prima dell'inserimento `categoria`
---
-
-TRUNCATE TABLE `categoria`;
---
 -- Dump dei dati per la tabella `categoria`
 --
 
@@ -67,11 +62,6 @@ CREATE TABLE IF NOT EXISTS `immagini` (
   KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Svuota la tabella prima dell'inserimento `immagini`
---
-
-TRUNCATE TABLE `immagini`;
 --
 -- Dump dei dati per la tabella `immagini`
 --
@@ -122,11 +112,6 @@ CREATE TABLE IF NOT EXISTS `messaggi` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Svuota la tabella prima dell'inserimento `messaggi`
---
-
-TRUNCATE TABLE `messaggi`;
---
 -- Dump dei dati per la tabella `messaggi`
 --
 
@@ -149,11 +134,6 @@ CREATE TABLE IF NOT EXISTS `prodotti` (
   KEY `prodotti` (`id_categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Svuota la tabella prima dell'inserimento `prodotti`
---
-
-TRUNCATE TABLE `prodotti`;
 --
 -- Dump dei dati per la tabella `prodotti`
 --
@@ -188,22 +168,27 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `categoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`tag_id`),
   KEY `prodotto` (`prodotto`,`categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Svuota la tabella prima dell'inserimento `tags`
---
-
-TRUNCATE TABLE `tags`;
 --
 -- Dump dei dati per la tabella `tags`
 --
 
 INSERT INTO `tags` (`tag_id`, `Nome`, `prodotto`, `categoria`) VALUES
-(2, 'Lampadario di vetro', 1, 1),
-(3, 'fsafas', 2, 1),
-(4, 'vfafas', 3, 2),
-(5, 'Lusso', 1, 1);
+(2, 'Lampadario di lusso', 1, 1),
+(6, 'Lampadario minimal', 2, 1),
+(7, 'Cavalluccio Marino', 3, 2),
+(8, 'Lampadario blue', 4, 1),
+(9, 'Bicchieri', 5, 3),
+(10, 'Bracciale', 6, 4),
+(11, 'Cavallo', 7, 2),
+(12, 'Collana', 8, 4),
+(13, 'Gallo', 9, 2),
+(14, 'Lampadario rosso', 10, 1),
+(15, 'Muflone', 11, 2),
+(16, 'Vaso goccia', 12, 5),
+(17, 'Vaso a sfera', 13, 5),
+(18, 'Vaso classico rosso', 14, 5);
 
 -- --------------------------------------------------------
 
@@ -220,11 +205,6 @@ CREATE TABLE IF NOT EXISTS `utente` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Svuota la tabella prima dell'inserimento `utente`
---
-
-TRUNCATE TABLE `utente`;
 --
 -- Dump dei dati per la tabella `utente`
 --
@@ -250,11 +230,6 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Svuota la tabella prima dell'inserimento `wishlist`
---
-
-TRUNCATE TABLE `wishlist`;
 --
 -- Dump dei dati per la tabella `wishlist`
 --
