@@ -72,15 +72,15 @@ class Catalogo
             $result .= '<p>Non sono presenti immagini per questo prodotto.</p>';
         else
             for ($i = 0; $i < count($product); $i++) {
-                $result .= '<form action="catalogo.php" method="POST" enctype="multipart/form-data"><div><input type="checkbox" name="check_img[]" value="' . $product[$i]["path"] . '"/>
-                    <img src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
+                $result .= '<form action="catalogo.php"  method="POST" enctype="multipart/form-data"><div class="clickImg"><label for="form-'.$product[$i]["path"].'" >Selezione:</label>
+                <input type="checkbox" id="form-'.$product[$i]["path"].'" name="check_img[]" value="'. $product[$i]["path"] . '"/>
+                    <img  src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
                     <div><textarea id="'.$product[$i]["path"].'" name="alt_img[]" class="limited-textarea" rows="4" cols="30" placeholder="Inserisci alt per immagine">'
                     . $product[$i]["alt_img"] . '</textarea>
                     <div id="char-count-'.$product[$i]["path"].'">Caratteri rimanenti: 75</div><div>' . Access::lang($product[$i]["alt_img"]) . '</div></div>';
             }
-
         $result .= '<div><label>Carica una o più immagini per il prodotto (jpg, jpeg o png). 
             <input type="hidden" name="product_id_img" value="' . $product_id . '"/>
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
