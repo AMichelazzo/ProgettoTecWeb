@@ -69,8 +69,8 @@
   
   #box {
     background-color: var(--bgfuncolor);
-    padding: 0.3em 1em 0.1em 1.0em;
-    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0em 0em 0em 0em;
+    border-radius: 0em 0em 0em 0em;
     font-size: 1.3em;
   }
   
@@ -156,8 +156,8 @@
   
   #breadcrumb {
     background-color: var(--bgfuncolor);
-    padding: 0.1em 0em 0.3em 0em;
-    border-radius: 0px 0px 0.5em 0.5em;
+    padding: 0em 0em 0.0em 0em;
+    border-radius: 0em 0em 0em 0em;
     font-size: 1.1em;
   }
   
@@ -169,7 +169,7 @@
     font-size: 1.1em;
   }
   
-  #contenuto {
+  #contenuto {/*
     width: 85%;
     border-radius: 0.5em;
     padding: 2em;
@@ -178,13 +178,19 @@
     box-shadow: 0em 0em 1em 0em var(--shadowcolor);
     margin-left: auto;
     margin-right: auto;
-    text-align: justify;
+    text-align: justify;*/
+    width: 100%;
+    padding: 0em;
+    border-radius: 0em;
+    margin: 0em 0em 0em 0em;
+    box-shadow: 0em 0em 0em 0em;
   }
   
   /* INIZIO PAGINA */
   
   #iniziopagina {
-    text-align: center;
+    /*text-align: center;*/
+    display: none;
   }
   
   /* FOOTER */
@@ -303,7 +309,7 @@
       position: relative;
     }
     .button {
-      position: absolute;
+      /*position: absolute;
       right:0;
       cursor: pointer;
       width: 200px;
@@ -312,13 +318,13 @@
       align-items: center;
       justify-content: center;
       border: 1px solid var(--bgfuncolor);
-      background-color: var(--bgfuncolor);
+      background-color: var(--bgfuncolor);*/ display: none;
   }
   
   .button__text {
-      color: white;
+      /*color: white;
       text-align: center;
-      display: inline-block;
+      display: inline-block;*/ display: none;
   }
   
   /*END CAROUSEL*/
@@ -780,133 +786,11 @@
   .desc-categ {
     color: var(--visitedcolor);
   }
-  
-  @media(orientation: landscape) and (min-width: 790px) {
-  
-    .conteg-container {
-      display: flex;
-      align-items: center;
-      margin: 1em;
-      cursor: pointer;
-      transition: border 0.3s; 
-      border: 1px solid transparent; 
-    }
-  
-    .conteg-container:hover {
-      border: 1px solid var(--visitedcolor); 
-    }
-  
-    .img-categ img {
-      max-width: 100%;
-      height: auto;
-      margin-right: 1em;
-      width: 300px; 
-      height: 300px; 
-      background-size: cover; 
-      background-repeat: no-repeat; 
-    }
-  
-  
-    .link-class a {
-      color: var(--visitedcolor);
-      font-weight: bold;
-    }
-  
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-  
-    .desc-categ {
-      color: var(--visitedcolor);
-    }
-  
-    .slideshow-container-home {
-      width: 500px; 
-      height: 500px;
-      margin: 20px auto; /* Aggiungi un margine di 20px sopra e sotto, e automaticamente ai lati */
-      text-align: center;
-      position: relative;
-      box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.2); /* Ingrandisci l'ombra e spostala verso il basso e a destra */
-    }
-  
-    .slideshow-container-home img {
-      max-width: 100%; 
-      height: auto; 
-      width: 500px; 
-      height: 500px; 
-    }
-  
-    .mySlides-home img:hover {
-      cursor: pointer;
-    }
-  
-  
-    .fade {
-      animation-name: fade;
-      animation-duration: 2s;
-    }
-  
-    @keyframes fade {
-      from {opacity: .5}
-      to {opacity: 1}
-    }
-  
-    /* Style for slideshow images */
-    .mySlides-home {
-      display: none;
-    }
-  
-    /* Style for navigation buttons */
-    .prev-home,
-    .next-home {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      border-radius: 0 3px 3px 0;
-      user-select: none; 
-    }
-  
-    .prev-home {
-      left: -10%; /* Posiziona il pulsante precedente a sinistra */
-      border-radius: 5px 0 0 5px;
-    }
-  
-    .next-home {
-      right: -10%; /* Posiziona il pulsante successivo a destra */
-      border-radius: 0 5px 5px 0;
-    }
-    .prev-home:hover, .next-home:hover {
-      background-color: rgba(0,0,0,0.8);
-    }
-  
-    /* Style for the dot container */
-    .slideshow-dots {
-      text-align: center;
-      margin-top: 20px;
-    }
-  
-    /* Style for each dot */
-    .dot {
-      width: 15px;
-      height: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      cursor: pointer; /* Cambia il puntatore quando il mouse è sopra un pallino */
-      opacity:  0.6;
-    }
-  
-    .dot.active {
-      background-color: #717171;
-      opacity: 1;
-    }
-  
-  }
+
+.prev-home {
+  display: none;
+}
+
+.next-home {
+  display: none;
+}
