@@ -5,10 +5,10 @@ function notHamb() {
         else hambutton.className = "hambuttonoff";
         
         
-        if(hambutton.alt == "Apri menù amministratore") hambutton.alt = "Chiudi menù amministratore";
-        else if(hambutton.alt == "Chiudi menù amministratore") hambutton.alt = "Apri menù amministratore";
-        else if(hambutton.alt == "Apri menù utente") hambutton.alt = "Chiudi menù utente";
-        else if(hambutton.alt == "Chiudi menù utente") hambutton.alt = "Apri menù utente";
+        if(hambutton.innerText == "Apri menù amministratore") hambutton.innerText = "Chiudi menù amministratore";
+        else if(hambutton.innerText == "Chiudi menù amministratore") hambutton.innerText = "Apri menù amministratore";
+        else if(hambutton.innerText == "Apri menù utente") hambutton.innerText = "Chiudi menù utente";
+        else if(hambutton.innerText == "Chiudi menù utente") hambutton.innerText = "Apri menù utente";
     }
     let menubar = document.getElementById("menubar");
     if(menubar){
