@@ -18,13 +18,13 @@ class Catalogo
             for ($i = 0; $i < count($products); $i++) { // funzione per la creazione dell'inline
 
                 $result .= '<form action="catalogo.php" method="POST" role="group"><fieldset class="prodotto">
-                    <p class="inline"><input type="hidden" name="product_id" value="' . $products[$i]["id_prodotto"] . '"/></p>' // mi salvo l'id_prodotto
-                    . '<p class="inline"><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></p>'; // e l'id_categoria
+                    <div><input type="hidden" name="product_id" value="' . $products[$i]["id_prodotto"] . '"/></div>' // mi salvo l'id_prodotto
+                    . '<div><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></div>'; // e l'id_categoria
 
-                $result .= '<p class="inline"> <span class="nome">Nome prodotto:</span> ' . Access::lang($products[$i]["Prod_Nome"]) . '</p>
-                    <p class="inline"> <span class="categoria">Categoria:</span> ' . Access::lang($products[$i]["Cat_Nome"]) . '</p>
-                    <p class="inline"> <span class="descrizione">Descrizione:</span> ' . Access::lang($products[$i]["Descrizione"]) . '</p>
-                    <p class="inline"><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></p></fieldset></form>';
+                $result .= '<div><span class="nome">Nome prodotto:</span> ' . Access::lang($products[$i]["Prod_Nome"]) . '</div>
+                    <div><span class="categoria">Categoria:</span> ' . Access::lang($products[$i]["Cat_Nome"]) . '</div>
+                    <div><span class="descrizione">Descrizione:</span> ' . Access::lang($products[$i]["Descrizione"]) . '</div>
+                    <div><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></div></fieldset></form>';
             }
         }
         return $result;
@@ -58,8 +58,8 @@ class Catalogo
         <div><textarea id="desc_prod" name="desc_prod" rows="10" cols="40"
                 maxlength="500">' . Access::lang($product[0]["Descrizione"]) . '</textarea></div>
         <div>
-            <p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
-                Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p>
+            In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
+                Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].
         </div>
         <div><input type="submit" class="invio" id="annulla_modifica_prod" name="annulla_modifica_prod"
                 value="Annulla modifiche" />
@@ -73,7 +73,7 @@ class Catalogo
         <div id="msg_confirm" role="alert"></div>
         <div hidden id="elimina_utente_big">
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
-                <p>Sei sicuro di voler eliminare il prodotto?</p>
+                Sei sicuro di voler eliminare il prodotto?
             </div>
             <form action="catalogo.php" method="post">
                 <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_prod" value="Si" />
@@ -90,7 +90,7 @@ class Catalogo
         <fieldset class="form_catalogo">';
 
         if ($product[0]["path"] == null)
-            $result .= '<p>Non sono presenti immagini per questo prodotto.</p>';
+            $result .= '<div>Non sono presenti immagini per questo prodotto.</div>';
         else
             for ($i = 0; $i < count($product); $i++) {
                 $result .= '<form action="catalogo.php" method="POST" enctype="multipart/form-data">
@@ -106,10 +106,10 @@ class Catalogo
                 </div>';
             }
         $result .=
-            '<div><label>Carica una o più immagini per il prodotto (jpg, jpeg o png).
+            '<div><label for="carica_img">Carica una o più immagini per il prodotto (jpg, jpeg o png).</label>
             <input type="hidden" name="product_id_img" value="' . $product_id . '" />
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
-            <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
+            <input type="file" id="carica_img" name="img[]" multiple accept=".jpg, .jpeg, .png">
         <input type="submit" class="modifica invio" name="upload_img" value="Carica"></div>';
 
         if ($product[0]["path"] != null) {
@@ -118,7 +118,7 @@ class Catalogo
             onclick="confermaEliminazioneImg();" value="Elimina immagini selezionate" /></div>
                 <div hidden id="elimina_utente_big-img">
                     <div id="messaggio_conferma-img" class="messaggio_elimina" role="alert">
-                        <p>Sei sicuro di voler eliminare questa/e immagini?</p>
+                        Sei sicuro di voler eliminare questa/e immagini?
                     </div>
                     <div><input type="hidden" class="invio" id="si_elimina_img" name="si_elimina_img" value="Si" />
                         <input type="hidden" class="invio" id="no_elimina_img" name="no_elimina_img" value="No" />
@@ -155,11 +155,11 @@ class Catalogo
         <div><label for="new_desc_prod">Descrizione prodotto:</label></div>
         <div><textarea id="new_desc_prod" name="new_desc_prod" rows="10" cols="40" maxlength="500"></textarea></div>
         <div>
-            <p>E\' possibile aggiungere immagini al prodotto modificandolo successivamente.</p>
+            E\' possibile aggiungere immagini al prodotto modificandolo successivamente.
         </div>
         <div>
-            <p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
-                Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p>
+            In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
+                Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].
         </div>
         <div><input type="submit" class="invio" id="annulla_new_cat" name="annulla_new_prod"
                 value="Annulla creazione prodotto" />
@@ -190,15 +190,15 @@ class Catalogo
 
                 $result .= 
                 '<form action="catalogo.php" class="flex-container" method="POST">
-                <fieldset class="categories">'
-                    . '<p class="flex-item inline"> <span class="nome">Nome:</span> ' . Access::lang($categories[$i]["Nome"]) . '
-                    </p>
-                    <p class="flex-item inline"> <span class="descrizione">Descrizione:</span> ' .
-                        Access::lang($categories[$i]["Descrizione"]) . '.</p>
-                    <p class="flex-item inline"><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" />
-                    </p>
-                    <p class="inline"><input type="hidden" name="category_id" value="' . 
-                $categories[$i]["id_categoria"] . '"/></p></fieldset>'; // mi salvo l'id_categoria
+                <fieldset class="prodotto">'
+                    . '<div> <span class="nome">Nome:</span> ' . Access::lang($categories[$i]["Nome"]) . '
+                    </div>
+                    <div> <span class="descrizione">Descrizione:</span> ' .
+                        Access::lang($categories[$i]["Descrizione"]) . '.</div>
+                    <div><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" />
+                    </div>
+                    <div><input type="hidden" name="category_id" value="' . 
+                $categories[$i]["id_categoria"] . '"/></div></fieldset>'; // mi salvo l'id_categoria
             }
         }
         return $result;
@@ -226,7 +226,7 @@ class Catalogo
             <div id="msg_confirm" role="alert"></div>
             <div hidden id="elimina_utente_big">
                 <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
-                    <p>Sei sicuro di voler eliminare la categoria?</p>
+                    Sei sicuro di voler eliminare la categoria?
                 </div>
                 <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_cat" value="Si" />
                     <input type="hidden" class="invio" id="no_elimina" name="no_elimina_cat" value="No" />
@@ -246,8 +246,8 @@ class Catalogo
             <div><label for="desc_prod">Descrizione categoria:</label></div>
             <div><textarea id="new_desc_cat" name="new_desc_cat" rows="10" cols="30" maxlength="500"></textarea></div>
             <div>
-                <p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
-                    Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].</p>
+                In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
+                    Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].
             </div>
             <input type="submit" class="invio" id="annulla_new_cat" name="annulla_new_cat"
                 value="Annulla creazione categoria" />
