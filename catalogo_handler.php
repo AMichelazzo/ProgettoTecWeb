@@ -100,13 +100,12 @@ class Catalogo
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label for="alt_img">Alt immagine:</label></div>
                     <div><textarea id="' . $product[$i]["path"] . '" name="alt_img[]" class="limited-textarea" rows="4" cols="30"
-                        placeholder="Inserisci alt per immagine"></textarea>
+                        placeholder="Inserisci alt per immagine">'.Access::lang($product[$i]["alt_img"]).'</textarea>
                     <div id="char-count-' . $product[$i]["path"] . '">Caratteri rimanenti: 75</div>
-                    <div>' . Access::lang($product[$i]["alt_img"]) . '</div>
                 </div>';
             }
         $result .=
-            '<div><label>Carica una o più immagini per il prodotto (jpg, jpeg o png).
+            '<div><label for="upload_img">Carica una o più immagini per il prodotto (jpg, jpeg o png).</label>
             <input type="hidden" name="product_id_img" value="' . $product_id . '" />
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
             <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
