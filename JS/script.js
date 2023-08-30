@@ -35,6 +35,7 @@ function limitTextareaByClassName(className, maxChars) {
         });
     }
 }
+
 function confermaEliminazione() {
     let s = document.getElementById("submit_elimina");
     let si = document.getElementById("si_elimina");
