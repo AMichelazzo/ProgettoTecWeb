@@ -21,7 +21,7 @@ if ($user && $ruolo == "admin") {
 
     // modifica del prodotto
     if (isset($_POST["submit_modifica_prod"])) {
-        if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && $_POST["nome_prod"] != NULL && $_POST["desc_prod"] != NULL) {
+        if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && Access::is_not_null($_POST["nome_prod"]) && Access::is_not_null($_POST["desc_prod"])) {
 
             Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
 
@@ -48,7 +48,7 @@ if ($user && $ruolo == "admin") {
 
     // creazione di un nuovo prodotto
     if (isset($_POST["submit_new_prod"])) {
-        if (isset($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]) && $_POST["new_nome_prod"] != NULL && $_POST["new_desc_prod"] != NULL) {
+        if (isset($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]) && Access::is_not_null($_POST["new_nome_prod"]) && Access::is_not_null($_POST["new_desc_prod"])) {
 
             $result = Access::newProduct($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]);
             $Elenco_prod = Catalogo::show_allProducts();
@@ -119,7 +119,7 @@ if ($user && $ruolo == "admin") {
 
     // modifica di una categoria
     if (isset($_POST["submit_modifica_cat"])) {
-        if (isset($_POST["nome_cat"], $_POST["desc_cat"]) && $_POST["nome_cat"] != NULL && $_POST["desc_cat"] != NULL) {
+        if (isset($_POST["nome_cat"], $_POST["desc_cat"]) && Access::is_not_null($_POST["nome_cat"]) && Access::is_not_null($_POST["desc_cat"])) {
 
             Access::modifyCategory($_POST["cat_id"], $_POST["nome_cat"], $_POST["desc_cat"]);
 
@@ -135,7 +135,7 @@ if ($user && $ruolo == "admin") {
 
     // creazione di una nuova categoria
     if (isset($_POST["submit_new_cat"])) {
-        if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"]) && $_POST["new_nome_cat"] != NULL && $_POST["new_desc_cat"] != NULL) {
+        if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"]) && Access::is_not_null($_POST["new_nome_cat"]) && Access::is_not_null($_POST["new_desc_cat"])) {
 
             $result = Access::newCategory($_POST["new_nome_cat"], $_POST["new_desc_cat"]);
             $Elenco_prod = Catalogo::show_allCategories();

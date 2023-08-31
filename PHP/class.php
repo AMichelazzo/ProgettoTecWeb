@@ -384,5 +384,9 @@ class Access
     }
 
 
+    public static function is_not_null($text) 
+    {
+        return ($text != NULL && !ctype_space($text));
+    }
 
 }

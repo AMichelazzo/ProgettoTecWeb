@@ -43,7 +43,7 @@ if (isset($_POST["submit_informazioni"])) {
     if (isset($_POST["categoria_contatti"]))
         $Id_categoria = $_POST["categoria_contatti"];
 
-    if ((isset($_POST["email"]) && $_POST["email"] != null) || $ruolo) {
+    if ((isset($_POST["email"]) && Access::is_not_null($_POST["email"])) || $ruolo) {
         if ($user)
             $email = Access::getUserEmail($user);
         else if (isset($_POST["email"]) && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
@@ -51,7 +51,7 @@ if (isset($_POST["submit_informazioni"])) {
         else
             $email = $_POST["email"];
 
-        if ($okemail && $_POST["messaggio"] != "")
+        if ($okemail && Access::is_not_null($_POST["messaggio"]))
             $result = Access::newMessage($email, $Id_prodotto, $Id_categoria, $_POST["messaggio"]);
 
         if ($result && $okemail) {
