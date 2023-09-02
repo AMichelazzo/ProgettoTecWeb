@@ -1,27 +1,27 @@
 <main id="iniziocontenuto">
     <div id="contenuto">
         <div id="signup">
-            <div id="operazione"><h2>REGISTRATI</h2></div>
+            <div id="operazione"></div>
             <form method="post" action="registrati_handler.php">
                 <fieldset>
-                    <legend>Registrati</legend>
+                    <legend><h2 class="regi-title">Registrati</h2></legend>
                     <div id="msgchange" role="alert"></div>
-                    <div><label for="email_reg" lang="en">Email: </label></div>
-                    <div><input type="email" id="email_reg" name="email_reg" placeholder="" required /><img
-                            id="email_disponibile" src=".." alt="" /><!--email--></div>
+                    <div><label class="reglab" for="email_reg" lang="en">Email: </label></div>
+                    <div><input class="reginp" type="email" id="email_reg" name="email_reg" placeholder="" required /><img
+                            id="email_disponibile" src="img/sfondo_vuoto.png" alt="" /><!--email--></div>
 
 
-                    <div><label for="username_reg" lang="en">Username: </label></div>
-                    <div><input type="text" id="username_reg" name="username_reg" placeholder="" required /><img
-                            id="username_disponibile" src=".." alt="" /><!--user--></div>
+                    <div><label class="reglab" for="username_reg" lang="en">Username: </label></div>
+                    <div><input type="text" class="reginp" id="username_reg" name="username_reg" placeholder="" required /><img
+                            id="username_disponibile" src="img/sfondo_vuoto.png" alt="" /><!--user--></div>
 
-                    <div><label for="pass_reg" lang="en">Password: </label></div>
-                    <div><input type="password" id="pass_reg" name="pass_reg" required /><img id="password_rispetta"
-                            src="" alt="" /></div>
+                    <div><label class="reglab" for="pass_reg" lang="en">Password: </label></div>
+                    <div><input type="password" class="reginp" id="pass_reg" name="pass_reg" required /><img id="password_rispetta"
+                            src="img/sfondo_vuoto.png" alt="" /></div>
 
-                    <div><label for="pass_reg2">Ripeti <span lang="en">password</span>: </label></div>
-                    <div><input type="password" id="pass_reg2" name="pass_reg2" required /><img id="password_rispetta2"
-                            src=".." alt="" /><!--password--></div>
+                    <div><label class="reglab" for="pass_reg2">Ripeti <span lang="en">password</span>: </label></div>
+                    <div><input type="password" class="reginp" id="pass_reg2" name="pass_reg2" required /><img id="password_rispetta2"
+                            src="img/sfondo_vuoto.png" alt="" /><!--password--></div>
                     <div id="message" role="alert">
                         <h3>La <span lang="en">password</span> deve contenere almeno:</h3>
                         <ul>
@@ -41,7 +41,7 @@
                     <input type="submit" id="submitregistra" name="submit" class="invio" value="Registrati" />
                 </fieldset>
             </form>
-            <p><a href="accesso.php">Accesso</a></p>
+            <p class="link-reg"><a href="accesso.php">Accesso</a></p>
         </div>
     </div>
     <div id="iniziopagina">

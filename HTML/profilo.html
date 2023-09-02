@@ -4,20 +4,24 @@
             <form method="post" action="profilo.php">
                 <fieldset>
                     <legend>
-                        <h2>Cambio <span lang="en">password</span></h2>
+                        <h2 class="profilo-h2">Cambio <span lang="en">password</span></h2>
                     </legend>
                     <div id="msgchange" role="alert"></div>
-                    <div><label for="old_password" lang="en">Vecchia <span lang="en">password</span>: </label></div>
-                    <div><span><input type="password" id="old_password" name="old_password" /></span><img id="oldPW"
-                            src=".." alt="" height="15px" width="15px" /><!--generico--><!--oldnew--><!--old--></div>
-
-                    <div><label for="pass_reg" lang="en">Nuova <span lang="en">password</span>: </label></div>
-                    <div><span><input type="password" id="pass_reg" name="pass_reg" /></span><img id="newPW"
-                            src=".." alt="" height="15px" width="15px" /><!--nonCorrisp--></div>
-
-                    <div><label for="pass_reg2">Ripeti nuova <span lang="en">password</span>: </label></div>
-                    <div><input type="password" id="pass_reg2" name="pass_reg2" /><img id="password_rispetta2"
-                            src=".." alt="" height="15px" width="15px" /></div>
+                    <div class="Old-pass">
+                        <div><label for="old_password" lang="en">Vecchia <span lang="en">password</span>: </label></div>
+                        <div><span><input type="password" id="old_password" name="old_password" /></span><img id="oldPWid"
+                                src="img/sfondo_vuoto.png" alt="" height="15px" width="15px" /><!--generico--><!--oldnew--><!--old--></div>
+                    </div>
+                    <div class="New-pass">
+                        <div><label for="pass_reg" lang="en">Nuova <span lang="en">password</span>: </label></div>
+                        <div><span><input type="password" id="pass_reg" name="pass_reg" /></span><img id="newPW"
+                                src="img/sfondo_vuoto.png" alt="" height="15px" width="15px" /><!--nonCorrisp--></div>
+                    </div>
+                    <div class="New-repeat">
+                        <div><label for="pass_reg2">Ripeti nuova <span lang="en">password</span>: </label></div>
+                        <div><input type="password" id="pass_reg2" name="pass_reg2" /><img id="password_rispetta2"
+                                src="img/sfondo_vuoto.png" alt="" height="15px" width="15px" /></div>
+                    </div>
                     <div id="message" role="alert">
                         <h3>La <span lang="en">password</span> deve contenere almeno:</h3>
                         <ul>

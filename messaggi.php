@@ -51,7 +51,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
     $result = Access::getMessages();
 
     if (empty($result))
-        $ElencoMsg = "<div><h3>Non sono presenti messaggi da parte di utenti</h3></div>";
+        $ElencoMsg = "<div><h3 class='error-message'>Non sono presenti messaggi da parte di utenti</h3></div>";
     else {
         for ($i = 0; $i < count($result); $i++) { // funzione per la creazione dell'inline
 
