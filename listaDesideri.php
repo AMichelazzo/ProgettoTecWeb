@@ -35,19 +35,19 @@ if (!isset($_SESSION["username"])) {
                 $productlist .= "<div class=\"contentProdotto\">";
                 $productlist .= "<div class=\"nome\">Nome prodotto: " . $nome . "</div>";
                 $productlist .= "<div class=\"descrizione\">Descrizione: " . $desc . "</div>";
-                $productlist .= "<div class=\"categoria\">Categoria: <a class=\"wish-link\" href=\"categorie.php?cat=" . $result2[0]['id_categoria'] . "\">" . $cat . "</a></div>";
+                $productlist .= "<div class=\"categoria\">Categoria: <span><a class=\"wish-link\" href=\"categorie.php?cat=" . $result2[0]['id_categoria'] . "\">" . $cat . "</a></span></div>";
                 $productlist .= "<div class=\"button-container\">";
                 $productlist .= "<input type=\"submit\" name=\"informazioni_prodotto\" value=\"Richiedi Informazioni\" />";
                 $productlist .= "<button id=\"" . $idprod . "\" aria-label='Scheda-Prodotto' class=\"vaiProdotto\" name=\"vaiProdotto\">Scheda Prodotto <span aria-hidden=\"true\">-></span></button>";
                 $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product_id\" value=\"" . $idprod . "\"/>";
                 $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\"  value=\"" . $idcat . "\"/>";
-                $productlist .= "</div>";
-                $productlist .= "</div>";
                 $productlist .= "<div class=\"rimuovi-container\">";
                 $productlist .= "<button class=\"remove-button\" aria-label='Rimuovi' id=\"" . $idprod . "-" . $idcat . "\" name=\"rimuovi\">";
                 $productlist .= "<img src=\"img/binClosed.png\" alt=\"Rimuovi prodotto dalla lista dei desideri.\" class=\"non-hover-image\" aria-hidden=\"true\"/>";
                 $productlist .= "<img src=\"img/binOpened.png\" alt=\"Rimuovi prodotto dalla lista dei desideri.\" class=\"hover-image\" />";
                 $productlist .= "</button>";
+                $productlist .= "</div>";
+                $productlist .= "</div>";
                 $productlist .= "</div>";
                 $productlist .= "</form>";
             }

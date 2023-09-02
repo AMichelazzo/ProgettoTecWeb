@@ -677,7 +677,7 @@ if(buttons){
             let parsedId = parseId(buttonId);
             let prod = parsedId[0];
             let categ = parsedId[1];
-            let form = this.parentNode.parentNode;
+            let form = this.parentNode.parentNode.parentNode.parentNode;
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
