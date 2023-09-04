@@ -27,7 +27,7 @@ body {
   max-width: 1024px;
 }
 
-h1 {
+h1,h2 {
   text-align: center;
 }
 
@@ -357,7 +357,7 @@ a:visited {
     margin-right: auto;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    padding: 5MESSAGGI END%;
+    padding: 5%;
 }
 #description > form{
   font-size: 2em;
@@ -374,7 +374,7 @@ a:visited {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  padding: 5%
+  padding: 5%;
   
 }
 .button__text {
@@ -783,9 +783,9 @@ a:visited {
   box-sizing: border-box;
 }
 
-#elimina_utente_big,#elimina_utente_big-img {
+.elimina_utente_big,.elimina_utente_big-img {
   line-height: 1.5;
-  font-size: 2em;
+  font-size: 1em;
   background-color: #ffcccc;
   color: #cc0000;
   padding: 1%;
@@ -799,7 +799,7 @@ a:visited {
 .messaggio_elimina {
   color: red;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 2.5em;
   line-height: 1.5;
 }
 /*FINE PROFILO*/
@@ -917,7 +917,6 @@ p.link-reg a {
   .slideshow-container-home img {
     max-width: 95%; 
     max-height: 95%;
-    height: auto; 
     width: 95%; 
     height: 95%; 
   }
@@ -1009,6 +1008,18 @@ p.inline, p label{
 
 @media(orientation: landscape) and (min-width: 600px) {
     
+  #riservata a {
+    color: var(--visitedcolor);
+    font-weight: bold;
+    font-size: 100%;
+    line-height: 1.5;
+    border: 0.2em solid var(--bgfuncolor);
+    border-radius: 0.5em;
+    padding:1%;
+    margin: 1%;
+    position:relative;
+    bottom: 20px;
+  }
   /*LOGIN*/
 .login-h2 {
   font-size: 200%;
@@ -1042,7 +1053,7 @@ form .lab {
   padding: auto;
   line-height: 1.5;
   font-size: 100%;
-  font-weight: bold;
+  font-weight: bold;#rise
 }
 p.link-reg a {
   color: var(--visitedcolor);
@@ -1612,7 +1623,19 @@ p.link-reg a {
   box-sizing: border-box;
 }
 
-#elimina_utente_big,#elimina_utente_big-img {
+.elimina_utente_big,.elimina_utente_big-img {
+  line-height: 1.5;
+  font-size: 100%;
+  background-color: #ffcccc;
+  color: #cc0000;
+  padding: 1%;
+  border: 1px solid #cc0000;
+  border-radius: 0.5em;
+  margin: 1%;
+  text-align: center;
+  box-sizing: border-box;
+}
+#elimina_utente_big-profilo,#elimina_utente_big-img-profilo{
   line-height: 1.5;
   font-size: 100%;
   background-color: #ffcccc;
@@ -1835,7 +1858,6 @@ p.link-reg a {
 
   .slideshow-container-home img {
     max-width: 100%; 
-    height: auto; 
     width: 500px; 
     height: 500px; 
   }

@@ -1,22 +1,3 @@
-function notHamb() {
-    let hambutton = document.getElementById("hambutton");
-    if(hambutton){
-        if(hambutton.classList.contains("hambuttonoff")) hambutton.className = "hambuttonon";
-        else hambutton.className = "hambuttonoff";
-        
-        
-        if(hambutton.innerText == "Apri menù amministratore") hambutton.innerText = "Chiudi menù amministratore";
-        else if(hambutton.innerText == "Chiudi menù amministratore") hambutton.innerText = "Apri menù amministratore";
-        else if(hambutton.innerText == "Apri menù utente") hambutton.innerText = "Chiudi menù utente";
-        else if(hambutton.innerText == "Chiudi menù utente") hambutton.innerText = "Apri menù utente";
-    }
-    let menubar = document.getElementById("menubar");
-    if(menubar){
-        if(menubar.classList.contains("menubaroff")) menubar.className = "menubaron"; 
-        else menubar.className = "menubaroff";
-    }
-}
-
 function limitTextareaByClassName(className, maxChars) {
     var textareas = document.querySelectorAll("." + className);
     if(textareas){
@@ -45,7 +26,7 @@ function confermaEliminazione() {
         si.type = "submit";
         no.type = "submit";
     }
-    let msg_conf = document.getElementById("elimina_utente_big");
+    let msg_conf = document.getElementById("elimina_utente_big-profilo");
     if(msg_conf){
         msg_conf.removeAttribute("hidden");
     }
@@ -59,13 +40,31 @@ function confermaEliminazioneImg() {console.log("test");
         si.type = "submit";
         no.type = "submit";
     }
-    let msg_conf = document.getElementById("elimina_utente_big-img");
+    let msg_conf = document.getElementById("elimina_utente_big-img-profilo");
     if(msg_conf){
         msg_conf.removeAttribute("hidden");
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
     limitTextareaByClassName("limited-textarea", 75);
+    let hambutton = document.getElementById("hambutton");
+    if(hambutton){
+        hambutton.addEventListener('click', function() {
+            if(hambutton.classList.contains("hambuttonoff")) hambutton.className = "hambuttonon";
+        else hambutton.className = "hambuttonoff";
+        
+        if(hambutton.innerText == "Apri menù amministratore") hambutton.innerText = "Chiudi menù amministratore";
+        else if(hambutton.innerText == "Chiudi menù amministratore") hambutton.innerText = "Apri menù amministratore";
+        else if(hambutton.innerText == "Apri menù utente") hambutton.innerText = "Chiudi menù utente";
+        else if(hambutton.innerText == "Chiudi menù utente") hambutton.innerText = "Apri menù utente";
+        let menubar = document.getElementById("menubar");
+        if(menubar){
+            if(menubar.classList.contains("menubaroff")) menubar.className = "menubaron"; 
+            else menubar.className = "menubaroff";
+        }
+        });
+    }
+   
     let passwordInput2 = document.getElementById('pass_reg2');
     if(passwordInput2){
         passwordInput2.addEventListener('keyup', function() {
@@ -719,7 +718,7 @@ function showMessage(message, color) {
     let checknascosti=document.getElementsByName("form-prodotto");
     if(msg&&checknascosti){
         msg.role="";
-        msg.style.display = "block";
+        msg.style.display = "flex";
         if (checknascosti.length>0) {
             msg.innerHTML = message;
             msg.style.color = color;
@@ -727,7 +726,7 @@ function showMessage(message, color) {
         else{
             msg.id = "wish-error";
             msg.style.color = "#cc0000";
-            msg.innerHTML = message+ " Lista dei desideri vuota!";
+            msg.innerHTML = " Lista dei desideri vuota!";
         }
         msg.role="alert";
     }

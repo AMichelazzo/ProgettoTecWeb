@@ -701,7 +701,7 @@
     box-sizing: border-box;
   }
   
-  #elimina_utente_big {
+  .elimina_utente_big {
     background-color: #ffcccc;
     color: #cc0000;
     padding: 20px;

@@ -73,7 +73,7 @@ class Catalogo
         <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();"
                 value="Elimina Prodotto" /></div>
         <div id="msg_confirm" role="alert"></div>
-        <div hidden id="elimina_utente_big">
+        <div hidden id="elimina_utente_big-profilo">
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 Sei sicuro di voler eliminare il prodotto?
             </div>
@@ -117,7 +117,7 @@ class Catalogo
             $result .= '
             <div id="elimina_img"><input type="submit" class="invio" id="submit_elimina_img"
             onclick="confermaEliminazioneImg();" value="Elimina immagini selezionate" /></div>
-                <div hidden id="elimina_utente_big-img">
+                <div hidden id="elimina_utente_big-img-profilo">
                     <div id="messaggio_conferma-img" class="messaggio_elimina" role="alert">
                         Sei sicuro di voler eliminare questa/e immagini?
                     </div>
@@ -226,7 +226,7 @@ class Catalogo
         </fieldset>
         <form action="catalogo.php" method="POST"><input type="hidden" name="cat_id_2" value="' . $category_id . '" />
             <div id="msg_confirm" role="alert"></div>
-            <div hidden id="elimina_utente_big">
+            <div hidden id="elimina_utente_big-profilo">
                 <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                     Sei sicuro di voler eliminare la categoria?
                 </div>

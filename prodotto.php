@@ -72,7 +72,7 @@ if (isset($_GET["prod"])) {
             '<form action="contatti.php" id="contact-form" method="post"></form>' =>
             (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") ? "" : '<form action="contatti.php" id="contact-form" method="post"><fieldset>
             <legend>
-                <h3>Per Informazioni</h3>
+                <h4>Per Informazioni</h4>
             </legend>
             <input type="hidden" class="product_id" name="product_id" id="product_id"
                 value="' . $idprod . '" />

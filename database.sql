@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 29, 2023 alle 14:39
+-- Creato il: Set 04, 2023 alle 11:23
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -77,9 +77,9 @@ INSERT INTO `immagini` (`id_prodotto`, `id_categoria`, `path`, `alt_img`) VALUES
 (3, 2, 'img/cavallucciomarino.jpg', 'Cavalluccio marino di vetro azzurro.'),
 (8, 4, 'img/collana.png', 'Collana di vetro con più di 20 pezzi.'),
 (9, 2, 'img/galloMulticolor.png', 'Gallo arcobaleno di vetro.'),
-(1, 1, 'img/lampadario.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente. '),
-(1, 1, 'img/lampadario2.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso.'),
-(1, 1, 'img/lampadario3.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo trasparente, acceso, da vicino.'),
+(1, 1, 'img/lampadario.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo. '),
+(1, 1, 'img/lampadario2.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo, acceso.'),
+(1, 1, 'img/lampadario3.jpg', 'Lampadario in vetro, 12 braccia, pendenti a forma di cristallo, acceso.'),
 (4, 1, 'img/lampadarioblue.png', 'Lampadario di vetro blue con braccia di metallo.'),
 (2, 1, 'img/lampadariominimal.png', 'Lampadario minimal di vetro.'),
 (10, 1, 'img/lampadariorosso.jpg', 'Lampadario di vetro rosso, composto da più di 100 pezzi.'),
@@ -109,14 +109,16 @@ CREATE TABLE IF NOT EXISTS `messaggi` (
   `letto` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_messaggio`,`email`),
   KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `messaggi`
 --
 
 INSERT INTO `messaggi` (`id_messaggio`, `msg`, `data`, `id_prodotto`, `id_categoria`, `email`, `letto`) VALUES
-(2, 'dsadfsafsafsa', '2023-06-05', 1, 1, 'user@user.com', 0);
+(7, 'Buongiorno, vorrei avere informazioni riguardo a questo prodotto. Il vaso c\'è solamente a forma di sfera?', '2023-09-04', 13, 5, 'user@user.com', 1),
+(8, 'Buongiorno, per il cavallo c\'è percaso anche di dimensioni reali?', '2023-09-04', 7, 2, 'user@user.com', 0),
+(9, 'Quanto costa il Gallo?', '2023-09-04', NULL, NULL, 'mario.rossi@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -147,7 +149,7 @@ INSERT INTO `prodotti` (`id_prodotto`, `id_categoria`, `Nome`, `Descrizione`) VA
 (6, 4, 'Bracciale', 'Bracciale di stoffa con pezzi di vetro colorato.'),
 (7, 2, 'Cavallo', 'Cavallo galoppante di due colori.'),
 (8, 4, 'Collana', 'Collana completamente di vetro, più di 20 pezzi.'),
-(9, 2, 'Gallo', 'Gallo arcobaleno'),
+(9, 2, 'Gallo multicolore', 'Gallo arcobaleno di mille colori'),
 (10, 1, 'Lampadario rosso', 'Lampadario di vetro rosso, composto da più di 100 pezzi.'),
 (11, 2, 'Muflone', 'Testa di muflone dalle lunghe corna.'),
 (12, 5, 'Vaso goccia', 'Vaso a forma di goccia multicolore.'),
@@ -211,7 +213,6 @@ CREATE TABLE IF NOT EXISTS `utente` (
 
 INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`) VALUES
 ('admin', '$2y$10$f53.u6E5rAtZC44t.8SHs.GFYFUrZrZFeEcL7m5Zxftrs3tHEO4xG', 'admin@admin.com', 'admin'),
-('guest', '$2y$10$yebql9GbhZP/t0i4p6vRK.RL/L.pfgpZvZer7wtGi7IAFtuvpEWfq', 'guest@guest.com', 'user'),
 ('user', '$2y$10$WsN.xGDn9xbYf00RYdoZUe2NGCFZQWfTs8pqh3h/EGY1N7w1GxNm.', 'user@user.com', 'user');
 
 -- --------------------------------------------------------
@@ -235,7 +236,11 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
 --
 
 INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`, `data_salvataggio`) VALUES
-('user', 1, 1, '2023-06-07');
+('user', 1, 1, '2023-09-04'),
+('user', 3, 2, '2023-09-04'),
+('user', 4, 1, '2023-09-04'),
+('user', 9, 2, '2023-09-04'),
+('user', 12, 5, '2023-09-04');
 
 --
 -- Limiti per le tabelle scaricate
