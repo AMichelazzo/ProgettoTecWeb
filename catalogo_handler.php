@@ -18,7 +18,7 @@ class Catalogo
             for ($i = 0; $i < count($products); $i++) { // funzione per la creazione dell'inline
 
                 $result .= '<form action="catalogo.php" method="POST"><fieldset class="prodotto">
-                    <legend><span class="nome">'. Access::lang($products[$i]["Prod_Nome"]) .'</span></legend>
+                    <legend><span class="nome">' . Access::lang($products[$i]["Prod_Nome"]) . '</span></legend>
                     <div><input type="hidden" name="product_id" value="' . $products[$i]["id_prodotto"] . '"/></div>' // mi salvo l'id_prodotto
                     . '<div><input type="hidden" name="category_id" value="' . $products[$i]["id_categoria"] . '"/></div>'; // e l'id_categoria
 
@@ -68,7 +68,7 @@ class Catalogo
             <input type="submit" class="invio" id="submit_modifica_prod" name="submit_modifica_prod"
                 value="Conferma modifiche" />
         </div>
-        
+        </form>
         
         <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();"
                 value="Elimina Prodotto" /></div>
@@ -77,44 +77,48 @@ class Catalogo
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 Sei sicuro di voler eliminare il prodotto?
             </div>
-     
+            <form action="catalogo.php" method="post">
                 <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_prod" value="Si" />
                     <input type="hidden" class="invio" id="no_elimina" name="no_elimina_prod" value="No" />
                     <input type="hidden" name="prod_id_2" value="' . $product_id . '" />
                 </div>
-           
+            </form>
             </fieldset>
 
         <div id="img_products">
             <div>
                 <h3 class="titolo_img_form">Aggiungi o elimina immagini del prodotto</h3>
             </div>
-        <fieldset class="form_catalogo">';
+        <fieldset class="form_catalogo">
+        <form action="catalogo.php" method="POST" enctype="multipart/form-data">';
 
         if ($product[0]["path"] == null)
             $result .= '<div>Non sono presenti immagini per questo prodotto.</div>';
         else
             for ($i = 0; $i < count($product); $i++) {
-                $result .= 
-                '<div class="clickImg"><label for="form-' . $product[$i]["path"] . '">Selezione:</label>
+                $result .= '<div class="clickImg"><label for="form-' . $product[$i]["path"] . '">Selezione:</label>
                     <input type="checkbox" id="form-' . $product[$i]["path"] . '" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img  src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
-                    <div><label for="alt-'. $product[$i]["path"]. '">Alt immagine:</label></div>
+                    <div><label for="alt-' . $product[$i]["path"] . '">Alt immagine:</label></div>
                     <div><textarea id="alt-' . $product[$i]["path"] . '" name="alt_img[]" class="limited-textarea" rows="4" cols="30"
-                        placeholder="Inserisci alt per immagine">'.Access::lang($product[$i]["alt_img"]).'</textarea>
+                        placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea>
                     <div id="char-count-alt-' . $product[$i]["path"] . '">Caratteri rimanenti: 75</div>
                 </div>';
             }
+
+        if ($product[0]["path"] != null)
+            $result .= '<div><input type="submit" class="invio" name="salva_alt_img" value="Salva alt immagine/i"></div>';
+
         $result .=
-            '<div><label for="upload_img">Carica una o più immagini per il prodotto (jpg, jpeg o png).</label>
-            <input type="hidden" name="product_id_img" value="' . $product_id . '" />
+            '<input type="hidden" name="product_id_img" value="' . $product_id . '" />
             <input type="hidden" name="category_id_img" value="' . $product[0]["id_categoria"] . '"/>
+            <div><label for="upload_img">Carica una o più immagini per il prodotto (jpg, jpeg o png).</label>
             <input type="file" name="img[]" multiple accept=".jpg, .jpeg, .png">
         <input type="submit" class="modifica invio" name="upload_img" value="Carica"></div>';
 
         if ($product[0]["path"] != null) {
-            $result .= '
+            $result .= '         
             <div id="elimina_img"><input type="submit" class="invio" id="submit_elimina_img"
             onclick="confermaEliminazioneImg();" value="Elimina immagini selezionate" /></div>
                 <div hidden id="elimina_utente_big-img-profilo">
@@ -125,11 +129,10 @@ class Catalogo
                         <input type="hidden" class="invio" id="no_elimina_img" name="no_elimina_img" value="No" />
                         <input type="hidden" name="prod_id_2" value="' . $product_id . '" />
                     </div>
-                </div>
-                </form>';
+                </div>';
         }
 
-        $result .= '</fieldset>';
+        $result .= '</form></fieldset>';
 
         return $result;
     }
@@ -177,8 +180,8 @@ class Catalogo
 
         $categories = Access::getAllCategories();
 
-        $result = 
-        '<form action="catalogo.php" method="POST">
+        $result =
+            '<form action="catalogo.php" method="POST">
             <div><input type="submit" class="invio" value="Torna al catalogo prodotti" />
                 <input type="submit" class="invio" id="new_category" name="new_category" value="Aggiungi nuova categoria" />
             </div>
@@ -189,18 +192,18 @@ class Catalogo
         else {
             for ($i = 0; $i < count($categories); $i++) {
 
-                $result .= 
-                '<form action="catalogo.php" class="flex-container" method="POST">
+                $result .=
+                    '<form action="catalogo.php" class="flex-container" method="POST">
                 <fieldset class="prodotto">
-                <legend><span class="nome">'. Access::lang($categories[$i]["Nome"]) .'</span></legend>
+                <legend><span class="nome">' . Access::lang($categories[$i]["Nome"]) . '</span></legend>
                     <div> <span class="nome">Nome:</span> ' . Access::lang($categories[$i]["Nome"]) . '
                     </div>
                     <div> <span class="descrizione">Descrizione:</span> ' .
-                        Access::lang($categories[$i]["Descrizione"]) . '.</div>
+                    Access::lang($categories[$i]["Descrizione"]) . '.</div>
                     <div><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" />
                     </div>
-                    <div><input type="hidden" name="category_id" value="' . 
-                $categories[$i]["id_categoria"] . '"/></div></fieldset>'; // mi salvo l'id_categoria
+                    <div><input type="hidden" name="category_id" value="' .
+                    $categories[$i]["id_categoria"] . '"/></div></fieldset>'; // mi salvo l'id_categoria
             }
         }
         return $result;
@@ -210,15 +213,15 @@ class Catalogo
 
         $categories = Access::getCategoryById($category_id);
 
-        $result = 
-        '<fieldset class="form_catalogo">
+        $result =
+            '<fieldset class="form_catalogo">
             <form action="catalogo.php" method="POST">
                 <div><input type="hidden" name="cat_id" value="' . $category_id . '" /></div>
                 <div><label for="nome_cat">Nome categoria:</label></div>
                 <div><input type="text" id="nome_cat" name="nome_cat" value="' . Access::deletelang($categories[0]["Nome"]) . '"/></div>
             <div><label for="desc_cat">Descrizione categoria:</label></div>
             <div><textarea id="desc_cat" name="desc_cat" rows="10" cols="40" maxlength="500">' .
-                        Access::lang($categories[0]["Descrizione"]) . '</textarea></div>
+            Access::lang($categories[0]["Descrizione"]) . '</textarea></div>
             <input type="submit" class="invio" name="annulla_modifica_cat" value="Annulla modifiche"/>
             <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/></form>
         <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();"

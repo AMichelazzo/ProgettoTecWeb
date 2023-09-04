@@ -24,15 +24,6 @@ if ($user && $ruolo == "admin") {
         if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && Access::is_not_null($_POST["nome_prod"]) && Access::is_not_null($_POST["desc_prod"])) {
 
             Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
-
-            if (isset($_POST["alt_img"])) {
-                $alt = $_POST["alt_img"];
-                if (!empty($alt)) {
-                    for ($i = 0; $i < count($alt); $i++)
-                        Access::update_altImg($alt[$i], $_POST["path_img"][$i]);
-                }
-            }
-
             $Elenco_prod = Catalogo::show_allProducts();
 
             $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Prodotto modificato correttamente", $paginaHTML);
@@ -44,6 +35,22 @@ if ($user && $ruolo == "admin") {
             $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
             $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
         }
+    }
+
+    if (isset($_POST["salva_alt_img"])) {
+
+        if (isset($_POST["alt_img"])) {
+            $alt = $_POST["alt_img"];
+            if (!empty($alt)) {
+                for ($i = 0; $i < count($alt); $i++) 
+                    Access::update_altImg($alt[$i], $_POST["path_img"][$i]);
+            }
+        }
+
+        $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Alt modificati correttamente", $paginaHTML);
+        $Element_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+        $paginaHTML = str_replace("Catalogo prodotti", "Modificalo Prodotto", $paginaHTML);
+        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
     }
 
     // creazione di un nuovo prodotto
@@ -76,7 +83,7 @@ if ($user && $ruolo == "admin") {
             if (!empty($path)) {
                 for ($i = 0; $i < count($path); $i++)
                     Access::deleteImg($path[$i]);
-                $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagine eliminata", $paginaHTML);
+                $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagini eliminate", $paginaHTML);
             }
 
             $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
@@ -210,7 +217,8 @@ if ($user && $ruolo == "admin") {
 
     // inizio catalogo categorie
     if (
-        isset($_GET["lista_categorie"]) || isset($_POST["annulla_modifica_cat"]) || isset($_POST["annulla_new_cat"])) { // mostra lista delle categorie
+        isset($_GET["lista_categorie"]) || isset($_POST["annulla_modifica_cat"]) || isset($_POST["annulla_new_cat"])
+    ) { // mostra lista delle categorie
 
         $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
         $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Categorie", $paginaHTML);
