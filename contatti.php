@@ -17,9 +17,9 @@ $okemail = true;
 
 
 if (isset($_SESSION["username"])) // utente loggato
-    $Element_Contatti .= "<div><label>Stai inviando questo messaggio come: " . $_SESSION["username"] . "</label></div>";
+    $Element_Contatti .= "<div class='sopra'>Stai inviando questo messaggio come:<span class='grassetto'>" . $_SESSION["username"] . "</span></div>";
 else {
-    $Element_Contatti .= "<div><label for=\"email\"><span class=\"email\" lang=\"en\">Email: </span></label>" . // utente non loggato
+    $Element_Contatti .= "<div><label class='lab' for=\"email\"><span class=\"email\" lang=\"en\">Email: </span></label>" . // utente non loggato
         "<input type=\"email\" id=\"email\" name=\"email\"></div>";
 }
 
@@ -32,7 +32,7 @@ if (isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && iss
     if (!is_null($Nome_prodotto)) {
         $Element_Contatti .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"" . "value=\"" . $Id_prodotto . "\">"
             . "<input type=\"hidden\" class=\"categoria\" name=\"categoria_contatti\" id=\"categ_id\"" . "value=\"" . $Id_categoria . "\">";
-        $Element_Contatti .= "<div><label>Prodotto su cui si vuole informazioni: <a href=\"prodotto.php?prod=" . $Id_prodotto . "\">" . $Nome_prodotto . "</a></label></div>";
+        $Element_Contatti .= "<div class='sopra'>Prodotto su cui si vuole informazioni: <a href=\"prodotto.php?prod=" . $Id_prodotto . "\">" . $Nome_prodotto . "</a></div>";
     }
 }
 

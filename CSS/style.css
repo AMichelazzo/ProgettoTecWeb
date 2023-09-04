@@ -291,6 +291,44 @@ a:visited {
     border-radius: 0.5em 0.5em 0.5em 0.5em; 
   }
 
+/*CONTATTI*/
+.grassetto{
+  font-weight: bold;
+}
+#form_informazioni {
+  text-align: center;
+  font-size: 1.3em;
+}
+.titolo-contatti{
+  font-size: 4em;
+  line-height: 1.5;
+  margin: 0.5em;
+}
+#messaggio {
+  line-height: 1.5;
+  font-size: 2em;
+  margin: 0.5em;
+  height: auto;
+  width: auto;
+}
+#form_informazioni input[type="submit"],
+#form_informazioni input[type="email"]{
+  position: relative;
+  width: auto;
+  height: auto;
+  font-size: 2em;
+  line-height: 1.5;
+  padding: 1%;
+  border: 5px solid #505050;
+}
+.sopra {
+  font-size: 2em;
+  line-height: 1.5;
+  margin: 0.5em;
+}
+/*FINE CONTATTI*/
+
+
 /*CAROUSEL*/
   /* Slideshow container */
   .slideshow-container {
@@ -1005,7 +1043,42 @@ p.inline, p label{
 
 
 @media(orientation: landscape) and (min-width: 600px) {
-    
+    /*CONTATTI*/
+.grassetto{
+  font-weight: bold;
+}
+#form_informazioni {
+  text-align: center;
+  font-size: 100%;
+}
+.titolo-contatti{
+  font-size: 200%;
+  line-height: 1.5;
+  margin: 0.5em;
+}
+#messaggio {
+  line-height: 1.5;
+  font-size: 100%;
+  margin: 0.5em;
+  height: auto;
+  width: auto;
+}
+#form_informazioni input[type="submit"],
+#form_informazioni input[type="email"]{
+  position: relative;
+  width: auto;
+  height: auto;
+  font-size: 100%;
+  line-height: 1.5;
+  padding: 1%;
+  border: 1px solid #505050;
+}
+.sopra {
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0.5em;
+}
+/*FINE CONTATTI*/
   #riservata a {
     color: var(--visitedcolor);
     font-weight: bold;
