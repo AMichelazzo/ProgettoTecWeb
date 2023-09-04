@@ -103,7 +103,7 @@ class Catalogo
                     <div><label for="alt-'. $product[$i]["path"]. '">Alt immagine:</label></div>
                     <div><textarea id="alt-' . $product[$i]["path"] . '" name="alt_img[]" class="limited-textarea" rows="4" cols="30"
                         placeholder="Inserisci alt per immagine">'.Access::lang($product[$i]["alt_img"]).'</textarea>
-                    <div id="char-count-' . $product[$i]["path"] . '">Caratteri rimanenti: 75</div>
+                    <div id="char-count-alt-' . $product[$i]["path"] . '">Caratteri rimanenti: 75</div>
                 </div>';
             }
         $result .=

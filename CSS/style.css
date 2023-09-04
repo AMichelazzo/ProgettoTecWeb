@@ -1025,7 +1025,7 @@ p.inline, p label{
   padding:0;
   margin: 0;
 }
-form input[type="text"], form input[type="password"] {
+form .inp{
   position: relative;
   width: auto;
   height: auto;
@@ -1037,7 +1037,7 @@ form input[type="text"], form input[type="password"] {
   padding: auto;
   line-height: 1.5;
 }
-form label {
+form .lab {
   margin: auto;
   padding: auto;
   line-height: 1.5;
