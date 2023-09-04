@@ -118,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (messages) {
         messages.forEach(message => {
             const checkbox = message.querySelector('input[type="checkbox"]');
-            let isChecked = checkbox.checked;
     
             if ('ontouchstart' in window) {
                 // Dispositivo touchscreen
@@ -137,10 +136,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     event.stopPropagation();
                 });
             }
+            message.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    checkbox.checked = !checkbox.checked;
+                    event.preventDefault();
+                }
+            });
         });
     }
-    
-    
 
     var isSelectAll = true;
     var toggleB = document.getElementById('toggleButton');
