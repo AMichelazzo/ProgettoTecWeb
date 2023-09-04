@@ -266,7 +266,6 @@ a:visited {
 #iniziopagina {
   text-align: center;
 }
-
 /* FOOTER */
 
 #footer {
@@ -290,6 +289,21 @@ a:visited {
     padding: 0.2em 0.5em 0.5em 0.5em;
     border-radius: 0.5em 0.5em 0.5em 0.5em; 
   }
+
+/*UTENTI*/
+.flexutente {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  line-height: 1.5;
+  font-size: 1em;
+  margin:2%;
+  border: 3px solid #505050;
+}
+.flexutente div{
+  font-size: 4em;
+}
+/*FINE UTENTI*/
 
 /*CONTATTI*/
 .grassetto{
@@ -1043,6 +1057,22 @@ p.inline, p label{
 
 
 @media(orientation: landscape) and (min-width: 600px) {
+
+  /*UTENTI*/
+.flexutente {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  line-height: 1.5;
+  font-size: 100%;
+  margin:2%;
+  border: 1px solid #505050;
+}
+.flexutente div{
+  font-size: 100%;
+}
+/*FINE UTENTI*/
+
     /*CONTATTI*/
 .grassetto{
   font-weight: bold;
@@ -1114,7 +1144,7 @@ form .inp{
   font-size: 100%;
   line-height: 1.5;
   padding: 1%;
-  border: 5px solid #505050;
+  border: 1px solid #505050;
   margin: auto;
   padding: auto;
   line-height: 1.5;
@@ -1151,7 +1181,7 @@ p.link-reg a {
   font-size: 100%;
   line-height: 1.5;
   padding: 1%;
-  border: 5px solid #505050;
+  border: 1px solid #505050;
   margin: auto;
   padding: auto;
   line-height: 1.5;
@@ -1837,24 +1867,6 @@ p.link-reg a {
   .pulsanti_catalogo {
     margin-top: 2em;
     margin-bottom: 2em;
-  }
-  
-  .utenti {
-      border: 1px solid #505050;
-      padding: 10px;
-      margin:10px;
-  }
-  
-  .flexutente {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-  }
-  
-  .utenti form {
-      display: flex;
-      gap: 10px;
-      align-items: center;
   }
 
   .right {
