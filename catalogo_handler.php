@@ -68,7 +68,7 @@ class Catalogo
             <input type="submit" class="invio" id="submit_modifica_prod" name="submit_modifica_prod"
                 value="Conferma modifiche" />
         </div>
-        </form>
+        
         
         <div id="elimina_prod"><input type="submit" class="invio" id="submit_elimina" onclick="confermaEliminazione();"
                 value="Elimina Prodotto" /></div>
@@ -77,17 +77,17 @@ class Catalogo
             <div id="messaggio_conferma" class="messaggio_elimina" role="alert">
                 Sei sicuro di voler eliminare il prodotto?
             </div>
-            <form action="catalogo.php" method="post">
+     
                 <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_prod" value="Si" />
                     <input type="hidden" class="invio" id="no_elimina" name="no_elimina_prod" value="No" />
                     <input type="hidden" name="prod_id_2" value="' . $product_id . '" />
                 </div>
-            </form>
+           
             </fieldset>
 
         <div id="img_products">
             <div>
-                <h2 class="titolo_img_form">Aggiungi o elimina immagini del prodotto</h2>
+                <h3 class="titolo_img_form">Aggiungi o elimina immagini del prodotto</h3>
             </div>
         <fieldset class="form_catalogo">';
 
@@ -95,8 +95,8 @@ class Catalogo
             $result .= '<div>Non sono presenti immagini per questo prodotto.</div>';
         else
             for ($i = 0; $i < count($product); $i++) {
-                $result .= '<form action="catalogo.php" method="POST" enctype="multipart/form-data">
-                <div class="clickImg"><label for="form-' . $product[$i]["path"] . '">Selezione:</label>
+                $result .= 
+                '<div class="clickImg"><label for="form-' . $product[$i]["path"] . '">Selezione:</label>
                     <input type="checkbox" id="form-' . $product[$i]["path"] . '" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img  src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
