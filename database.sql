@@ -141,20 +141,20 @@ CREATE TABLE IF NOT EXISTS `prodotti` (
 --
 
 INSERT INTO `prodotti` (`id_prodotto`, `id_categoria`, `Nome`, `Descrizione`) VALUES
-(1, 1, 'Lampadario di lusso', 'Lampadario di lusso composto da più di 1000 pezzi fatti a mano'),
-(2, 1, 'Lampadario minimal', 'Lampadario semplice ed efficace'),
-(3, 2, 'Cavalluccio Marino', 'Piccolo cavalluccio marino di diversi colori'),
-(4, 1, 'Lampadario blue', 'Lampadario di vetro blue con braccia di metallo.'),
-(5, 3, 'Bicchieri', 'Bicchieri di vario colore.'),
-(6, 4, 'Bracciale', 'Bracciale di stoffa con pezzi di vetro colorato.'),
-(7, 2, 'Cavallo', 'Cavallo galoppante di due colori.'),
-(8, 4, 'Collana', 'Collana completamente di vetro, più di 20 pezzi.'),
-(9, 2, 'Gallo multicolore', 'Gallo arcobaleno di mille colori'),
-(10, 1, 'Lampadario rosso', 'Lampadario di vetro rosso, composto da più di 100 pezzi.'),
-(11, 2, 'Muflone', 'Testa di muflone dalle lunghe corna.'),
-(12, 5, 'Vaso goccia', 'Vaso a forma di goccia multicolore.'),
-(13, 5, 'Vaso a sfera', 'Vaso a sfera di diverse dimensione.'),
-(14, 5, 'Vaso classico rosso', 'Vaso di forma classica colore rosso.');
+(1, 1, 'Lampadario a goccia', 'Lampadario da soffitto con 12 punti di illuminazione, diametro 80 centimetri. In stile classico, realizzato a mano e composto da 1000 pezzi, adatto a camere da letto ma anche zona pranzo. Ha uno stelo centrale da cui si dipartono 12 bracci ricurvi che portano alla candela led e molteplici pendenti a forma di cristallo.'),
+(2, 1, 'Lampadario moderno', 'Lampadario da soffitto, con 9 punti di illuminazione, diametro 40 centimetri. Stile moderno per queste campane che partono dalla base comune in metallo di forma circolare e, attraverso un cavo di diversa lunghezza, si aprono verso il basso assicurando un’illuminazione moderna all’interno ambiente.'),
+(3, 2, 'Cavalluccio Marino', 'Piccolo cavalluccio marino alto 25 centimetri in vetro di Murano. Prodotto a mano dai maestri vetrari in diverse colorazioni, poggia su una base a stella trasparente. Lavorato sfruttando le antiche tecniche dei maestri muranesi e confezionato in apposita scatola con garanzia.'),
+(4, 1, 'Lampadario blu', 'Lampadario da soffitto, a molteplici punti di illuminazione, diametro 50 centimetri. Stile moderno per un lampadario caratterizzato da una struttura metallica in lega di forma lineare. Disposizione a raggiera su più livelli per i punti luce costituiti da piccole tazzine in vetro soffiato blu elegantemente lavorato.'),
+(5, 3, 'Bicchieri', 'Servizio di 6 bicchieri artistici realizzati a mano in vetro soffiato, con foglia d’argento, filigrane e murrine. Ogni bicchiere è un prodotto unico, anche per i colori, e pertanto può differire leggermente nella forma. Confezionato accuratamente in apposita scatola con allegata garanzia. '),
+(6, 4, 'Bracciale', 'Bracciale costituito da cordino in stoffa colorata su cui si inseriscono inserti sferici in vetro di Murano realizzati a mano. Elegantemente chiuso da un gancetto d’argento. Ideale per un regalo: viene fornito all’interno di una pregiata scatola nera con opzione dedica.'),
+(7, 2, 'Cavallo', 'Piccolo cavallo in vetro dal mantello blu notte. Decorazioni in cristallo e oro su criniera e coda. Lavorato sfruttando le antiche tecniche dei maestri muranesi e confezionato in apposita scatola con garanzia.'),
+(8, 4, 'Collana', 'Collana creata con perle in vetro di Murano soffiato in filigrana bicolore blu e verde. Lunga 40 centimetri, si adatta perfettamente allo stile di qualsiasi persona. Prodotto esclusivamente artigianale realizzato a mano: le piccole imperfezioni dimostrano l’assoluta unicità del prodotto.'),
+(9, 2, 'Gallo multicolore', 'Riproduzione di gallo fissato ad una base semisferica. Prodotto dell’artigianato veneziano, mostra tutti i colori dell’arcobaleno. Perfetto per creare giochi di luce quando illuminato dalla luce del sole.'),
+(10, 1, 'Lampadario rosso', 'Lampadario da soffitto, classico ed elegante, diametro 50 centimetri. Realizzato in vetro rosso, ma disponibile in altri colori. Presenta 6 punti luce disposti a raggiera intorno all’asse centrale decorato con foglie. I bracci ricurvi hanno dei piccoli pendenti.'),
+(11, 2, 'Muflone', 'Testa di muflone alta 30 cm. Prodotta in vetro pieno mescolando il verde del collo al rosso delle testa e all’arancio delle lunghe corna ricurve. Elemento ideale per accentrare l’attenzione in una stanza tramite i suoi colori brillanti quando illuminati dal sole.'),
+(12, 5, 'Vaso goccia', 'Il vaso goccia è realizzato con canne e murrine secondo la tradizione artigianale dei maestri vetrai di Murano. Realizzato interamente a mano, risulta unico nei colori, nella forma e nelle misure. Costituisce naturale elemento d’arredo per una casa moderna e giovane.'),
+(13, 5, 'Vaso a sfera', 'Il vaso a sfera ha una forma semplice ed elegante nel contempo. Realizzato in vetro di Murano satinato, appare opaco e comunque luminoso. Il colore rosso si sfuma alla base verso il giallo chiaro, prendendo un aspetto vellutato e morbido al tatto. '),
+(14, 5, 'Vaso classico rosso', 'Vaso in vetro dal collo allungato, alto 40 centimetri . Di colore rosso, trasmette sensazioni di movimento con le sue striature marcato che lo avvolgono vorticosamente. Si inserisce in tutti gli ambienti dal classico, al contemporaneo, al moderno.');
 
 -- --------------------------------------------------------
 
