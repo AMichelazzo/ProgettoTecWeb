@@ -301,6 +301,7 @@ a:visited {
     border-radius: 0.5em 0.5em 0.5em 0.5em; 
   }
 
+
 /*UTENTI*/
 .flexutente {
   display: flex;
@@ -1165,7 +1166,7 @@ form .lab {
   padding: auto;
   line-height: 1.5;
   font-size: 100%;
-  font-weight: bold;#rise
+  font-weight: bold;
 }
 p.link-reg a {
   color: var(--visitedcolor);
@@ -1793,7 +1794,7 @@ p.link-reg a {
     border: 0;
   }
   
-  .prodotto, .categories {
+  .prodotto {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2134,6 +2135,8 @@ p.inline, p label{
 }
 
 fieldset input[type="submit"] { right: 0em;}
+
+
   }
 
 .img_form { 
@@ -2152,3 +2155,17 @@ fieldset input[type="submit"] { right: 0em;}
   margin-bottom: 0.8em;
   text-align:center;
 }
+
+
+
+@media(orientation: landscape) and (min-width: 600px) { 
+
+  .form_catalogo select {
+    font-size: 400%;
+  }
+
+}
+.form_catalogo select {
+  font-size: 1.5em;
+}
+

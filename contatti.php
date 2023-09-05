@@ -17,7 +17,7 @@ $okemail = true;
 
 
 if (isset($_SESSION["username"])) // utente loggato
-    $Element_Contatti .= "<div class='sopra'>Stai inviando questo messaggio come:<span class='grassetto'>" . $_SESSION["username"] . "</span></div>";
+    $Element_Contatti .= "<div class='sopra'>Stai inviando questo messaggio come: <span class='grassetto'>" . $_SESSION["username"] . "</span></div>";
 else {
     $Element_Contatti .= "<div><label class='lab' for=\"email\"><span class=\"email\" lang=\"en\">Email: </span></label>" . // utente non loggato
         "<input type=\"email\" id=\"email\" name=\"email\"></div>";
