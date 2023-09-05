@@ -269,10 +269,21 @@ a:visited {
 /* FOOTER */
 
 #footer {
-  font-size: 0.8em;
+  font-size: 2em;
+  text-align: center;
+  line-height: 1em;
   background-color: var(--bgfuncolor);
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 1em 2.5em 0.5em 2.5em;
   border-radius: 0.5em 0.5em 0em 0em;
+}
+
+@media(orientation: landscape) and (min-width: 790px) {
+  #footer {
+    font-size: 1em;
+    background-color: var(--bgfuncolor);
+    padding: 1em 2.5em 0.5em 2.5em;
+    border-radius: 0.5em 0.5em 0em 0em;
+  }
 }
 
 #login, #signup, #cambio_pass {
