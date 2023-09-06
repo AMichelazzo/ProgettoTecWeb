@@ -148,11 +148,11 @@ class Access
             $id_prodotto = DBAccess::dbQuery("SELECT DISTINCT id_prodotto FROM prodotti 
             WHERE id_categoria = ? AND Nome = ? AND Descrizione = ? ", $id_categoria, $nome, $descrizione);
 
-            if($id_prodotto != false && $id_prodotto != null)
-            $result2 = DBAccess::dbQuery("INSERT INTO  tags(Nome,prodotto,categoria) VALUES (?,?,?)", $nome, $id_prodotto[0]['id_prodotto'], $id_categoria);
+            if ($id_prodotto != false && $id_prodotto != null)
+                $result2 = DBAccess::dbQuery("INSERT INTO  tags(Nome,prodotto,categoria) VALUES (?,?,?)", $nome, $id_prodotto[0]['id_prodotto'], $id_categoria);
         }
 
-        if(!$result2)
+        if (!$result2)
             Access::deleteProduct($id_prodotto);
 
         return ($result && $result2);
@@ -168,7 +168,7 @@ class Access
         DBAccess::dbQuery("DELETE FROM `tags` WHERE `prodotto` = ?", $id_prodotto);
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
-    
+
     public static function getProductName($id_prodotto, $id_categoria)
     {
         $result = DBAccess::dbQuery("SELECT DISTINCT Nome FROM prodotti WHERE prodotti.id_prodotto = ? AND prodotti.id_categoria = ?", $id_prodotto, $id_categoria);
@@ -306,7 +306,7 @@ class Access
         }
 
         // inserisce noindex
-        if($noindex)
+        if ($noindex)
             $pagina = str_replace('<!-- noindex -->', '<meta name="robots" content="noindex">', $pagina);
 
         // inserisce title
@@ -384,7 +384,7 @@ class Access
     }
 
 
-    public static function is_not_null($text) 
+    public static function is_not_null($text)
     {
         return ($text != NULL && !ctype_space($text));
     }

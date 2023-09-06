@@ -20,7 +20,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             $paginaHTML = str_replace("<!--Contenuto_errors-->", "Non hai selezionato nessun messaggio!", $paginaHTML);
 
         } else {
-            
+
             for ($i = 0; $i < count($msg_checked); $i++)
                 Access::Message_Read($msg_checked[$i]);
 
@@ -61,7 +61,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             else
                 $ElencoMsg .= "msg_non_letto";
 
-            $ElencoMsg .= '"><p class="inline"><label for="form-'.$result[$i]["id_messaggio"].'" >Selezione:</label><input type="checkbox" id="form-'.$result[$i]["id_messaggio"].'" name="form_msg[]" value="'
+            $ElencoMsg .= '"><p class="inline"><label for="form-' . $result[$i]["id_messaggio"] . '" >Selezione:</label><input type="checkbox" id="form-' . $result[$i]["id_messaggio"] . '" name="form_msg[]" value="'
                 . $result[$i]["id_messaggio"] . '"/></p>'
                 . "<p class=\"inline\"> <span class='email'>Email: </span>" . $result[$i]["email"] . "</p>"
                 . "<p class=\"inline\"> <span class='data'>Data invio: </span>" . $result[$i]["data"] . "</p>";

@@ -26,27 +26,27 @@ if (isset($_GET["prod"])) {
             }
         }
         if (isset($_SESSION["username"])) {
-            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, $_SESSION["ruolo"], Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
+            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, " . $keywords, $_SESSION["ruolo"], Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
         } else {
-            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, ".$keywords, null, Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
+            $template = Access::getHeader($nome, "Lista prodotti di una categoria scelta.", "Categorie, Prodotti, Oggettistica di vetro, " . $keywords, null, Access::getCategoryName($idcat), "categorie.php?cat=" . $idcat, "Prodotti", "categorie.php");
         }
         $template .= file_get_contents("HTML/prodotto.html");
 
         if (!empty($result1)) {
-            $slide='<div class="slideshow-container">
+            $slide = '<div class="slideshow-container">
             <div class="position-container">';
             $dotContainer = '<div class="slideshow-dots">';
-                for ($i = 0; $i < count($result1); $i++) {
+            for ($i = 0; $i < count($result1); $i++) {
                 $slide .= "<div class=\"mySlides-home fade\">
             <img src=\"" . $result[$i]["path"] . "\" alt=\"" . $result[$i]["alt_img"] . "\" width=\"400\" height=\"400\"/></div>";
-            $dotContainer .= '<span class="dot" data-slide-index="' . $i . '"></span>';
+                $dotContainer .= '<span class="dot" data-slide-index="' . $i . '"></span>';
             }
             $dotContainer .= '</div>';
-                $slide.='<a class="prev-home" >&#10094;</a>
+            $slide .= '<a class="prev-home" >&#10094;</a>
                 <a class="next-home">&#10095;</a>
             </div>
             </div>';
-            
+
             $template = str_replace('<!--slideShow-->', $slide, $template);
             $template = str_replace('<!--dots-->', $dotContainer, $template);
         }
