@@ -279,6 +279,9 @@ a:visited {
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
 }
 
 /* INIZIO PAGINA */
@@ -717,6 +720,7 @@ a:visited {
 
 /*FINE WISHLIST*/
 
+
 /*PROFILO*/
 
 .profilo-h2 {
@@ -1057,6 +1061,9 @@ p.link-reg a {
 
 .mySlides-home {
   display: none;
+}
+.slideshow-container-home a{
+  margin:1%;
 }
 
 /*END CARROUSEL HOME*/
