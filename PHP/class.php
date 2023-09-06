@@ -165,6 +165,13 @@ class Access
 
     public static function deleteProduct($id_prodotto)
     {
+        $result = DBAccess::dbQuery("SELECT * FROM immagini WHERE `id_prodotto` = ?", $id_prodotto);
+
+        if($result != null)
+            for($i = 0; $i < count($result); $i++) {
+                Access::deleteImg($result[$i]['path']);
+            }
+
         DBAccess::dbQuery("DELETE FROM `tags` WHERE `prodotto` = ?", $id_prodotto);
         return DBAccess::dbQuery("DELETE FROM `prodotti` WHERE `id_prodotto` = ?", $id_prodotto);
     }
