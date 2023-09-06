@@ -66,8 +66,8 @@ height: auto;
 /*HAMBURGER*/
 
 .hambuttonoff { /*Il menu è chiuso*/
-  width: 4em;
-  height: 4em;
+  width: 7em;
+  height: 7em;
   background-image: url("../img/hamOn.png");
   filter: invert(100%);
   background-repeat: no-repeat;
@@ -80,8 +80,8 @@ height: auto;
 }
 
 .hambuttonon { /*Il menu è aperto*/
-  width:4em;
-  height: 4em;
+  width: 7em;
+  height: 7em;
   background-image: url("../img/hamOff.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -90,6 +90,17 @@ height: auto;
   background-color: #DB334F;
   border-radius: 1.5em 1.5em 1.5em 1.5em;
   cursor: pointer;
+}
+
+@media(orientation: landscape) and (min-width: 790px) {
+  .hambuttonoff {
+    height: 4em;
+    width: 4em;
+  }
+  .hambuttonon {
+    height: 4em;
+    width: 4em;
+  }
 }
 
 /*BOX*/
@@ -1063,10 +1074,174 @@ p.inline, p label{
 .msggg input[type="checkbox"] {
   width:50px;
   height:50px;
+  border: 5px solid #505050;
 }
 /*MESSAGGI END*/
 
+/*CATALOGO START*/
 
+.titolo_catalogo { 
+  font-size: 4em;
+  line-height: 1.5;
+  margin: 0.5em;
+}
+
+.flexcatalogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  position:relative;
+  
+}
+.flexcatalogo form{
+  gap: 0.5em;
+  position:relative;
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  align-items: center;;
+  
+}
+
+.prodotto .nome, .prodotto .categoria,
+.prodotto .descrizione, .categories .nome,
+.categories .descrizione {
+font-weight: bold;
+}
+#categories{
+  width: auto;
+  height: auto;
+  font-size: 2em;
+  line-height: 1.5;
+  padding: 1%;
+  border: 5px solid #505050;
+  margin: auto;
+  padding: auto;
+  line-height: 1.5;
+}
+.prodotto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin: 1%;
+  padding: 1%;
+  border: 5px solid #505050;
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  font-size: 2.3em;
+  line-height: 1.5;
+}
+.flexcatalogo form .prodotto input[type="submit"]{
+  font-size: 1.5em;
+  
+}
+.form_catalogo input[type="checkbox"] {
+  width:70px;
+  height:70px;
+  margin: 5%;
+  border: 5px solid #505050;
+}
+.form_catalogo input[type="file"]{
+  margin:auto;
+  font-size: 3em;
+  line-height: 1.5;
+  text-align: center;
+  padding: 0;
+}
+.form_catalogo input[type="checkbox"] ~ img{
+  max-width: 30%; 
+  max-height: 30%;
+  width: 30%; 
+  height: 30%; 
+}
+.form_catalogo textarea
+{
+  width: 70%;
+  height: auto;
+  max-width: 70%;
+  font-size: 3em;
+  margin: 1%;
+  padding: 1%;
+}
+
+.form_catalogo textarea>div, .charCountDiv
+{
+  font-size: 2em;
+  line-height: 1.5;
+  margin: auto;
+}
+.flex-container {
+  display: block;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.inline .nome,.inline .descrizione,.inline .categoria {
+  font-weight: bold;
+}
+
+.pulsanti_catalogo {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.titolo_img_form {
+  margin:0.5em;
+  font-size: 2.5em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form_catalogo form{
+  align-items: center;
+  width: 85%;
+  border-radius: 0.5em;
+  padding: 3%;
+  margin:2%;
+  box-shadow: 1em var(--shadowcolor);
+  text-align: justify;
+  line-height: 1.5;
+  font-size: 1em;
+}
+
+.testo_regole{
+  margin: auto;
+  padding: auto;
+  line-height: 1.5;
+  font-size: 2em;
+}
+
+#catalogo{
+  align-items: center;
+  width: 90%;
+  margin: 5%;
+}
+
+.form_catalogo p,input[type="text"] { 
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.form_catalogo #elimina_prod, #elimina_img {
+  text-align: center;
+}
+/*CATALOGO END*/
+#elimina_utente_big-profilo,#elimina_utente_big-img-profilo{
+  line-height: 1.5;
+  font-size: 1em;
+  background-color: #ffcccc;
+  color: #cc0000;
+  padding: 1%;
+  border: 5px solid #cc0000;
+  border-radius: 0.5em;
+  margin: 1%;
+  text-align: center;
+  box-sizing: border-box;
+}
 
 @media(orientation: landscape) and (min-width: 600px) {
 
@@ -1769,18 +1944,6 @@ p.link-reg a {
 }
 /*END PROFILO (ci sono anche un paio di classi che si usano in altre pagine e dovrebbero andare lo stesso)*/
 
-.prodotto .nome, .prodotto .categoria,
- .prodotto .descrizione, .categories .nome,
-  .categories .descrizione {
-  font-weight: bold;
-  margin-bottom: 5px;
-  align-self: flex-start;
-}
-
-.prodotto .descrizione {
-  margin-bottom: 10px;
-}
-
   
   .sr-only {
     position: absolute;
@@ -1792,97 +1955,6 @@ p.link-reg a {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-  }
-  
-  .prodotto {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #505050;
-    box-sizing: border-box;
-    position: relative;
-    width: 90%;
-    height: auto;
-  }
-  
-  .flex-container {
-    display: block;
-    width: 100%;
-    justify-content: space-between;
-  }
-  
-  .flex-item {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .flex-item:first-child {
-    flex: 3; /* 30% */
-  }
-  
-  .flex-item:nth-child(2) {
-    flex: 5; /* 50% */
-  }
-  
-  .flex-item:last-child {
-    flex: 2; /* 20% */
-  }
-  
-  
-  .inline .nome,.inline .descrizione,.inline .categoria {
-    font-weight: bold;
-  }
-
-  .prodotto .categoria {
-    margin-bottom: 10px;
-  }
-  
-  .prodotto .button-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .prodotto .button-container input[type="submit"] {
-    padding: 5px 10px;
-  }
-
-  #messaggi {
-      
-    width: 85%;
-    /*
-    -webkit-border-radius:2em;
-    -moz-border-radius:2em;
-    */
-    border-radius: 0.5em; 
-    padding: 0.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    box-shadow: 0em 0em 0.3em 0em var(--shadowcolor);
-  /*background-color: #006600;*/
-    margin-left: auto;
-    margin-right: auto;   /* Da sistemare, i vari inline devo essere uno di fianco all'altro*/
-  }
-  
-  .prova1 {
-    display: flex;
-  }
-  
-  fieldset {
-    border: 0;
-    position:relative;
-  }
-  
-  .pulsanti_catalogo {
-    margin-top: 2em;
-    margin-bottom: 2em;
-  }
-
-  .right {
-    float:right;
   }
   /*LISTA CATEGORIE*/
   .conteg-container {
@@ -2080,92 +2152,162 @@ p.inline, p label{
   height:15px;
 }
   /*END MESSAGGI*/
+  /*MESSAGGI END*/
 
-  #form_informazioni {
-    width: 85%;
-    border-radius: 0.5em;
-    padding: 2em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    box-shadow: 0em 0em 1em 0em var(--shadowcolor);
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
+/*CATALOGO START*/
 
-  #form_informazioni div { margin-bottom: 0.8em;}
-
-  #form_informazioni h2 { margin-bottom: 0.8em;}
-
-  form label {font-weight:bold;}
-
+.titolo_catalogo { 
+  font-size: 200%;
+  line-height: 1.5;
+  margin: 0.5em;
+}
+.form_catalogo{
+  position:relative;
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+}
+.flexcatalogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  position:relative;
   
-  .titolo_catalogo { 
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
-  }
-
-  .titolo_img_form {
-    margin-top: 0.8em;
-    text-align: center;
-  }
-
-  .form_catalogo {
-    width: 85%;
-    border-radius: 0.5em;
-    padding: 2em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    box-shadow: 0em 0em 1em 0em var(--shadowcolor);
-    margin-left: auto;
-    margin-right: auto;
-    text-align: justify;
-  }
-
-  .form_catalogo p,input[type="text"] { 
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
-  }
-
-  .form_catalogo #elimina_prod, #elimina_img {
-    text-align: center;
-  }
+}
+.flexcatalogo form{
+  gap: 0.5em;
+  position:relative;
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  align-items: center;;
   
-#new_category_id { margin-bottom: 0.8em;
 }
 
-fieldset input[type="submit"] { right: 0em;}
+.prodotto .nome, .prodotto .categoria,
+.prodotto .descrizione, .categories .nome,
+.categories .descrizione {
+font-weight: bold;
+}
+#categories{
+  width: auto;
+  height: auto;
+  font-size: 100%;
+  line-height: 1.5;
+  padding: 1%;
+  border: 1px solid #505050;
+  margin: auto;
+  padding: auto;
+  line-height: 1.5;
+}
+.prodotto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin: 1%;
+  padding: 1%;
+  border: 1px solid #505050;
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  font-size: 100%;
+  line-height: 1.5;
+}
+.flexcatalogo form .prodotto input[type="submit"]{
+  font-size: 100%;
+  
+}
+.form_catalogo input[type="checkbox"] {
+  width:15px;
+  height:15px;
+  margin: 5%;
+}
+.form_catalogo input[type="file"]{
+  margin:auto;
+  font-size: 100%;
+  line-height: 1.5;
+  text-align: center;
+  padding: 0;
+}
+.form_catalogo input[type="checkbox"] ~ img{
+  max-width: 30%; 
+  max-height: 30%;
+  width: 30%; 
+  height: 30%; 
+}
+.form_catalogo textarea
+{
+  width: 70%;
+  height: auto;
+  max-width: 70%;
+  font-size: 100%;
+  margin: 1%;
+  padding: 1%;
+}
 
+.form_catalogo textarea>div, .charCountDiv
+{
+  font-size: 100%;
+  line-height: 1.5;
+  margin: auto;
+}
+.flex-container {
+  display: block;
+  width: 100%;
+  justify-content: space-between;
+}
 
-  }
+.inline .nome,.inline .descrizione,.inline .categoria {
+  font-weight: bold;
+}
 
-.img_form { 
+.pulsanti_catalogo {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.titolo_img_form {
+  margin:0.5em;
+  font-size: 200%;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form_catalogo form{
+  align-items: center;
   width: 85%;
   border-radius: 0.5em;
-  padding: 2em;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  box-shadow: 0em 0em 1em 0em var(--shadowcolor);
-  margin-left: auto;
-  margin-right: auto;
+  padding: 3%;
+  margin:2%;
+  box-shadow: 1em var(--shadowcolor);
   text-align: justify;
-  }
-
-.img_form h2 { 
-  margin-bottom: 0.8em;
-  text-align:center;
+  line-height: 1.5;
+  font-size: 100%;
 }
 
-
-
-@media(orientation: landscape) and (min-width: 600px) { 
-
-  .form_catalogo select {
-    font-size: 400%;
-  }
-
-}
-.form_catalogo select {
-  font-size: 1.5em;
+.testo_regole{
+  margin: auto;
+  padding: auto;
+  line-height: 1.5;
+  font-size: 100%;
 }
 
+#catalogo{
+  align-items: center;
+  width: 90%;
+  margin: 5%;
+}
+
+.form_catalogo p,input[type="text"] { 
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.form_catalogo #elimina_prod, #elimina_img {
+  text-align: center;
+}
+
+}
