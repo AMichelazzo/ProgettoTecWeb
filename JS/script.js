@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if ('ontouchstart' in window) {
                 // Dispositivo touchscreen
                 message.addEventListener('touchstart', function(event) {
-                    if (event.target !== checkbox) {
+                    if (event.target !== checkbox && !event.target.closest('a')) {
                         checkbox.checked = !checkbox.checked;
                     }
                     event.stopPropagation();
@@ -130,20 +130,22 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 // PC o dispositivo non touchscreen
                 message.addEventListener('click', function(event) {
-                    if (event.target !== checkbox) {
+                    if (event.target !== checkbox && !event.target.closest('a')) {
                         checkbox.checked = !checkbox.checked;
                     }
                     event.stopPropagation();
                 });
             }
+    
             message.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
+                if (event.key === 'Enter' && !event.target.closest('a')) {
                     checkbox.checked = !checkbox.checked;
                     event.preventDefault();
                 }
             });
         });
     }
+    
 
     var isSelectAll = true;
     var toggleB = document.getElementById('toggleButton');
