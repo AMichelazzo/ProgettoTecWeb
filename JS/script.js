@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
     
             message.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter' && !event.target.closest('a')) {
+                if (event.key === 'Enter') {
                     checkbox.checked = !checkbox.checked;
                     event.preventDefault();
                 }
