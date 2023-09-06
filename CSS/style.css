@@ -66,8 +66,8 @@ height: auto;
 /*HAMBURGER*/
 
 .hambuttonoff { /*Il menu è chiuso*/
-  width: 4em;
-  height: 4em;
+  width: 7em;
+  height: 7em;
   background-image: url("../img/hamOn.png");
   filter: invert(100%);
   background-repeat: no-repeat;
@@ -80,8 +80,8 @@ height: auto;
 }
 
 .hambuttonon { /*Il menu è aperto*/
-  width:4em;
-  height: 4em;
+  width: 7em;
+  height: 7em;
   background-image: url("../img/hamOff.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -90,6 +90,17 @@ height: auto;
   background-color: #DB334F;
   border-radius: 1.5em 1.5em 1.5em 1.5em;
   cursor: pointer;
+}
+
+@media(orientation: landscape) and (min-width: 790px) {
+  .hambuttonoff {
+    height: 4em;
+    width: 4em;
+  }
+  .hambuttonon {
+    height: 4em;
+    width: 4em;
+  }
 }
 
 /*BOX*/
