@@ -2,39 +2,40 @@ function confermaEliminazione() {
     let s = document.getElementById("submit_elimina");
     let si = document.getElementById("si_elimina");
     let no = document.getElementById("no_elimina");
-    if(s && si && no){
+    if (s && si && no) {
         s.type = "hidden";
         si.type = "submit";
         no.type = "submit";
     }
     let msg_conf = document.getElementById("elimina_utente_big-profilo");
-    if(msg_conf){
+    if (msg_conf) {
         msg_conf.removeAttribute("hidden");
     }
 }
-function confermaEliminazioneImg() {console.log("test");
+function confermaEliminazioneImg() {
+    console.log("test");
     let s = document.getElementById("submit_elimina_img");
     let si = document.getElementById("si_elimina_img");
     let no = document.getElementById("no_elimina_img");
-    if(s && si && no){
+    if (s && si && no) {
         s.type = "hidden";
         si.type = "submit";
         no.type = "submit";
     }
     let msg_conf = document.getElementById("elimina_utente_big-img-profilo");
-    if(msg_conf){
+    if (msg_conf) {
         msg_conf.removeAttribute("hidden");
     }
 }
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     function limitTextareaByClassName(className, maxChars) {
         var textareas = document.querySelectorAll("." + className);
         if (textareas) {
-            textareas.forEach(function(textarea) {
+            textareas.forEach(function (textarea) {
                 var id = textarea.id;
                 var charCountId = "char-count-" + id;
                 var charCountDiv = document.getElementById(charCountId);
-                textarea.addEventListener("input", function() {
+                textarea.addEventListener("input", function () {
                     if (this.value.length > maxChars) {
                         this.value = this.value.substring(0, maxChars);
                     }
@@ -45,67 +46,67 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     limitTextareaByClassName("limited-textarea", 75);
-    
-    
+
+
     let hambutton = document.getElementById("hambutton");
-    if(hambutton){
-        hambutton.addEventListener('click', function() {
-            if(hambutton.classList.contains("hambuttonoff")) hambutton.className = "hambuttonon";
-        else hambutton.className = "hambuttonoff";
-        
-        if(hambutton.innerText == "Apri menù amministratore") hambutton.innerText = "Chiudi menù amministratore";
-        else if(hambutton.innerText == "Chiudi menù amministratore") hambutton.innerText = "Apri menù amministratore";
-        else if(hambutton.innerText == "Apri menù utente") hambutton.innerText = "Chiudi menù utente";
-        else if(hambutton.innerText == "Chiudi menù utente") hambutton.innerText = "Apri menù utente";
-        let menubar = document.getElementById("menubar");
-        if(menubar){
-            if(menubar.classList.contains("menubaroff")) menubar.className = "menubaron"; 
-            else menubar.className = "menubaroff";
-        }
+    if (hambutton) {
+        hambutton.addEventListener('click', function () {
+            if (hambutton.classList.contains("hambuttonoff")) hambutton.className = "hambuttonon";
+            else hambutton.className = "hambuttonoff";
+
+            if (hambutton.innerText == "Apri menù amministratore") hambutton.innerText = "Chiudi menù amministratore";
+            else if (hambutton.innerText == "Chiudi menù amministratore") hambutton.innerText = "Apri menù amministratore";
+            else if (hambutton.innerText == "Apri menù utente") hambutton.innerText = "Chiudi menù utente";
+            else if (hambutton.innerText == "Chiudi menù utente") hambutton.innerText = "Apri menù utente";
+            let menubar = document.getElementById("menubar");
+            if (menubar) {
+                if (menubar.classList.contains("menubaroff")) menubar.className = "menubaron";
+                else menubar.className = "menubaroff";
+            }
         });
     }
-   
+
     let passwordInput2 = document.getElementById('pass_reg2');
-    if(passwordInput2){
-        passwordInput2.addEventListener('keyup', function() {
+    if (passwordInput2) {
+        passwordInput2.addEventListener('keyup', function () {
             let passwordInput1 = document.getElementById('pass_reg');
-            if(passwordInput1){
-                validatePassword(passwordInput1.value,passwordInput2.value);
+            if (passwordInput1) {
+                validatePassword(passwordInput1.value, passwordInput2.value);
                 abilitaSubmit();
             }
         });
 
-        passwordInput2.addEventListener('blur', function() {
+        passwordInput2.addEventListener('blur', function () {
             let passwordInput1 = document.getElementById('pass_reg');
-            if(passwordInput1){
-                validatescreenreader(passwordInput1.value,passwordInput2.value);
+            if (passwordInput1) {
+                validatescreenreader(passwordInput1.value, passwordInput2.value);
             }
         });
     }
     let buttonss = document.getElementsByClassName("open-button");
-    if(buttonss){
+    if (buttonss) {
         for (let i = 0; i < buttonss.length; i++) {
-            buttonss[i].addEventListener("click", function() {
+            buttonss[i].addEventListener("click", function () {
                 event.preventDefault();
                 window.open(this.id);
             });
         }
     }
     let prod = document.getElementsByClassName("vaiProdotto");
-    if(prod){
+    if (prod) {
         for (let i = 0; i < prod.length; i++) {
-            prod[i].addEventListener("click", function() {
+            prod[i].addEventListener("click", function () {
                 event.preventDefault();
-                window.location.href="prodotto.php?prod="+this.id;
+                window.location.href = "prodotto.php?prod=" + this.id;
             });
         }
     }
 
     const immagini = document.querySelectorAll('.clickImg');
-    if(immagini){
+    if (immagini) {
         immagini.forEach(immagini => {
             const checkbox = immagini.querySelector('input[type="checkbox"]');
-            immagini.addEventListener('click', function(event) {
+            immagini.addEventListener('click', function (event) {
                 if (event.target !== checkbox) {
                     checkbox.checked = !checkbox.checked;
                 }
@@ -118,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (messages) {
         messages.forEach(message => {
             const checkbox = message.querySelector('input[type="checkbox"]');
-    
+
             if ('ontouchstart' in window) {
                 // Dispositivo touchscreen
                 message.addEventListener('touchstart', function(event) {
@@ -150,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var isSelectAll = true;
     var toggleB = document.getElementById('toggleButton');
     if (toggleB) {
-        toggleB.addEventListener('click', function() {
+        toggleB.addEventListener('click', function () {
             var ele = document.getElementsByName('form_msg[]');
             for (var i = 0; i < ele.length; i++) {
                 if (ele[i].type == 'checkbox')
@@ -161,14 +162,14 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 toggleB.innerHTML = 'Seleziona tutto';
             }
-            
+
             isSelectAll = !isSelectAll;
         });
     }
     var containers = document.querySelectorAll('.conteg-container');
-    if(containers){
-        containers.forEach(function(container) {
-            container.addEventListener('click', function() {
+    if (containers) {
+        containers.forEach(function (container) {
+            container.addEventListener('click', function () {
                 var link = container.querySelector('.link-class a');
                 if (link) {
                     window.location.href = link.href;
@@ -181,33 +182,33 @@ document.addEventListener("DOMContentLoaded", function() {
     let slides = document.getElementsByClassName("mySlides-home");
     if (dots.length > 0 && slides.length > 0) {
         function plusSlides(n) {
-        showSlides(slideIndex += n);
+            showSlides(slideIndex += n);
         }
-    
-        let pr=document.querySelector('.prev-home');
-        let ne=document.querySelector('.next-home');
-        if(pr&&ne){
+
+        let pr = document.querySelector('.prev-home');
+        let ne = document.querySelector('.next-home');
+        if (pr && ne) {
             pr.addEventListener('click', () => plusSlides(-1));
             ne.addEventListener('click', () => plusSlides(1));
         }
         function showSlides(n) {
             var i;
-        
+
             if (n > slides.length) { slideIndex = 1; }
             if (n < 1) { slideIndex = slides.length; }
-        
+
             for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = 'none';
+                slides[i].style.display = 'none';
             }
-        
+
             for (i = 0; i < dots.length; i++) {
-            dots[i].classList.remove('active');
+                dots[i].classList.remove('active');
             }
-        
+
             slides[slideIndex - 1].style.display = 'block';
             dots[slideIndex - 1].classList.add('active');
         }
-        
+
         showSlides(slideIndex);
 
         function currentSlide(n) {
@@ -215,45 +216,45 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         for (var i = 0; i < dots.length; i++) {
-            dots[i].addEventListener('click', function() {
+            dots[i].addEventListener('click', function () {
                 var slideTo = this.getAttribute('data-slide-index');
-                currentSlide(parseInt(slideTo)+1);
+                currentSlide(parseInt(slideTo) + 1);
             });
-        }    
+        }
 
         var images = document.querySelectorAll('.mySlides-home img.homeimg');
-        if(images){
-            images.forEach(function(image) {
-                image.addEventListener('click', function() {
+        if (images) {
+            images.forEach(function (image) {
+                image.addEventListener('click', function () {
                     var product_id = this.getAttribute('data-product-id');
                     window.location.href = 'prodotto.php?prod=' + product_id;
                 });
             });
         }
-        
+
     }
-    
+
     let button = document.getElementById("button");
     if (button !== null) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             let prod = document.getElementById("product_id");
             let categ = document.getElementById("categ_id");
             let buttontext = document.getElementById("buttonid");
             if (prod && categ && buttontext) {
                 let xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         let response = JSON.parse(this.responseText);
                         let msg2 = document.getElementById("msgWish2");
                         if (response.success) {
                             buttontext.innerHTML == "Aggiungi alla Lista" ? buttontext.innerHTML = "Togli dalla Lista" : buttontext.innerHTML = "Aggiungi alla Lista";
-                            if(msg2){
+                            if (msg2) {
                                 msg2.style.display = "block";
                                 msg2.innerHTML = response.message;
                                 msg2.style.color = "green";
                             }
                         } else {
-                            if(msg2){
+                            if (msg2) {
                                 msg2.style.display = "block";
                                 msg2.innerHTML = response.message;
                                 msg2.style.color = "red";
@@ -266,483 +267,471 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-    
 
-let s=document.getElementById("submit");
-if(s)
-{
-    s.disabled =true;
-}
-function ValidateEmail(email) {
-    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(email.match(mailformat))
-    {
-        return true;
+
+    let s = document.getElementById("submit");
+    if (s) {
+        s.disabled = true;
     }
-    else
-    {
-        let imge = document.getElementById('email_disponibile');
-        let imgphpe = document.getElementById('emailNOT_disponibile');
-        if(imge){
-            if (imgphpe){
-                imgphpe.style.display = "none";
-            }
-            imge.style.display = "inline";
-            imge.src = "img/Xrossa.png";
-            imge.alt = "Errore nell'inserimento della email.";
+    function ValidateEmail(email) {
+        let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (email.match(mailformat)) {
+            return true;
         }
-        return false;
+        else {
+            let imge = document.getElementById('email_disponibile');
+            let imgphpe = document.getElementById('emailNOT_disponibile');
+            if (imge) {
+                if (imgphpe) {
+                    imgphpe.style.display = "none";
+                }
+                imge.style.display = "inline";
+                imge.src = "img/Xrossa.png";
+                imge.alt = "Errore nell'inserimento della email.";
+            }
+            return false;
+        }
     }
-}
 
-let emailInput = document.getElementById('email_reg');
-if(emailInput){
-    emailInput.addEventListener('keyup', function(key) {
-    let email = emailInput.value;
-    let imge = document.getElementById('email_disponibile');
-    if(imge){
-        imge.role = "";
-        if(key.keycode !== 9){
-            if(email.length!=0 && ValidateEmail(email)){
-                let xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        let response = JSON.parse(this.responseText);
-                        let imgphpe = document.getElementById('emailNOT_disponibile');
-                        if (imgphpe){
-                            imgphpe.style.display = "none";
+    let emailInput = document.getElementById('email_reg');
+    if (emailInput) {
+        emailInput.addEventListener('keyup', function (key) {
+            let email = emailInput.value;
+            let imge = document.getElementById('email_disponibile');
+            if (imge) {
+                imge.role = "";
+                if (key.keycode !== 9) {
+                    if (email.length != 0 && ValidateEmail(email)) {
+                        let xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                let response = JSON.parse(this.responseText);
+                                let imgphpe = document.getElementById('emailNOT_disponibile');
+                                if (imgphpe) {
+                                    imgphpe.style.display = "none";
+                                }
+                                imge.style.display = "inline";
+                                if (response.trovato) {
+                                    imge.src = "img/Xrossa.png";
+                                    imge.alt = "Email non disponibile.";
+                                }
+                                else {
+                                    imge.src = "img/spuntaVerde.png";
+                                    imge.alt = "Email disponibile.";
+                                }
+                            }
+                        };
+                        xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
+                        xhr.send();
+                    }
+                }
+            }
+        });
+        emailInput.addEventListener('blur', function () {
+            let email = emailInput.value;
+            let imge = document.getElementById('email_disponibile');
+            let imgphpe = document.getElementById('emailNOT_disponibile');
+            if (imge) {
+                if (email.length != 0 && ValidateEmail(email)) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            let response = JSON.parse(this.responseText);
+                            if (imgphpe) {
+                                imgphpe.style.display = "none";
+                            }
+                            imge.style.display = "inline";
+                            if (response.trovato) {
+                                imge.src = "img/Xrossa.png";
+                                imge.alt = "Email non disponibile.";
+                            }
+                            else {
+                                imge.src = "img/spuntaVerde.png";
+                                imge.alt = "Email disponibile.";
+                            }
                         }
-                        imge.style.display = "inline";
-                        if (response.trovato) {
-                            imge.src = "img/Xrossa.png";
-                            imge.alt = "Email non disponibile."; 
-                        }
-                        else{
-                            imge.src = "img/spuntaVerde.png";
-                            imge.alt = "Email disponibile.";
-                        }
-                    }
-                };
-                xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
-                xhr.send();
-            }
-        }
-    }
-    });
-    emailInput.addEventListener('blur', function() {
-        let email = emailInput.value;
-        let imge = document.getElementById('email_disponibile');
-        let imgphpe = document.getElementById('emailNOT_disponibile');
-            if(imge){
-            if(email.length!=0 && ValidateEmail(email)){
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response = JSON.parse(this.responseText);
-                    if (imgphpe){
-                        imgphpe.style.display = "none";
-                    }
-                    imge.style.display = "inline";
-                    if (response.trovato) {
-                        imge.src = "img/Xrossa.png";
-                        imge.alt = "Email non disponibile.";
-                    }
-                    else{
-                        imge.src = "img/spuntaVerde.png";
-                        imge.alt = "Email disponibile.";
-                    }
+                    };
+                    xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
+                    xhr.send();
                 }
-            };
-            xhr.open('GET', 'PHP/checkNewUser.php?email=' + email, true);
-            xhr.send();
+                imge.role = "alert";
+                abilitaSubmit();
             }
-            imge.role = "alert";
-            abilitaSubmit();
-        }
-    });
-}
-
-function validateUserName(username){
-    
-    let regexPattern = /^[a-zA-Z0-9]+$/;
-    if(regexPattern.test(username) && username.length >= 4){
-        return true;
-    } else {
-        let img = document.getElementById('username_disponibile');
-        let imgphp = document.getElementById('usernameNOT_disponibile');
-        if(img){
-            if (imgphp){
-                imgphp.style.display = "none";
-            }
-            img.style.display = "inline";
-            img.src = "img/Xrossa.png";
-            img.alt = "Errore nell'inserimento dello username."; 
-        }
-        return false;
-    }
-}
-
-let userInput = document.getElementById('username_reg');
-if(userInput){
-    userInput.addEventListener('keyup', function(key) {
-    let username = userInput.value;
-    let img = document.getElementById('username_disponibile');
-    if(img){
-        if(key.keycode !== 9){
-            img.role = "";
-            if(username.length!=0 && validateUserName(username)){
-                let xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        let response = JSON.parse(this.responseText);
-                        let imgphp = document.getElementById('usernameNOT_disponibile');
-                        if (imgphp){
-                            imgphp.style.display = "none";
-                        }
-                        img.style.display = "inline";  
-                        if (response.trovato) {
-                            img.src = "img/Xrossa.png";
-                            img.alt = "Username non disponibile."; 
-                        }
-                        else{
-                            img.src = "img/spuntaVerde.png";
-                            img.alt = "Username disponibile."; 
-                        }
-                    }
-                };
-                xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
-                xhr.send();
-                }
-            }
-        }
-    });
-    userInput.addEventListener('blur', function() {
-    let username = userInput.value;
-    let img = document.getElementById('username_disponibile');
-    let imgphp = document.getElementById('usernameNOT_disponibile');
-    if(img){
-        if(username.length!=0 && validateUserName(username)){
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response = JSON.parse(this.responseText);
-                    if (imgphp){
-                        imgphp.style.display = "none";
-                    }
-                    img.style.display = "inline";  
-                    if (response.trovato) {
-                        img.src = "img/Xrossa.png";
-                        img.alt = "Username non disponibile.";
-                    }
-                    else{
-                        img.src = "img/spuntaVerde.png";
-                        img.alt = "Username disponibile.";
-                    }
-                }
-            };
-            xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
-            xhr.send();
-            }
-            img.role = "alert";
-        }
-        abilitaSubmit();
-    });
-}
-
-function validatePassword(pass1,pass2){
-    if(pass1!=="" || pass2!==""){
-        let img2 = document.getElementById('password_rispetta2');
-        if(img2){
-            img2.style.display = "inline";  
-            let imgphp = document.getElementById('passNOT_disponibile');
-            if (imgphp){
-                imgphp.style.display = "none";
-            }
-            if (pass1===pass2) {
-                img2.src = "img/spuntaVerde.png";
-                img2.alt = "Le password corrispondono.";
-                img2.role = "alert";
-                return true;
-            }
-            else{
-                img2.src = "img/Xrossa.png";
-                img2.alt = "Le password non corrispondono.";
-            } 
-        }
-    }
-    return false;
-}
-function validatescreenreader(pass1,pass2){
-    if(pass1!==""||pass2!==""){
-        let img2 = document.getElementById('password_rispetta2');
-        if(img2){
-            img2.style.display = "inline";  
-            let imgphp = document.getElementById('passNOT_disponibile');
-            img2.role = "";
-            if (imgphp){
-                imgphp.style.display = "none";
-            }
-            if (pass1===pass2) {
-                
-                img2.src = "img/spuntaVerde.png";
-                img2.alt = "Le password corrispondono.";
-                return true;
-            }
-            else{
-                img2.src = "img/Xrossa.png";
-                img2.alt = "Le password non corrispondono.";
-                img2.role = "alert";
-            } 
-        }
-    }
-    return false;
-}
-
-
-
-let passw = document.getElementById("pass_reg");
-let minusc = document.getElementById("minusc");
-let maiusc = document.getElementById("maiusc");
-let numero = document.getElementById("numeri");
-let lunghezza = document.getElementById("lunghezza");
-if(passw&&minusc&&maiusc&&numero&&lunghezza){
-// When the user clicks on the password field, show the message box
-    passw.onfocus = function() {
-        let m=document.getElementById("message");
-        if(m)
-        {
-            m.style.display = "block";
-        }
-    }
-    // When the user starts to type something inside the password field
-    passw.onkeyup = function() {
-        testIfRight(passw);
-        abilitaSubmit();
-    }
-    passw.blur = function() {
-        if(testIfalert(passw)){
-            let m=document.getElementById("message");
-            if(m)
-            {
-                m.style.display = "none";
-            }
-            abilitaSubmit();
-        }
-    }
-}
-
-
-function testIfRight(pass)
-{
-    let boolvar=true;
-    let lowerCaseminuscs = /[a-z]/g;
-    let imgl = document.getElementById("lowecase");
-    if(imgl){
-        if(pass.value.match(lowerCaseminuscs)) {  
-        imgl.src = "img/spuntaVerde.png";
-        imgl.alt = "Requisito rispettato."; 
-        minusc.style.color="green";
-        minusc.role = "alert";
-        } else {
-        imgl.src = "img/Xrossa.png";
-        imgl.alt = "Requisito non rispettato.";
-        minusc.style.color="red";
-        boolvar=false;
-        }
-    }
-    
-    // Validate capital letters
-    let upperCaseLetters = /[A-Z]/g;
-    let imgu = document.getElementById("uppercase");
-    if(imgu){
-        if(pass.value.match(upperCaseLetters)) {  
-        imgu.src = "img/spuntaVerde.png";
-        imgu.alt = "Requisito rispettato."; 
-        maiusc.style.color="green";
-        maiusc.role = "alert";
-        } else {
-        imgu.src = "img/Xrossa.png";
-        imgu.alt = "Requisito non rispettato.";
-        maiusc.style.color="red";
-        boolvar=false;
-        }
-    }
-  
-    // Validate numbers
-    let numbers = /[0-9]/g;
-    let imgn = document.getElementById("number");
-    if(imgn){
-        if(pass.value.match(numbers)) {  
-        imgn.src = "img/spuntaVerde.png";
-        imgn.alt = "Requisito rispettato."; 
-        numero.style.color="green";
-        numero.role = "alert";
-        } else {
-        imgn.src = "img/Xrossa.png";
-        imgn.alt = "Requisito non rispettato.";
-        numero.style.color="red";
-        boolvar=false;
-        }
-    }
-    
-    // Validate length
-    let imgle = document.getElementById("lenght");
-    if(imgle){
-        if(pass.value.length >= 4 && pass.value.length <= 16) {
-        imgle.src = "img/spuntaVerde.png";
-        imgle.alt = "Requisito rispettato."; 
-        lunghezza.style.color="green";
-        lunghezza.role = "alert";
-        } else {
-        imgle.src = "img/Xrossa.png";
-        imgle.alt = "Requisito non rispettato.";
-        lunghezza.style.color="red";
-        boolvar=false;
-        }
-    }
-    return boolvar;
-}
-//alert if screenreader active (se è stato fatto tab senza che il reuqisito sia stato rispettato)
-function testIfalert(pass)
-{
-    let lowerCaseminuscs = /[a-z]/g;
-    let imgl = document.getElementById("lowecase");
-    if(imgl){
-        if(!pass.value.match(lowerCaseminuscs)) {  
-        imgl.src = "img/Xrossa.png";
-        imgl.alt = "Requisito non rispettato.";
-        minusc.style.color="red";
-        minusc.role = "alert";
-        boolvar=false;
-        }
-    }
-    
-    // Validate capital letters
-    let upperCaseLetters = /[A-Z]/g;
-    let imgu = document.getElementById("uppercase");
-    if(imgu){
-        if(!pass.value.match(upperCaseLetters)) {
-        imgu.src = "img/Xrossa.png";
-        imgu.alt = "Requisito non rispettato.";
-        maiusc.style.color="red";
-        boolvar=false;
-        maiusc.role = "alert";
-        }
-    }
-  
-    // Validate numbers
-    let numbers = /[0-9]/g;
-    let imgn = document.getElementById("number");
-    if(imgn){
-        if(!pass.value.match(numbers)) {  
-        imgn.src = "img/Xrossa.png";
-        imgn.alt = "Requisito non rispettato.";
-        numero.style.color="red";
-        numero.role = "alert";
-        boolvar=false;
-        }
-    }
-    
-    // Validate length
-    let imgle = document.getElementById("lenght");
-    if(imgle){
-        if(pass.value.length <= 4 || pass.value.length >= 16) {
-        imgle.src = "img/Xrossa.png";
-        imgle.alt = "Requisito non rispettato.";
-        lunghezza.style.color="red";
-        boolvar=false;
-        }
-    }
-    return boolvar;
-}
-
-function abilitaSubmit(){
-    let s=document.getElementById("submit");
-    if(s){
-        let passwordInput2 = document.getElementById('pass_reg2');
-        let passwordInput1 = document.getElementById('pass_reg');
-        let emailInput = document.getElementById('email_reg');
-        let userInput = document.getElementById('username_reg');
-        if(passwordInput1&&passwordInput2){
-            if(emailInput&&userInput){
-                if(ValidateEmail(emailInput.value)&&validateUserName(userInput.value)&&testIfRight(passw)&&validatePassword(passwordInput2.value,passwordInput1.value))
-                {
-                    s.disabled =false;
-                }
-                else
-                {
-                    s.disabled =true;
-                }
-            }
-            else
-            {
-                if(testIfRight(passw)&&validatePassword(passwordInput2.value,passwordInput1.value))
-                {
-                    s.disabled =false;
-                }
-                else
-                {
-                    s.disabled =true;
-                }
-            }
-        }
-    }
-  }
-
-let buttons = document.getElementsByName("rimuovi");
-if(buttons){
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", function(event) {
-            event.preventDefault();
-            let buttonId = this.id;
-            let parsedId = parseId(buttonId);
-            let prod = parsedId[0];
-            let categ = parsedId[1];
-            let form = this.parentNode.parentNode.parentNode.parentNode;
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response = JSON.parse(this.responseText);
-                    if (response.success) {
-                        form.remove();
-                        showMessage(response.message, "green");
-                    } else {
-                        showMessage(response.message, "red");
-                    }
-                }
-            };
-            let url = "PHP/addWish.php?remove=1&product_id="+prod+"&categ_id="+categ;
-            xhr.open("GET", url, true);
-            xhr.send();
         });
     }
-}
 
-function showMessage(message, color) {
-    let msg = document.getElementById("msgWish");
-    let checknascosti=document.getElementsByName("form-prodotto");
-    if(msg&&checknascosti){
-        msg.role="";
-        msg.style.display = "flex";
-        if (checknascosti.length>0) {
-            msg.innerHTML = message;
-            msg.style.color = color;
+    function validateUserName(username) {
+
+        let regexPattern = /^[a-zA-Z0-9]+$/;
+        if (regexPattern.test(username) && username.length >= 4) {
+            return true;
+        } else {
+            let img = document.getElementById('username_disponibile');
+            let imgphp = document.getElementById('usernameNOT_disponibile');
+            if (img) {
+                if (imgphp) {
+                    imgphp.style.display = "none";
+                }
+                img.style.display = "inline";
+                img.src = "img/Xrossa.png";
+                img.alt = "Errore nell'inserimento dello username.";
+            }
+            return false;
         }
-        else{
-            msg.id = "wish-error";
-            msg.style.color = "#cc0000";
-            msg.innerHTML = " Lista dei desideri vuota!";
-        }
-        msg.role="alert";
     }
-}
 
-function parseId(id) {
-    let parts = id.split("-");
-    let firstPart = parts[0];
-    let secondPart = parts[1];
-    return [firstPart, secondPart];
-}
+    let userInput = document.getElementById('username_reg');
+    if (userInput) {
+        userInput.addEventListener('keyup', function (key) {
+            let username = userInput.value;
+            let img = document.getElementById('username_disponibile');
+            if (img) {
+                if (key.keycode !== 9) {
+                    img.role = "";
+                    if (username.length != 0 && validateUserName(username)) {
+                        let xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                let response = JSON.parse(this.responseText);
+                                let imgphp = document.getElementById('usernameNOT_disponibile');
+                                if (imgphp) {
+                                    imgphp.style.display = "none";
+                                }
+                                img.style.display = "inline";
+                                if (response.trovato) {
+                                    img.src = "img/Xrossa.png";
+                                    img.alt = "Username non disponibile.";
+                                }
+                                else {
+                                    img.src = "img/spuntaVerde.png";
+                                    img.alt = "Username disponibile.";
+                                }
+                            }
+                        };
+                        xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
+                        xhr.send();
+                    }
+                }
+            }
+        });
+        userInput.addEventListener('blur', function () {
+            let username = userInput.value;
+            let img = document.getElementById('username_disponibile');
+            let imgphp = document.getElementById('usernameNOT_disponibile');
+            if (img) {
+                if (username.length != 0 && validateUserName(username)) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            let response = JSON.parse(this.responseText);
+                            if (imgphp) {
+                                imgphp.style.display = "none";
+                            }
+                            img.style.display = "inline";
+                            if (response.trovato) {
+                                img.src = "img/Xrossa.png";
+                                img.alt = "Username non disponibile.";
+                            }
+                            else {
+                                img.src = "img/spuntaVerde.png";
+                                img.alt = "Username disponibile.";
+                            }
+                        }
+                    };
+                    xhr.open('GET', 'PHP/checkNewUser.php?user=' + username, true);
+                    xhr.send();
+                }
+                img.role = "alert";
+            }
+            abilitaSubmit();
+        });
+    }
+
+    function validatePassword(pass1, pass2) {
+        if (pass1 !== "" || pass2 !== "") {
+            let img2 = document.getElementById('password_rispetta2');
+            if (img2) {
+                img2.style.display = "inline";
+                let imgphp = document.getElementById('passNOT_disponibile');
+                if (imgphp) {
+                    imgphp.style.display = "none";
+                }
+                if (pass1 === pass2) {
+                    img2.src = "img/spuntaVerde.png";
+                    img2.alt = "Le password corrispondono.";
+                    img2.role = "alert";
+                    return true;
+                }
+                else {
+                    img2.src = "img/Xrossa.png";
+                    img2.alt = "Le password non corrispondono.";
+                }
+            }
+        }
+        return false;
+    }
+    function validatescreenreader(pass1, pass2) {
+        if (pass1 !== "" || pass2 !== "") {
+            let img2 = document.getElementById('password_rispetta2');
+            if (img2) {
+                img2.style.display = "inline";
+                let imgphp = document.getElementById('passNOT_disponibile');
+                img2.role = "";
+                if (imgphp) {
+                    imgphp.style.display = "none";
+                }
+                if (pass1 === pass2) {
+
+                    img2.src = "img/spuntaVerde.png";
+                    img2.alt = "Le password corrispondono.";
+                    return true;
+                }
+                else {
+                    img2.src = "img/Xrossa.png";
+                    img2.alt = "Le password non corrispondono.";
+                    img2.role = "alert";
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+    let passw = document.getElementById("pass_reg");
+    let minusc = document.getElementById("minusc");
+    let maiusc = document.getElementById("maiusc");
+    let numero = document.getElementById("numeri");
+    let lunghezza = document.getElementById("lunghezza");
+    if (passw && minusc && maiusc && numero && lunghezza) {
+        // When the user clicks on the password field, show the message box
+        passw.onfocus = function () {
+            let m = document.getElementById("message");
+            if (m) {
+                m.style.display = "block";
+            }
+        }
+        // When the user starts to type something inside the password field
+        passw.onkeyup = function () {
+            testIfRight(passw);
+            abilitaSubmit();
+        }
+        passw.blur = function () {
+            if (testIfalert(passw)) {
+                let m = document.getElementById("message");
+                if (m) {
+                    m.style.display = "none";
+                }
+                abilitaSubmit();
+            }
+        }
+    }
+
+
+    function testIfRight(pass) {
+        let boolvar = true;
+        let lowerCaseminuscs = /[a-z]/g;
+        let imgl = document.getElementById("lowecase");
+        if (imgl) {
+            if (pass.value.match(lowerCaseminuscs)) {
+                imgl.src = "img/spuntaVerde.png";
+                imgl.alt = "Requisito rispettato.";
+                minusc.style.color = "green";
+                minusc.role = "alert";
+            } else {
+                imgl.src = "img/Xrossa.png";
+                imgl.alt = "Requisito non rispettato.";
+                minusc.style.color = "red";
+                boolvar = false;
+            }
+        }
+
+        // Validate capital letters
+        let upperCaseLetters = /[A-Z]/g;
+        let imgu = document.getElementById("uppercase");
+        if (imgu) {
+            if (pass.value.match(upperCaseLetters)) {
+                imgu.src = "img/spuntaVerde.png";
+                imgu.alt = "Requisito rispettato.";
+                maiusc.style.color = "green";
+                maiusc.role = "alert";
+            } else {
+                imgu.src = "img/Xrossa.png";
+                imgu.alt = "Requisito non rispettato.";
+                maiusc.style.color = "red";
+                boolvar = false;
+            }
+        }
+
+        // Validate numbers
+        let numbers = /[0-9]/g;
+        let imgn = document.getElementById("number");
+        if (imgn) {
+            if (pass.value.match(numbers)) {
+                imgn.src = "img/spuntaVerde.png";
+                imgn.alt = "Requisito rispettato.";
+                numero.style.color = "green";
+                numero.role = "alert";
+            } else {
+                imgn.src = "img/Xrossa.png";
+                imgn.alt = "Requisito non rispettato.";
+                numero.style.color = "red";
+                boolvar = false;
+            }
+        }
+
+        // Validate length
+        let imgle = document.getElementById("lenght");
+        if (imgle) {
+            if (pass.value.length >= 4 && pass.value.length <= 16) {
+                imgle.src = "img/spuntaVerde.png";
+                imgle.alt = "Requisito rispettato.";
+                lunghezza.style.color = "green";
+                lunghezza.role = "alert";
+            } else {
+                imgle.src = "img/Xrossa.png";
+                imgle.alt = "Requisito non rispettato.";
+                lunghezza.style.color = "red";
+                boolvar = false;
+            }
+        }
+        return boolvar;
+    }
+    //alert if screenreader active (se è stato fatto tab senza che il reuqisito sia stato rispettato)
+    function testIfalert(pass) {
+        let lowerCaseminuscs = /[a-z]/g;
+        let imgl = document.getElementById("lowecase");
+        if (imgl) {
+            if (!pass.value.match(lowerCaseminuscs)) {
+                imgl.src = "img/Xrossa.png";
+                imgl.alt = "Requisito non rispettato.";
+                minusc.style.color = "red";
+                minusc.role = "alert";
+                boolvar = false;
+            }
+        }
+
+        // Validate capital letters
+        let upperCaseLetters = /[A-Z]/g;
+        let imgu = document.getElementById("uppercase");
+        if (imgu) {
+            if (!pass.value.match(upperCaseLetters)) {
+                imgu.src = "img/Xrossa.png";
+                imgu.alt = "Requisito non rispettato.";
+                maiusc.style.color = "red";
+                boolvar = false;
+                maiusc.role = "alert";
+            }
+        }
+
+        // Validate numbers
+        let numbers = /[0-9]/g;
+        let imgn = document.getElementById("number");
+        if (imgn) {
+            if (!pass.value.match(numbers)) {
+                imgn.src = "img/Xrossa.png";
+                imgn.alt = "Requisito non rispettato.";
+                numero.style.color = "red";
+                numero.role = "alert";
+                boolvar = false;
+            }
+        }
+
+        // Validate length
+        let imgle = document.getElementById("lenght");
+        if (imgle) {
+            if (pass.value.length <= 4 || pass.value.length >= 16) {
+                imgle.src = "img/Xrossa.png";
+                imgle.alt = "Requisito non rispettato.";
+                lunghezza.style.color = "red";
+                boolvar = false;
+            }
+        }
+        return boolvar;
+    }
+
+    function abilitaSubmit() {
+        let s = document.getElementById("submit");
+        if (s) {
+            let passwordInput2 = document.getElementById('pass_reg2');
+            let passwordInput1 = document.getElementById('pass_reg');
+            let emailInput = document.getElementById('email_reg');
+            let userInput = document.getElementById('username_reg');
+            if (passwordInput1 && passwordInput2) {
+                if (emailInput && userInput) {
+                    if (ValidateEmail(emailInput.value) && validateUserName(userInput.value) && testIfRight(passw) && validatePassword(passwordInput2.value, passwordInput1.value)) {
+                        s.disabled = false;
+                    }
+                    else {
+                        s.disabled = true;
+                    }
+                }
+                else {
+                    if (testIfRight(passw) && validatePassword(passwordInput2.value, passwordInput1.value)) {
+                        s.disabled = false;
+                    }
+                    else {
+                        s.disabled = true;
+                    }
+                }
+            }
+        }
+    }
+
+    let buttons = document.getElementsByName("rimuovi");
+    if (buttons) {
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", function (event) {
+                event.preventDefault();
+                let buttonId = this.id;
+                let parsedId = parseId(buttonId);
+                let prod = parsedId[0];
+                let categ = parsedId[1];
+                let form = this.parentNode.parentNode.parentNode.parentNode;
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let response = JSON.parse(this.responseText);
+                        if (response.success) {
+                            form.remove();
+                            showMessage(response.message, "green");
+                        } else {
+                            showMessage(response.message, "red");
+                        }
+                    }
+                };
+                let url = "PHP/addWish.php?remove=1&product_id=" + prod + "&categ_id=" + categ;
+                xhr.open("GET", url, true);
+                xhr.send();
+            });
+        }
+    }
+
+    function showMessage(message, color) {
+        let msg = document.getElementById("msgWish");
+        let checknascosti = document.getElementsByName("form-prodotto");
+        if (msg && checknascosti) {
+            msg.role = "";
+            msg.style.display = "flex";
+            if (checknascosti.length > 0) {
+                msg.innerHTML = message;
+                msg.style.color = color;
+            }
+            else {
+                msg.id = "wish-error";
+                msg.style.color = "#cc0000";
+                msg.innerHTML = " Lista dei desideri vuota!";
+            }
+            msg.role = "alert";
+        }
+    }
+
+    function parseId(id) {
+        let parts = id.split("-");
+        let firstPart = parts[0];
+        let secondPart = parts[1];
+        return [firstPart, secondPart];
+    }
 
 
 });

@@ -14,10 +14,10 @@ class DBAccess
             return new mysqli(DBAccess::HOST_DB, DBAccess::USERNAME, DBAccess::PASSWORD, DBAccess::DATABASE_NAME);
         } catch (Exception $e) {
             http_response_code(500);
-            if(isset($_SESSION["ruolo"])) {
-                if($_SESSION["ruolo"] == "user") {
+            if (isset($_SESSION["ruolo"])) {
+                if ($_SESSION["ruolo"] == "user") {
                     echo file_get_contents(dirname(__FILE__) . "/../HTML/500Utente.html");
-                } elseif($_SESSION["ruolo"] == "admin") {
+                } elseif ($_SESSION["ruolo"] == "admin") {
                     echo file_get_contents(dirname(__FILE__) . "/../HTML/500Amministratore.html");
                 }
             } else {
@@ -30,8 +30,10 @@ class DBAccess
     public static function dbQuery($query, ...$parametri)
     {
         $connection = self::startConnection();
-        if ($connection === false) {return false;}
-        
+        if ($connection === false) {
+            return false;
+        }
+
         $stmt = $connection->prepare($query);
         // controllo parametri
         foreach ($parametri as $parametro) {
@@ -44,13 +46,14 @@ class DBAccess
         $stmt->execute();
         $queryResult = $stmt->get_result();
         $select = false;
-        
+
         if (strpos($query, "SELECT") === 0) { // verifica se è una select
             $select = true;
         }
 
         if ($stmt->errno != 0) {
-            $connection->close(); return false; // messaggio di errore
+            $connection->close();
+            return false; // messaggio di errore
         }
 
         if ($select) {

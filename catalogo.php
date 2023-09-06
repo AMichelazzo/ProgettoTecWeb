@@ -42,7 +42,7 @@ if ($user && $ruolo == "admin") {
         if (isset($_POST["alt_img"])) {
             $alt = $_POST["alt_img"];
             if (!empty($alt)) {
-                for ($i = 0; $i < count($alt); $i++) 
+                for ($i = 0; $i < count($alt); $i++)
                     Access::update_altImg($alt[$i], $_POST["path_img"][$i]);
             }
         }
