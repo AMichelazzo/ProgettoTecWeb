@@ -1039,20 +1039,20 @@ p.link-reg a {
 
 /*HOME CARROUSEL*/
 .slideshow-container-home {
-  width: 95%;
-  height: 95%;
+  width: 75%;
+  height: 75%;
   margin: 2em auto;
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 75%;
+  max-height: 75%;
   text-align: center;
   position: relative;
 }
 
 .slideshow-container-home img {
-  max-width: 95%;
-  max-height: 95%;
-  width: 95%;
-  height: 95%;
+  max-width: 75%;
+  max-height: 75%;
+  width: 75%;
+  height: 75%;
 }
 
 .mySlides-home {
