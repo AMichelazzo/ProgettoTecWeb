@@ -16,7 +16,7 @@
   
   html, body {
   font-size: 100%;
-  font-family: "Verdana", sans-serif;
+  font-family: "Times New Roman", serif;
   line-height: 1.5em;
   background-color: var(--bgcolor);
   color: var(--txtcolor);
