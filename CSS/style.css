@@ -1348,6 +1348,9 @@ input[type="text"] {
   margin-top: 0.4em;
   margin-bottom: 0.4em;
 }
+.form_catalogo div p{
+  font-size: 1.9em;
+}
 
 .form_catalogo #elimina_prod,
 #elimina_img {
@@ -1479,7 +1482,6 @@ input[type="text"] {
     padding: auto;
     line-height: 3em;
   }
-
   form .lab {
     margin: auto;
     padding: auto;
@@ -2573,6 +2575,9 @@ p.inline, p label{
   input[type="text"] {
     margin-top: 0.4em;
     margin-bottom: 0.4em;
+  }
+  .form_catalogo div p{
+    font-size: 100%;
   }
 
   .form_catalogo #elimina_prod,
