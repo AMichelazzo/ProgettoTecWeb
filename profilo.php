@@ -29,22 +29,22 @@ if (
                     $_SESSION["changeExec"] = true;
                 } else {
                     $_SESSION["error_generic"] = '<div id="msgchange" class="change-error" role="alert">Errore nella modifica della password.</div>';
-                    $_SESSION["error_generic2"] = '<img id="errore_generico" src="img/Xrossa.png" alt="Errore nella modifica della password." height="15px" width="15px"/>';
+                    $_SESSION["error_generic2"] = '<img id="errore_generico" src="img/Xrossa.png" alt="Errore nella modifica della password." />';
                 }
                 header("Location: profilo.php");
             } else {
                 $_SESSION["error_new_pass"] = '<div id="msgchange" class="change-error" role="alert">Le due nuove <span lang=en">password</span> non sono uguali.</div>';
-                $_SESSION["error_new_pass2"] = '<img id="passNOT_combaciano" src="img/Xrossa.png" alt="Le nuove password non sono uguali." height="15px" width="15px"/>';
+                $_SESSION["error_new_pass2"] = '<img id="passNOT_combaciano" src="img/Xrossa.png" alt="Le nuove password non sono uguali." />';
                 header("Location: profilo.php");
             }
         } else {
             $_SESSION["error_new_old"] = '<div id="msgchange" class="change-error" role="alert">La nuova <span lang=en">password</span> non può combaciare con quella nuova.</div>';
-            $_SESSION["error_new_old2"] = '<img id="passNOT_disponibile" src="img/Xrossa.png" alt="La nuova password non può combaciare con quella nuova." height="15px" width="15px"/>';
+            $_SESSION["error_new_old2"] = '<img id="passNOT_disponibile" src="img/Xrossa.png" alt="La nuova password non può combaciare con quella nuova." />';
             header("Location: profilo.php");
         }
     } else {
         $_SESSION["error_old_pass"] = '<div id="msgchange" class="change-error" role="alert">Vecchia <span lang=en">password</span> errata.</div>';
-        $_SESSION["error_old_pass2"] = '<img id="old_passwordNOT_giusta" src="img/Xrossa.png" alt="Vecchia password errata." height="15px" width="15px"/>';
+        $_SESSION["error_old_pass2"] = '<img id="old_passwordNOT_giusta" src="img/Xrossa.png" alt="Vecchia password errata." />';
         header("Location: profilo.php");
     }
 } else {
