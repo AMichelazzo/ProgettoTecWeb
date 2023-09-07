@@ -13,7 +13,7 @@ function confermaEliminazione() {
     }
 }
 function confermaEliminazioneImg() {
-    console.log("test");
+    
     let s = document.getElementById("submit_elimina_img");
     let si = document.getElementById("si_elimina_img");
     let no = document.getElementById("no_elimina_img");

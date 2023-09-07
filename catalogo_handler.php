@@ -102,12 +102,12 @@ class Catalogo
             $result .= '<div>Non sono presenti immagini per questo prodotto.</div>';
         else
             for ($i = 0; $i < count($product); $i++) {
-                $result .= '<div class="clickImg"><label class="lab" for="form-' . $product[$i]["path"] . '">Seleziona "' . substr($product[$i]["path"], 13) . '": </label>
+                $result .= '<div class="clickImg"><label class="lab" for="form-' . $product[$i]["path"] . '">Seleziona: <span class="sr-only">"' . substr($product[$i]["path"], 13) . '"</span></label>
                     <input type="checkbox" id="form-' . $product[$i]["path"] . '" name="check_img[]" value="' . $product[$i]["path"] . '"/>
                     <img  src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/>
                     <button class="open-button" aria-label="Ingrandisci" id="' . $product[$i]["path"] . '"><img src="img/lente.png" alt="Ingrandisci immagine." /></button></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
-                    <div><label class="lab" for="alt-' . $product[$i]["path"] . '">Alt immagine per "' . substr($product[$i]["path"], 13) . '": </label></div>
+                    <div><label class="lab" for="alt-' . $product[$i]["path"] . '">Alt immagine: <span class="sr-only">"' . substr($product[$i]["path"], 13) . '"</span></label></div>
                     <div><textarea class="limited-textarea inp" id="alt-' . $product[$i]["path"] . '" name="alt_img[]" rows="4" cols="30"
                         placeholder="Inserisci alt per immagine">' . Access::lang($product[$i]["alt_img"]) . '</textarea>
                     <div class="charCountDiv" id="char-count-alt-' . $product[$i]["path"] . '">Caratteri rimanenti: 75</div>
@@ -241,7 +241,7 @@ class Catalogo
                 </div>
                 <div><input type="hidden" class="invio" id="si_elimina" name="si_elimina_cat" value="Si" />
                     <input type="hidden" class="invio" id="no_elimina" name="no_elimina_cat" value="No" />
-                </div>';
+                </div></form></div>';
 
 
         return $result;

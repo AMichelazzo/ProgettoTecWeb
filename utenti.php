@@ -9,13 +9,21 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
     $utenti = "";
     $stringaUtenti = "";
+    $first = 1;
 
     $utenti = Access::getUtenti();
     if ($utenti !== false) {
         if (!empty($utenti)) {
             foreach ($utenti as $utente) {
                 $stringaUtenti .=
-                    '<div class="utenti" role="group">
+                    '<div class="utenti" role="group"';
+                    
+                    if ($first) {
+                        $stringaUtenti .= 'id="iniziocontenuto"'; 
+                        $first = 0;
+                    }
+                $stringaUtenti .=
+                      '>
                     <div class="flexutente">
                         <div><span lang="en"><span class="nome">Username</span></span>: ' . $utente['username'] . ' </div>
                         <div><span lang="en"><span class="email">Email</span></span>: ' . $utente['email'] . ' </div>';

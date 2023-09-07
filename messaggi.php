@@ -57,9 +57,9 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
             $ElencoMsg .= '<fieldset class="msggg ';
             if ($result[$i]["letto"] == 1)
-                $ElencoMsg .= "msg_letto><legend class=\"hide\">Messaggio letto</legend>";
+                $ElencoMsg .= 'msg_letto><legend class="hide">Messaggio letto</legend>';
             else
-                $ElencoMsg .= "msg_non_letto><legend class=\"hide\">Messaggio non letto</legend>";
+                $ElencoMsg .= 'msg_non_letto><legend class="hide">Messaggio non letto</legend>';
 
             $ElencoMsg .= '"<p class="inline"><label for="form-' . $result[$i]["id_messaggio"] . '" >Selezione:</label><input type="checkbox" id="form-' . $result[$i]["id_messaggio"] . '" name="form_msg[]" value="'
                 . $result[$i]["id_messaggio"] . '"/></p>'
