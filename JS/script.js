@@ -27,25 +27,33 @@ function confermaEliminazioneImg() {
         msg_conf.removeAttribute("hidden");
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
-    function limitTextareaByClassName(className, maxChars) {
-        var textareas = document.querySelectorAll("." + className);
-        if (textareas) {
-            textareas.forEach(function (textarea) {
-                var id = textarea.id;
-                var charCountId = "char-count-" + id;
-                var charCountDiv = document.getElementById(charCountId);
-                textarea.addEventListener("input", function () {
-                    if (this.value.length > maxChars) {
-                        this.value = this.value.substring(0, maxChars);
-                    }
-                    var remainingChars = maxChars - this.value.length;
-                    charCountDiv.textContent = "Caratteri rimanenti: " + remainingChars;
-                });
-            });
-        }
+function limitTextareaByClassName(className, maxChars) {
+    var textareas = document.querySelectorAll("." + className);
+    if (textareas) {
+        textareas.forEach(function (textarea) {
+            var id = textarea.id;
+            var charCountId = "char-count-" + id;
+            var charCountDiv = document.getElementById(charCountId);
+
+            function updateCharCount() {
+                if (textarea.value.length > maxChars) {
+                    textarea.value = textarea.value.substring(0, maxChars);
+                }
+                var remainingChars = maxChars - textarea.value.length;
+                charCountDiv.textContent = "Caratteri rimanenti: " + remainingChars;
+            }
+
+            updateCharCount();
+
+            textarea.addEventListener("input", updateCharCount);
+        });
     }
-    limitTextareaByClassName("limited-textarea", 75);
+}
+document.addEventListener("DOMContentLoaded", function () {
+    limitTextareaByClassName("limited-textarea", 75); 
+    
+    
+    
 
 
     let hambutton = document.getElementById("hambutton");

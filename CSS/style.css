@@ -287,9 +287,9 @@ a:visited {
 /* INIZIO PAGINA */
 
 #iniziopagina {
-  text-align: center;
+  text-align: center; 
+  margin-bottom: 1em; 
 }
-
 /* FOOTER */
 
 #footer {
@@ -1468,6 +1468,7 @@ input[type="text"] {
     font-weight: bold;
   }
 
+
   p.link-reg a {
     color: var(--visitedcolor);
     font-weight: bold;
@@ -1475,8 +1476,10 @@ input[type="text"] {
     line-height: 3em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
-    padding: 0.5em;
+    padding: 0.2em;
     margin: 2%;
+    position: relative;
+    top: 18px;
   }
 
   /*FINE LOGIN*/
@@ -1507,18 +1510,7 @@ input[type="text"] {
     font-weight: bold;
   }
 
-  p.link-reg a { /*uguale al 1471 eccetto ultime 2 righe*/
-    color: var(--visitedcolor);
-    font-weight: bold;
-    font-size: 100%;
-    line-height: 3em;
-    border: 0.2em solid var(--bgfuncolor);
-    border-radius: 0.5em;
-    padding: 0.2em;
-    margin: 2%;
-    position: relative;
-    top: 18px;
-  }
+
 
   /*END REGISTRATI*/
 
@@ -1613,7 +1605,6 @@ input[type="text"] {
     margin-top: 10%;
     margin-bottom: 10%;
   }
-
   #content {
     position: relative;
   }
@@ -2192,28 +2183,9 @@ input[type="text"] {
     cursor: pointer;
   }
 
-  .fade { /*uguale 1595*/
-    animation-name: fade;
-    animation-duration: 2s;
-  }
-
-  @keyframes fade {
-    from {
-      opacity: .5
-    }
-
-    to {
-      opacity: 1
-    }
-  }
-
   /* Style for slideshow images */
   .mySlides-home {
     display: none;
-  }
-
-  .descr_prodotto { /*uguale al 1610*/
-    margin-top: 10%;
   }
 
   /* Style for the dot container */
@@ -2529,7 +2501,7 @@ p.inline, p label{
   white-space: nowrap;
   border: 0;
 }
-#iniziopagina { margin-bottom: 1em; } /*uguale a 289, forse vanno semplicemente uniti?*/
+
 
 .hide {
   visibility: hidden; 
