@@ -16,7 +16,7 @@ html,
 body {
   font-size: 100%;
   font-family: "Verdana", sans-serif;
-  line-height: 1.5em;
+  line-height: 3em;
   background-color: var(--bgcolor);
   color: var(--txtcolor);
   margin: auto;
@@ -56,7 +56,7 @@ h2 {
   background-position: center;
   background-size: contain;
   text-indent: -9999px;
-  line-height: 1.5em;
+  line-height: 3em;
   font-size: 6em;
 }
 
@@ -240,7 +240,7 @@ a:visited {
   }
 
   .menubaron ul {
-    line-height: 1.5em;
+    line-height: 3em;
   }
 
   #menu {
@@ -248,7 +248,7 @@ a:visited {
   }
 
   #menu ul {
-    line-height: 1.5em;
+    line-height: 3em;
   }
 }
 
@@ -333,7 +333,7 @@ a:visited {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 1em;
   margin: 2%;
   border: 3px solid #505050;
@@ -357,12 +357,12 @@ a:visited {
 
 .titolo-contatti {
   font-size: 4em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
 #messaggio {
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 2em;
   margin: 0.5em;
   height: auto;
@@ -375,14 +375,14 @@ a:visited {
   width: auto;
   height: auto;
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
 }
 
 .sopra {
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
@@ -403,7 +403,7 @@ a:visited {
 
 #product-name {
   font-size: 7em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
@@ -422,14 +422,14 @@ a:visited {
 .prev-home,
 .next-home {
   font-size: 10em;
-  line-height: 1.5;
+  line-height: 3em;
   padding-right: 20%;
   padding-left: 20%;
 }
 
 .descr_prodotto {
   font-size: 3.5em;
-  line-height: 1.5;
+  line-height: 3em;
   margin-top: 10%;
   margin-bottom: 10%;
 }
@@ -443,7 +443,7 @@ a:visited {
   height: 20%;
   margin: auto;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   border: 1px solid var(--bgfuncolor);
   border-radius: 0.5em;
   background-color: var(--bgfuncolor);
@@ -458,7 +458,7 @@ a:visited {
 
 #description>form {
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 5%;
 }
 
@@ -467,7 +467,7 @@ a:visited {
   height: 100%;
   margin: 0.5em;
   font-size: 2.5em;
-  line-height: 1.5;
+  line-height: 3em;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -491,7 +491,7 @@ a:visited {
   background-color: #c2e0c6;
   border: 1px solid #276749;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 5%;
   padding: 0;
   position: inherit;
@@ -518,7 +518,7 @@ a:visited {
   color: var(--visitedcolor);
   border-radius: 0.5em;
   font-weight: bold;
-  font-size: 2.5em;
+  font-size: 2.3em;
   border: 0.5em solid var(--bgfuncolor);
   padding: 1%;
   margin: 3%;
@@ -531,7 +531,7 @@ a:visited {
   height: auto;
   width: auto;
   margin: 5%;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .desc-categ {
@@ -548,7 +548,7 @@ a:visited {
 /*WISHLIST*/
 .wish-title {
   font-size: 3.5em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
@@ -619,26 +619,33 @@ a:visited {
 }
 
 .contentProdotto .nome,
-.contentProdotto .descrizione,
 .contentProdotto .categoria {
   width: auto;
   height: 100%;
   margin: auto;
   font-size: 1.5em;
-  margin-left: 2%;
-  margin-right: auto;
   padding: 1%;
   font-weight: bold;
-  margin-bottom: 1%;
   text-align: left;
-  line-height: 1.5;
+  line-height: 3em;
+}
+
+.contentProdotto .descrizione{
+  width: auto;
+  height: 100%;
+  margin: auto;
+  font-size: 1.2em;
+  padding: 1%;
+  font-weight: bold;
+  text-align: left;
+  line-height: 3em;
 }
 
 .contentProdotto a.wish-link {
   color: var(--visitedcolor);
   font-weight: bold;
   font-size: 1em;
-  line-height: 1.5;
+  line-height: 3em;
   border: 0.2em solid var(--bgfuncolor);
   border-radius: 0.5em;
   padding: 0;
@@ -659,7 +666,7 @@ a:visited {
   width: auto;
   height: auto;
   font-size: 1.3em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
 }
@@ -670,7 +677,7 @@ a:visited {
   width: auto;
   height: auto;
   font-size: 1.3em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
 }
@@ -708,7 +715,7 @@ a:visited {
   width: auto;
   border-radius: 0.5em;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 5%;
   padding: 0;
   position: inherit;
@@ -725,7 +732,7 @@ a:visited {
 
 .profilo-h2 {
   font-size: 4em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
@@ -738,7 +745,7 @@ a:visited {
   color: #cc0000;
   border: 1px solid #cc0000;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 5%;
   padding: 0;
   position: inherit;
@@ -756,7 +763,7 @@ a:visited {
   color: #276749;
   border: 1px solid #276749;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 5%;
   padding: 1%;
   position: inherit;
@@ -769,7 +776,7 @@ a:visited {
 .Old-pass {
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .Old-pass label {
@@ -782,7 +789,7 @@ a:visited {
   width: auto;
   height: auto;
   font-size: 2.2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
 }
@@ -790,7 +797,7 @@ a:visited {
 .New-pass {
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .New-pass label {
@@ -803,7 +810,7 @@ a:visited {
   width: auto;
   height: auto;
   font-size: 2.2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
 }
@@ -811,7 +818,7 @@ a:visited {
 .New-repeat {
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .New-repeat label {
@@ -824,7 +831,7 @@ a:visited {
   width: auto;
   height: auto;
   font-size: 2.2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
 }
@@ -843,7 +850,7 @@ a:visited {
   box-shadow: 1em var(--shadowcolor);
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 2em;
 }
 
@@ -881,7 +888,7 @@ a:visited {
 
 .invio {
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   color: white;
   background-color: var(--bgfuncolor);
   border-color: var(--bgfuncolor);
@@ -905,7 +912,7 @@ a:visited {
 
 .elimina_utente_big,
 .elimina_utente_big-img {
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 1em;
   background-color: #ffcccc;
   color: #cc0000;
@@ -927,7 +934,7 @@ a:visited {
   color: red;
   font-weight: bold;
   font-size: 2.5em;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 /*FINE PROFILO*/
@@ -935,7 +942,7 @@ a:visited {
   color: var(--visitedcolor);
   font-weight: bold;
   font-size: 1em;
-  line-height: 1.5;
+  line-height: 3em;
   border: 0.2em solid var(--bgfuncolor);
   border-radius: 0.5em;
   padding: 1%;
@@ -947,7 +954,7 @@ a:visited {
 /*LOGIN*/
 .login-h2 {
   font-size: 4em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
@@ -955,7 +962,7 @@ a:visited {
   color: var(--visitedcolor);
   font-weight: bold;
   font-size: 1em;
-  line-height: 1.5;
+  line-height: 3em;
   border: 0.2em solid var(--bgfuncolor);
   border-radius: 0.5em;
   padding: 0;
@@ -967,18 +974,18 @@ form .inp {
   width: auto;
   height: auto;
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 form .lab {
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 2em;
   font-weight: bold;
 }
@@ -987,7 +994,7 @@ p.link-reg a {
   color: var(--visitedcolor);
   font-weight: bold;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   border: 0.2em solid var(--bgfuncolor);
   border-radius: 0.5em;
   padding: 0.2em;
@@ -1001,7 +1008,7 @@ p.link-reg a {
 /*REGISTRATI*/
 .regi-title {
   font-size: 4em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
 
@@ -1010,18 +1017,18 @@ p.link-reg a {
   width: auto;
   height: auto;
   font-size: 2.2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .reglab {
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 3em;
   font-weight: bold;
 }
@@ -1030,7 +1037,7 @@ p.link-reg a {
   color: var(--visitedcolor);
   font-weight: bold;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   border: 0.2em solid var(--bgfuncolor);
   border-radius: 0.5em;
   padding: 0.2em;
@@ -1099,7 +1106,7 @@ p.link-reg a {
   color: #cc0000;
   border: 1px solid #cc0000;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 5%;
   padding: 0;
   position: inherit;
@@ -1115,7 +1122,7 @@ p.link-reg a {
   border-radius: 0.5em;
   color: #276749;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 5%;
   padding: 0;
   position: inherit;
@@ -1144,13 +1151,13 @@ p.inline .data,
 p.inline .product,
 p.inline .messaggio,
 p.inline .letto {
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 1em;
 }
 
 p.inline,
 p label {
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 2em;
 }
 
@@ -1166,10 +1173,28 @@ p label {
 
 .titolo_catalogo {
   font-size: 4em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: 0.5em;
 }
+.clickImg2 .open-button {
+  position: relative;
+  border: none;
+  background: transparent;
+  margin: 1%;
+  right: -80%;
+}
 
+.clickImg2 .open-button img {
+  max-width: 60px;
+  max-height: 60px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  background-color: white;
+  border: 5px solid #505050;
+  border-radius: 20%;
+  padding: 1em;
+}
 .flexcatalogo {
   display: flex;
   flex-direction: column;
@@ -1202,12 +1227,12 @@ p label {
   width: auto;
   height: auto;
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 3em;
   padding: 1%;
   border: 5px solid #505050;
   margin: auto;
   padding: auto;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .prodotto {
@@ -1223,7 +1248,7 @@ p label {
   max-width: 90%;
   height: auto;
   font-size: 2.3em;
-  line-height: 1.5;
+  line-height: 3em;
 }
 
 .flexcatalogo form .prodotto input[type="submit"] {
@@ -1241,7 +1266,7 @@ p label {
 .form_catalogo input[type="file"] {
   margin: auto;
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 3em;
   text-align: center;
   padding: 0;
 }
@@ -1265,7 +1290,7 @@ p label {
 .form_catalogo textarea>div,
 .charCountDiv {
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 3em;
   margin: auto;
 }
 
@@ -1289,7 +1314,7 @@ p label {
 .titolo_img_form {
   margin: 0.5em;
   font-size: 2.5em;
-  line-height: 1.5;
+  line-height: 3em;
   text-align: center;
 }
 
@@ -1301,15 +1326,15 @@ form .form_catalogo  {
   margin: 2%;
   box-shadow: 1em var(--shadowcolor);
   text-align: justify;
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 1em;
 }
 
 .testo_regole {
   margin: auto;
   padding: auto;
-  line-height: 1.5;
-  font-size: 2em;
+  line-height: 3em;
+  font-size: 1.8em;
 }
 
 #catalogo {
@@ -1332,7 +1357,7 @@ input[type="text"] {
 /*CATALOGO END*/
 #elimina_utente_big-profilo,
 #elimina_utente_big-img-profilo {
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 1em;
   background-color: #ffcccc;
   color: #cc0000;
@@ -1357,7 +1382,7 @@ input[type="text"] {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     margin: 2%;
     border: 1px solid #505050;
@@ -1381,12 +1406,12 @@ input[type="text"] {
 
   .titolo-contatti {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
   }
 
   #messaggio {
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     margin: 0.5em;
     height: auto;
@@ -1399,14 +1424,14 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
   }
 
   .sopra {
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
   }
 
@@ -1415,7 +1440,7 @@ input[type="text"] {
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 1%;
@@ -1427,7 +1452,7 @@ input[type="text"] {
   /*LOGIN*/
   .login-h2 {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
   }
 
@@ -1435,7 +1460,7 @@ input[type="text"] {
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 0;
@@ -1447,18 +1472,18 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   form .lab {
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     font-weight: bold;
   }
@@ -1467,7 +1492,7 @@ input[type="text"] {
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 0.5em;
@@ -1479,7 +1504,7 @@ input[type="text"] {
   /*REGISTRATI*/
   .regi-title {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
   }
 
@@ -1488,18 +1513,18 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .reglab {
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     font-weight: bold;
   }
@@ -1508,7 +1533,7 @@ input[type="text"] {
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 0.2em;
@@ -1547,7 +1572,7 @@ input[type="text"] {
 
   #product-name {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
   }
 
@@ -1606,7 +1631,7 @@ input[type="text"] {
 
   .descr_prodotto {
     font-size: 170%;
-    line-height: 1.5;
+    line-height: 3em;
     margin-top: 10%;
     margin-bottom: 10%;
   }
@@ -1652,7 +1677,7 @@ input[type="text"] {
     background-color: #c2e0c6;
     border: 1px solid #276749;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 7%;
     padding: 1%;
     position: inherit;
@@ -1660,7 +1685,7 @@ input[type="text"] {
 
   #description>form {
     font-size: 1.5;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 5%;
   }
 
@@ -1687,7 +1712,7 @@ input[type="text"] {
 
   .wish-title {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
 }
 .container {
@@ -1776,14 +1801,14 @@ input[type="text"] {
     font-weight: bold;
     margin-bottom: 1%;
     text-align: left;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .wish-link a {
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     border: 0.5em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 0;
@@ -1804,7 +1829,7 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -1816,7 +1841,7 @@ input[type="text"] {
     height: auto;
     font-size: 120%;
     cursor: pointer;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
     margin-right: 30%;
@@ -1877,7 +1902,7 @@ input[type="text"] {
     width: auto;
     border-radius: 0.5em;
     font-size: 120%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 5%;
     padding: 0;
     position: inherit;
@@ -1891,7 +1916,7 @@ input[type="text"] {
 
   .profilo-h2 {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
   }
 
@@ -1904,7 +1929,7 @@ input[type="text"] {
     color: #cc0000;
     border: 1px solid #cc0000;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 5%;
     padding: 0;
     position: inherit;
@@ -1922,7 +1947,7 @@ input[type="text"] {
     color: #276749;
     border: 1px solid #276749;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 5%;
     padding: 1%;
     position: inherit;
@@ -1934,7 +1959,7 @@ input[type="text"] {
   .Old-pass {
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .Old-pass label {
@@ -1947,7 +1972,7 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 80%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -1955,7 +1980,7 @@ input[type="text"] {
   .New-pass {
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .New-pass label {
@@ -1968,7 +1993,7 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 80%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -1976,7 +2001,7 @@ input[type="text"] {
   .New-repeat {
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .New-repeat label {
@@ -1989,7 +2014,7 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 80%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -2007,7 +2032,7 @@ input[type="text"] {
     margin-bottom: 1em;
     box-shadow: 1em var(--shadowcolor);
     margin-left: auto;
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     margin-right: auto;
   }
@@ -2046,7 +2071,7 @@ input[type="text"] {
 
   .invio {
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     color: white;
     background-color: var(--bgfuncolor);
     border-color: var(--bgfuncolor);
@@ -2078,7 +2103,7 @@ input[type="text"] {
 
   .elimina_utente_big,
   .elimina_utente_big-img {
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     background-color: #ffcccc;
     color: #cc0000;
@@ -2092,7 +2117,7 @@ input[type="text"] {
 
   #elimina_utente_big-profilo,
   #elimina_utente_big-img-profilo {
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
     background-color: #ffcccc;
     color: #cc0000;
@@ -2115,7 +2140,7 @@ input[type="text"] {
     color: red;
     font-weight: bold;
     font-size: 120%;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   /*END PROFILO (ci sono anche un paio di classi che si usano in altre pagine e dovrebbero andare lo stesso)*/
@@ -2147,7 +2172,7 @@ input[type="text"] {
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     border: 0.5em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 0;
@@ -2162,7 +2187,7 @@ input[type="text"] {
     width: auto;
     margin: 5%;
 
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .desc-categ {
@@ -2279,7 +2304,7 @@ input[type="text"] {
     color: #cc0000;
     border: 1px solid #cc0000;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 5%;
     padding: 0;
     position: inherit;
@@ -2297,7 +2322,7 @@ input[type="text"] {
     color: #276749;
     border: 1px solid #276749;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 5%;
     padding: 1%;
     position: inherit;
@@ -2324,13 +2349,13 @@ input[type="text"] {
   p.inline .product,
   p.inline .messaggio,
   p.inline .letto {
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
   }
 
   p.inline,
   p label {
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
   }
 
@@ -2347,11 +2372,11 @@ input[type="text"] {
 }
 p.inline .email, p.inline .data, p.inline .product, p.inline .messaggio, 
 p.inline .letto {
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 100%;
 } 
 p.inline, p label{
-  line-height: 1.5;
+  line-height: 3em;
   font-size: 100%;
 }
 .msggg input[type="checkbox"] {
@@ -2364,8 +2389,26 @@ p.inline, p label{
 
   .titolo_catalogo {
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: 0.5em;
+  }
+  .clickImg2 .open-button {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    margin: 1%;
+    right: -65%;
+  }
+
+  .clickImg2 .open-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: white;
+    border: 1px solid #505050;
+    border-radius: 20%;
+    padding: 2px;
   }
 
   .form_catalogo {
@@ -2407,12 +2450,12 @@ p.inline, p label{
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     padding: 1%;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .prodotto {
@@ -2428,7 +2471,7 @@ p.inline, p label{
     max-width: 90%;
     height: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
   }
 
   .flexcatalogo form .prodotto input[type="submit"] {
@@ -2445,7 +2488,7 @@ p.inline, p label{
   .form_catalogo input[type="file"] {
     margin: auto;
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     text-align: center;
     padding: 0;
   }
@@ -2469,7 +2512,7 @@ p.inline, p label{
   .form_catalogo textarea>div,
   .charCountDiv {
     font-size: 100%;
-    line-height: 1.5;
+    line-height: 3em;
     margin: auto;
   }
 
@@ -2497,7 +2540,7 @@ p.inline, p label{
   .titolo_img_form {
     margin: 0.5em;
     font-size: 200%;
-    line-height: 1.5;
+    line-height: 3em;
     text-align: center;
   }
 
@@ -2509,14 +2552,14 @@ p.inline, p label{
     margin: 2%;
     box-shadow: 1em var(--shadowcolor);
     text-align: justify;
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
   }
 
   .testo_regole {
     margin: auto;
     padding: auto;
-    line-height: 1.5;
+    line-height: 3em;
     font-size: 100%;
   }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 04, 2023 alle 11:23
+-- Creato il: Set 07, 2023 alle 11:43
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `messaggi` (
   `letto` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_messaggio`,`email`),
   KEY `id_prodotto` (`id_prodotto`,`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `messaggi`
@@ -118,7 +118,8 @@ CREATE TABLE IF NOT EXISTS `messaggi` (
 INSERT INTO `messaggi` (`id_messaggio`, `msg`, `data`, `id_prodotto`, `id_categoria`, `email`, `letto`) VALUES
 (7, 'Buongiorno, vorrei avere informazioni riguardo a questo prodotto. Il vaso c\'è solamente a forma di sfera?', '2023-09-04', 13, 5, 'user@user.com', 1),
 (8, 'Buongiorno, per il cavallo c\'è percaso anche di dimensioni reali?', '2023-09-04', 7, 2, 'user@user.com', 0),
-(9, 'Quanto costa il Gallo?', '2023-09-04', NULL, NULL, 'mario.rossi@gmail.com', 0);
+(9, 'Quanto costa il Gallo?', '2023-09-04', NULL, NULL, 'mario.rossi@gmail.com', 0),
+(10, 'Quanto costano i bicchieri???', '2023-09-07', NULL, NULL, 'Tizio@tizio.com', 0);
 
 -- --------------------------------------------------------
 
@@ -213,6 +214,8 @@ CREATE TABLE IF NOT EXISTS `utente` (
 
 INSERT INTO `utente` (`username`, `password`, `email`, `ruolo`) VALUES
 ('admin', '$2y$10$f53.u6E5rAtZC44t.8SHs.GFYFUrZrZFeEcL7m5Zxftrs3tHEO4xG', 'admin@admin.com', 'admin'),
+('Mario1', '$2y$10$8hKK4n1NsGGYzFjGUcbEHOeriOfEAIqzbCnVSDAkxj2eFlkgM0qwW', 'mario.rossi@gmail.com', 'user'),
+('Tizio1', '$2y$10$Qg4EnkXiRkmHHNEwkT9j2OTymHJkIYWSFUNpeQi3ThmeSb8pkMjmG', 'Tizio@tizio.com', 'user'),
 ('user', '$2y$10$WsN.xGDn9xbYf00RYdoZUe2NGCFZQWfTs8pqh3h/EGY1N7w1GxNm.', 'user@user.com', 'user');
 
 -- --------------------------------------------------------
@@ -236,8 +239,11 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
 --
 
 INSERT INTO `wishlist` (`username`, `id_prodotto`, `id_categoria`, `data_salvataggio`) VALUES
-('user', 1, 1, '2023-09-04'),
-('user', 3, 2, '2023-09-04'),
+('Mario1', 3, 2, '2023-09-07'),
+('Mario1', 5, 3, '2023-09-07'),
+('Mario1', 12, 5, '2023-09-07'),
+('Tizio1', 5, 3, '2023-09-07'),
+('Tizio1', 9, 2, '2023-09-07'),
 ('user', 4, 1, '2023-09-04'),
 ('user', 9, 2, '2023-09-04'),
 ('user', 12, 5, '2023-09-04');
