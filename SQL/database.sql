@@ -81,7 +81,7 @@ INSERT INTO `immagini` (`id_prodotto`, `id_categoria`, `path`, `alt_img`) VALUES
 (1, 1, 'img/products/lampadario2.jpg', 'Lampadario in vetro con 12 braccia, pendenti a forma di cristallo, acceso.'),
 (1, 1, 'img/products/lampadario3.jpg', 'Lampadario in vetro, 12 braccia, pendenti a forma di cristallo, acceso.'),
 (4, 1, 'img/products/lampadarioblue.png', 'Lampadario di vetro blue con braccia di metallo.'),
-(2, 1, 'img/products/lampadariominimal.png', 'Lampadario minimal di vetro.'),
+(2, 1, 'img/products/lampadariominimal.png', 'Lampadario minimale di vetro.'),
 (10, 1, 'img/products/lampadariorosso.jpg', 'Lampadario di vetro rosso, composto da più di 100 pezzi.'),
 (11, 2, 'img/products/muflone.png', 'Testa di muflone dalle lunghe corna.'),
 (11, 2, 'img/products/muflone2.jpeg', 'Testa di muflone dalle lunghe corna.'),
