@@ -974,8 +974,6 @@ form .inp {
   width: auto;
   height: auto;
   font-size: 2em;
-  line-height: 3em;
-  padding: 1%;
   border: 5px solid #505050;
   margin: auto;
   padding: auto;
@@ -988,19 +986,6 @@ form .lab {
   line-height: 3em;
   font-size: 2em;
   font-weight: bold;
-}
-
-p.link-reg a {
-  color: var(--visitedcolor);
-  font-weight: bold;
-  font-size: 3em;
-  line-height: 3em;
-  border: 0.2em solid var(--bgfuncolor);
-  border-radius: 0.5em;
-  padding: 0.2em;
-  margin: 2%;
-  position: relative;
-  top: 18px;
 }
 
 /*FINE LOGIN*/
@@ -1017,8 +1002,6 @@ p.link-reg a {
   width: auto;
   height: auto;
   font-size: 2.2em;
-  line-height: 3em;
-  padding: 1%;
   border: 5px solid #505050;
   margin: auto;
   padding: auto;
@@ -1211,7 +1194,6 @@ p label {
   max-width: 90%;
   height: auto;
   align-items: center;
-  ;
 
 }
 
@@ -1227,8 +1209,6 @@ p label {
   width: auto;
   height: auto;
   font-size: 2em;
-  line-height: 3em;
-  padding: 1%;
   border: 5px solid #505050;
   margin: auto;
   padding: auto;
@@ -1475,8 +1455,6 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 3em;
-    padding: 1%;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
@@ -1515,8 +1493,6 @@ input[type="text"] {
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 3em;
-    padding: 1%;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
@@ -1531,7 +1507,7 @@ input[type="text"] {
     font-weight: bold;
   }
 
-  p.link-reg a {
+  p.link-reg a { /*uguale al 1471 eccetto ultime 2 righe*/
     color: var(--visitedcolor);
     font-weight: bold;
     font-size: 100%;
@@ -1661,11 +1637,7 @@ input[type="text"] {
     padding: 0;
   }
 
-  .button__text {
-    color: white;
-    text-align: center;
-    display: inline-block;
-  }
+
 
   /*END CAROUSEL*/
 
@@ -1717,12 +1689,7 @@ input[type="text"] {
     line-height: 3em;
     margin: 0.5em;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
-}
+
 
   .container {
     display: flex;
@@ -2045,7 +2012,7 @@ input[type="text"] {
   #lunghezza {
     color: red;
   }
-
+/*uguale al 864 cambio di piccoli valori*/
   #errore_generico,
   #passNOT_combaciano,
   #passNOT_disponibile,
@@ -2074,7 +2041,6 @@ input[type="text"] {
   .invio {
     font-size: 100%;
     line-height: 3em;
-    color: white;
     background-color: var(--bgfuncolor);
     border-color: var(--bgfuncolor);
     color: #fff;
@@ -2226,7 +2192,7 @@ input[type="text"] {
     cursor: pointer;
   }
 
-  .fade {
+  .fade { /*uguale 1595*/
     animation-name: fade;
     animation-duration: 2s;
   }
@@ -2246,7 +2212,7 @@ input[type="text"] {
     display: none;
   }
 
-  .descr_prodotto {
+  .descr_prodotto { /*uguale al 1610*/
     margin-top: 10%;
   }
 
@@ -2333,38 +2299,6 @@ input[type="text"] {
     align-items: center;
   }
 
-  span>.nome,
-  span>.email {
-    font-weight: bold;
-  }
-
-  .inline .data,
-  .inline .email,
-  .inline .product,
-  .inline .letto,
-  .inline .messaggio {
-    font-weight: bold;
-  }
-
-  p.inline .email,
-  p.inline .data,
-  p.inline .product,
-  p.inline .messaggio,
-  p.inline .letto {
-    line-height: 3em;
-    font-size: 100%;
-  }
-
-  p.inline,
-  p label {
-    line-height: 3em;
-    font-size: 100%;
-  }
-
-  .msggg input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-  }
 
   span>.nome,span>.email{
   font-weight: bold;
@@ -2436,7 +2370,6 @@ p.inline, p label{
     max-width: 90%;
     height: auto;
     align-items: center;
-    ;
 
   }
 
@@ -2452,8 +2385,6 @@ p.inline, p label{
     width: auto;
     height: auto;
     font-size: 100%;
-    line-height: 3em;
-    padding: 1%;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
@@ -2598,7 +2529,7 @@ p.inline, p label{
   white-space: nowrap;
   border: 0;
 }
-#iniziopagina { margin-bottom: 1em; }
+#iniziopagina { margin-bottom: 1em; } /*uguale a 289, forse vanno semplicemente uniti?*/
 
 .hide {
   visibility: hidden; 
