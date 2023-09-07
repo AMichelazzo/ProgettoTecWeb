@@ -1,0 +1,274 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+ \geometry{
+ a4paper,
+ left=25mm,
+ right=25mm,
+ top=20mm,
+ bottom=20mm,
+ }
+ 
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\title{Progetto TecWeb \\ Véro}
+
+\author{Alberto,Alessio,Matteo}
+\date{Settembre 2023}
+\begin{document}
+
+
+\begin{center}
+	\textbf{\Huge{Véro}}
+\end{center}
+
+\vspace{5pt}
+
+\begin{center}
+	\textbf{\Large{Gruppo}}
+    \begin{table}[H]
+        \hspace{3.5cm}
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{l | l}
+            \textbf{Componenti} & Michelazzo Alberto 2010007\\
+            & Vignaga Matteo 1204684\\
+            & Barraco Alessio *matricola*\\
+        \end{tabular}
+    \end{table}
+\end{center}
+
+
+\begin{center}
+	\textbf{\Large{Informazioni sul sito}}\\
+	\vspace{4pt}
+	\textbf{Login consegna:} abarraco \\
+	\textbf{Tunnel SSH:} sito web\\
+	\textbf{Email referente gruppo:} alessio.barraco@studenti.unipd.it\\
+    \vspace{1cm}
+    \textbf{Accessi interni al sito}
+    \begin{longtable}{|l|l|l|}
+        \hline
+        {Ruolo} & {Username} & {Password} \\ \hline
+        Utente         & user     & user     \\ \hline
+        Amministratore & admin    & admin \\ \hline
+    \end{longtable}
+\end{center}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+
+\section{Analisi}
+\subsection{Descrizione testuale}
+L’idea di realizzare il sito deriva dalla visita di uno dei componenti del gruppo all’Isola di Murano a Venezia, famosa per la lavorazione del vetro. \\
+Si è quindi deciso di creare un sito che svolga la funzione di vetrina per l’azienda fittizia Véro. Lo scopo è quello di mostrare i prodotti ai visitatori del sito e consentire ad eventuali clienti di mettersi in contatto per ulteriori informazioni. 
+
+
+\subsection{Analisi target d'utenza}\label{analisi_utenza}
+L’utenza del sito spazia in tutte le categorie anche se è presumibile che venga rappresentata soprattutto da maggiorenni, considerati i prodotti proposti. \\
+Gli articoli sono caratterizzati da un importante valore economico e da un gusto elegante e ricercato, quindi generalmente apprezzati da un pubblico adulto.
+\vspace{10pt}
+
+Sono state individuate tre tipologie di utenti:
+\begin{itemize}
+\item \textbf{Utente generico:} utente che non è registrato
+\item \textbf{Utente registrato:} utente che ha eseguito l'accesso
+\item \textbf{Amministratore:} utente che ha eseguito l'accesso, dispone di elevati privilegi per gestire il sito
+\end{itemize}
+
+\subsection{Funzionalità offerte}
+Le funzionalità offerte agli utenti sono:
+\begin{itemize}
+\item Utente generico:
+	\begin{itemize}
+	\item Visualizzare i prodotti proposti
+	\item Richiedere informazioni
+	\item Registrarsi
+	\item Effettuare l'accesso se già registrato
+	\end{itemize}
+	
+\item Utente registrato:
+	\begin{itemize}
+	\item Visualizzare i prodotti proposti
+	\item Richiedere informazioni
+	\item Aggiungere e rimuovere prodotti alla Lista dei desideri
+	\item Visualizzare la Lista dei desideri
+	\item Modificare la password
+	\item Eliminare il profilo
+	\end{itemize}
+
+\pagebreak
+\item Amministratore:
+	\begin{itemize}
+	\item Visualizzare i prodotti proposti
+	\item Visualizzare ed eliminare utenti registrati
+	\item Aggiungere, modificare, eliminare prodotti
+	\item Aggiungere, modificare, eliminare categorie
+	\item Visualizzare, segnare come lette, eliminare le richieste di informazioni
+	\end{itemize}
+	
+\end{itemize}
+
+
+\subsection{Ricerche}
+
+\section{Progettazione}
+
+*Parte di image replacement*
+
+\subsection{Struttura del sito}
+
+La pagina è strutturata in Header, Main e Footer. L’Header contiene il riferimento per passare all’inizio del contenuto, il titolo, il menù e la breadcrumb. \\
+
+\subsubsection{Menù}
+Il menù è composto da Home, Prodotti, Contatti e Area Riservata. \\
+\vspace{3px}
+L’utente registrato e l’amministratore invece di Area Riservata hanno un pulsante che estende il menù con le funzioni specifiche a seconda della tipologia di utente.  \\
+\vspace{3px}
+Utente registrato ha accesso a Profilo e Lista dei desideri; Amministratore ha accesso a Utenti, Catalogo e Messaggi; entrambi hanno la possibilità di uscire dalla sessione.  \\
+\vspace{3px}
+Il menù non eccede né in larghezza né in profondità.
+
+\subsubsection{Breadcrumb}
+Per agevolare gli utenti durante la visita del sito e per evitare il disorientamento è stata aggiunta una breadcrumb ad ogni pagina visitabile. \\
+Questa sezione di pagina è stata costruita sfruttando il tag semantico \texttt{<nav>}.  \\
+Si è tenuto conto dell'accessibilità prestando attenzione alle parole di lingua inglese come ad esempio \textit{Home}.
+
+\subsubsection{Contenuto} 
+In ogni pagina si è tentato di mantenere una struttura semplice che permetesse all'utente di rispondere chiaramente alle tre domande fondamentali:
+  \begin{itemize}
+        \item \textbf{Dove sono?} Domanda a cui è facile rispondere grazie all'header e alla breadcrumb.
+        \item \textbf{Di cosa si tratta?} Grazie all'utilizzo appropriato di titoli e di descrizioni.
+        \item \textbf{Dove posso andare?} Grazie alla breadcrumb i percorsi sono facilmente intuibili dall'utente.
+    \end{itemize}
+    
+\subsubsection{Footer}
+All'interno del footer è stata inserita una piccola descrizione riguardante l'azienda \textit{Véro}
+
+\subsection{Funzionalità singole pagine}
+Per la gestione dei Prodotti si è deciso di strutturare la seguenza gerarchia: \\
+\textit{Elenco categorie} $\rightarrow$ \textit{Elenco prodotti categoria} $\rightarrow$  \textit{Prodotto in dettaglio} \\
+
+
+
+Verranno ora illustrate le funzionalità delle varie pagine presenti all'interno del sito:
+\begin{itemize}
+	\item \textbf{Home:} \textit{[utente generico, utente registrato, amministratore]} \\
+	Pagina di presentazione del sito con lo scopo di far conoscere l'azienda Véro. \\
+	È dotato di carosello che, se cliccato, invia al prodotto visualizzato.
+	
+	\item \textbf{Elenco categoria:}  \textit{[utente generico, utente registrato, amministratore]} \\
+	Viene mostrato l’elenco delle categorie. Cliccando sulla categoria viene visualizzato l’elenco dei prodotti.
+
+ 	\item \textbf{Elenco prodotti:} \textit{[utente generico, utente registrato, amministratore]} \\
+ 	Viene mostrato l’elenco dei prodotti di una categoria specifica. Cliccando sul prodotto si ottiene la pagina del prodotto.
+ 	
+ 	\item \textbf{Prodotto in dettaglio:} \textit{[utente generico, utente registrato, amministratore]} \\
+ 	Viene mostrato il prodotto nel dettaglio. \\
+ 	\textit{[utente generico, utente registrato]} \\
+ 	Possibilità di richiedere informazioni. \\
+	\textit{[utente registrato]} \\
+	Possibilità di aggiungere o togliere dalla Lista dei desideri.
+	
+	\item \textbf{Contatti:} \textit{[utente registrato, amministratore]} \\
+	Invio dei messaggi. \\
+	\textit{[Utente generico]} \\
+	Invio dei messaggi previo inserimento di indirizzo email.
+	
+	\item \textbf{Profilo:}	\textit{[utente registrato]} \\
+	Possibilità di cambiare la password o eliminare il profilo.
+	
+	\item \textbf{Lista dei Desideri:}	\textit{[utente registrato]} \\
+	Visualizzare la Lista dei desideri.  \\
+	Possibilità di inoltro all’Elenco categorie di quel prodotto, al Prodotto in dettaglio, \\
+	Contatti per quel prodotto o eliminarlo dalla lista.
+
+	\item \textbf{Utenti:} \textit {[amministratore} \\
+	Visualizzare ed eliminare gli utenti registrati.
+	
+   \item \textbf{Messaggi:} \textit{[amministratore]} \\
+   Visualizzare, segnare come lette, eliminare le richieste di informazioni pervenute.
+   
+	\item \textbf{Catalogo prodotti:} \textit{[amministratore]} \\
+	Visualizzare l’elenco dei prodotti. \\
+   Possibilità di accedere a Lista categorie, Modifica prodotto, Creazione prodotto.
+
+	\item \textbf{Lista categorie:} \textit{[amministratore]} \\
+	Visualizzare l’elenco delle categorie.\\
+	Possibilità di tornare a Catalogo, accedere a Modifica categorie e Creazione nuova categoria.
+
+	\item \textbf{Modifica prodotto:} \textit {[amministratore]} \\
+	Eliminare il prodotto o modificare il nome, la categoria e la descrizione. \\
+	Aggiungere o rimuovere le immagini associate e relative alternative testuali. 
+
+	\item \textbf{Creazione prodotto:} \textit {[amministratore]} \\
+	Inserire il nome, la categoria e la descrizione del prodotto.
+
+	
+	\item \textbf{Modifica categorie:} \textit {[amministratore]} \\
+	Eliminare la categoria o modificarne il nome e la descrizione.
+
+	\item \textbf{Creazione nuova categoria:} \textit {[amministratore]} \\
+	Inserire nome e descrizione della categoria.
+	
+\end{itemize}
+
+\subsection{Divisione del lavoro:}
+Purtroppo a causa della rinuncia agli studi da parte di uno dei membri del gruppo originale, dopo circa 2 settimane di lavoro, il progetto è stato svolto da 3 persone. \\
+
+Ogni persona che si è occupata di una pagina ha sviluppato sia il front-end che la parte back-end. \\
+La suddivisione del lavoro è la seguente:
+
+\begin{itemize}
+\item \textbf{Matteo Vignaga:}
+	\begin{itemize}
+		\item Progettazione del sito web;
+		\item Pagina di Accesso;
+		\item Pagina di Registrazione;
+		\item Carosello immagini;
+		\item Lista Categorie,
+		\item Lista Prodotti;
+		\item Prodotto;
+		\item Lista dei Desideri;
+		\item Profilo;
+		\item JavaScript Relativo a queste pagine;
+		\item Sviluppo dei fogli di stile CSS;
+		\item Iniziale sviluppo della base di dati
+	\end{itemize}
+
+\item \textbf{Alberto Michelazzo:}
+	\begin{itemize}
+		\item Progettazione del sito web;
+		\item Pagina Contatti;
+		\item Pagina Messaggi;
+		\item Catalogo dei Prodotti e Categorie, \\ 
+		con relativo sviluppo di tutte le funzioni PHP per Catalogo;
+	  	\item Gestione delle immagini dei prodotti;
+		\item Sviluppo della base di dati;
+		\item Test sul corretto funzionamento lato server;
+		\item Stesura della relazione;
+	\end{itemize}
+
+\item \textbf{Alessio Barraco}
+	\begin{itemize}
+	\item Prova
+	\end{itemize}
+	
+Nonostante questa divisione, tutti i membri del gruppo hanno collaborato sotto tutti gli aspetti della realizzazione del sito, in particolare per quanto riguarda l'accessibilità dello stesso.
+\end{itemize}
+
+\section{Realizzazione}
+
+
+
+
+
+\end{document}
+
+
+
