@@ -256,14 +256,80 @@ La suddivisione del lavoro è la seguente:
 
 \item \textbf{Alessio Barraco}
 	\begin{itemize}
-	\item Prova
+	\item Inserire lavoro
 	\end{itemize}
 	
 Nonostante questa divisione, tutti i membri del gruppo hanno collaborato sotto tutti gli aspetti della realizzazione del sito, in particolare per quanto riguarda l'accessibilità dello stesso.
 \end{itemize}
 
+\pagebreak
+
 \section{Realizzazione}
 
+\subsection{HTML}
+Per la realizzazione del sito è stato usato \textbf{HTML5} per via delle sue nuove funzionalità e una miglior garanzia di estensibilità futura del sito.
+
+\subsection{CSS}
+Per quanto riguarda il CSS è stato adottato un approccio \textbf{Mobile First} privilegiando la tendenza degli utenti a preferire la navigazione su dispositivi mobili rispetto ai desktop. \\
+La versione desktop è stata quindi ottenuta da quella mobile cui sono state apportate delle modifiche tramite Media Queries. \\
+È stato previsto anche un css per la stampa che va a rimuovere elementi quali il menu di navigazione e il footer per una maggiore fruibilità.
+
+Verosimilmente, il target di utenti accede al sito attraverso dispositivi di moderna produzione e quindi in grado di supportare le recenti funzionalità sia HTML5 che CSS.
+
+\subsection{JavaScript}
+JavaScript è stato utilizzato per la validazione dei dati lato client inseriti dall’utente attraverso utilizzo di espressioni regolari.\\
+Su registrazione e durante la modifica della password, mostra dinamicamente se i dati inseriti sono esatti o errati (ad esempio per la password la sua lunghezza o la presenza di numeri). \\
+E’ stato inoltre utilizzato per mostrare il riquadro per la conferma dell’eliminazione di prodotto, categorie, profilo, ecc. \\
+
+
+\subsection{Database}
+Il database ha il compito di salvare a lungo termine e rendere velocemente fruibili tutti i dati delle parte dinamiche del sito. 
+
+La tabella più importante del database è \textbf{Prodotti}, che contiene tutte le informazioni del singolo prodotto e la categoria a cui appartiene, quest’ultima salvata in un’altra tabella. \\
+La tabella \textbf{Immagini} contiene le immagini dei vari prodotti oltre al testo alternativo per ogni immagine. \\
+E’ presente una tabella \textbf{Tags} che contiene le keywords associate al singolo prodotto, queste vengono aggiunte durante la creazione del prodotto. \\
+La tabella \textbf{Messaggi} contiene le varie richieste di informazioni da utenti registrati o non, con un eventuale prodotto associato.\\
+La tabella \textbf{Utente} ospita i dati degli utenti ed è stato scelto come chiave primaria l’attributo username. 
+Anche l’amministratore si trova all’interno, infatti è presente l’attributo ruolo che definisce i privilegi dell’utente. \\
+La tabella \textbf{Wishlist} permette ad un utente (non l’admin) di salvare prodotti nella sua Lista dei Desideri.
+
+\subsection{PHP}
+Si è creata la classe PHP \textbf{DBAccess} che si occupa di astrarre tutte le operazioni di connessione e disconnessione al database, alleggerendo inoltre il carico di lavoro nella fase di creazione delle query.  \\
+Infatti la classe è in grado di gestire tutte le query e fornire i risultati o gli errori in base alla tipologia di richiesta (select, insert into, ecc.). \\
+Le varie query sono state inserite all’interno della classe \textit{Access} per favorire il riuso del codice.  \\
+Tutte le query sono parametrizzate per evitare attacchi di tipo \textit{SQL Injection}.
+
+\subsubsection{Autenticazione}
+Per gestire l’autenticazione ci si è affidati alle session di PHP che memorizzano l’username e il ruolo. \\
+Le varie pagine, caricate tramite PHP, verificheranno i permessi e quali contenuti mostrare, verificando i parametri della sessione. 
+
+\subsubsection{Password}
+Le password non vengono salvate in chiaro ma viene utilizzata una funzione di \textit{hashing} per garantire un buon livello di sicurezza (che utilizza l’algoritmo crittografico \textbf{bcrypt}, standard da PHP 5.5.0).
+
+\subsubsection{GET e POST}
+Per facilitare l’esperienza dell’utente i prodotti sono raggiungibili tramite link diretto grazie all’utilizzo del metodo GET rendendo quindi possibile la creazione di bookmark. \\
+
+Tutte le richieste al server che contengono dati sensibili utilizzano il metodo POST, esempio di questi è il form per informazioni o tutta la parte relativa all’amministratore.
+
+\subsubsection{Screen Reader}
+Per garantire allo screen reader la corretta lettura delle parole è stata realizzata la funzione lang che ha il ruolo di sostituire dei segnaposti con lo span lang della lingua corretta. \\
+Ciò è stato reso necessario nelle parti dinamiche in quanto non è possibile stabilire a priori la lingua che verrà utilizzata, perciò in determinati campi è possibile inserire i tag [lingua][\textbackslash lingua] che verranno poi trasformati in \texttt{<span lang =  "lingua”></span>}.
+
+\pagebreak
+
+\subsection{Accessibilità}
+
+Tutto lo sviluppo del sito si è svolto tenendo a mente le raccomandazioni dello standard WCAG 2.0. \\
+Il sito dispone di un breadcrumb per evitare il disorientamento stando comunque attenti a non creare link circolari. 
+
+\subsubsection{Contrasto e Font}
+
+Tutti i testi all'interno del sito hanno un contrasto che rispettano il livello AA del WCAG. Inoltre si è prestata particolare attenzione al contrasto dei link: non solo il testo del link contrasta con lo sfondo ma anche il testo del link non visitato contrasta con il link visitato. \\
+Per facilitare la lettura dei testi si è utilizzato un font “senza grazie” (è giusto?) per la parte visibile a schermo mentre quando si esegue una stampa il font viene modificato in uno con le grazie. 
+
+\subsubsection{Lingua}
+Il sito specifica come lingua principale l’italiano, ma ogni parola che deve essere letta con pronuncia straniera è stata contrassegnata da un attributo lang, all’interno di un tag \texttt{<span>}. \\
+Un esempio è tutta la parte riguardante il nome o la descrizione di un prodotto, che durante la sua creazione, in caso di parole di lingua straniera,  devono essere contrassegnate da [lingua]parola[\textbackslash lingua].
 
 
 
