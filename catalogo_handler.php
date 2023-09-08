@@ -87,9 +87,10 @@ class Catalogo
                     <input type="hidden" class="invio" id="no_elimina" name="no_elimina_prod" value="No" />
                 </div>
                 <input type="hidden" name="prod_id_2" value="' . $product_id . '" />
+            </form>
         </div>
         </fieldset>
-        </form>
+        
         
         <div id="img_products">
             <div>
@@ -106,7 +107,7 @@ class Catalogo
             for ($i = 0; $i < count($product); $i++) {
                 $result .= '<div><div class="clickImg"><label class="lab" for="form-' . $product[$i]["path"] . '">Seleziona: <span class="sr-only">"' . substr($product[$i]["path"], 13) . '"</span></label>
                     <input type="checkbox" id="form-' . $product[$i]["path"] . '" name="check_img[]" value="' . $product[$i]["path"] . '"/>
-                    <img  src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100" maxlength="75"/>
+                    <img  src="' . $product[$i]["path"] . '" alt="' . Access::deletelang($product[$i]["alt_img"]) . '" width="100" height="100"/>
                     </div><div class="clickImg2"><button class="open-button" aria-label="Ingrandisci" id="' . $product[$i]["path"] . '"><img src="img/lente.png" alt="Ingrandisci immagine." /></button></div></div>
                     <input type="hidden" name="path_img[]" value="' . $product[$i]["path"] . '"/>
                     <div><label class="lab" for="alt-' . $product[$i]["path"] . '">Alt immagine: <span class="sr-only">"' . substr($product[$i]["path"], 13) . '"</span></label></div>
