@@ -926,7 +926,7 @@ a:visited {
 .flexutente div.elimina_utente_big {
   font-size: 0.5em;
 }
-.flexutente div.elimina_utente_big #msg_confirm{
+.flexutente div.elimina_utente_big .msg_confirm{
   font-size: 1.8em;
 }
 
@@ -1372,6 +1372,12 @@ input[type="text"] {
   }
 
   .flexutente div {
+    font-size: 100%;
+  }
+  .flexutente div.elimina_utente_big {
+    font-size: 150%;
+  }
+  .flexutente div.elimina_utente_big .msg_confirm{
     font-size: 100%;
   }
 
