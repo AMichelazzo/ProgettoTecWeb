@@ -17,10 +17,23 @@ $okemail = true;
 
 
 if (isset($_SESSION["username"])) // utente loggato
-    $Element_Contatti .= "<div class='sopra'>Stai inviando questo messaggio come: <span class='grassetto'>" . $_SESSION["username"] . "</span></div>";
+    $Element_Contatti .=
+    "<div class='sopra'>
+        Stai inviando questo messaggio come: 
+        <span class='grassetto'>" . 
+            $_SESSION["username"] . 
+        "</span>
+    </div>";
 else {
-    $Element_Contatti .= "<div><label class='lab' for=\"email\"><span class=\"email\" lang=\"en\">Email: </span></label>" . // utente non loggato
-        "<input type=\"email\" id=\"email\" name=\"email\"></div>";
+    $Element_Contatti .= 
+    "<div>
+        <label class='lab' for=\"email\">
+            <span class=\"email\" lang=\"en\">
+                Email: 
+            </span>
+        </label>" . // utente non loggato
+        "<input type=\"email\" id=\"email\" name=\"email\"\>
+    </div>";
 }
 
 if (isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && isset($_POST["categoria"])) {
@@ -30,9 +43,15 @@ if (isset($_POST["informazioni_prodotto"]) && isset($_POST["product_id"]) && iss
     $Nome_prodotto = Access::getProductName($_POST["product_id"], $_POST["categoria"]);
 
     if (!is_null($Nome_prodotto)) {
-        $Element_Contatti .= "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"" . "value=\"" . $Id_prodotto . "\">"
-            . "<input type=\"hidden\" class=\"categoria\" name=\"categoria_contatti\" id=\"categ_id\"" . "value=\"" . $Id_categoria . "\">";
-        $Element_Contatti .= "<div class='sopra'>Prodotto su cui si vuole informazioni: <a href=\"prodotto.php?prod=" . $Id_prodotto . "\">" . $Nome_prodotto . "</a></div>";
+        $Element_Contatti .=
+        "<input type=\"hidden\" class=\"product-id\" name=\"product-id_contatti\" id=\"product-ID\"" . "value=\"" . $Id_prodotto . "\">"
+        ."<input type=\"hidden\" class=\"categoria\" name=\"categoria_contatti\" id=\"categ_id\"" . "value=\"" . $Id_categoria . "\">
+        <div class='sopra'>
+            Prodotto su cui si vuole informazioni: 
+            <a href=\"prodotto.php?prod=" . $Id_prodotto . "\">"
+                . $Nome_prodotto . 
+            "</a>
+        </div>";
     }
 }
 

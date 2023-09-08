@@ -70,19 +70,24 @@ if (isset($_GET["prod"])) {
             "<div>img</div>" => $slideshow,
             "<!--Wish-->" => $isLogged,
             '<form action="contatti.php" id="contact-form" method="post"></form>' =>
-            (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") ? "" : '<form action="contatti.php" id="contact-form" method="post"><fieldset>
-            <legend>
-                <h4>Per Informazioni</h4>
-            </legend>
-            <input type="hidden" class="product_id" name="product_id" id="product_id"
-                value="' . $idprod . '" />
-            <input type="hidden" class="categ_id" name="categoria" id="categ_id"
-                value="' . $idcat . '" />
-            <div class="submit">
-                <input type="submit" id="informazioni" name="informazioni_prodotto"
-                    value="Richiedi Informazioni" />
-            </div>
-        </fieldset></form>'
+            (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") ? "" : 
+                '<form action="contatti.php" id="contact-form" method="post">
+                    <fieldset>
+                        <legend>
+                            <h4>
+                                Per Informazioni
+                            </h4>
+                        </legend>
+                        <input type="hidden" class="product_id" name="product_id" id="product_id"
+                        value="' . $idprod . '" />
+                        <input type="hidden" class="categ_id" name="categoria" id="categ_id"
+                        value="' . $idcat . '" />
+                        <div class="submit">
+                            <input type="submit" id="informazioni" name="informazioni_prodotto"
+                            value="Richiedi Informazioni" />
+                        </div>
+                    </fieldset>
+                </form>'
         );
     } else {
         header("Location: categorie.php");

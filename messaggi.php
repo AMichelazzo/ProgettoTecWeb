@@ -57,24 +57,72 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
 
             $ElencoMsg .= '<fieldset class="msggg ';
             if ($result[$i]["letto"] == 1)
-                $ElencoMsg .= 'msg_letto"><legend class="hide">Messaggio letto</legend>';
+                $ElencoMsg .= 'msg_letto">
+                                <legend class="hide">
+                                    Messaggio letto
+                                </legend>';
             else
-                $ElencoMsg .= 'msg_non_letto"><legend class="hide">Messaggio non letto</legend>';
+                $ElencoMsg .= 'msg_non_letto">
+                                <legend class="hide">
+                                    Messaggio non letto
+                                </legend>';
 
-            $ElencoMsg .= '<p class="inline"><input type="checkbox" id="form-' . $result[$i]["id_messaggio"] . '" name="form_msg[]" value="'
-                . $result[$i]["id_messaggio"] . '"/><label for="form-' . $result[$i]["id_messaggio"] . '" > Selezione</label></p>'
-                . "<p class=\"inline\"> <span class='email'>Email: </span>" . $result[$i]["email"] . "</p>"
-                . "<p class=\"inline\"> <span class='data'>Data invio: </span>" . $result[$i]["data"] . "</p>";
+            $ElencoMsg .= 
+                                '<p class="inline">
+                                    <input type="checkbox" id="form-' . $result[$i]["id_messaggio"] . '" name="form_msg[]" value="'
+                                    . $result[$i]["id_messaggio"] . '"/>
+                                    <label for="form-' . $result[$i]["id_messaggio"] . '">
+                                        Selezione
+                                    </label>
+                                </p>'
+                                . "<p class=\"inline\">
+                                        <span class='email'>
+                                            Email: 
+                                        </span>" 
+                                        . $result[$i]["email"] . 
+                                    "</p>"
+                                . "<p class=\"inline\">
+                                    <span class='data'>
+                                        Data invio: 
+                                    </span>" 
+                                . $result[$i]["data"] . 
+                                "</p>";
 
             if (!is_null($result[$i]["id_prodotto"])) // se è presente un "id prodotto" nel risultato della query lo mostra con il rispettivo link
-                $ElencoMsg .= "<p class=\"inline\"><span class='product'> Prodotto: </span><a href=\"prodotto.php?prod=" . $result[$i]['id_prodotto'] . "\">" . $result[$i]['Nome'] . "</a></p>";
+                $ElencoMsg .= 
+                                "<p class=\"inline\">
+                                    <span class='product'>
+                                            Prodotto: 
+                                    </span>
+                                    <a href=\"prodotto.php?prod=" . $result[$i]['id_prodotto'] . "\">" 
+                                        . $result[$i]['Nome'] . 
+                                    "</a>
+                                </p>";
 
-            $ElencoMsg .= "<p class=\"inline\"> <span class='messaggio'>Messaggio: </span>" . $result[$i]["msg"] . "</p>";
+            $ElencoMsg .=       
+                                "<p class=\"inline\">
+                                    <span class='messaggio'>
+                                        Messaggio: 
+                                    </span>" . $result[$i]["msg"] . "</p>";
 
             if ($result[$i]["letto"] == 1)
-                $ElencoMsg .= "<p class=\"inline\"> <span class='letto'>Letto: </span>Si</p></fieldset>";
+                $ElencoMsg .= 
+                                "<p class=\"inline\">
+                                    <span class='letto'>
+                                        Letto: 
+                                    </span>
+                                    Si
+                                </p>
+                            </fieldset>";
             else
-                $ElencoMsg .= "<p class=\"inline\"> <span class='letto'>Letto: </span>No</p></fieldset>";
+                $ElencoMsg .= 
+                                "<p class=\"inline\">
+                                    <span class='letto'>
+                                        Letto: 
+                                    </span>
+                                    No
+                                </p>
+                            </fieldset>";
         }
     }
 
