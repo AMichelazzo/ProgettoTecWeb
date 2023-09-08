@@ -338,9 +338,12 @@ a:visited {
   margin: 2%;
   border: 3px solid #505050;
 }
-
+  .flexutente fieldset{
+    border: 0 hidden;
+  }
 .flexutente div {
   font-size: 4em;
+  margin: 1%;
 }
 
 /*FINE UTENTI*/
@@ -1370,9 +1373,13 @@ input[type="text"] {
     margin: 2%;
     border: 1px solid #505050;
   }
+  .flexutente fieldset{
+    border: 0 hidden;
+  }
 
   .flexutente div {
     font-size: 100%;
+    margin: 0; 
   }
   .flexutente div.elimina_utente_big {
     font-size: 150%;
