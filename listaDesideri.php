@@ -38,7 +38,7 @@ if (!isset($_SESSION["username"])) {
                 $productlist .= "<div class=\"categoria\">Categoria: <span><a class=\"wish-link\" href=\"categorie.php?cat=" . $result2[0]['id_categoria'] . "\">" . $cat . "</a></span></div>";
                 $productlist .= "<div class=\"button-container\">";
                 $productlist .= "<label for=\"informazioni_prodotto-".$nome."\" class=\"sr-only\">Informazioni Prodotto</label>";
-                $productlist .= "<input type=\"submit\" id=\"informazioni_prodotto-".$nome."\" name=\"informazioni_prodotto-".$nome."\" value=\"Richiedi Informazioni\" />";
+                $productlist .= "<input type=\"submit\" id=\"informazioni_prodotto-".$nome."\" name=\"informazioni_prodotto\" value=\"Richiedi Informazioni\" />";
                 $productlist .= "<label for=\"" . $idprod . "\" class=\"sr-only\">Scheda Prodotto</label>";
                 $productlist .= "<button id=\"" . $idprod . "\" class=\"vaiProdotto\" name=\"Scheda-Prodotto-".$nome."\">Scheda Prodotto <span aria-hidden=\"true\">-&gt</span></button>";
                 $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product_id\" value=\"" . $idprod . "\"/>";
