@@ -26,9 +26,7 @@ class Catalogo
                 $result .= '<div><span class="nome">Nome prodotto:</span> ' . Access::lang($products[$i]["Prod_Nome"]) . '</div>
                     <div><span class="categoria">Categoria:</span> ' . Access::lang($products[$i]["Cat_Nome"]) . '</div>
                     <div><span class="descrizione">Descrizione:</span> ' . Access::lang($products[$i]["Descrizione"]) . '</div>
-                    <label class="sr-only" for="' . $products[$i]["id_prodotto"] . '-' . $products[$i]["id_categoria"] . '">Modifica prodotto ' . Access::lang($products[$i]["Prod_Nome"]) . '</label>
-                    <div><input type="submit" class="modifica invio" name="modifica_prod" id="'. $products[$i]["id_prodotto"] . '-' . $products[$i]["id_categoria"] . 
-                    '" value="Modifica" /></div></fieldset></form>';
+                    <div><input type="submit" class="modifica invio" name="modifica_prod" value="Modifica" /></div></fieldset></form>';
             }
         }
         return $result;
@@ -208,10 +206,7 @@ class Catalogo
                     </div>
                     <div> <span class="descrizione">Descrizione:</span> ' .
                     Access::lang($categories[$i]["Descrizione"]) . '.</div>
-                    <label class="sr-only" for="' . $categories[$i]["id_categoria"] . '-' . $categories[$i]["Nome"] . '">Modifica categoria '
-                    . Access::lang($categories[$i]["Nome"]) . '</label>
-                    <div><input type="submit" class="modifica invio" name="modifica_cat" 
-                    id="' . $categories[$i]["id_categoria"] . '-' . $categories[$i]["Nome"] . '" value="Modifica" />
+                    <div><input type="submit" class="modifica invio" name="modifica_cat" value="Modifica" />
                     </div>
                     <div><input type="hidden" name="category_id" value="' .
                     $categories[$i]["id_categoria"] . '"/></div></fieldset></form>'; // mi salvo l'id_categoria
