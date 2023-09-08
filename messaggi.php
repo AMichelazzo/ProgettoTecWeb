@@ -61,8 +61,8 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
             else
                 $ElencoMsg .= 'msg_non_letto"><legend class="hide">Messaggio non letto</legend>';
 
-            $ElencoMsg .= '<p class="inline"><label for="form-' . $result[$i]["id_messaggio"] . '" >Selezione:</label><input type="checkbox" id="form-' . $result[$i]["id_messaggio"] . '" name="form_msg[]" value="'
-                . $result[$i]["id_messaggio"] . '"/></p>'
+            $ElencoMsg .= '<p class="inline"><input type="checkbox" id="form-' . $result[$i]["id_messaggio"] . '" name="form_msg[]" value="'
+                . $result[$i]["id_messaggio"] . '"/><label for="form-' . $result[$i]["id_messaggio"] . '" > Selezione</label></p>'
                 . "<p class=\"inline\"> <span class='email'>Email: </span>" . $result[$i]["email"] . "</p>"
                 . "<p class=\"inline\"> <span class='data'>Data invio: </span>" . $result[$i]["data"] . "</p>";
 
