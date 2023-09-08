@@ -44,7 +44,7 @@ if (!isset($_SESSION["username"])) {
                 $productlist .= "<div class=\"rimuovi-container\">";
                 $productlist .= "<button class=\"remove-button\" aria-label='Rimuovi' id=\"" . $idprod . "-" . $idcat . "\" name=\"rimuovi\">";
                 $productlist .= "<img src=\"img/binClosed.png\" alt=\"Rimuovi prodotto dalla lista dei desideri.\" class=\"non-hover-image\" aria-hidden=\"true\"/>";
-                $productlist .= "<img src=\"img/binOpened.png\" alt=\"Rimuovi prodotto.\" class=\"hover-image\" />";
+                $productlist .= "<img src=\"img/binOpened.png\" alt=\"\" class=\"hover-image\" />";
                 $productlist .= "</button>";
                 $productlist .= "</div>";
                 $productlist .= "</div>";
