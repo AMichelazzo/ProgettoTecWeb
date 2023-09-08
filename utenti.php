@@ -16,14 +16,7 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
         if (!empty($utenti)) {
             foreach ($utenti as $utente) {
                 $stringaUtenti .=
-                    '<div class="utenti" role="group"';
-                    
-                    if ($first) {
-                        $stringaUtenti .= 'id="iniziocontenuto"'; 
-                        $first = 0;
-                    }
-                $stringaUtenti .=
-                      '>
+                    '<div class="utenti" role="group">
                     <div class="flexutente"><form action="utenti.php" method="post">
                     <fieldset><legend class="sr-only">'.$utente['username'].'</legend>
                         <div><span lang="en"><span class="nome">Username</span></span>: ' . $utente['username'] . ' </div>
