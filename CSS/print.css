@@ -200,67 +200,6 @@ a:visited {
 }
 
 
-/*UTENTI*/
-.flexutente {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  line-height: 3em;
-  font-size: 1em;
-  margin: 2%;
-  border: 3px solid #505050;
-}
-
-.flexutente div {
-  font-size: 4em;
-}
-
-/*FINE UTENTI*/
-
-/*CONTATTI*/
-.grassetto {
-  font-weight: bold;
-}
-
-#form_informazioni {
-  text-align: center;
-  font-size: 1.3em;
-}
-
-.titolo-contatti {
-  font-size: 4em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
-#messaggio {
-  line-height: 1.5em;
-  font-size: 1.2em;
-  margin: 0.5em;
-  height: auto;
-  width: auto;
-}
-
-#form_informazioni input[type="submit"],
-#form_informazioni input[type="email"] {
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 2em;
-  line-height: 3em;
-  padding: 1%;
-  border: 5px solid #505050;
-}
-
-.sopra {
-  font-size: 2em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
-/*FINE CONTATTI*/
-
-
 /*CAROUSEL*/
 /* Slideshow container */
 .slideshow-container {
@@ -273,61 +212,12 @@ a:visited {
   max-width: 100%;
 }
 
-#product-name {
-  font-size: 7em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
 .slideshow-container img {
   width: 95%;
   height: 95%;
 }
 
-.position-container {
-  position: relative;
-  height: 200%;
-  width: 100%;
-}
-
-/* Next & previous buttons */
-.prev-home,
-.next-home {
-  font-size: 10em;
-  line-height: 3em;
-  padding-right: 20%;
-  padding-left: 20%;
-}
-
-.descr_prodotto {
-  font-size: 3.5em;
-  line-height: 3em;
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-#content {
-  position: relative;
-}
-
-.button {
-  width: 90%;
-  height: 20%;
-  margin: auto;
-  font-size: 3em;
-  line-height: 3em;
-  border: 1px solid var(--bgfuncolor);
-  border-radius: 0.5em;
-  background-color: var(--bgfuncolor);
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  padding: 5%;
-}
-
+/*
 #description>form {
   font-size: 2em;
   line-height: 3em;
@@ -351,8 +241,8 @@ a:visited {
   color: white;
   text-align: center;
   display: inline-block;
-}
-
+}*/
+/*
 #msgWish,
 #msgWish2 {
   height: 3em;
@@ -367,118 +257,11 @@ a:visited {
   margin: 5%;
   padding: 0;
   position: inherit;
-}
+}*/
 
 /*END CARROUSEL*/
-/*LISTA CATEGORIE*/
-.conteg-container {
-  display: flex;
-  align-items: center;
-  text-align: left;
-  margin: 1em;
-}
 
-.img-categ img {
-  max-width: 300px;
-  width: auto;
-  height: auto;
-  margin: 1%;
-}
-
-
-.text-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: auto;
-  width: auto;
-  margin: 5%;
-  line-height: 3em;
-}
-
-.desc-categ {
-  width: auto;
-  height: 100%;
-  margin: 0.5em;
-  font-size: 2.5em;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5%;
-}
-
-/*FINE LISTA CATEGORIE*/
 /*WISHLIST*/
-.wish-title {
-  font-size: 3.5em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1em;
-}
-
-.container form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
-  border: 5px solid #ccc;
-  box-shadow: 1em var(--shadowcolor);
-  margin: 1%;
-}
-
-.image-container {
-  max-width: 400px;
-  width: auto;
-  height: auto;
-  margin-bottom: 1%;
-  position: relative;
-}
-
-.image-container>img {
-  max-width: 400px;
-  max-height: 400px;
-  width: auto;
-  height: auto;
-  margin-bottom: 1%;
-  border: 5px solid #ccc;
-  border-top: 0;
-  box-shadow: 1em var(--shadowcolor);
-}
-
-.image-container .open-button {
-  position: absolute;
-  top: 10%;
-  right: -40%;
-  border: none;
-  background: transparent;
-}
-
-.image-container .open-button img {
-  max-width: 70px;
-  max-height: 70px;
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  background-color: white;
-  border: 5px solid #505050;
-  border-radius: 20%;
-  padding: 1em;
-}
-
-.contentProdotto {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  align-items: left;
-  gap: 0.5em;
-  font-size: 1em;
-}
 
 .contentProdotto .nome,
 .contentProdotto .categoria {
@@ -513,277 +296,11 @@ a:visited {
   margin: 0em;
 }
 
-.contentProdotto .button-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5em;
-  position: relative
-}
-
-.contentProdotto .button-container input[type="submit"] {
-  flex: 1;
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 1.3em;
-  line-height: 3em;
-  padding: 1%;
-  border: 5px solid #505050;
-}
-
-.vaiProdotto {
-  flex: 2;
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 1.3em;
-  line-height: 3em;
-  padding: 1%;
-  border: 5px solid #505050;
-}
-
-.rimuovi-container {
-  flex:3;
-  width: auto;
-  height: auto;
-}
-
-.remove-button {
-  position: relative;
-  overflow: hidden;
-  width: 120px;
-  height: 120px;
-  max-width: 120px;
-  max-height: 120px;
-  border-radius: 25%;
-  border: 2px solid #505050;
-  box-shadow: 1em var(--shadowcolor);
-  background-color: var(--bgfuncolor);
-}
-
-.remove-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#wish-error {
-  background-color: #ffcccc;
-  color: #cc0000;
-  border: 1px solid #cc0000;
-  height: 3em;
-  width: auto;
-  border-radius: 0.5em;
-  font-size: 3em;
-  line-height: 3em;
-  margin: 5%;
-  padding: 0;
-  position: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
 /*FINE WISHLIST*/
 
 
 /*PROFILO*/
 
-.profilo-h2 {
-  font-size: 4em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
-.change-error {
-  height: auto;
-  width: auto;
-  text-align: center;
-  border-radius: 0.5em;
-  background-color: #ffcccc;
-  color: #cc0000;
-  border: 1px solid #cc0000;
-  font-size: 3em;
-  line-height: 3em;
-  margin: 5%;
-  padding: 0;
-  position: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.change-success {
-  height: auto;
-  width: auto;
-  text-align: center;
-  border-radius: 0.5em;
-  background-color: #c2e0c6;
-  color: #276749;
-  border: 1px solid #276749;
-  font-size: 3em;
-  line-height: 3em;
-  margin: 5%;
-  padding: 1%;
-  position: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.Old-pass {
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-}
-
-.Old-pass label {
-  font-size: 3em;
-  font-weight: bold;
-}
-
-.Old-pass input[type="password"] {
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 2.2em;
-  line-height: 3em;
-  padding: 1%;
-  border: 5px solid #505050;
-}
-
-.New-pass {
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-}
-
-.New-pass label {
-  font-size: 3em;
-  font-weight: bold;
-}
-
-.New-pass input[type="password"] {
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 2.2em;
-  line-height: 3em;
-  padding: 1%;
-  border: 5px solid #505050;
-}
-
-.New-repeat {
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-}
-
-.New-repeat label {
-  font-size: 3em;
-  font-weight: bold;
-}
-
-.New-repeat input[type="password"] {
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 2.2em;
-  line-height: 3em;
-  padding: 1%;
-  border: 5px solid #505050;
-}
-
-/* The message box is shown when the user clicks on the password field */
-#message {
-  display: none;
-  text-align: left;
-  border-radius: 0.5em;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  box-shadow: 1em var(--shadowcolor);
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 3em;
-  font-size: 2em;
-}
-
-#minusc,
-#maiusc,
-#numeri,
-#lunghezza {
-  color: red;
-}
-
-#errore_generico,
-#passNOT_combaciano,
-#passNOT_disponibile,
-#old_passwordNOT_giusta,
-#oldPW,
-#newPW,
-#password_rispetta2,
-.invalid,
-#email_disponibile,
-#username_disponibile,
-#password_rispetta,
-#usernameNOT_disponibile,
-#emailNOT_disponibile,
-#passNOT_disponibile,
-#errore_generico,
-#passNOT_combaciano,
-#passuguale,
-#old_passwordNOT_giusta {
-  width: 80px;
-  height: 80px;
-  max-width: 80px;
-  max-height: 80px;
-}
-
-
-.invio {
-  font-size: 3em;
-  line-height: 3em;
-  color: white;
-  background-color: var(--bgfuncolor);
-  border-color: var(--bgfuncolor);
-  padding: 1em;
-  margin: 3%;
-  border: none;
-  border-radius: 0.5em;
-}
-
-#elimina_utente {
-  width: auto;
-  background-color: #ffcccc;
-  color: #cc0000;
-  padding: 1%;
-  border: 2px solid #cc0000;
-  border-radius: 0.5em;
-  margin: 1%;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.elimina_utente_big,
-.elimina_utente_big-img {
-  line-height: 3em;
-  font-size: 1em;
-  background-color: #ffcccc;
-  color: #cc0000;
-  padding: 1%;
-  border: 2px solid #cc0000;
-  border-radius: 0.5em;
-  margin: 1%;
-  text-align: center;
-  box-sizing: border-box;
-}
 .flexutente div.elimina_utente_big {
   font-size: 0.5em;
 }
@@ -791,426 +308,15 @@ a:visited {
   font-size: 1.8em;
 }
 
-.messaggio_elimina {
-  color: red;
-  font-weight: bold;
-  font-size: 2.5em;
-  line-height: 3em;
-}
-
 /*FINE PROFILO*/
-#riservata a {
-  color: var(--visitedcolor);
-  font-weight: bold;
-  font-size: 1em;
-  line-height: 3em;
-  border: 0.2em solid var(--bgfuncolor);
-  border-radius: 0.5em;
-  padding: 1%;
-  margin: 1%;
-  position: relative;
-  bottom: 20px;
-}
-
-/*LOGIN*/
-.login-h2 {
-  font-size: 4em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
-.link-reg a {
-  color: var(--visitedcolor);
-  font-weight: bold;
-  font-size: 1em;
-  line-height: 3em;
-  border: 0.2em solid var(--bgfuncolor);
-  border-radius: 0.5em;
-  padding: 0;
-  margin: 0;
-}
-
-form .inp {
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 2em;
-  border: 5px solid #505050;
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-}
-
-form .lab {
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-/*FINE LOGIN*/
-
-/*REGISTRATI*/
-.regi-title {
-  font-size: 4em;
-  line-height: 3em;
-  margin: 0.5em;
-}
-
-.reginp {
-  position: relative;
-  width: auto;
-  height: auto;
-  font-size: 2.2em;
-  border: 5px solid #505050;
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-}
-
-.reglab {
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-  font-size: 3em;
-  font-weight: bold;
-}
-
-p.link-reg a {
-  color: var(--visitedcolor);
-  font-weight: bold;
-  font-size: 3em;
-  line-height: 3em;
-  border: 0.2em solid var(--bgfuncolor);
-  border-radius: 0.5em;
-  padding: 0.2em;
-  margin: 2%;
-  position: relative;
-  top: 18px;
-}
-
-/*END REGISTRATI*/
 
 /*HOME CARROUSEL*/
-.slideshow-container-home {
-  display: none;
-}
 
-.slideshow-container-home img {
-  display: none;
-}
-
-.mySlides-home {
-  display: none;
-}
 .slideshow-container-home a{
   margin:1%;
 }
 
 /*END CARROUSEL HOME*/
-
-/*MESSAGGI*/
-.msggg {
-  width: 85%;
-  border-radius: 0.5em;
-  padding: 0.5em;
-  margin: 0.5em;
-  box-shadow: 0.3em var(--shadowcolor);
-  word-break: break-all;
-}
-
-.msg_non_letto {
-  background-color: #eaeaea;
-  color: #4f4f4f;
-  border: 5px solid #4f4f4f;
-}
-
-.msg_letto {
-  background-color: #f2f2f2;
-  color: #4f4f4f;
-  border: 2px solid #d2d2d2;
-}
-
-.error-message {
-  height: auto;
-  width: auto;
-  text-align: center;
-  border-radius: 0.5em;
-  background-color: #ffcccc;
-  color: #cc0000;
-  border: 1px solid #cc0000;
-  font-size: 3em;
-  line-height: 3em;
-  margin: 5%;
-  padding: 0;
-  position: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.success-message {
-  height: auto;
-  width: auto;
-  text-align: center;
-  border-radius: 0.5em;
-  color: #276749;
-  font-size: 3em;
-  line-height: 3em;
-  margin: 5%;
-  padding: 0;
-  position: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #c2e0c6;
-  border: 1px solid #276749;
-}
-
-span>.nome,
-span>.email {
-  font-weight: bold;
-}
-
-.inline .data,
-.inline .email,
-.inline .product,
-.inline .letto,
-.inline .messaggio {
-  font-weight: bold;
-}
-
-p.inline .email,
-p.inline .data,
-p.inline .product,
-p.inline .messaggio,
-p.inline .letto {
-  line-height: 3em;
-  font-size: 1em;
-}
-
-p.inline,
-p label {
-  line-height: 3em;
-  font-size: 2em;
-}
-
-.msggg input[type="checkbox"] {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #505050;
-}
-
-/*MESSAGGI END*/
-
-/*CATALOGO START*/
-
-.titolo_catalogo {
-  font-size: 4em;
-  line-height: 1em;
-  margin: 0em;
-}
-.clickImg2 .open-button {
-  position: relative;
-  border: none;
-  background: transparent;
-  margin: 1%;
-  right: -80%;
-}
-
-.clickImg2 .open-button img {
-  max-width: 60px;
-  max-height: 60px;
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  background-color: white;
-  border: 5px solid #505050;
-  border-radius: 20%;
-  padding: 1em;
-}
-.flexcatalogo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
-  position: relative;
-
-}
-
-.flexcatalogo form {
-  gap: 0.5em;
-  position: relative;
-  width: 90%;
-  max-width: 90%;
-  height: auto;
-  align-items: center;
-
-}
-
-.prodotto .nome,
-.prodotto .categoria,
-.prodotto .descrizione,
-.categories .nome,
-.categories .descrizione {
-  font-weight: bold;
-}
-
-#categories {
-  width: auto;
-  height: auto;
-  font-size: 2em;
-  border: 5px solid #505050;
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-}
-
-.prodotto {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5em;
-  margin: 1%;
-  padding: 1%;
-  border: 5px solid #505050;
-  position: relative;
-  width: 90%;
-  max-width: 90%;
-  height: auto;
-  font-size: 2.3em;
-  line-height: 3em;
-}
-
-.flexcatalogo form .prodotto input[type="submit"] {
-  font-size: 1.5em;
-
-}
-
-.form_catalogo input[type="checkbox"] {
-  width: 70px;
-  height: 70px;
-  margin: 5%;
-  border: 5px solid #505050;
-}
-
-.form_catalogo input[type="file"] {
-  margin: auto;
-  font-size: 3em;
-  line-height: 3em;
-  text-align: center;
-  padding: 0;
-}
-
-.form_catalogo input[type="checkbox"]~img {
-  max-width: 30%;
-  max-height: 30%;
-  width: 30%;
-  height: 30%;
-}
-
-.form_catalogo textarea {
-  width: 70%;
-  height: auto;
-  max-width: 70%;
-  font-size: 3em;
-  margin: 1%;
-  padding: 1%;
-}
-
-.form_catalogo textarea>div,
-.charCountDiv {
-  font-size: 2em;
-  line-height: 3em;
-  margin: auto;
-}
-
-.flex-container {
-  display: block;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.inline .nome,
-.inline .descrizione,
-.inline .categoria {
-  font-weight: bold;
-}
-
-.pulsanti_catalogo {
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-
-.titolo_img_form {
-  margin: 0.5em;
-  font-size: 2.5em;
-  line-height: 3em;
-  text-align: center;
-}
-
-form .form_catalogo  {
-  align-items: center;
-  width: 85%;
-  border-radius: 0.5em;
-  padding: 3%;
-  margin: 2%;
-  box-shadow: 1em var(--shadowcolor);
-  text-align: justify;
-  line-height: 3em;
-  font-size: 1em;
-}
-
-.testo_regole {
-  margin: auto;
-  padding: auto;
-  line-height: 3em;
-  font-size: 1.8em;
-}
-
-#catalogo {
-  align-items: center;
-  width: 90%;
-  margin: 5%;
-}
-
-.form_catalogo p,
-input[type="text"] {
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
-}
-.form_catalogo div p{
-  font-size: 1.9em;
-}
-
-.form_catalogo #elimina_prod,
-#elimina_img {
-  text-align: center;
-}
-
-/*CATALOGO END*/
-#elimina_utente_big-profilo,
-#elimina_utente_big-img-profilo {
-  line-height: 3em;
-  font-size: 1em;
-  background-color: #ffcccc;
-  color: #cc0000;
-  padding: 1%;
-  border: 5px solid #cc0000;
-  border-radius: 0.5em;
-  margin: 1%;
-  text-align: center;
-  box-sizing: border-box;
-}
-#elimina_utente_big-profilo form div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-/*@media(orientation: landscape) and (min-width: 600px) {*/
 
   /*UTENTI*/
   .flexutente {
@@ -1218,13 +324,13 @@ input[type="text"] {
     flex-direction: column;
     gap: 0.5em;
     line-height: 1.5em;
-    font-size: 100%;
+    font-size: 1em;
     margin: 2%;
     border: 1px solid #505050;
   }
 
   .flexutente div {
-    font-size: 100%;
+    font-size: 1.3em;
   }
 
   /*FINE UTENTI*/
@@ -1236,18 +342,18 @@ input[type="text"] {
 
   #form_informazioni {
     text-align: center;
-    font-size: 100%;
+    font-size: 1.3em;
   }
 
   .titolo-contatti {
-    font-size: 200%;
+    font-size: 2em;
     line-height: 3em;
     margin: 0.5em;
   }
 
   #messaggio {
     line-height: 1.5em;
-    font-size: 100%;
+    font-size: 1em;
     margin: 0.5em;
     height: auto;
     width: auto;
@@ -1258,15 +364,15 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1.5em;
     padding: 1%;
     border: 1px solid #505050;
   }
 
   .sopra {
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1.5em;
     margin: 0.5em;
   }
 
@@ -1274,7 +380,7 @@ input[type="text"] {
   #riservata a {
     color: var(--visitedcolor);
     font-weight: bold;
-    font-size: 100%;
+    font-size: 1em;
     line-height: 3em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
@@ -1286,8 +392,8 @@ input[type="text"] {
 
   /*LOGIN*/
   .login-h2 {
-    font-size: 200%;
-    line-height: 3em;
+    font-size: 2em;
+    line-height: 2em;
     margin: 0.5em;
   }
 
@@ -1299,17 +405,17 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 100%;
+    font-size: 1.5em;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
-    line-height: 1.5em;
+    line-height: 1.6em;
   }
   form .lab {
     margin: auto;
     padding: auto;
-    line-height: 3em;
-    font-size: 100%;
+    line-height: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
   }
 
@@ -1317,8 +423,8 @@ input[type="text"] {
   p.link-reg a {
     color: var(--visitedcolor);
     font-weight: bold;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     border: 0.2em solid var(--bgfuncolor);
     border-radius: 0.5em;
     padding: 0.2em;
@@ -1340,18 +446,18 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 100%;
+    font-size: 1.3em;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
-    line-height: 3em;
+    line-height: 1.5em;
   }
 
   .reglab {
     margin: auto;
     padding: auto;
-    line-height: 3em;
-    font-size: 100%;
+    line-height: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
   }
 
@@ -1360,23 +466,6 @@ input[type="text"] {
   /*END REGISTRATI*/
 
   /*CAROUSEL*/
-  /* Slideshow container */
-  .slideshow-container {
-    width: 400px;
-    height: 400px;
-    margin: 3em auto;
-    max-width: 100%;
-    text-align: center;
-    position: relative;
-    box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.2);
-  }
-
-
-  .slideshow-container img {
-    max-width: 100%;
-    width: 400px;
-    height: 400px;
-  }
 
   .position-container {
     position: relative;
@@ -1386,8 +475,8 @@ input[type="text"] {
   }
 
   #product-name {
-    font-size: 200%;
-    line-height: 3em;
+    font-size: 2.5em;
+    line-height: 2.5em;
     margin: 0.5em;
   }
 
@@ -1431,25 +520,8 @@ input[type="text"] {
   }
 
   .button {
-    position: absolute;
-    right: 0;
-    cursor: pointer;
-    width: 200px;
-    height: 40px;
-    font-size: 100%;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--bgfuncolor);
-    border-radius: 0.5em;
-    background-color: var(--bgfuncolor);
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
+    display: none;
   }
-
-
 
   /*END CAROUSEL*/
 
@@ -1462,15 +534,16 @@ input[type="text"] {
     border-radius: 0.5em;
     background-color: #c2e0c6;
     border: 1px solid #276749;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1.5em;
     margin: 7%;
     padding: 1%;
     position: inherit;
+    font-weight: normal;
   }
 
   #description>form {
-    font-size: 1.5;
+    font-size: 1.5em;
     line-height: 3em;
     padding: 5%;
   }
@@ -1479,8 +552,8 @@ input[type="text"] {
     width: auto;
     height: 20%;
     margin: 0.5em;
-    font-size: 80%;
-    line-height: 1;
+    font-size: 1.3em;
+    line-height: 1.5em;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -1497,8 +570,8 @@ input[type="text"] {
   /*WISHLIST*/
 
   .wish-title {
-    font-size: 200%;
-    line-height: 3em;
+    font-size: 2em;
+    line-height: 2em;
     margin: 0.5em;
 }
 
@@ -1521,23 +594,11 @@ input[type="text"] {
   }
 
   .image-container {
-    max-width: 300px;
-    max-height: 300px;
-    width: 300px;
-    height: 300px;
-    margin: 1%;
-    position: relative;
+    display: none;
   }
 
   .image-container>img {
-    max-width: 300px;
-    max-height: 300px;
-    width: auto;
-    height: auto;
-    margin-bottom: 1%;
-    border: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    box-shadow: 1em var(--shadowcolor);
+    display: none;
   }
 
   .image-container .open-button {
@@ -1556,6 +617,7 @@ input[type="text"] {
     text-align: left;
     align-items: left;
     gap: 0.2em;
+    font-size: 1em;
   }
 
   .contentProdotto .nome,
@@ -1568,10 +630,10 @@ input[type="text"] {
     margin-left: 2%;
     margin-right: auto;
     padding: 1%;
-    font-weight: bold;
     margin-bottom: 1%;
     text-align: left;
-    line-height: 3em;
+    line-height: 1.5em;
+    font-weight: normal;
   }
 
   .wish-link a {
@@ -1597,7 +659,7 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 120%;
+    font-size: 1.2em;
     cursor: pointer;
     line-height: 3em;
     padding: 1%;
@@ -1606,50 +668,27 @@ input[type="text"] {
   }
 
   .rimuovi-container {
-    position: absolute;
-    right: 10%;
-    bottom: 2%;
-    width: auto;
-    height: auto;
+    display: none;
   }
 
   .remove-button {
-    position: relative;
-    overflow: hidden;
-    width: 60px;
-    height: 60px;
-    max-width: 60px;
-    max-height: 60px;
-    cursor: pointer;
-    border-radius: 30%;
-    border: 1px solid #505050;
-    box-shadow: 1em var(--shadowcolor);
-    transition: background-color 0.5s, transform 0.5s, filter 0.5s;
-    background-color: var(--bgfuncolor);
+    display: none;
   }
 
   .remove-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s, filter 0.5s;
+    display: none;
   }
 
   .remove-button:hover img.non-hover-image {
-    opacity: 0;
-    transform: scale(0.9);
+    display: none;
   }
 
   .remove-button .hover-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
+    display: none;
   }
 
   .remove-button:hover .hover-image {
-    opacity: 1;
+    display: none;
   }
 
   #wish-error {
@@ -1659,10 +698,10 @@ input[type="text"] {
     height: 3em;
     width: auto;
     border-radius: 0.5em;
-    font-size: 120%;
-    line-height: 3em;
+    font-size: 1em;
+    line-height: 1.5em;
     margin: 5%;
-    padding: 0;
+    padding: 0em;
     position: inherit;
     display: flex;
     justify-content: center;
@@ -1673,8 +712,8 @@ input[type="text"] {
   /*PROFILO*/
 
   .profilo-h2 {
-    font-size: 200%;
-    line-height: 3em;
+    font-size: 2em;
+    line-height: 2em;
     margin: 0.5em;
   }
 
@@ -1686,10 +725,10 @@ input[type="text"] {
     background-color: #ffcccc;
     color: #cc0000;
     border: 1px solid #cc0000;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1.5em;
     margin: 5%;
-    padding: 0;
+    padding: 0em;
     position: inherit;
     display: flex;
     justify-content: center;
@@ -1704,8 +743,8 @@ input[type="text"] {
     background-color: #c2e0c6;
     color: #276749;
     border: 1px solid #276749;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1.5em;
     margin: 5%;
     padding: 1%;
     position: inherit;
@@ -1721,7 +760,7 @@ input[type="text"] {
   }
 
   .Old-pass label {
-    font-size: 100%;
+    font-size: 1.3em;
     font-weight: bold;
   }
 
@@ -1729,8 +768,8 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 80%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -1738,11 +777,11 @@ input[type="text"] {
   .New-pass {
     margin: auto;
     padding: auto;
-    line-height: 3em;
+    line-height: 1.5em;
   }
 
   .New-pass label {
-    font-size: 100%;
+    font-size: 1.3em;
     font-weight: bold;
   }
 
@@ -1750,8 +789,8 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 80%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -1763,7 +802,7 @@ input[type="text"] {
   }
 
   .New-repeat label {
-    font-size: 100%;
+    font-size: 1.3em;
     font-weight: bold;
   }
 
@@ -1771,8 +810,8 @@ input[type="text"] {
     position: relative;
     width: auto;
     height: auto;
-    font-size: 80%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     padding: 1%;
     border: 1px solid #505050;
   }
@@ -1790,8 +829,8 @@ input[type="text"] {
     margin-bottom: 1em;
     box-shadow: 1em var(--shadowcolor);
     margin-left: auto;
-    line-height: 3em;
-    font-size: 100%;
+    line-height: 1.5em;
+    font-size: 1.2em;
     margin-right: auto;
   }
 
@@ -1841,7 +880,7 @@ input[type="text"] {
   .elimina_utente_big,
   .elimina_utente_big-img {
     line-height: 3em;
-    font-size: 100%;
+    font-size: 1.2em;
     background-color: #ffcccc;
     color: #cc0000;
     padding: 1%;
@@ -1854,8 +893,8 @@ input[type="text"] {
 
   #elimina_utente_big-profilo,
   #elimina_utente_big-img-profilo {
-    line-height: 3em;
-    font-size: 100%;
+    line-height: 1.5em;
+    font-size: 1.2em;
     background-color: #ffcccc;
     color: #cc0000;
     padding: 1%;
@@ -1876,8 +915,8 @@ input[type="text"] {
   .messaggio_elimina {
     color: red;
     font-weight: bold;
-    font-size: 120%;
-    line-height: 3em;
+    font-size: 1.2em;
+    line-height: 1.5em;
   }
 
   /*END PROFILO (ci sono anche un paio di classi che si usano in altre pagine e dovrebbero andare lo stesso)*/
@@ -1901,7 +940,7 @@ input[type="text"] {
     max-width: 300px;
     height: auto;
     width: auto;
-    margin: 5%;
+    margin: 1%;
   }
 
 
@@ -1923,15 +962,14 @@ input[type="text"] {
     height: auto;
     width: auto;
     margin: 5%;
-
-    line-height: 3em;
+    line-height: 1.5em;
   }
 
   .desc-categ {
     width: auto;
     height: 100%;
     margin: 0.5em;
-    font-size: 100%;
+    font-size: 1.2em;
     margin-left: 2%;
     margin-right: auto;
     padding: 2.5%;
@@ -1941,21 +979,11 @@ input[type="text"] {
   /*FINE LISTA CATEGORIE*/
 
   .slideshow-container-home {
-    width: 500px;
-    height: 500px;
-    max-width: 500px;
-    max-height: 500px;
-    margin: 1px auto;
-    text-align: center;
-    position: relative;
-    box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.2);
-    /* Ingrandisci l'ombra e spostala verso il basso e a destra */
+    display: none;
   }
 
   .slideshow-container-home img {
-    max-width: 100%;
-    width: 500px;
-    height: 500px;
+    display: none;
   }
 
   .mySlides-home img.homeimg:hover {
@@ -2021,10 +1049,10 @@ input[type="text"] {
     background-color: #ffcccc;
     color: #cc0000;
     border: 1px solid #cc0000;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     margin: 5%;
-    padding: 0;
+    padding: 0em;
     position: inherit;
     display: flex;
     justify-content: center;
@@ -2039,8 +1067,8 @@ input[type="text"] {
     background-color: #c2e0c6;
     color: #276749;
     border: 1px solid #276749;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     margin: 5%;
     padding: 1%;
     position: inherit;
@@ -2060,22 +1088,23 @@ input[type="text"] {
 p.inline .email, p.inline .data, p.inline .product, p.inline .messaggio, 
 p.inline .letto {
   line-height: 1.5em;
-  font-size: 100%;
+  font-size: 1.2em;
 } 
 p.inline, p label{
   line-height: 1.5em;
-  font-size: 100%;
+  font-size: 1.3em;
 }
 .msggg input[type="checkbox"] {
   width: 15px;
   height:15px;
+  border: 5px solid #505050;
 }
   /*MESSAGGI END*/
 
   /*CATALOGO START*/
 
   .titolo_catalogo {
-    font-size: 150%;
+    font-size: 2em;
     line-height: 2em;
     margin: 0em;
   }
@@ -2123,11 +1152,11 @@ p.inline, p label{
   #categories {
     width: auto;
     height: auto;
-    font-size: 100%;
+    font-size: 1.5em;
     border: 1px solid #505050;
     margin: auto;
     padding: auto;
-    line-height: 3em;
+    line-height: 1.5em;
   }
 
   .prodotto {
@@ -2142,12 +1171,12 @@ p.inline, p label{
     width: 90%;
     max-width: 90%;
     height: auto;
-    font-size: 100%;
-    line-height: 1em;
+    font-size: 1.3em;
+    line-height: 1.5em;
   }
 
   .flexcatalogo form .prodotto input[type="submit"] {
-    font-size: 100%;
+    font-size: 1.3em;
 
   }
 
@@ -2155,12 +1184,13 @@ p.inline, p label{
     width: 15px;
     height: 15px;
     margin: 5%;
+    border: 5px solid #505050;
   }
 
   .form_catalogo input[type="file"] {
     margin: auto;
-    font-size: 100%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     text-align: center;
     padding: 0;
   }
@@ -2176,14 +1206,14 @@ p.inline, p label{
     width: 70%;
     height: auto;
     max-width: 70%;
-    font-size: 100%;
+    font-size: 1.2em;
     margin: 1%;
     padding: 1%;
   }
 
   .form_catalogo textarea>div,
   .charCountDiv {
-    font-size: 100%;
+    font-size: 1.3em;
     line-height: 3em;
     margin: auto;
   }
@@ -2211,8 +1241,8 @@ p.inline, p label{
 
   .titolo_img_form {
     margin: 0.5em;
-    font-size: 200%;
-    line-height: 3em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     text-align: center;
   }
 
@@ -2225,14 +1255,14 @@ p.inline, p label{
     box-shadow: 1em var(--shadowcolor);
     text-align: justify;
     line-height: 3em;
-    font-size: 100%;
+    font-size: 1.2em;
   }
 
   .testo_regole {
     margin: auto;
     padding: auto;
-    line-height: 3em;
-    font-size: 100%;
+    line-height: 1.5em;
+    font-size: 1.2em;
   }
 
   #catalogo {
@@ -2252,7 +1282,7 @@ p.inline, p label{
   }
 
   .form_catalogo div p{
-    font-size: 100%;
+    font-size: 1.3em;
   }
 
   .form_catalogo #elimina_prod,
@@ -2260,8 +1290,7 @@ p.inline, p label{
     text-align: center;
   }
 
-  .hide {visibility: hidden; position: absolute;}
-/*}*/
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2299,3 +1328,4 @@ p.inline, p label{
 #desc_cat {
   line-height: 1.5em;
 }
+
