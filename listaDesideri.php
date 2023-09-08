@@ -28,7 +28,7 @@ if (!isset($_SESSION["username"])) {
                 $img = "<img src=\"" . $result2[0]["path"] . "\" alt=\"" . $result2[0]["alt_img"] . "\" width=\"200\" height=\"200\"/>";
 
                 $productlist .= "<form action=\"contatti.php\" class=\"prodotto\" name=\"form-prodotto\" method=\"post\">";
-                $productlist .= "<div class=\"image-container\">";
+                $productlist .= "<fieldset ><legend class='sr-only'>".$nome."</legend><div class=\"image-container\">";
                 $productlist .= $img;
                 $productlist .= "<button class=\"open-button\" aria-label='Ingrandisci' id=\"" . $result2[0]["path"] . "\"><img src=\"img/lente.png\" alt=\"Ingrandisci immagine.\" /></button>";
                 $productlist .= "</div>";
@@ -37,9 +37,7 @@ if (!isset($_SESSION["username"])) {
                 $productlist .= "<div class=\"descrizione\">Descrizione: " . $desc . "</div>";
                 $productlist .= "<div class=\"categoria\">Categoria: <span><a class=\"wish-link\" href=\"categorie.php?cat=" . $result2[0]['id_categoria'] . "\">" . $cat . "</a></span></div>";
                 $productlist .= "<div class=\"button-container\">";
-                $productlist .= "<label for=\"informazioni_prodotto-".$idprod."\" class=\"sr-only\">Contattaci: </label>";
                 $productlist .= "<input type=\"submit\" id=\"informazioni_prodotto-".$idprod."\" name=\"informazioni_prodotto\" value=\"Richiedi Informazioni\" />";
-                $productlist .= "<label for=\"" . $idprod . "\" class=\"sr-only\">Apri scheda prodotto: </label>";
                 $productlist .= "<button id=\"" . $idprod . "\" class=\"vaiProdotto\" name=\"Scheda-Prodotto-".$nome."\">Scheda Prodotto <span aria-hidden=\"true\">-&gt</span></button>";
                 $productlist .= "<input type=\"hidden\" class=\"product-id\" name=\"product_id\" value=\"" . $idprod . "\"/>";
                 $productlist .= "<input type=\"hidden\" class=\"categoria\" name=\"categoria\"  value=\"" . $idcat . "\"/>";
@@ -50,7 +48,7 @@ if (!isset($_SESSION["username"])) {
                 $productlist .= "</button>";
                 $productlist .= "</div>";
                 $productlist .= "</div>";
-                $productlist .= "</div>";
+                $productlist .= "</div></fieldset>";
                 $productlist .= "</form>";
             }
         }
