@@ -34,7 +34,6 @@ if (isset($_SESSION["username"]) && $_SESSION["ruolo"] == "admin") {
                         <input type="submit" name="no" class="invio" value="No" /></div></fieldset></form></div></div></div>' : $stringaUtenti .= '
                         
                             <input type="hidden" id="id' . $utente['username'] . '" name="userId" value="' . $utente['username'] . '"/>
-                            <label for="delete' . $utente['username'] . '" class="sr-only">Elimina</label>
                             <input type="submit" id="delete' . $utente['username'] . '" name="delete" class="invio" value="Elimina"/>
                             <div class="msg_confirm" role="alert"></div></fieldset>
                         </form>
