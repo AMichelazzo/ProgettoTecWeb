@@ -34,8 +34,7 @@ if ($user && $ruolo == "admin") {
             // messaggio di errore omissione campi prodotto
             $paginaHTML = Catalogo::sendError("error", "Modifica non riuscita", "Alcuni campi di prodotto non sono stati inseriti!", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id"]);
-            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-            $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
+            $paginaHTML = Catalogo::getBreadCrumb("Modifica_Prodotto", $paginaHTML);
         }
     } elseif (isset($_POST["salva_alt_img"])) { // Salva i testi alternativi per le immagini di un prodotto
 
@@ -49,17 +48,16 @@ if ($user && $ruolo == "admin") {
 
         $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Alt modificati correttamente", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
-        $paginaHTML = str_replace("Catalogo prodotti", "Modificalo Prodotto", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica prodotto", $paginaHTML);
 
     } elseif (isset($_POST["upload_img"]) && isset($_FILES['img'])) { // Upload di una o più immagini
 
         $result = Catalogo::uploadImg($_POST["product_id_img"], $_POST["category_id_img"]);
 
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
-        $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
         $paginaHTML = Catalogo::sendError($result[0], $result[1], $result[2], $paginaHTML);
+        $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id_img"]);
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica prodotto", $paginaHTML);
+        
 
     } elseif (isset($_POST["si_elimina_img"]) && isset($_POST["submit_elimina_img"])) { // Eliminazione di immagini di un prodotto
 
@@ -71,23 +69,21 @@ if ($user && $ruolo == "admin") {
                 $paginaHTML = Catalogo::sendError("success", "Eliminazione immagine riuscita", "Immagini eliminate", $paginaHTML);
             }
 
-            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-            $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+            $paginaHTML = Catalogo::getBreadCrumb("Modifica prodotto", $paginaHTML);
+
         } else {
 
             // messaggio di errore, nessuna checknox è stata selezionata
             $paginaHTML = Catalogo::sendError("error", "Eliminazione immagine non riuscita", "Non hai selezionato nessuna immagine!", $paginaHTML);
-            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-            $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
-
+            $paginaHTML = Catalogo::getBreadCrumb("Modifica prodotto", $paginaHTML);
+            
         }
     } elseif (isset($_POST["no_elimina_img"])) { // Annulla eliminazione immagine
 
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica prodotto", $paginaHTML);
 
     } elseif (isset($_POST["si_elimina_prod"])) { // Eliminazione di un prodotto
         $result = Access::deleteProduct($_POST["prod_id_2"]);
@@ -100,9 +96,8 @@ if ($user && $ruolo == "admin") {
 
     } elseif (isset($_POST["no_elimina_prod"])) { // Annulla eliminazione prodotto
 
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["prod_id_2"]);
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica prodotto", $paginaHTML);
 
     } elseif (isset($_POST["submit_new_prod"])) { // Creazione di un nuovo prodotto
         if (isset($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]) && Access::is_not_null($_POST["new_nome_prod"]) && Access::is_not_null($_POST["new_desc_prod"])) {
@@ -120,9 +115,7 @@ if ($user && $ruolo == "admin") {
             // messaggio di errore omissione campi
             $paginaHTML = Catalogo::sendError("error", "Creazione prodotto non riuscita", "Alcuni campi di prodotto non sono stati inseriti!", $paginaHTML);
             $Elenco_prod = Catalogo::show_newProduct();
-            $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $paginaHTML);
-            $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Creazione nuovo prodotto", $paginaHTML);
-
+            $paginaHTML = Catalogo::getBreadCrumb("Nuovo_prodotto", $paginaHTML);
         }
     } elseif (isset($_POST["submit_modifica_cat"])) { // Modifica di una categoria
         if (isset($_POST["nome_cat"], $_POST["desc_cat"]) && Access::is_not_null($_POST["nome_cat"]) && Access::is_not_null($_POST["desc_cat"])) {
@@ -134,9 +127,7 @@ if ($user && $ruolo == "admin") {
         } else {
             $paginaHTML = Catalogo::sendError("error", "Modifica non riuscita", "Alcuni campi di categoria non sono stati inseriti!", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id"]);
-            $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
-            $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Modifica categoria", $paginaHTML);
-
+            $paginaHTML = Catalogo::getBreadCrumb("Modifica_Categoria", $paginaHTML);
         }
     } elseif (isset($_POST["submit_new_cat"])) { // Creazione di una nuova categoria
         if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"]) && Access::is_not_null($_POST["new_nome_cat"]) && Access::is_not_null($_POST["new_desc_cat"])) {
@@ -151,38 +142,32 @@ if ($user && $ruolo == "admin") {
         } else {
             $paginaHTML = Catalogo::sendError("error", "Creazione categoria non riuscita", "Alcuni campi di categoria non sono stati inseriti!", $paginaHTML);
             $Elenco_prod = Catalogo::show_newCategory();
-            $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuova categoria", $paginaHTML);
-            $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Creazione nuova categoria", $paginaHTML);
-
+            $paginaHTML = Catalogo::getBreadCrumb("Nuova_Categoria", $paginaHTML);
         }
     } elseif (isset($_POST["si_elimina_cat"])) { // Eliminazione di una categoria
 
         if (Access::getProductsbyCategory($_POST["cat_id_2"])) { // Controllo che non ci siano ancora prodotti con questa categoria
             $paginaHTML = Catalogo::sendError("error", "Eliminazione categoria non riuscita", "Errore nell'eliminazione della categoria, sono presenti prodotti con questa categoria", $paginaHTML);
             $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id_2"]);
+            $paginaHTML = Catalogo::getBreadCrumb("Modifica_Categoria", $paginaHTML);
         } else {
             Access::deleteCategory($_POST["cat_id_2"]);
             $paginaHTML = Catalogo::sendError("success", "Eliminazione categoria riuscita", "Categoria eliminata correttamente", $paginaHTML);
+            $Elenco_prod = Catalogo::show_allCategories();
+            $paginaHTML = Catalogo::getBreadCrumb("Lista_Categorie", $paginaHTML);
         }
-
-        $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Categorie", $paginaHTML);
-        $Elenco_prod = Catalogo::show_allCategories();
-
     } elseif (isset($_POST["no_elimina_cat"])) {
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica categoria", $paginaHTML);
+
         $Elenco_prod = Catalogo::show_modifyCategory($_POST["cat_id_2"]);
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica_Categoria", $paginaHTML);
 
     } elseif (isset($_POST["modifica_prod"])) { // funzione che mostra la pagina di modifica del prodotto selezionato
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Prodotto", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyProduct($_POST["product_id"]);
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica_Prodotto", $paginaHTML);
 
     } elseif (isset($_GET["new_product"])) { // pagina per la creazione di un nuovo prodotto
-        $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Creazione nuovo prodotto", $paginaHTML);
         $Elenco_prod = Catalogo::show_newProduct();
+        $paginaHTML = Catalogo::getBreadCrumb("Nuovo_Prodotto", $paginaHTML);
 
         if ($Elenco_prod == 0)
             Catalogo::sendError("error", "Errore:", "Devi prima creare una categoria!", $paginaHTML);
@@ -190,19 +175,18 @@ if ($user && $ruolo == "admin") {
     } elseif (
         isset($_GET["lista_categorie"]) || isset($_POST["annulla_modifica_cat"]) || isset($_POST["annulla_new_cat"])
     ) { // mostra lista delle categorie
-
-        $paginaHTML = str_replace("Catalogo prodotti", "Lista Categorie", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / Categorie", $paginaHTML);
+        
         $Elenco_prod = Catalogo::show_allCategories();
+        $paginaHTML = Catalogo::getBreadCrumb("Lista_Categorie", $paginaHTML);
 
-    } elseif (isset($_POST["new_category"])) { // pagina per la creazione di nuova categoria
-        $paginaHTML = str_replace("Catalogo prodotti", "Creazione nuova categoria", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Creazione nuova categoria", $paginaHTML);
+    } elseif (isset($_GET["new_category"])) { // pagina per la creazione di nuova categoria
+
         $Elenco_prod = Catalogo::show_newCategory();
+        $paginaHTML = Catalogo::getBreadCrumb("Nuova_Categoria", $paginaHTML);
 
     } elseif (isset($_POST["modifica_cat"])) { // pagina per la modifica della categoria
-        $paginaHTML = str_replace("Catalogo prodotti", "Modifica Categoria", $paginaHTML);
-        $paginaHTML = Catalogo::getBreadCrumb(" / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Modifica categoria", $paginaHTML);
+
+        $paginaHTML = Catalogo::getBreadCrumb("Modifica_Categoria", $paginaHTML);
         $Elenco_prod = Catalogo::show_modifyCategory($_POST["category_id"]);
     }
     // fine catalogo categorie

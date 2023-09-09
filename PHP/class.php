@@ -364,6 +364,10 @@ class Access
             
             case "Lista dei Desideri":
                 $pagina = str_replace('<li><a href="listaDesideri.php" >Lista dei desideri</a></li>', '<li id="currentLink">Lista dei Desideri</li>', $pagina);
+                break;
+            case "Catalogo":
+                $pagina = str_replace('<li><a href="catalogo.php">Catalogo</a></li>', '<li id="currentLink">Catalogo</li>', $pagina);
+
         }
         $pagina2 = Access::lang($pagina);
         return $pagina2;

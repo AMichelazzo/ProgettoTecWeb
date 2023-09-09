@@ -153,7 +153,6 @@ $result .= '
                                 <input type="hidden" class="invio" id="no_elimina" name="no_elimina_prod" value="No" />
                             </div>
                             <input type="hidden" name="prod_id_2" value="' . $product_id . '" />
-                    </div>
                 </div>
             </fieldset>
         </form> ' .
@@ -323,7 +322,7 @@ $result =   '<form action="catalogo.php" method="POST">
         $categories = Access::getAllCategories();
 
         $result =
-            '<form action="catalogo.php" method="POST">
+            '<form action="catalogo.php" method="GET">
                 <div>
                     <input type="submit" class="invio" value="Torna al catalogo prodotti" />
                     <input type="submit" class="invio" id="new_category" name="new_category" value="Aggiungi nuova categoria" />
@@ -428,7 +427,7 @@ $result =   '<form action="catalogo.php" method="POST">
                             <input type="hidden" class="invio" id="si_elimina" name="si_elimina_cat" value="Si" />
                             <input type="hidden" class="invio" id="no_elimina" name="no_elimina_cat" value="No" />
                         </div>
-                    </div>
+                    
                 </div>
             </form>';
 
@@ -539,7 +538,35 @@ $result =   '<form action="catalogo.php" method="POST">
 
     public static function getBreadCrumb($text, $pagina)
     {
-        return str_replace(" / Catalogo", $text, $pagina);
+        switch($text) {
+            case("Nuovo_Prodotto"):
+                $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / Creazione nuovo prodotto", $pagina);
+                $pagina = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $pagina);
+                $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Nuovo prodotto - Véro</title>", $pagina);
+                break;
+            case("Modifica_Prodotto"):
+                $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $pagina);
+                $pagina = str_replace("Catalogo prodotti", "Modifica Prodotto", $pagina);
+                $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Modifica prodotto - Véro</title>", $pagina);
+                break;
+            case("Lista_Categorie"):
+                $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / Categorie", $pagina);
+                $pagina = str_replace("Catalogo prodotti", "Lista Categorie", $pagina);
+                $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Lista categorie - Véro</title>", $pagina);
+                break;
+            case("Nuova_Categoria"):
+                $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Creazione nuova categoria",
+                $pagina);
+                $pagina = str_replace("Catalogo prodotti", "Creazione nuova categoria", $pagina);
+                $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Nuova categoria - Véro</title>", $pagina);
+            case("Modifica_Categoria"):
+                $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Modifica categoria",
+                $pagina);
+                $pagina = str_replace("Catalogo prodotti", "Modifica Categoria", $pagina);
+                $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Modifica categoria - Véro</title>", $pagina);
+                break;
+        }
+        return $pagina;
     }
 
 }
