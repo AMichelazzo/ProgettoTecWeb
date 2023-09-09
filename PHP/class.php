@@ -399,38 +399,52 @@ class Access
 
     public static function reverselang($str)
     {
-        $pattern = "/<span[^>]+\>/i";
+        function str_replace_first($search, $replace, $subject)
+{
+    $search = '/'.preg_quote($search, '/').'/';
+    return preg_replace($search, $replace, $subject, 1);
+}
+
+
+
+$pattern = "/<span[^>]+\>/i";
         preg_match_all($pattern, $str, $match);
-        $match = $match[0];
+        $match = $match[0]; 
+        //echo $match;
         
         $pat2 = '/<\/span>/i';
+        //$pat2 = '/<\/span[^>]+\>/i';
         preg_match_all($pat2, $str, $match2);
         $match2 = $match2[0];
-        $value2 = array();
+        //print_r($match2);
+        //$value2 = array();
         
         
-        $match = array_unique($match);
+        //$match = array_unique($match);
+        //$match2 = array_unique($match2);
+        //print_r($match2);
         $value = array();
+        $value2 = array();
         foreach ($match as $n => $l) {
             if (strpos($l, '</span>') === false) {
                 $sub = $l;
                 $tmp = $match2[$n];
                 $sub = str_replace('<span lang="', '', $sub);
                 $sub = str_replace('">', '', $sub);
-                $tmp2 = strtoupper($sub);
+                $tmp2 = '[\\' . strtoupper($sub) . ']';
                 $sub = str_replace($sub, '[' . strtoupper($sub) . ']', $sub);
-                $tmp = str_replace('</span>', '[\\', $tmp);
-                $tmp .= $tmp2 . ']';
-                
+                //$tmp = str_replace('</span>', '[\\', $tmp);
+                //$tmp .= $tmp2 . ']';
+                $str = str_replace_first('</span>', $tmp2, $str);
                 array_push($value, $sub);
-                array_push($value2, $tmp);
+                //array_push($value2, $tmp);
             } else {
                 array_push($value, '</span>');
             }
         }
         for ($i = 0; $i < count($value); $i++) {
             $str = str_replace($match[$i], $value[$i], $str);
-            $str = str_replace($match2[$i], $value2[$i], $str);
+            //$str = str_replace($match2[$i], $value2[$i], $str);
         }
         return $str;
     }
