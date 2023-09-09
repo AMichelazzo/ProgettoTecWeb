@@ -31,7 +31,7 @@ $result .=
             <fieldset class="prodotto">
                 <legend>
                     <span class="nome">'
-                        . Access::lang($products[$i]["Prod_Nome"]) . 
+                        . ($products[$i]["Prod_Nome"]) . 
                     '</span>
                 </legend>
                 <div>
@@ -46,22 +46,22 @@ $result .= '
                 <div>
                     <span class="nome">
                         Nome prodotto:
-                    </span> ' . Access::lang($products[$i]["Prod_Nome"]) . 
+                    </span> ' . ($products[$i]["Prod_Nome"]) . 
                 '</div>
                 <div>
                     <span class="categoria">
                         Categoria:
                     </span> ' 
-                    . Access::lang($products[$i]["Cat_Nome"]) . 
+                    . ($products[$i]["Cat_Nome"]) . 
                 '</div>
                 <div>
                     <span class="descrizione">
                         Descrizione:
                     </span> ' 
-                    . Access::lang($products[$i]["Descrizione"]) . 
+                    . ($products[$i]["Descrizione"]) . 
                 '</div>
                 <label class="sr-only" for="' . $products[$i]["id_prodotto"] . '-' . $products[$i]["id_categoria"] . '">
-                    Modifica prodotto ' . Access::lang($products[$i]["Prod_Nome"]) . 
+                    Modifica prodotto ' . ($products[$i]["Prod_Nome"]) . 
                 '</label>
                 <div>
                     <input type="submit" class="modifica invio" name="modifica_prod" id="'. $products[$i]["id_prodotto"] . '-' . $products[$i]["id_categoria"] . 
@@ -96,7 +96,7 @@ $result .= '
                     </label>
                 </div>
                 <div>
-                    <input class="inp" type="text" id="nome_prod" name="nome_prod" value="' . Access::deletelang($product[0]["Nome"]) . '"/>
+                    <input class="inp" type="text" id="nome_prod" name="nome_prod" value="' . Access::reverselang($product[0]["Nome"]) . '"/>
                 </div>
                 <div>        
                     <label class="lab" for="categories">
@@ -119,7 +119,7 @@ $result .= '
                 </div>
                 <div>
                     <textarea class="inp" id="desc_prod" name="desc_prod" rows="10" cols="40"
-                        maxlength="500">' . Access::lang($product[0]["Descrizione"]) . '</textarea>
+                        maxlength="500">' . Access::reverselang($product[0]["Descrizione"]) . '</textarea>
                 </div>
                 <div>
                     <p>In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
@@ -206,7 +206,7 @@ $result .= '
                     <div>
                         <textarea class="limited-textarea inp" id="alt-' . $product[$i]["path"] . '" name="alt_img[]" rows="4" cols="30"
                         placeholder="Inserisci alt per immagine">' 
-                            . Access::lang($product[$i]["alt_img"]) 
+                            . Access::deletelang($product[$i]["alt_img"]) 
                        .'</textarea>   
                         <div class="charCountDiv" id="char-count-alt-' . $product[$i]["path"] . '">
                             Caratteri rimanenti: 75
@@ -342,27 +342,27 @@ $result =   '<form action="catalogo.php" method="POST">
                 <fieldset class="prodotto">
                     <legend>
                         <span class="nome">' . 
-                            Access::lang($categories[$i]["Nome"]) . 
+                            $categories[$i]["Nome"] . 
                         '</span>
                     </legend>
                     <div>
                         <span class="nome">
                             Nome:
                         </span> ' . 
-                        Access::lang($categories[$i]["Nome"]) . '
+                       $categories[$i]["Nome"] . '
                     </div>
                     <div>
                         <span class="descrizione">
                             Descrizione:
                         </span> ' .
-                        Access::lang($categories[$i]["Descrizione"]) . '
+                        $categories[$i]["Descrizione"] . '
                     </div>
-                    <label class="sr-only" for="' . $categories[$i]["id_categoria"] . '-' . $categories[$i]["Nome"] . '">
-                        Modifica categoria '. Access::lang($categories[$i]["Nome"]) . 
+                    <label class="sr-only" for="' . $categories[$i]["id_categoria"] . '">
+                        Modifica categoria '. $categories[$i]["Nome"] . 
                     '</label>
                     <div>
                         <input type="submit" class="modifica invio" name="modifica_cat" 
-                        id="' . $categories[$i]["id_categoria"] . '-' . $categories[$i]["Nome"] . '" value="Modifica" />
+                        id="' . $categories[$i]["id_categoria"] . '" value="Modifica" />
                     </div>
                     <div>
                         <input type="hidden" name="category_id" value="' . // mi salvo l'id_categoria
@@ -395,7 +395,7 @@ $result =   '<form action="catalogo.php" method="POST">
                     </div>
                     <div>
                         <input class="inp" type="text" id="nome_cat" name="nome_cat" value="' . 
-                        Access::deletelang($categories[0]["Nome"]) . '"/>
+                        Access::reverselang($categories[0]["Nome"]) . '"/>
                     </div>
                     <div>
                         <label class="lab" for="desc_cat">
@@ -404,8 +404,12 @@ $result =   '<form action="catalogo.php" method="POST">
                     </div>
                     <div>
                         <textarea class="inp" id="desc_cat" name="desc_cat" rows="10" cols="40" maxlength="500">' .
-                            Access::lang($categories[0]["Descrizione"]) . 
+                            Access::reverselang($categories[0]["Descrizione"]) . 
                         '</textarea>
+                    </div>
+                    <div class="testo_regole">
+                        In caso di nomi o testi in lingua straniera è necessario scriverli così: [*LINGUA*]*Testo*[*LINGUA*]
+                        Ad esempio per un testo in inglese: [EN]<span lang="en">Hello</span>[\EN].
                     </div>
                     <input type="submit" class="invio" name="annulla_modifica_cat" value="Annulla modifiche"/>
                     <input type="submit" class="invio" name="submit_modifica_cat" value="Conferma modifiche"/>

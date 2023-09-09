@@ -25,7 +25,7 @@ if ($user && $ruolo == "admin") {
     if (isset($_POST["submit_modifica_prod"])) { // Modifica del prodotto
         if (isset($_POST["nome_prod"], $_POST["category_id"], $_POST["desc_prod"]) && Access::is_not_null($_POST["nome_prod"]) && Access::is_not_null($_POST["desc_prod"])) {
 
-            Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], $_POST["nome_prod"], $_POST["desc_prod"]);
+            Access::modifyProduct($_POST["prod_id"], $_POST["category_id"], Access::lang($_POST["nome_prod"]), Access::lang($_POST["desc_prod"]));
             $Elenco_prod = Catalogo::show_allProducts();
 
             $paginaHTML = Catalogo::sendError("success", "Modifica riuscita", "Prodotto modificato correttamente", $paginaHTML);
@@ -102,7 +102,7 @@ if ($user && $ruolo == "admin") {
     } elseif (isset($_POST["submit_new_prod"])) { // Creazione di un nuovo prodotto
         if (isset($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]) && Access::is_not_null($_POST["new_nome_prod"]) && Access::is_not_null($_POST["new_desc_prod"])) {
 
-            $result = Access::newProduct($_POST["new_nome_prod"], $_POST["new_category_id"], $_POST["new_desc_prod"]);
+            $result = Access::newProduct(Access::lang($_POST["new_nome_prod"]), $_POST["new_category_id"], Access::lang($_POST["new_desc_prod"]));
             $Elenco_prod = Catalogo::show_allProducts();
 
             if ($result)
@@ -120,7 +120,7 @@ if ($user && $ruolo == "admin") {
     } elseif (isset($_POST["submit_modifica_cat"])) { // Modifica di una categoria
         if (isset($_POST["nome_cat"], $_POST["desc_cat"]) && Access::is_not_null($_POST["nome_cat"]) && Access::is_not_null($_POST["desc_cat"])) {
 
-            Access::modifyCategory($_POST["cat_id"], $_POST["nome_cat"], $_POST["desc_cat"]);
+            Access::modifyCategory($_POST["cat_id"], Access::lang($_POST["nome_cat"]), Access::lang($_POST["desc_cat"]));
 
             // Messaggio di riuscita della modifica
             $Elenco_prod = Catalogo::show_allCategories();
@@ -134,7 +134,7 @@ if ($user && $ruolo == "admin") {
     } elseif (isset($_POST["submit_new_cat"])) { // Creazione di una nuova categoria
         if (isset($_POST["new_nome_cat"], $_POST["new_desc_cat"]) && Access::is_not_null($_POST["new_nome_cat"]) && Access::is_not_null($_POST["new_desc_cat"])) {
 
-            $result = Access::newCategory($_POST["new_nome_cat"], $_POST["new_desc_cat"]);
+            $result = Access::newCategory(Access::lang($_POST["new_nome_cat"]), Access::lang($_POST["new_desc_cat"]));
             $Elenco_prod = Catalogo::show_allCategories();
 
             if ($result)

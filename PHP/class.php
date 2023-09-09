@@ -317,13 +317,13 @@ class Access
             $pagina = str_replace('<!-- noindex -->', '<meta name="robots" content="noindex">', $pagina);
 
         // inserisce title
-        $pagina = str_replace('<title></title>', '<title>' . Access::deletelang($title) . ' - Véro</title>', $pagina);
+        $pagina = str_replace('<title></title>', '<title>' . Access::deletelang(Access::reverselang($title)) . ' - Véro</title>', $pagina);
 
         // inserisce description
-        $pagina = str_replace('<meta name="description" content="" />', '<meta name="description" content="' . Access::deletelang($description) . '" />', $pagina);
+        $pagina = str_replace('<meta name="description" content="" />', '<meta name="description" content="' . Access::deletelang(Access::reverselang($description)) . '" />', $pagina);
 
         // inserisce keywords
-        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . Access::deletelang($keywords) . '" />', $pagina);
+        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . Access::deletelang(Access::reverselang($keywords)) . '" />', $pagina);
 
         if ($uppercategory !== null) {
             $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> / ' . '<a href="' . $linkcategory . '">' . $category . '</a> / ' . $title . '</p>';
