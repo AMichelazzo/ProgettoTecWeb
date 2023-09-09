@@ -349,6 +349,21 @@ class Access
             case "Contatti":
                 $pagina = str_replace('<li><a href="contatti.php">Contatti</a></li>', '<li id="currentLink">Contatti</li>', $pagina);
                 break;
+
+            case "Utenti":
+                $pagina = str_replace('<li><a href="utenti.php">Utenti</a></li>', '<li id="currentLink">Utenti</li>', $pagina);
+                break;
+            
+            case "Messaggi":
+                $pagina = str_replace('<li><a href="messaggi.php">Messaggi</a></li>', '<li id="currentLink">Messaggi</li>', $pagina);
+                break;
+            
+            case "Profilo":
+                $pagina = str_replace('<li><a href="profilo.php">Profilo</a></li>', '<li id="currentLink">Profilo</li>', $pagina);
+                break;
+            
+            case "Lista dei Desideri":
+                $pagina = str_replace('<li><a href="listaDesideri.php" >Lista dei desideri</a></li>', '<li id="currentLink">Lista dei Desideri</li>', $pagina);
         }
         $pagina2 = Access::lang($pagina);
         return $pagina2;
