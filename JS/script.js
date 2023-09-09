@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let parsedId = parseId(buttonId);
                 let prod = parsedId[0];
                 let categ = parsedId[1];
-                let form = this.parentNode.parentNode.parentNode.parentNode;
+                let form = this.parentNode.parentNode.parentNode.parentNode.parentNode;
                 let xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
@@ -720,7 +720,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let checknascosti = document.getElementsByName("form-prodotto");
         if (msg && checknascosti) {
             msg.role = "";
-            msg.style.display = "flex";
+            msg.style.display = "block";
             if (checknascosti.length > 0) {
                 msg.innerHTML = message;
                 msg.style.color = color;

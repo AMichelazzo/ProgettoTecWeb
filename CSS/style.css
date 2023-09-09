@@ -486,7 +486,6 @@ a:visited {
 
 #msgWish,
 #msgWish2 {
-  height: 3em;
   width: auto;
   display: none;
   text-align: center;
@@ -714,6 +713,7 @@ a:visited {
 }
 
 #wish-error {
+  text-align: center;
   background-color: #ffcccc;
   color: #cc0000;
   border: 1px solid #cc0000;
