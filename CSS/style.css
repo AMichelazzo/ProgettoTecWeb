@@ -61,11 +61,11 @@ h2 {
 }
 
 /*AREA RISERVATA*/
-
+/*
 #riservata {
   text-align: right;
 }
-
+*/
 /*HAMBURGER*/
 
 .hambuttonoff {
@@ -232,6 +232,58 @@ a:visited {
   /*distanza img da link corrente */
   /*padding-right: 1em; /*distanza dalla voce successiva*/
   font-size: 1.3em;
+}
+
+#cuLinkarv {
+  color: var(--linkcolor);
+  background-color: var(--bgfuncolor);
+  background-image: url("../img/logo_vetrina.svg");
+  /*bianco?*/
+  background-size: 2.3em;
+  background-position: left 2% center;
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  /*distanza img da link corrente */
+  /*padding-right: 1em; /*distanza dalla voce successiva*/
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+
+@media(orientation: landscape) and (min-width: 790px) {
+  #cuLinkarv {
+    color: var(--linkcolor);
+  background-color: var(--bgfuncolor);
+  background-image: url("../img/logo_vetrina.svg");
+  /*bianco?*/
+  background-size: 1.4em;
+  background-position: left 2% center;
+  background-repeat: no-repeat;
+  padding-left: 2.5em;
+  /*distanza img da link corrente */
+  /*padding-right: 1em; /*distanza dalla voce successiva*/
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  }
+}
+
+@media(max-aspect-ratio: 1/1.7) {
+  #cuLinkarv {
+    color: var(--linkcolor);
+  background-color: var(--bgfuncolor);
+  background-image: url("../img/logo_vetrina.svg");
+  /*bianco?*/
+  background-size: 3.0em;
+  background-position: left 2% center;
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  /*distanza img da link corrente */
+  /*padding-right: 1em; /*distanza dalla voce successiva*/
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  }
 }
 
 @media(max-aspect-ratio: 1/1.7) {

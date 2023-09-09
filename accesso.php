@@ -6,7 +6,7 @@ if (isset($_SESSION["username"])) {
     require_once "PHP/class.php";
     $template = Access::getHeader("Accesso", "Accedi al tuo account.", "accedi, login, registrati, signup, crea account, username, email");
 }
-$template = str_replace('<nav id="riservata" aria-label="Accedi"><a href="accesso.php">Area Riservata</a></nav>', '<nav id="riservata" aria-label="Accedi"><div id="currentLink">Area Riservata</div></nav>', $template);
+$template = str_replace('<nav id="riservata" aria-label="Accedi"><a href="accesso.php">Area Riservata</a></nav>', '<nav id="riservata" aria-label="Accedi"><div id="cuLinkarv">Area Riservata</div></nav>', $template);
 $template .= file_get_contents('HTML/accesso.html');
 
 $err = isset($_SESSION['error']) ? $_SESSION['error'] : null;
