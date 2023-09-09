@@ -543,27 +543,33 @@ $result =   '<form action="catalogo.php" method="POST">
                 $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / Creazione nuovo prodotto", $pagina);
                 $pagina = str_replace("Catalogo prodotti", "Creazione nuovo prodotto", $pagina);
                 $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Nuovo prodotto - Véro</title>", $pagina);
+                $pagina = str_replace('<li id="currentLink">Catalogo</li>', '<li><a href="catalogo.php">Catalogo</a></li>', $pagina);
+
                 break;
             case("Modifica_Prodotto"):
                 $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / Modifica prodotto", $pagina);
                 $pagina = str_replace("Catalogo prodotti", "Modifica Prodotto", $pagina);
                 $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Modifica prodotto - Véro</title>", $pagina);
+                $pagina = str_replace('<li id="currentLink">Catalogo</li>', '<li><a href="catalogo.php">Catalogo</a></li>', $pagina);
                 break;
             case("Lista_Categorie"):
                 $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / Categorie", $pagina);
                 $pagina = str_replace("Catalogo prodotti", "Lista Categorie", $pagina);
                 $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Lista categorie - Véro</title>", $pagina);
+                $pagina = str_replace('<li id="currentLink">Catalogo</li>', '<li><a href="catalogo.php">Catalogo</a></li>', $pagina);
                 break;
             case("Nuova_Categoria"):
                 $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Creazione nuova categoria",
                 $pagina);
                 $pagina = str_replace("Catalogo prodotti", "Creazione nuova categoria", $pagina);
                 $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Nuova categoria - Véro</title>", $pagina);
+                $pagina = str_replace('<li id="currentLink">Catalogo</li>', '<li><a href="catalogo.php">Catalogo</a></li>', $pagina);
             case("Modifica_Categoria"):
                 $pagina = str_replace(" / Catalogo"," / <a href=\"catalogo.php\">Catalogo</a> / <a href=\"catalogo.php?lista_categorie=Lista+delle+Categorie\">Categorie</a> / Modifica categoria",
                 $pagina);
                 $pagina = str_replace("Catalogo prodotti", "Modifica Categoria", $pagina);
                 $pagina = str_replace("<title>Catalogo - Véro</title>", "<title>Modifica categoria - Véro</title>", $pagina);
+                $pagina = str_replace('<li id="currentLink">Catalogo</li>', '<li><a href="catalogo.php">Catalogo</a></li>', $pagina);
                 break;
         }
         return $pagina;
