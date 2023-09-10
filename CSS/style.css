@@ -542,8 +542,9 @@ a:visited {
   display: none;
   text-align: center;
   border-radius: 0.5em;
-  background-color: #c2e0c6;
-  border: 1px solid #276749;
+  font-weight: bold;
+  color: #276749;
+  border: 5px solid #276749;
   font-size: 3em;
   line-height: 3em;
   margin: 5%;
@@ -766,9 +767,9 @@ a:visited {
 
 #wish-error {
   text-align: center;
-  background-color: #ffcccc;
-  color: #cc0000;
-  border: 1px solid #cc0000;
+  color: var(--bgfuncolor);
+  border: 5px solid var(--bgfuncolor);
+  font-weight: bold;
   height: 3em;
   width: auto;
   border-radius: 0.5em;
@@ -799,9 +800,9 @@ a:visited {
   width: auto;
   text-align: center;
   border-radius: 0.5em;
-  background-color: #ffcccc;
-  color: #cc0000;
-  border: 1px solid #cc0000;
+  color: var(--bgfuncolor);
+  border: 5px solid var(--bgfuncolor);
+  font-weight: bold;
   font-size: 3em;
   line-height: 3em;
   margin: 5%;
@@ -817,9 +818,9 @@ a:visited {
   width: auto;
   text-align: center;
   border-radius: 0.5em;
-  background-color: #c2e0c6;
+  font-weight: bold;
   color: #276749;
-  border: 1px solid #276749;
+  border: 5px solid #276749;
   font-size: 3em;
   line-height: 3em;
   margin: 5%;
@@ -916,7 +917,7 @@ a:visited {
 #maiusc,
 #numeri,
 #lunghezza {
-  color: red;
+  color: var(--bgfuncolor);
 }
 
 #errore_generico,
@@ -958,10 +959,10 @@ a:visited {
 
 #elimina_utente {
   width: auto;
-  background-color: #ffcccc;
-  color: #cc0000;
+  color: var(--bgfuncolor);
   padding: 1%;
-  border: 2px solid #cc0000;
+  border: 5px solid var(--bgfuncolor);
+  font-weight: bold;
   border-radius: 0.5em;
   margin: 1%;
   text-align: center;
@@ -972,10 +973,10 @@ a:visited {
 .elimina_utente_big-img {
   line-height: 3em;
   font-size: 1em;
-  background-color: #ffcccc;
-  color: #cc0000;
+  color: var(--bgfuncolor);
   padding: 1%;
-  border: 2px solid #cc0000;
+  border: 5px solid var(--bgfuncolor);
+  font-weight: bold;
   border-radius: 0.5em;
   margin: 1%;
   text-align: center;
@@ -989,7 +990,7 @@ a:visited {
 }
 
 .messaggio_elimina {
-  color: red;
+  color: var(--bgfuncolor);
   font-weight: bold;
   font-size: 2.5em;
   line-height: 3em;
@@ -1143,9 +1144,9 @@ p.link-reg a {
   width: auto;
   text-align: center;
   border-radius: 0.5em;
-  background-color: #ffcccc;
-  color: #cc0000;
-  border: 1px solid #cc0000;
+  color: var(--bgfuncolor);
+  border: 5px solid var(--bgfuncolor);
+  font-weight: bold;
   font-size: 3em;
   line-height: 3em;
   margin: 5%;
@@ -1170,8 +1171,8 @@ p.link-reg a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c2e0c6;
-  border: 1px solid #276749;
+  font-weight: bold;
+  border: 5px solid #276749;
 }
 
 span>.nome,
@@ -1400,10 +1401,10 @@ input[type="text"] {
 #elimina_utente_big-img-profilo {
   line-height: 3em;
   font-size: 1em;
-  background-color: #ffcccc;
-  color: #cc0000;
+  color: var(--bgfuncolor);
   padding: 1%;
-  border: 5px solid #cc0000;
+  border: 5px solid var(--bgfuncolor);
+  font-weight: bold;
   border-radius: 0.5em;
   margin: 1%;
   text-align: center;
@@ -1686,7 +1687,8 @@ input[type="text"] {
     font-size: 100%;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--bgfuncolor);
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     border-radius: 0.5em;
     background-color: var(--bgfuncolor);
     margin-left: 0;
@@ -1707,8 +1709,9 @@ input[type="text"] {
     display: none;
     text-align: center;
     border-radius: 0.5em;
-    background-color: #c2e0c6;
-    border: 1px solid #276749;
+    font-weight: bold;
+    color: #276749;
+    border: 5px solid #276749;
     font-size: 100%;
     line-height: 3em;
     margin: 7%;
@@ -1929,9 +1932,9 @@ input[type="text"] {
   }
 
   #wish-error {
-    background-color: #ffcccc;
-    color: #cc0000;
-    border: 1px solid #cc0000;
+    color: var(--bgfuncolor);
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     height: 3em;
     width: auto;
     border-radius: 0.5em;
@@ -1959,9 +1962,9 @@ input[type="text"] {
     width: auto;
     text-align: center;
     border-radius: 0.5em;
-    background-color: #ffcccc;
-    color: #cc0000;
-    border: 1px solid #cc0000;
+    color: var(--bgfuncolor);
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     font-size: 100%;
     line-height: 3em;
     margin: 5%;
@@ -1977,9 +1980,9 @@ input[type="text"] {
     width: auto;
     text-align: center;
     border-radius: 0.5em;
-    background-color: #c2e0c6;
+    font-weight: bold;
     color: #276749;
-    border: 1px solid #276749;
+    border: 5px solid #276749;
     font-size: 100%;
     line-height: 3em;
     margin: 5%;
@@ -2075,7 +2078,7 @@ input[type="text"] {
   #maiusc,
   #numeri,
   #lunghezza {
-    color: red;
+    color: var(--bgfuncolor);
   }
 
   #errore_generico,
@@ -2117,17 +2120,17 @@ input[type="text"] {
   }
 
   .invio:hover {
-    background-color: #CC0000;
+    background-color: var(--bgfuncolor);
   }
 
 
 
   #elimina_utente {
     width: 300px;
-    background-color: #ffcccc;
-    color: #cc0000;
+    color: var(--bgfuncolor);
     padding: 1%;
-    border: 1px solid #cc0000;
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     border-radius: 0.5em;
     margin: 1%;
     text-align: center;
@@ -2138,10 +2141,10 @@ input[type="text"] {
   .elimina_utente_big-img {
     line-height: 3em;
     font-size: 100%;
-    background-color: #ffcccc;
-    color: #cc0000;
+    color: var(--bgfuncolor);
     padding: 1%;
-    border: 1px solid #cc0000;
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     border-radius: 0.5em;
     margin: 1%;
     text-align: center;
@@ -2152,10 +2155,10 @@ input[type="text"] {
   #elimina_utente_big-img-profilo {
     line-height: 3em;
     font-size: 100%;
-    background-color: #ffcccc;
-    color: #cc0000;
+    color: var(--bgfuncolor);
     padding: 1%;
-    border: 1px solid #cc0000;
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     border-radius: 0.5em;
     margin: 1%;
     text-align: center;
@@ -2170,7 +2173,7 @@ input[type="text"] {
 
 
   .messaggio_elimina {
-    color: red;
+    color: var(--bgfuncolor);
     font-weight: bold;
     font-size: 120%;
     line-height: 3em;
@@ -2314,9 +2317,9 @@ input[type="text"] {
     width: auto;
     text-align: center;
     border-radius: 0.5em;
-    background-color: #ffcccc;
-    color: #cc0000;
-    border: 1px solid #cc0000;
+    color: var(--bgfuncolor);
+    border: 5px solid var(--bgfuncolor);
+    font-weight: bold;
     font-size: 100%;
     line-height: 3em;
     margin: 5%;
@@ -2332,9 +2335,9 @@ input[type="text"] {
     width: auto;
     text-align: center;
     border-radius: 0.5em;
-    background-color: #c2e0c6;
+    font-weight: bold;
     color: #276749;
-    border: 1px solid #276749;
+    border: 5px solid #276749;
     font-size: 100%;
     line-height: 3em;
     margin: 5%;
