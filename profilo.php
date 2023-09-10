@@ -38,7 +38,7 @@ if (
                 header("Location: profilo.php");
             }
         } else {
-            $_SESSION["error_new_old"] = '<div id="msgchange" class="change-error" role="alert">La nuova <span lang=en">password</span> non può combaciare con quella nuova.</div>';
+            $_SESSION["error_new_old"] = '<div id="msgchange" class="change-error" role="alert">La nuova <span lang="en">password</span> non può combaciare con quella nuova.</div>';
             $_SESSION["error_new_old2"] = '<img id="passNOT_disponibile" src="img/Xrossa.png" alt="La nuova password non può combaciare con quella nuova." />';
             header("Location: profilo.php");
         }
