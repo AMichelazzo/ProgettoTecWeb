@@ -323,7 +323,7 @@ class Access
         $pagina = str_replace('<meta name="description" content="" />', '<meta name="description" content="' . Access::deletelang(Access::reverselang($description)) . '" />', $pagina);
 
         // inserisce keywords
-        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . Access::deletelang(Access::reverselang($keywords)) . '" />', $pagina);
+        $pagina = str_replace('<meta name="keywords" content="" />', '<meta name="keywords" content="' . 'Murano, vetro, ' . Access::deletelang(Access::reverselang($keywords)) . '" />', $pagina);
 
         if ($uppercategory !== null) {
             $breadcrumb = '<p>Ti trovi in: <a href="index.php" lang="en">Home</a> / <a href="' . $linkuppercategory . '">' . $uppercategory . '</a> / ' . '<a href="' . $linkcategory . '">' . $category . '</a> / ' . $title . '</p>';
