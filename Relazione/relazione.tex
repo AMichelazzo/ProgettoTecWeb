@@ -34,9 +34,9 @@
         \hspace{3.5cm}
         \renewcommand{\arraystretch}{1.4}
         \begin{tabular}{l | l}
-            \textbf{Componenti} & Michelazzo Alberto 2010007\\
+            \textbf{Componenti} & Barraco Alessio 2008654\\
+            & Michelazzo Alberto 2010007\\
             & Vignaga Matteo 1201147\\
-            & Barraco Alessio *matricola*\\
         \end{tabular}
     \end{table}
 \end{center}
@@ -45,9 +45,10 @@
 \begin{center}
 	\textbf{\Large{Informazioni sul sito}}\\
 	\vspace{4pt}
-	\textbf{Login consegna:} abarraco \\
-	\textbf{Tunnel SSH:} sito web\\
-	\textbf{Email referente gruppo:} alessio.barraco@studenti.unipd.it\\
+	%\textbf{Login consegna:} abarraco \\
+	\textbf{Indirizzo sito:} http://tecweb.studenti.math.unipd.it/abarraco \\
+	\textbf{Indirizzo sito (SSH):} http://localhost:8080/abarraco \\
+	\textbf{Email referente gruppo:} alessio.barraco@studenti.unipd.it \\
     \vspace{1cm}
     \textbf{Accessi interni al sito}
     \begin{longtable}{|l|l|l|}
@@ -55,6 +56,13 @@
         {Ruolo} & {Username} & {Password} \\ \hline
         Utente         & user     & user     \\ \hline
         Amministratore & admin    & admin \\ \hline
+    \end{longtable}
+    Per completezza, sono riportati anche ulteriori utenti che hanno lo stesso ruolo di \textit{user}, non aggiungono funzionalità e sono stati usati al solo fine di popolare il database.
+    \begin{longtable}{|l|l|l|}
+        \hline
+        {Ruolo} & {Username} & {Password} \\ \hline
+        Utente         & Mario1     & Mario1     \\ \hline
+        Utente & Tizio1    & Tizio1 \\ \hline
     \end{longtable}
 \end{center}
 
@@ -64,7 +72,7 @@
 
 
 \section{Analisi}
-\subsection{Descrizione testuale}
+\subsection{Descrizione}
 L’idea di realizzare il sito deriva dalla visita di uno dei componenti del gruppo all’Isola di Murano a Venezia, famosa per la lavorazione del vetro. \\
 Si è quindi deciso di creare un sito che svolga la funzione di vetrina per l’azienda fittizia Véro. Lo scopo è quello di mostrare i prodotti ai visitatori del sito e consentire ad eventuali clienti di mettersi in contatto per ulteriori informazioni. 
 
@@ -81,7 +89,7 @@ Sono state individuate tre tipologie di utenti:
 \item \textbf{Amministratore:} utente che ha eseguito l'accesso, dispone di elevati privilegi per gestire il sito
 \end{itemize}
 
-\subsection{Funzionalità offerte}
+\subsection{Funzionalità}
 Le funzionalità offerte agli utenti sono:
 \begin{itemize}
 \item Utente generico:
@@ -106,6 +114,7 @@ Le funzionalità offerte agli utenti sono:
 \item Amministratore:
 	\begin{itemize}
 	\item Visualizzare i prodotti proposti
+        \item Accesso a Contatti
 	\item Visualizzare ed eliminare utenti registrati
 	\item Aggiungere, modificare, eliminare prodotti
 	\item Aggiungere, modificare, eliminare categorie
@@ -116,53 +125,47 @@ Le funzionalità offerte agli utenti sono:
 
 
 \subsection{Ricerche}
+L’insieme delle possibili ricerche è contraddistinto da 4 caratteristiche principali:
+\begin{itemize}
+    \item legate al marchio: Véro
+    \item legate al luogo: Murano
+    \item legate al materiale: vetro
+    \item legate al prodotto: tutti i vari prodotti esposti
+\end{itemize}
+Quindi possono crearsi ricerche quali, ad esempio: Lampadario di vetro Murano, Véro Murano, Bracciale Murano, vetro Murano… 
+
+Inoltre, le maggiori accortezze per quel che riguarda l’accessibilità rispetto alla concorrenza, ci consentono di essere premiati dai motori di ricerca. 
+
 
 \section{Progettazione}
-
-*Parte di image replacement*
-
 \subsection{Struttura del sito}
 
-La pagina è strutturata in Header, Main e Footer. L’Header contiene il riferimento per passare all’inizio del contenuto, il titolo, il menù e la breadcrumb. \\
+La pagina è strutturata in header, main e footer. L’header contiene il riferimento per passare all’inizio del contenuto, il titolo, il menù e la breadcrumb. Il marchio di Véro viene utilizzato per realizzare image replacement nell'header.
 
 \subsubsection{Menù}
-Il menù è composto da Home, Prodotti, Contatti e Area Riservata. \\
-\vspace{3px}
-L’utente registrato e l’amministratore invece di Area Riservata hanno un pulsante che estende il menù con le funzioni specifiche a seconda della tipologia di utente.  \\
-\vspace{3px}
-Utente registrato ha accesso a Profilo e Lista dei desideri; Amministratore ha accesso a Utenti, Catalogo e Messaggi; entrambi hanno la possibilità di uscire dalla sessione.  \\
-\vspace{3px}
+Il menù è composto da Home, Prodotti, Contatti e Area Riservata.
+
+L’utente registrato e l’amministratore, invece di Area Riservata, hanno un pulsante che estende il menù con le funzioni specifiche a seconda della tipologia di utente.
+
+Utente registrato ha accesso a Profilo e Lista dei desideri; Amministratore ha accesso a Utenti, Catalogo e Messaggi; entrambi hanno la possibilità di uscire dalla sessione.
+
 Il menù non eccede né in larghezza né in profondità.
 
-\subsubsection{Breadcrumb}
-Per agevolare gli utenti durante la visita del sito e per evitare il disorientamento è stata aggiunta una breadcrumb ad ogni pagina visitabile. \\
-Questa sezione di pagina è stata costruita sfruttando il tag semantico \texttt{<nav>}.  \\
-Si è tenuto conto dell'accessibilità prestando attenzione alle parole di lingua inglese come ad esempio \textit{Home}.
-
-\subsubsection{Contenuto} 
-In ogni pagina si è tentato di mantenere una struttura semplice che permetesse all'utente di rispondere chiaramente alle tre domande fondamentali:
-  \begin{itemize}
-        \item \textbf{Dove sono?} Domanda a cui è facile rispondere grazie all'header e alla breadcrumb.
-        \item \textbf{Di cosa si tratta?} Grazie all'utilizzo appropriato di titoli e di descrizioni.
-        \item \textbf{Dove posso andare?} Grazie alla breadcrumb i percorsi sono facilmente intuibili dall'utente.
-    \end{itemize}
-    
 \subsubsection{Footer}
 All'interno del footer è stata inserita una piccola descrizione riguardante l'azienda \textit{Véro}
 
 \subsection{Funzionalità singole pagine}
-Per la gestione dei Prodotti si è deciso di strutturare la seguenza gerarchia: \\
-\textit{Elenco categorie} $\rightarrow$ \textit{Elenco prodotti categoria} $\rightarrow$  \textit{Prodotto in dettaglio} \\
-
-
 
 Verranno ora illustrate le funzionalità delle varie pagine presenti all'interno del sito:
 \begin{itemize}
 	\item \textbf{Home:} \textit{[utente generico, utente registrato, amministratore]} \\
 	Pagina di presentazione del sito con lo scopo di far conoscere l'azienda Véro. \\
 	È dotato di carosello che, se cliccato, invia al prodotto visualizzato.
-	
-	\item \textbf{Elenco categoria:}  \textit{[utente generico, utente registrato, amministratore]} \\
+\end{itemize}
+Per la gestione dei Prodotti si è deciso di strutturare la seguente gerarchia: \\
+\textit{Elenco categorie} $\rightarrow$ \textit{Elenco prodotti categoria} $\rightarrow$  \textit{Prodotto in dettaglio}
+\begin{itemize}
+	\item \textbf{Elenco categorie:}  \textit{[utente generico, utente registrato, amministratore]} \\
 	Viene mostrato l’elenco delle categorie. Cliccando sulla categoria viene visualizzato l’elenco dei prodotti.
 
  	\item \textbf{Elenco prodotti:} \textit{[utente generico, utente registrato, amministratore]} \\
@@ -171,7 +174,7 @@ Verranno ora illustrate le funzionalità delle varie pagine presenti all'interno
  	\item \textbf{Prodotto in dettaglio:} \textit{[utente generico, utente registrato, amministratore]} \\
  	Viene mostrato il prodotto nel dettaglio. \\
  	\textit{[utente generico, utente registrato]} \\
- 	Possibilità di richiedere informazioni. \\
+ 	Possibilità di richiedere direttamente informazioni. \\
 	\textit{[utente registrato]} \\
 	Possibilità di aggiungere o togliere dalla Lista dei desideri.
 	
@@ -188,7 +191,7 @@ Verranno ora illustrate le funzionalità delle varie pagine presenti all'interno
 	Possibilità di inoltro all’Elenco categorie di quel prodotto, al Prodotto in dettaglio, \\
 	Contatti per quel prodotto o eliminarlo dalla lista.
 
-	\item \textbf{Utenti:} \textit {[amministratore} \\
+	\item \textbf{Utenti:} \textit {[amministratore]} \\
 	Visualizzare ed eliminare gli utenti registrati.
 	
    \item \textbf{Messaggi:} \textit{[amministratore]} \\
@@ -219,28 +222,30 @@ Verranno ora illustrate le funzionalità delle varie pagine presenti all'interno
 \end{itemize}
 
 \subsection{Divisione del lavoro:}
-Purtroppo a causa della rinuncia agli studi da parte di uno dei membri del gruppo originale, dopo circa 2 settimane di lavoro, il progetto è stato svolto da 3 persone. \\
+Purtroppo, a causa della rinuncia agli studi da parte di uno dei membri del gruppo originale poco dopo l'inizio dei lavori, il progetto è stato svolto da 3 persone. \\
 
 Ogni persona che si è occupata di una pagina ha sviluppato sia il front-end che la parte back-end. \\
 La suddivisione del lavoro è la seguente:
 
 \begin{itemize}
-\item \textbf{Matteo Vignaga:}
-	\begin{itemize}
-		\item Progettazione del sito web;
-		\item Pagina di Accesso;
-		\item Pagina di Registrazione;
-		\item Carosello immagini;
-		\item Lista Categorie,
-		\item Lista Prodotti;
-		\item Prodotto;
-		\item Lista dei Desideri;
-		\item Profilo;
-		\item JavaScript Relativo a queste pagine;
-		\item Sviluppo dei fogli di stile CSS;
-		\item Iniziale sviluppo della base di dati
-	\end{itemize}
 
+\item \textbf{Alessio Barraco}
+	\begin{itemize}
+	\item Progettazione del sito web;
+        \item Pagina prototipo e index;
+        \item Iniziale sviluppo di login, registrazione, utenti;
+        \item Individuazione 3 colori contrasto (link visitato, non visitato, sfondo);
+        \item Header e footer;
+        \item Pagine errori 404 e 500;
+        \item Connessione al server e relativi errori;
+        \item Redesign delle query;
+        \item Sviluppo gestione dinamica della lingua;
+        \item Validazione sito tramite Total Validator in laboratorio;
+        \item Verifica del sito;
+        \item Sviluppo dei fogli di stile CSS;
+        \item Stesura e verifica della relazione;
+
+	\end{itemize}
 \item \textbf{Alberto Michelazzo:}
 	\begin{itemize}
 		\item Progettazione del sito web;
@@ -253,11 +258,22 @@ La suddivisione del lavoro è la seguente:
 		\item Test sul corretto funzionamento lato server;
 		\item Stesura della relazione;
 	\end{itemize}
-
-\item \textbf{Alessio Barraco}
+\item \textbf{Matteo Vignaga:}
 	\begin{itemize}
-	\item Inserire lavoro
+		\item Progettazione del sito web;
+		\item Pagina di Accesso;
+		\item Pagina di Registrazione;
+		\item Carosello immagini;
+		\item Lista Categorie,
+		\item Lista Prodotti;
+		\item Prodotto;
+		\item Lista dei Desideri;
+		\item Profilo;
+		\item JavaScript relativo a queste pagine;
+		\item Sviluppo dei fogli di stile CSS;
+		\item Iniziale sviluppo della base di dati
 	\end{itemize}
+
 	
 Nonostante questa divisione, tutti i membri del gruppo hanno collaborato sotto tutti gli aspetti della realizzazione del sito, in particolare per quanto riguarda l'accessibilità dello stesso.
 \end{itemize}
@@ -272,7 +288,7 @@ Per la realizzazione del sito è stato usato \textbf{HTML5} per via delle sue nu
 \subsection{CSS}
 Per quanto riguarda il CSS è stato adottato un approccio \textbf{Mobile First} privilegiando la tendenza degli utenti a preferire la navigazione su dispositivi mobili rispetto ai desktop. \\
 La versione desktop è stata quindi ottenuta da quella mobile cui sono state apportate delle modifiche tramite Media Queries. \\
-È stato previsto anche un css per la stampa che va a rimuovere elementi quali il menu di navigazione e il footer per una maggiore fruibilità.
+È stato previsto anche un CSS per la stampa che va a rimuovere elementi quali il menu di navigazione e il footer per una maggiore fruibilità.
 
 Verosimilmente, il target di utenti accede al sito attraverso dispositivi di moderna produzione e quindi in grado di supportare le recenti funzionalità sia HTML5 che CSS.
 
@@ -291,12 +307,12 @@ E’ presente una tabella \textbf{Tags} che contiene le keywords associate al si
 La tabella \textbf{Messaggi} contiene le varie richieste di informazioni da utenti registrati o non, con un eventuale prodotto associato.\\
 La tabella \textbf{Utente} ospita i dati degli utenti ed è stato scelto come chiave primaria l’attributo username. 
 Anche l’amministratore si trova all’interno, infatti è presente l’attributo ruolo che definisce i privilegi dell’utente. \\
-La tabella \textbf{Wishlist} permette ad un utente (non l’admin) di salvare prodotti nella sua Lista dei Desideri.
+La tabella \textbf{Wishlist} permette ad un utente (non amministratore) di salvare prodotti nella sua Lista dei Desideri.
 
 \subsection{PHP}
-Si è creata la classe PHP \textbf{DBAccess} che si occupa di astrarre tutte le operazioni di connessione e disconnessione al database, alleggerendo inoltre il carico di lavoro nella fase di creazione delle query.  \\
+Si è creata la classe PHP \textbf{DBAccess} che si occupa di astrarre tutte le operazioni di connessione e disconnessione al database, alleggerendo inoltre il carico di lavoro nella fase di creazione delle query.
 Infatti la classe è in grado di gestire tutte le query e fornire i risultati o gli errori in base alla tipologia di richiesta (select, insert into, ecc.). \\
-Le varie query sono state inserite all’interno della classe \textit{Access} per favorire il riuso del codice.  \\
+Le varie query sono state inserite all’interno della classe \textbf{Access} per favorire il riuso del codice.  \\
 Tutte le query sono parametrizzate per evitare attacchi di tipo \textit{SQL Injection}.
 
 \subsubsection{Autenticazione}
@@ -307,7 +323,7 @@ Le varie pagine, caricate tramite PHP, verificheranno i permessi e quali contenu
 Le password non vengono salvate in chiaro ma viene utilizzata una funzione di \textit{hashing} per garantire un buon livello di sicurezza (che utilizza l’algoritmo crittografico \textbf{bcrypt}, standard da PHP 5.5.0).
 
 \subsubsection{GET e POST}
-Per facilitare l’esperienza dell’utente i prodotti sono raggiungibili tramite link diretto grazie all’utilizzo del metodo GET rendendo quindi possibile la creazione di bookmark. \\
+Per facilitare l’esperienza dell’utente, i prodotti sono raggiungibili tramite link diretto grazie all’utilizzo del metodo GET rendendo quindi possibile la creazione di bookmark. 
 
 Tutte le richieste al server che contengono dati sensibili utilizzano il metodo POST, esempio di questi è il form per informazioni o tutta la parte relativa all’amministratore.
 
@@ -319,22 +335,35 @@ Ciò è stato reso necessario nelle parti dinamiche in quanto non è possibile s
 
 \subsection{Accessibilità}
 
-Tutto lo sviluppo del sito si è svolto tenendo a mente le raccomandazioni dello standard WCAG 2.0. \\
-Il sito dispone di un breadcrumb per evitare il disorientamento stando comunque attenti a non creare link circolari. 
+Tutto lo sviluppo del sito si è svolto tenendo conto delle raccomandazioni WCAG. 
+
+Al fine di ridurre il disorientamento dell’utente è stata implementata una breadcrumb per fargli capire dove si trova e quale percorso ha fatto per raggiungere quella pagina. 
+Per evitare link circolari l’ultimo elemento della breadcrumb (che indica la pagina attuale) è non cliccabile.
+
+Si è tenuto conto dell'accessibilità prestando attenzione alle parole di lingua inglese come ad esempio \textit{Home}.
 
 \subsubsection{Contrasto e Font}
 
-Tutti i testi all'interno del sito hanno un contrasto che rispettano il livello AA del WCAG. Inoltre si è prestata particolare attenzione al contrasto dei link: non solo il testo del link contrasta con lo sfondo ma anche il testo del link non visitato contrasta con il link visitato. \\
-Per facilitare la lettura dei testi si è utilizzato un font “senza grazie” (è giusto?) per la parte visibile a schermo mentre quando si esegue una stampa il font viene modificato in uno con le grazie. 
+Tutti i testi all'interno del sito hanno un contrasto che rispetta il livello AA del WCAG. Inoltre si è prestata particolare attenzione al contrasto dei link: non solo il testo del link contrasta con lo sfondo, ma anche il testo del link non visitato contrasta con il link visitato. \\
+Per facilitare la lettura dei testi, si è utilizzato un font \textit{senza grazie} per la parte visibile a schermo, mentre quando si esegue una stampa il font viene modificato in uno con le \textit{grazie}. 
 
 \subsubsection{Lingua}
 Il sito specifica come lingua principale l’italiano, ma ogni parola che deve essere letta con pronuncia straniera è stata contrassegnata da un attributo lang, all’interno di un tag \texttt{<span>}. \\
-Un esempio è tutta la parte riguardante il nome o la descrizione di un prodotto, che durante la sua creazione, in caso di parole di lingua straniera,  devono essere contrassegnate da [lingua]parola[\textbackslash lingua].
+Un esempio è tutta la parte riguardante il nome o la descrizione di un prodotto, che durante la sua creazione, in caso di parole di lingua straniera,  devono essere contrassegnate da [LINGUA]parola[\textbackslash LINGUA].
+
+\subsubsection{Feedback}
+Per aiutare l’utente, si è data importanza alla gestione dei feedback. 
+In risposta a determinate operazioni viene informato sull’esito positivo o negativo. Inoltre ci sono controlli che forniscono in tempo reale indicazioni per la corretta esecuzione dell’operazione, come per esempio nella costruzione della password in fase di registrazione. 
+Per alcune operazioni critiche, come quelle di eliminazione, sono previsti messaggi di conferma. 
 
 
+\section{Testing}
+Nello sviluppo del sito si è fatto uso delle estensioni Web Developer e Colour Contrast Checker, oltre che del sito Color11y. Il sito è stato allocato su XAMPP nelle macchine di ciascun componente del gruppo, inoltre sono stati fatti periodici sincronizzazioni e test con il server dell’Università. \\
+Quando possibile, durante il ciclo di sviluppo, ci si è avvalsi del tool di testing Total Validator installato in LabP140. \\
+%Quando l’accesso al laboratorio non era consentito, abbiamo utilizzato l’estensione per browser Wave che permetteva di effettuare test sull’accessibilità.
+Nel tentativo di rendere il sito accessibile agli utilizzatori di screen reader, sono stati fatti alcuni test con Nvda e l'estensione per browser WAVE Evaluation Tool, allo scopo di facilitare la navigazione del sito.
+
+Il sito è stato testato su Firefox e Chrome nei sistemi operativi Windows e Linux.
 
 
 \end{document}
-
-
-
