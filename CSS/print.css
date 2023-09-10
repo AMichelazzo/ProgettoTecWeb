@@ -1329,3 +1329,11 @@ p.inline, p label{
   line-height: 1.5em;
 }
 
+#desc_prod {
+  height: 500px;
+}
+
+#messaggio {
+  width: 800px;
+  height: 400px;
+}
