@@ -378,7 +378,7 @@ class Access
         $pattern = "#\[(.+?)\]#";
         preg_match_all($pattern, $str, $match);
         $match = $match[0];
-        $match = array_unique($match);
+        //$match = array_unique($match);
         $value = array();
         foreach ($match as $n => $l) {
             if (strpos($l, '\\') === false) {
@@ -397,15 +397,15 @@ class Access
         return $str;
     }
 
+    public static function str_replace_first($search, $replace, $subject)
+    {
+        $search = '/'.preg_quote($search, '/').'/';
+        return preg_replace($search, $replace, $subject, 1);
+    }
+
     public static function reverselang($str)
     {
-        function str_replace_first($search, $replace, $subject)
-{
-    $search = '/'.preg_quote($search, '/').'/';
-    return preg_replace($search, $replace, $subject, 1);
-}
-
-
+    
 
 $pattern = "/<span[^>]+\>/i";
         preg_match_all($pattern, $str, $match);
@@ -435,7 +435,7 @@ $pattern = "/<span[^>]+\>/i";
                 $sub = str_replace($sub, '[' . strtoupper($sub) . ']', $sub);
                 //$tmp = str_replace('</span>', '[\\', $tmp);
                 //$tmp .= $tmp2 . ']';
-                $str = str_replace_first('</span>', $tmp2, $str);
+                $str = Access::str_replace_first('</span>', $tmp2, $str);
                 array_push($value, $sub);
                 //array_push($value2, $tmp);
             } else {
@@ -454,7 +454,7 @@ $pattern = "/<span[^>]+\>/i";
         $pattern = "#\[(.+?)\]#";
         preg_match_all($pattern, $str, $match);
         $match = $match[0];
-        $match = array_unique($match);
+        //$match = array_unique($match);
         foreach ($match as $n => $l) {
             $str = str_replace($match[$n], '', $str);
         }
