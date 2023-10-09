@@ -5,3 +5,5 @@ registrarsi e aggiungere prodotti alla wishlist.
 E' inoltre presente un pannello di controllo in cui l'amministratore può aggiungere o modificare il catalogo o rispondere ai messaggi degli utenti.
 
 Il sito segue le regole per l'accessibilità WCAG 2.0.
+
+Valutazione ricevuta: 22/30
